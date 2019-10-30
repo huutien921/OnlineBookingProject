@@ -6,16 +6,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.online.booking.service.HomeService;
+import com.online.booking.service.RoomService;
+
 
 @Controller
 @RequestMapping(value = { "home", "" })
 public class HomeController {
 	@Autowired
-	private HomeService homeService;
+	private RoomService roomService;
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap map) {
-		map.put("hello", homeService.Hello().getHello());
+		map.put("rooms", roomService.findAll());
 		return "home/index";
 	}
 }
