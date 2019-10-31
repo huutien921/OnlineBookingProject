@@ -1,8 +1,6 @@
 package com.online.booking.entities;
-// Generated Oct 30, 2019 11:24:01 AM by Hibernate Tools 5.1.10.Final
+// Generated Oct 31, 2019 9:54:37 PM by Hibernate Tools 5.1.10.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +9,8 @@ import javax.persistence.GenerationType;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,10 +22,11 @@ public class Payment implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private Orders orders;
+	private ServiceHotel serviceHotel;
 	private String name;
 	private String paymentcode;
 	private boolean status;
-	private Set<Orders> orderses = new HashSet<Orders>(0);
 
 	public Payment() {
 	}
@@ -35,11 +35,12 @@ public class Payment implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Payment(String name, String paymentcode, boolean status, Set<Orders> orderses) {
+	public Payment(Orders orders, ServiceHotel serviceHotel, String name, String paymentcode, boolean status) {
+		this.orders = orders;
+		this.serviceHotel = serviceHotel;
 		this.name = name;
 		this.paymentcode = paymentcode;
 		this.status = status;
-		this.orderses = orderses;
 	}
 
 	@Id
@@ -52,6 +53,26 @@ public class Payment implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_order")
+	public Orders getOrders() {
+		return this.orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_service_hotel")
+	public ServiceHotel getServiceHotel() {
+		return this.serviceHotel;
+	}
+
+	public void setServiceHotel(ServiceHotel serviceHotel) {
+		this.serviceHotel = serviceHotel;
 	}
 
 	@Column(name = "name", length = 250)
@@ -79,15 +100,6 @@ public class Payment implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "payment")
-	public Set<Orders> getOrderses() {
-		return this.orderses;
-	}
-
-	public void setOrderses(Set<Orders> orderses) {
-		this.orderses = orderses;
 	}
 
 }

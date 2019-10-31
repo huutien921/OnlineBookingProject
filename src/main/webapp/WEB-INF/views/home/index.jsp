@@ -24,6 +24,7 @@
 						<th>Room Category</th>
 						<th>Amount Room</th>
 						<th>Hotel Name</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,6 +40,7 @@
 						<td>${room.roomCategory.name }</td>
 						<td>${ room.amountOfRoom } </td>
 						<td>${room.hotel.name } </td>
+						<td><a href="${pageContext.request.contextPath }/booking/${ room.id}">Booking now</a></td>
 						
 					</tr>
 						</c:forEach>

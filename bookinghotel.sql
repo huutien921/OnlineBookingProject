@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2019 at 07:30 AM
+-- Generation Time: Oct 31, 2019 at 02:52 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -33,12 +33,12 @@ CREATE TABLE `account` (
   `fullname` varchar(250) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `email` varchar(250) DEFAULT NULL,
-  `address` varchar(250) DEFAULT NULL,
+  `address` varchar(500) DEFAULT NULL,
   `type` varchar(250) DEFAULT NULL,
-  `gender` varchar(250) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
   `avatar` varchar(250) DEFAULT NULL,
-  `identitycard` varchar(250) DEFAULT NULL,
-  `score` double DEFAULT NULL,
+  `identitycard` varchar(25) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -81,7 +81,7 @@ INSERT INTO `bed_type` (`id`, `name`, `status`) VALUES
 CREATE TABLE `blog` (
   `id` int(11) NOT NULL,
   `title` varchar(250) DEFAULT NULL,
-  `content` varchar(250) DEFAULT NULL,
+  `content` text,
   `account_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,40 +89,25 @@ CREATE TABLE `blog` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `body`
+-- Table structure for table `coppon_hotel`
 --
 
-CREATE TABLE `body` (
+CREATE TABLE `coppon_hotel` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `content` varchar(250) DEFAULT NULL,
-  `description` varchar(500) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `sale` double DEFAULT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `convenient`
+-- Table structure for table `coppon_room`
 --
 
-CREATE TABLE `convenient` (
+CREATE TABLE `coppon_room` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `coppon_code`
---
-
-CREATE TABLE `coppon_code` (
-  `id` int(11) NOT NULL,
-  `hotel_id` int(11) NOT NULL,
-  `code` varchar(100) DEFAULT NULL,
-  `content` varchar(250) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
   `sale` double DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -135,9 +120,12 @@ CREATE TABLE `coppon_code` (
 
 CREATE TABLE `email` (
   `id` int(11) NOT NULL,
-  `mail` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `emailsend` varchar(50) NOT NULL,
+  `title` varchar(500) DEFAULT NULL,
+  `content` text,
+  `status` tinyint(1) NOT NULL,
+  `account_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -148,36 +136,12 @@ CREATE TABLE `email` (
 CREATE TABLE `evaluate` (
   `id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
-  `room_id` int(11) NOT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `hotel_id` int(11) DEFAULT NULL,
   `number_of_stars` int(11) DEFAULT NULL,
-  `content` varchar(250) DEFAULT NULL,
+  `content` text,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `footer`
---
-
-CREATE TABLE `footer` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `content` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `header`
---
-
-CREATE TABLE `header` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -188,7 +152,7 @@ CREATE TABLE `header` (
 CREATE TABLE `hotel` (
   `id` int(11) NOT NULL,
   `name` varchar(250) DEFAULT NULL,
-  `image` varchar(250) DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
   `description` text,
   `wifi` tinyint(1) DEFAULT NULL,
   `parking` tinyint(1) DEFAULT NULL,
@@ -206,7 +170,9 @@ CREATE TABLE `hotel` (
   `assembly_facilites` tinyint(1) DEFAULT NULL,
   `driveway` tinyint(1) DEFAULT NULL,
   `account_id` int(11) NOT NULL,
+  `id_ac_employee` int(11) DEFAULT NULL,
   `starrating_id` int(11) NOT NULL,
+  `id_coppon_hotel` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -214,21 +180,8 @@ CREATE TABLE `hotel` (
 -- Dumping data for table `hotel`
 --
 
-INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `starrating_id`, `status`) VALUES
-(1, 'Long Phung Hoang', 'longphunghoang.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `image`
---
-
-CREATE TABLE `image` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `type` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
+(1, 'Long Phung Hoang', 'longphunghoang.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -238,8 +191,22 @@ CREATE TABLE `image` (
 
 CREATE TABLE `imageblog` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
+  `src` varchar(250) NOT NULL,
   `blog_id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image_room`
+--
+
+CREATE TABLE `image_room` (
+  `id` int(11) NOT NULL,
+  `src` varchar(250) DEFAULT NULL,
+  `alt` varchar(250) DEFAULT NULL,
+  `room_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -251,9 +218,8 @@ CREATE TABLE `imageblog` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `pay_date` date NOT NULL,
+  `created` date DEFAULT NULL,
   `account_id` int(11) NOT NULL,
-  `pay_id` int(11) NOT NULL,
   `sale_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -267,9 +233,9 @@ CREATE TABLE `orders` (
 CREATE TABLE `order_detail` (
   `id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
-  `check_in_date` date DEFAULT NULL,
-  `check_out_date` date DEFAULT NULL,
-  `note` varchar(250) DEFAULT NULL,
+  `check_in_date` date NOT NULL,
+  `check_out_date` date NOT NULL,
+  `note` text,
   `order_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -282,8 +248,22 @@ CREATE TABLE `order_detail` (
 
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
+  `id_service_hotel` int(11) DEFAULT NULL,
+  `id_order` int(11) DEFAULT NULL,
   `name` varchar(250) DEFAULT NULL,
   `paymentcode` varchar(250) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reason_report`
+--
+
+CREATE TABLE `reason_report` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -296,8 +276,10 @@ CREATE TABLE `payment` (
 CREATE TABLE `report` (
   `id` int(11) NOT NULL,
   `account_id` int(11) NOT NULL,
-  `room_id` int(11) NOT NULL,
-  `content` varchar(250) DEFAULT NULL,
+  `hotel_id` int(11) NOT NULL,
+  `content` text,
+  `created` date NOT NULL,
+  `id_reason` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -356,6 +338,7 @@ INSERT INTO `role_account` (`id`, `account_id`, `role_id`, `status`) VALUES
 CREATE TABLE `room` (
   `id` int(11) NOT NULL,
   `name` varchar(250) DEFAULT NULL,
+  `src_icon` varchar(50) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `amount_of_bed` int(11) DEFAULT NULL,
   `capacity` int(11) DEFAULT NULL,
@@ -364,6 +347,7 @@ CREATE TABLE `room` (
   `roomcategory_id` int(11) NOT NULL,
   `amount_of_room` int(11) DEFAULT NULL,
   `hotel_id` int(11) NOT NULL,
+  `id_coppon_room` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -371,9 +355,9 @@ CREATE TABLE `room` (
 -- Dumping data for table `room`
 --
 
-INSERT INTO `room` (`id`, `name`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `status`) VALUES
-(1, 'Thu dong', 800000, 1, 2, 1, 1, 2, 10, 1, 1),
-(2, 'Mua Xuan', 10000000, 2, 4, 1, 2, 1, 2, 1, 1);
+INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `id_coppon_room`, `status`) VALUES
+(1, 'Thu dong', NULL, 800000, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
+(2, 'Mua Xuan', NULL, 10000000, 2, 4, 1, 2, 1, 2, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -395,19 +379,6 @@ INSERT INTO `room_category` (`id`, `name`, `status`) VALUES
 (1, 'Phong Vip', 1),
 (2, 'Phong Thuong', 1),
 (3, 'Phong Pho Thong', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `room_photo`
---
-
-CREATE TABLE `room_photo` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL,
-  `room_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -438,9 +409,13 @@ INSERT INTO `room_type` (`id`, `name`, `status`) VALUES
 
 CREATE TABLE `sale` (
   `id` int(11) NOT NULL,
-  `code` varchar(250) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
-  `sales` double DEFAULT NULL
+  `code` varchar(250) NOT NULL,
+  `description` text,
+  `sales` double NOT NULL,
+  `startday` date DEFAULT NULL,
+  `endday` date DEFAULT NULL,
+  `account_id` int(11) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -452,12 +427,13 @@ CREATE TABLE `sale` (
 CREATE TABLE `service` (
   `id` int(11) NOT NULL,
   `name` varchar(250) DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
+  `price` decimal(10,0) DEFAULT NULL,
+  `core` char(10) DEFAULT NULL,
+  `priority` int(11) NOT NULL,
+  `icon_src` varchar(50) DEFAULT NULL,
+  `id_account` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
-  `hotel_id` int(11) NOT NULL,
-  `comment` varchar(250) DEFAULT NULL,
+  `description` text,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -470,6 +446,22 @@ CREATE TABLE `service` (
 CREATE TABLE `servicetype` (
   `id` int(11) NOT NULL,
   `name` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_hotel`
+--
+
+CREATE TABLE `service_hotel` (
+  `id` int(11) NOT NULL,
+  `id_hotel` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `created` date NOT NULL,
+  `status` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -519,29 +511,25 @@ ALTER TABLE `blog`
   ADD KEY `account_id` (`account_id`);
 
 --
--- Indexes for table `body`
+-- Indexes for table `coppon_hotel`
 --
-ALTER TABLE `body`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `convenient`
---
-ALTER TABLE `convenient`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `coppon_code`
---
-ALTER TABLE `coppon_code`
+ALTER TABLE `coppon_hotel`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`hotel_id`);
+  ADD KEY `hotel_id` (`name`);
+
+--
+-- Indexes for table `coppon_room`
+--
+ALTER TABLE `coppon_room`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hotel_id` (`name`);
 
 --
 -- Indexes for table `email`
 --
 ALTER TABLE `email`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `evaluate`
@@ -549,19 +537,8 @@ ALTER TABLE `email`
 ALTER TABLE `evaluate`
   ADD PRIMARY KEY (`id`),
   ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Indexes for table `footer`
---
-ALTER TABLE `footer`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `header`
---
-ALTER TABLE `header`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `room_id` (`room_id`),
+  ADD KEY `hotel_id` (`hotel_id`);
 
 --
 -- Indexes for table `hotel`
@@ -569,13 +546,9 @@ ALTER TABLE `header`
 ALTER TABLE `hotel`
   ADD PRIMARY KEY (`id`),
   ADD KEY `account_id` (`account_id`),
-  ADD KEY `starrating_id` (`starrating_id`);
-
---
--- Indexes for table `image`
---
-ALTER TABLE `image`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `starrating_id` (`starrating_id`),
+  ADD KEY `id_coppon_hotel` (`id_coppon_hotel`),
+  ADD KEY `id_ac_employee` (`id_ac_employee`);
 
 --
 -- Indexes for table `imageblog`
@@ -585,12 +558,18 @@ ALTER TABLE `imageblog`
   ADD KEY `blog_id` (`blog_id`);
 
 --
+-- Indexes for table `image_room`
+--
+ALTER TABLE `image_room`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_id` (`room_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `account_id` (`account_id`),
-  ADD KEY `pay_id` (`pay_id`),
   ADD KEY `sale_id` (`sale_id`);
 
 --
@@ -605,6 +584,14 @@ ALTER TABLE `order_detail`
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_service_hotel` (`id_service_hotel`),
+  ADD KEY `id_order` (`id_order`);
+
+--
+-- Indexes for table `reason_report`
+--
+ALTER TABLE `reason_report`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -613,7 +600,8 @@ ALTER TABLE `payment`
 ALTER TABLE `report`
   ADD PRIMARY KEY (`id`),
   ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`room_id`);
+  ADD KEY `room_id` (`hotel_id`),
+  ADD KEY `id_reason` (`id_reason`);
 
 --
 -- Indexes for table `role`
@@ -637,20 +625,14 @@ ALTER TABLE `room`
   ADD KEY `bedtype_id` (`bedtype_id`),
   ADD KEY `hotel_id` (`hotel_id`),
   ADD KEY `roomcategory_id` (`roomcategory_id`),
-  ADD KEY `roomtype_id` (`roomtype_id`);
+  ADD KEY `roomtype_id` (`roomtype_id`),
+  ADD KEY `id_coppon_room` (`id_coppon_room`);
 
 --
 -- Indexes for table `room_category`
 --
 ALTER TABLE `room_category`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room_photo`
---
-ALTER TABLE `room_photo`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `room_type`
@@ -662,21 +644,31 @@ ALTER TABLE `room_type`
 -- Indexes for table `sale`
 --
 ALTER TABLE `sale`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`hotel_id`),
-  ADD KEY `type_id` (`type_id`);
+  ADD KEY `type_id` (`type_id`),
+  ADD KEY `id_account` (`id_account`);
 
 --
 -- Indexes for table `servicetype`
 --
 ALTER TABLE `servicetype`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service_hotel`
+--
+ALTER TABLE `service_hotel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_hotel` (`id_hotel`),
+  ADD KEY `id_service` (`id_service`);
 
 --
 -- Indexes for table `star_rating`
@@ -704,19 +696,14 @@ ALTER TABLE `bed_type`
 ALTER TABLE `blog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `body`
+-- AUTO_INCREMENT for table `coppon_hotel`
 --
-ALTER TABLE `body`
+ALTER TABLE `coppon_hotel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `convenient`
+-- AUTO_INCREMENT for table `coppon_room`
 --
-ALTER TABLE `convenient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `coppon_code`
---
-ALTER TABLE `coppon_code`
+ALTER TABLE `coppon_room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `email`
@@ -729,29 +716,19 @@ ALTER TABLE `email`
 ALTER TABLE `evaluate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `footer`
---
-ALTER TABLE `footer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `header`
---
-ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `image`
---
-ALTER TABLE `image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `imageblog`
 --
 ALTER TABLE `imageblog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `image_room`
+--
+ALTER TABLE `image_room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `orders`
@@ -794,11 +771,6 @@ ALTER TABLE `room`
 ALTER TABLE `room_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `room_photo`
---
-ALTER TABLE `room_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `room_type`
 --
 ALTER TABLE `room_type`
@@ -834,24 +806,27 @@ ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Constraints for table `coppon_code`
+-- Constraints for table `email`
 --
-ALTER TABLE `coppon_code`
-  ADD CONSTRAINT `coppon_code_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`);
+ALTER TABLE `email`
+  ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `evaluate`
 --
 ALTER TABLE `evaluate`
   ADD CONSTRAINT `evaluate_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `evaluate_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+  ADD CONSTRAINT `evaluate_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`),
+  ADD CONSTRAINT `evaluate_ibfk_3` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`);
 
 --
 -- Constraints for table `hotel`
 --
 ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `hotel_ibfk_2` FOREIGN KEY (`starrating_id`) REFERENCES `star_rating` (`id`);
+  ADD CONSTRAINT `hotel_ibfk_2` FOREIGN KEY (`starrating_id`) REFERENCES `star_rating` (`id`),
+  ADD CONSTRAINT `hotel_ibfk_3` FOREIGN KEY (`id_coppon_hotel`) REFERENCES `hotel` (`id`),
+  ADD CONSTRAINT `hotel_ibfk_4` FOREIGN KEY (`id_ac_employee`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `imageblog`
@@ -860,11 +835,16 @@ ALTER TABLE `imageblog`
   ADD CONSTRAINT `imageblog_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`);
 
 --
+-- Constraints for table `image_room`
+--
+ALTER TABLE `image_room`
+  ADD CONSTRAINT `image_room_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`pay_id`) REFERENCES `payment` (`id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`sale_id`) REFERENCES `sale` (`id`);
 
 --
@@ -875,11 +855,19 @@ ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
+-- Constraints for table `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`id_service_hotel`) REFERENCES `service_hotel` (`id`);
+
+--
 -- Constraints for table `report`
 --
 ALTER TABLE `report`
   ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+  ADD CONSTRAINT `report_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `room` (`id`),
+  ADD CONSTRAINT `report_ibfk_3` FOREIGN KEY (`id_reason`) REFERENCES `reason_report` (`id`);
 
 --
 -- Constraints for table `role_account`
@@ -895,20 +883,28 @@ ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`bedtype_id`) REFERENCES `bed_type` (`id`),
   ADD CONSTRAINT `room_ibfk_2` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`),
   ADD CONSTRAINT `room_ibfk_3` FOREIGN KEY (`roomcategory_id`) REFERENCES `room_category` (`id`),
-  ADD CONSTRAINT `room_ibfk_4` FOREIGN KEY (`roomtype_id`) REFERENCES `room_type` (`id`);
+  ADD CONSTRAINT `room_ibfk_4` FOREIGN KEY (`roomtype_id`) REFERENCES `room_type` (`id`),
+  ADD CONSTRAINT `room_ibfk_5` FOREIGN KEY (`id_coppon_room`) REFERENCES `coppon_room` (`id`);
 
 --
--- Constraints for table `room_photo`
+-- Constraints for table `sale`
 --
-ALTER TABLE `room_photo`
-  ADD CONSTRAINT `room_photo_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+ALTER TABLE `sale`
+  ADD CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `service`
 --
 ALTER TABLE `service`
-  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`),
-  ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `servicetype` (`id`);
+  ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `servicetype` (`id`),
+  ADD CONSTRAINT `service_ibfk_3` FOREIGN KEY (`id_account`) REFERENCES `account` (`id`);
+
+--
+-- Constraints for table `service_hotel`
+--
+ALTER TABLE `service_hotel`
+  ADD CONSTRAINT `service_hotel_ibfk_1` FOREIGN KEY (`id_hotel`) REFERENCES `hotel` (`id`),
+  ADD CONSTRAINT `service_hotel_ibfk_2` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
