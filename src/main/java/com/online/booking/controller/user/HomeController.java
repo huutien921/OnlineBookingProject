@@ -21,6 +21,6 @@ public class HomeController {
 		map.put("rooms", roomService.findAll());
 		// gan session bang account phan quyen user
 		httpSession.setAttribute("accountid", 3);
-		return "home/index";
+		return "home.index";
 	}
 }
