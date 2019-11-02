@@ -8,7 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.online.booking.service.RoomService;
+import com.online.booking.services.RoomService;
 
 
 @Controller
@@ -21,6 +21,6 @@ public class HomeController {
 		map.put("rooms", roomService.findAll());
 		// gan session bang account phan quyen user
 		httpSession.setAttribute("accountid", 3);
-		return "home/index";
+		return "home.index";
 	}
 }
