@@ -1,4 +1,4 @@
-package com.online.booking.service;
+package com.online.booking.services;
 
 import com.online.booking.entities.Room;
 

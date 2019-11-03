@@ -1,20 +1,20 @@
-package com.online.booking.service;
+package com.online.booking.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.online.booking.entities.Room;
-import com.online.booking.repositories.RoomRepositories;
+import com.online.booking.repositories.RoomRepository;
 
 @Service("romService")
 public class RoomService implements IRoomService {
 	@Autowired
-	private RoomRepositories roomrepository;
+	private RoomRepository roomRepository;
 
 	@Override
 	public Iterable<Room> findAll() {
 
-		return roomrepository.findAll();
+		return roomRepository.findAll();
 	}
 
 }
