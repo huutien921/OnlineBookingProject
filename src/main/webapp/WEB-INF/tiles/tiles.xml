@@ -8,5 +8,9 @@
 	<definition name="my_template" template="/WEB-INF/views/templates/my_template.jsp">
 		<put-attribute name="content" value=""></put-attribute>
 	</definition>
+	
+	<definition name="admin_template" template="/WEB-INF/views/templates/admin_template.jsp">
+		<put-attribute name="content" value=""></put-attribute>
+	</definition>
 
 </tiles-definitions>

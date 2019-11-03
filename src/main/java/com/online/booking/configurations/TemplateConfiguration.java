@@ -31,6 +31,18 @@ public class TemplateConfiguration implements WebMvcConfigurer {
 				"/WEB-INF/tiles/tiles_myinbox.xml",
 				"/WEB-INF/tiles/tiles_blog.xml",
 				"/WEB-INF/tiles/tiles_login.xml",
+				"/WEB-INF/tiles/tiles_admin_home.xml",
+				"/WEB-INF/tiles/tiles_admin_service.xml",
+				"/WEB-INF/tiles/tiles_admin_statistical.xml",
+				"/WEB-INF/tiles/tiles_admin_employee.xml",
+				"/WEB-INF/tiles/tiles_employee_blog.xml",
+				"/WEB-INF/tiles/tiles_employee_feedback.xml",
+				"/WEB-INF/tiles/tiles_employee_user.xml",
+				"/WEB-INF/tiles/tiles_employee_partner.xml",
+				"/WEB-INF/tiles/tiles_employee_promotion.xml",
+				"/WEB-INF/tiles/tiles_superadmin_account.xml",
+				"/WEB-INF/tiles/tiles_superadmin_template.xml",
+				
 		});
 		return configurer;
 	}
