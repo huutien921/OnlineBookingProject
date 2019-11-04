@@ -219,7 +219,7 @@
     		<div class="row">
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${pageContext.request.contextPath }/resources/user/images/destination-1.jpg);">
+    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${pageContext.request.contextPath }/uploads/images/muaxuan.PNG");">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-link"></span>
     						</div>
@@ -893,6 +893,7 @@
 						<td>${room.roomCategory.name }</td>
 						<td>${ room.amountOfRoom } </td>
 						<td>${room.hotel.name } </td>
+						<td><img src="${pageContext.request.contextPath }/uploads/images/thudong.png"> </td>
 						<td><a href="${pageContext.request.contextPath }/booking/${ room.id}">Booking now</a></td>
 						
 					</tr>
