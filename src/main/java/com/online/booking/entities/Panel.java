@@ -20,7 +20,7 @@ public class Panel implements java.io.Serializable {
 
 	private Integer id;
 	private Account account;
-	private int name;
+	private String name;
 	private String title;
 	private String content;
 	private boolean status;
@@ -29,7 +29,7 @@ public class Panel implements java.io.Serializable {
 	public Panel() {
 	}
 
-	public Panel(int name, String title, String content, boolean status, String imageSrc) {
+	public Panel(String name, String title, String content, boolean status, String imageSrc) {
 		this.name = name;
 		this.title = title;
 		this.content = content;
@@ -37,7 +37,7 @@ public class Panel implements java.io.Serializable {
 		this.imageSrc = imageSrc;
 	}
 
-	public Panel(Account account, int name, String title, String content, boolean status, String imageSrc) {
+	public Panel(Account account, String name, String title, String content, boolean status, String imageSrc) {
 		this.account = account;
 		this.name = name;
 		this.title = title;
@@ -69,11 +69,11 @@ public class Panel implements java.io.Serializable {
 	}
 
 	@Column(name = "name", nullable = false)
-	public int getName() {
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

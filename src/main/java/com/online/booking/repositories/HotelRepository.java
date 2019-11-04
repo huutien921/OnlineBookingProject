@@ -1,13 +1,17 @@
 package com.online.booking.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import com.online.booking.entities.Hotel;
 
 
 
 @Repository("hotelRepository")
 public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
-
+	@Query(value=" from Hotel where city like %:address% or provincial like %:address% ")
+	public List<Hotel> searchByAddress(@Param("address") String address);
 }

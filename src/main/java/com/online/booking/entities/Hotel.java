@@ -26,6 +26,10 @@ public class Hotel implements java.io.Serializable {
 	private Account accountByAccountId;
 	private Hotel hotel;
 	private StarRating starRating;
+	private String addressFull;
+	private String city;
+	private String 	provincial;
+	private String 	country;
 	private String name;
 	private String image;
 	private String description;
@@ -59,16 +63,23 @@ public class Hotel implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Hotel(Account accountByIdAcEmployee, Account accountByAccountId, Hotel hotel, StarRating starRating,
-			String name, String image, String description, Boolean wifi, Boolean parking, Boolean spa, Boolean gym,
+	public Hotel(Integer id, Account accountByIdAcEmployee, Account accountByAccountId, Hotel hotel,
+			StarRating starRating, String addressFull, String city, String provincial, String country, String name,
+			String image, String description, Boolean wifi, Boolean parking, Boolean spa, Boolean gym,
 			Boolean carRental, Boolean airportTransfer, Boolean freeBreakfast, Boolean swimmingPool, Boolean elevator,
 			Boolean receptionist, Boolean airConditioner, Boolean freeCancellation, Boolean payAtHotel,
 			Boolean assemblyFacilites, Boolean driveway, boolean status, Set<Hotel> hotels, Set<Room> rooms,
 			Set<ServiceHotel> serviceHotels, Set<Evaluate> evaluates) {
+		super();
+		this.id = id;
 		this.accountByIdAcEmployee = accountByIdAcEmployee;
 		this.accountByAccountId = accountByAccountId;
 		this.hotel = hotel;
 		this.starRating = starRating;
+		this.addressFull = addressFull;
+		this.city = city;
+		this.provincial = provincial;
+		this.country = country;
 		this.name = name;
 		this.image = image;
 		this.description = description;
@@ -171,6 +182,38 @@ public class Hotel implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@Column(name = "address_full", length = 500)
+	public String getAddressFull() {
+		return addressFull;
+	}
+
+	public void setAddressFull(String addressFull) {
+		this.addressFull = addressFull;
+	}
+	@Column(name = "city", length = 250)
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	@Column(name = "provincial", length = 250)
+	public String getProvincial() {
+		return provincial;
+	}
+
+	public void setProvincial(String provincial) {
+		this.provincial = provincial;
+	}
+	@Column(name = "country", length = 250)
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	@Column(name = "wifi")

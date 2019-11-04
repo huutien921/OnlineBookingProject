@@ -4,7 +4,6 @@
 
 
 
-
     <section class="ftco-section justify-content-end ftco-search">
     	<div class="container-wrap ml-auto">
     		<div class="row no-gutters">
@@ -414,7 +413,7 @@
     		<div class="row">
     			<div class="col-sm col-md-6 col-lg ftco-animate">
     				<div class="destination">
-    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg);">
+    					<a href="#" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(${pageContext.request.contextPath }/uploads/images/thudong.PNG);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-link"></span>
     						</div>
