@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2019 at 02:52 PM
+-- Generation Time: Nov 05, 2019 at 12:18 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -154,6 +154,10 @@ CREATE TABLE `hotel` (
   `name` varchar(250) DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL,
   `description` text,
+  `address_full` varchar(500) DEFAULT NULL,
+  `city` varchar(250) NOT NULL,
+  `provincial` varchar(250) DEFAULT NULL,
+  `country` varchar(250) NOT NULL,
   `wifi` tinyint(1) DEFAULT NULL,
   `parking` tinyint(1) DEFAULT NULL,
   `spa` tinyint(1) DEFAULT NULL,
@@ -180,8 +184,17 @@ CREATE TABLE `hotel` (
 -- Dumping data for table `hotel`
 --
 
-INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
-(1, 'Long Phung Hoang', 'longphunghoang.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1);
+INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `city`, `provincial`, `country`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
+(1, 'Long Phung Hoang', 'longphunghoang.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(2, 'Vin Hotel', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(3, 'Hanh Phuc', 'hanhphuc.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(4, 'Da nang', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(5, 'Da nang 2', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(6, 'Da nang 3', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(7, 'Da nang 4', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(8, 'Sapa ', 'sapa.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Sapa', 'sapa', 'Lao Cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(9, 'Sapa2', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 ,Sapa', 'Sapa', 'Lao cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(10, 'Hanh Phuc false', 'hanhphuc.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -235,9 +248,26 @@ CREATE TABLE `order_detail` (
   `room_id` int(11) NOT NULL,
   `check_in_date` date NOT NULL,
   `check_out_date` date NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '1',
   `note` text,
   `order_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `panel`
+--
+
+CREATE TABLE `panel` (
+  `id` int(11) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `content` text NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `image_src` varchar(250) NOT NULL,
+  `id_super_admin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -356,8 +386,8 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `id_coppon_room`, `status`) VALUES
-(1, 'Thu dong', NULL, 800000, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
-(2, 'Mua Xuan', NULL, 10000000, 2, 4, 1, 2, 1, 2, 1, NULL, 1);
+(1, 'Thu dong', 'thudong.PNG', 800000, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
+(2, 'Mua Xuan', 'muaxuan.PNG', 10000000, 2, 4, 1, 2, 1, 2, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -581,6 +611,13 @@ ALTER TABLE `order_detail`
   ADD KEY `room_id` (`room_id`);
 
 --
+-- Indexes for table `panel`
+--
+ALTER TABLE `panel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_super_admin` (`id_super_admin`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
@@ -719,7 +756,7 @@ ALTER TABLE `evaluate`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `imageblog`
 --
@@ -739,6 +776,11 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `panel`
+--
+ALTER TABLE `panel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `payment`
@@ -853,6 +895,12 @@ ALTER TABLE `orders`
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+
+--
+-- Constraints for table `panel`
+--
+ALTER TABLE `panel`
+  ADD CONSTRAINT `panel_ibfk_1` FOREIGN KEY (`id_super_admin`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `payment`

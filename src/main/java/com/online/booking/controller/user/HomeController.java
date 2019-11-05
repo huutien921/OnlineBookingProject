@@ -1,5 +1,7 @@
 package com.online.booking.controller.user;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,12 @@ public class HomeController {
 		map.put("test", "muaxuan.PNG");
 	
 		//test
-		for (Hotel hotel : hotelService.searchByAddress("Dat Lat")) {
+		for (Hotel hotel : hotelService.searchByAddress("Lam Dong",new Date(),new Date(),1,1)) {
 			System.out.println("ten khach san" +hotel.getName());
 			System.out.println("full dia chi"+hotel.getAddressFull());
 			System.out.println("thanh pho" +hotel.getCity());
 			System.out.println("Tinh thanh" +hotel.getProvincial());
+			System.out.println("stt "+hotel.isStatus());
 			System.out.println("===================================");
 		}
 		

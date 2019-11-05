@@ -48,7 +48,7 @@ public class Hotel implements java.io.Serializable {
 	private Boolean payAtHotel;
 	private Boolean assemblyFacilites;
 	private Boolean driveway;
-	private boolean status;
+	private Boolean status;
 	private Set<Hotel> hotels = new HashSet<Hotel>(0);
 	private Set<Room> rooms = new HashSet<Room>(0);
 	private Set<ServiceHotel> serviceHotels = new HashSet<ServiceHotel>(0);

@@ -26,6 +26,7 @@ public class OrderDetail implements java.io.Serializable {
 	private Room room;
 	private Date checkInDate;
 	private Date checkOutDate;
+	private Integer quantity;
 	private String note;
 	private boolean status;
 
@@ -40,11 +41,17 @@ public class OrderDetail implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public OrderDetail(Orders orders, Room room, Date checkInDate, Date checkOutDate, String note, boolean status) {
+
+
+	public OrderDetail(Integer id, Orders orders, Room room, Date checkInDate, Date checkOutDate, Integer quantity,
+			String note, boolean status) {
+		super();
+		this.id = id;
 		this.orders = orders;
 		this.room = room;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
+		this.quantity = quantity;
 		this.note = note;
 		this.status = status;
 	}
@@ -89,6 +96,15 @@ public class OrderDetail implements java.io.Serializable {
 
 	public void setCheckInDate(Date checkInDate) {
 		this.checkInDate = checkInDate;
+	}
+	
+	@Column(name = "quantity")
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	@Temporal(TemporalType.DATE)
