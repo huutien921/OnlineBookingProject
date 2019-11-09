@@ -1,11 +1,15 @@
 package com.online.booking.entities;
-// Generated Nov 1, 2019 4:41:20 PM by Hibernate Tools 5.1.10.Final
+// Generated Nov 8, 2019 11:57:35 AM by Hibernate Tools 5.1.10.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +23,7 @@ public class CopponHotel implements java.io.Serializable {
 	private String name;
 	private Double sale;
 	private boolean status;
+	private Set<Hotel> hotels = new HashSet<Hotel>(0);
 
 	public CopponHotel() {
 	}
@@ -28,10 +33,11 @@ public class CopponHotel implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public CopponHotel(String name, Double sale, boolean status) {
+	public CopponHotel(String name, Double sale, boolean status, Set<Hotel> hotels) {
 		this.name = name;
 		this.sale = sale;
 		this.status = status;
+		this.hotels = hotels;
 	}
 
 	@Id
@@ -71,6 +77,15 @@ public class CopponHotel implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "copponHotel")
+	public Set<Hotel> getHotels() {
+		return this.hotels;
+	}
+
+	public void setHotels(Set<Hotel> hotels) {
+		this.hotels = hotels;
 	}
 
 }

@@ -20,7 +20,7 @@
             <div class="tab-content p-4 px-5" id="v-pills-tabContent">
 
  			<div class="tab-pane fade show active" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-performance-tab">
-              	<form action="#" class="search-destination">
+              	<form action="${pageContext.request.contextPath}/search" method="get" class="search-destination">
               		<div class="row">
               		<div class="col-md align-items-end">
               				<div class="form-group">
@@ -28,8 +28,8 @@
               					<label for="#">City, destination</label>
               					<div class="form-field">
 	              					<div class="icon"><span class="icon-map-marker"></span></div>
-					                <input type="text" class="form-control" placeholder="City, destination">
-					               
+					                <input type="text" class="form-control" name ="address" placeholder="City, destination">
+					            
 					              </div>
 				              </div>
               			</div>
@@ -39,7 +39,7 @@
               					<label for="#">Check In</label>
               					<div class="form-field">
 	              					<div class="icon"><span class="icon-map-marker"></span></div>
-					                <input type="text" class="form-control checkin_date" placeholder="Check In">
+					                <input type="text" name="checkin" class="form-control checkin_date" placeholder="Check In">
 					              </div>
 				              </div>
               			</div>
@@ -49,7 +49,7 @@
               					<label for="#">Check Out</label>
               					<div class="form-field">
 	              					<div class="icon"><span class="icon-map-marker"></span></div>
-					                <input type="text" class="form-control checkout_date" placeholder="Check Out">
+					                <input type="text" name="checkout" class="form-control checkout_date" placeholder="Check Out">
 					              </div>
 				              </div>
               			</div>
@@ -59,7 +59,7 @@
               					<label for="#">Guests</label>
               					<div class="form-field">
 	              					<div class="icon"><span class="icon-map-marker"></span></div>
-					                <input type="text" class="form-control" placeholder="Guests">
+					                <input type="text" name="guests" class="form-control" placeholder="Guests">
 					              </div>
 				              </div>
               			</div>
@@ -69,7 +69,7 @@
               					<label for="#">Rooms</label>
               					<div class="form-field">
 	              					<div class="icon"><span class="icon-map-marker"></span></div>
-					                <input type="text" class="form-control" placeholder="Rooms">
+					                <input type="text" name="room" class="form-control" placeholder="Rooms">
 					              </div>
 				              </div>
               			</div>
