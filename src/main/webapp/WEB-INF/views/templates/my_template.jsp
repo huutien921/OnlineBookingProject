@@ -21,6 +21,8 @@
 	href="${pageContext.request.contextPath }/resources/user/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/animate.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/css/loading-bar.css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/owl.carousel.min.css">
@@ -39,7 +41,8 @@
 	href="${pageContext.request.contextPath }/resources/user/css/bootstrap-datepicker.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/jquery.timepicker.css">
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/css/bootstrap.min.css">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/flaticon.css">
@@ -242,6 +245,7 @@
 		src="${pageContext.request.contextPath }/resources/user/js/google-map.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
-
+<script
+		src="${pageContext.request.contextPath }/resources/user/js/loading-bar.js"></script>
 </body>
 </html>

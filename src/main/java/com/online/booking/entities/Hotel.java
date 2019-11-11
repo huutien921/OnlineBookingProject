@@ -1,7 +1,9 @@
 package com.online.booking.entities;
 // Generated Nov 8, 2019 11:57:35 AM by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +32,7 @@ public class Hotel implements java.io.Serializable {
 	private String image;
 	private String description;
 	private String addressFull;
+	private String ward;
 	private String city;
 	private String provincial;
 	private String country;
@@ -51,7 +54,7 @@ public class Hotel implements java.io.Serializable {
 	private boolean status;
 	private Set<Room> rooms = new HashSet<Room>(0);
 	private Set<ServiceHotel> serviceHotels = new HashSet<ServiceHotel>(0);
-	private Set<Evaluate> evaluates = new HashSet<Evaluate>(0);
+	private List<Evaluate> evaluates = new ArrayList<Evaluate>(0);
 
 	public Hotel() {
 	}
@@ -64,13 +67,17 @@ public class Hotel implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Hotel(Account accountByIdAcEmployee, Account accountByAccountId, CopponHotel copponHotel,
-			StarRating starRating, String name, String image, String description, String addressFull, String city,
-			String provincial, String country, Boolean wifi, Boolean parking, Boolean spa, Boolean gym,
+
+
+	public Hotel(Integer id, Account accountByIdAcEmployee, Account accountByAccountId, CopponHotel copponHotel,
+			StarRating starRating, String name, String image, String description, String addressFull, String ward,
+			String city, String provincial, String country, Boolean wifi, Boolean parking, Boolean spa, Boolean gym,
 			Boolean carRental, Boolean airportTransfer, Boolean freeBreakfast, Boolean swimmingPool, Boolean elevator,
 			Boolean receptionist, Boolean airConditioner, Boolean freeCancellation, Boolean payAtHotel,
 			Boolean assemblyFacilites, Boolean driveway, boolean status, Set<Room> rooms,
-			Set<ServiceHotel> serviceHotels, Set<Evaluate> evaluates) {
+			Set<ServiceHotel> serviceHotels, List<Evaluate> evaluates) {
+		super();
+		this.id = id;
 		this.accountByIdAcEmployee = accountByIdAcEmployee;
 		this.accountByAccountId = accountByAccountId;
 		this.copponHotel = copponHotel;
@@ -79,6 +86,7 @@ public class Hotel implements java.io.Serializable {
 		this.image = image;
 		this.description = description;
 		this.addressFull = addressFull;
+		this.ward = ward;
 		this.city = city;
 		this.provincial = provincial;
 		this.country = country;
@@ -190,8 +198,17 @@ public class Hotel implements java.io.Serializable {
 	public void setAddressFull(String addressFull) {
 		this.addressFull = addressFull;
 	}
+	
+	@Column(name = "ward", length = 50)
+	public String getWard() {
+		return ward;
+	}
 
-	@Column(name = "city", nullable = false, length = 250)
+	public void setWard(String ward) {
+		this.ward = ward;
+	}
+
+	@Column(name = "city", nullable = false, length = 50)
 	public String getCity() {
 		return this.city;
 	}
@@ -200,7 +217,7 @@ public class Hotel implements java.io.Serializable {
 		this.city = city;
 	}
 
-	@Column(name = "provincial", length = 250)
+	@Column(name = "provincial", length = 50)
 	public String getProvincial() {
 		return this.provincial;
 	}
@@ -209,7 +226,7 @@ public class Hotel implements java.io.Serializable {
 		this.provincial = provincial;
 	}
 
-	@Column(name = "country", nullable = false, length = 250)
+	@Column(name = "country", nullable = false, length = 50)
 	public String getCountry() {
 		return this.country;
 	}
@@ -381,11 +398,11 @@ public class Hotel implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-	public Set<Evaluate> getEvaluates() {
+	public List<Evaluate> getEvaluates() {
 		return this.evaluates;
 	}
 
-	public void setEvaluates(Set<Evaluate> evaluates) {
+	public void setEvaluates(List<Evaluate> evaluates) {
 		this.evaluates = evaluates;
 	}
 

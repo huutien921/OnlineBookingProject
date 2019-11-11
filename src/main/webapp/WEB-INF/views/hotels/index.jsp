@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!--   <div class="hero-wrap js-fullheight" style="background-image: url('${pageContext.request.contextPath }/resources/user/images/bg_1.jpg');">
@@ -385,13 +386,13 @@
 
 			<div class="col-lg-9">
 				<div class="row">
-					<c:forEach var="item" items="${hotels }" >
+					<c:forEach var="item" items="${hotels }">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="destination">
 								<a
 									href="${pageContext.request.contextPath }/hotels/hotel_detail"
 									class="img img-2 d-flex justify-content-center align-items-center"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg);">
+									style="background-image: url(${pageContext.request.contextPath }/uploads/images/${item.image });">
 									<div
 										class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-link"></span>
@@ -404,20 +405,71 @@
 												<a href="#"> ${item.name} </a>
 											</h3>
 											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
+												<c:forEach var="star" begin="1"
+													end="${ item.starRating.amount }" step="1">
+													<i class="icon-star"></i>
+
+												</c:forEach>
+
+
 											</p>
 										</div>
 										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
+											<span class="price per-price"> <c:set var="quantity"
+													value="${0 }">
+
+												</c:set> <c:set var="tatolPrice" value="${0 }">
+
+												</c:set> <c:forEach var="room" items="${ item.rooms }">
+													<c:if
+														test="${ room.status == true && room.amountOfRoom > 0 }">
+
+														<c:set var="quantity"
+															value="${ quantity + room.amountOfRoom }">
+														</c:set>
+														<c:set var="tatolPrice"
+															value="${tatolPrice + (room.price * room.amountOfRoom ) }">
+														</c:set>
+													</c:if>
+												</c:forEach> <fmt:formatNumber type="number"
+													value="${tatolPrice / quantity }" pattern="###,###" /> $ <small>/night</small></span>
 										</div>
 									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
+
+									<span class="icon-map-marker"></span> <span>
+										${item.ward} , ${item.city } </span> <br>
+									<c:set var="numstar" value="${ 0 }"></c:set>
+									<c:forEach var="evaluate" items="${item.evaluates }">
+
+										<c:set var="numstar"
+											value="${ numstar + evaluate.numberOfStars }"></c:set>
+
+									</c:forEach>
+
+
+
+									<div class="row">
+
+										<div class="col-md-4">
+										
+											
+										
+										</div>
+										<div class="col-md-3">
+											
+										</div>
+
+									</div>
+
 									<hr>
 									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
+									
+									<c:if test="${((numstar / item.evaluates.size() )) > 3.5 }">
+									<img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">
+										
+									</c:if>
+									<a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span> ${ item.evaluates.size() }</a>
+									<span
 											class="ml-auto"><a
 											href="${pageContext.request.contextPath }/hotels/hotel_detail">Book
 												Now</a></span>
@@ -427,6 +479,7 @@
 						</div>
 
 					</c:forEach>
+					
 
 
 					<c:if test="${hotels.isEmpty()}">
