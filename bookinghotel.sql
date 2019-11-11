@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2019 at 12:18 PM
+-- Generation Time: Nov 11, 2019 at 11:57 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -138,10 +138,45 @@ CREATE TABLE `evaluate` (
   `account_id` int(11) NOT NULL,
   `room_id` int(11) DEFAULT NULL,
   `hotel_id` int(11) DEFAULT NULL,
-  `number_of_stars` int(11) DEFAULT NULL,
+  `number_of_stars` int(11) DEFAULT '3',
   `content` text,
+  `created` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `evaluate`
+--
+
+INSERT INTO `evaluate` (`id`, `account_id`, `room_id`, `hotel_id`, `number_of_stars`, `content`, `created`, `status`) VALUES
+(1, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
+(2, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
+(3, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
+(4, 3, NULL, 1, 4, 'hoi tot', '2019-11-09', 1),
+(5, 3, NULL, 1, 2, 'nhu shit', '2019-11-09', 1),
+(6, 3, NULL, 1, 5, 'qua tot6', '2019-11-09', 1),
+(7, 3, NULL, 1, 5, 'qua tot7', '2019-11-09', 1),
+(8, 3, NULL, 1, 4, 'hoi tot 8', '2019-11-09', 1),
+(21, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
+(22, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
+(23, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
+(24, 3, NULL, 2, 4, 'hoi tot', '2019-11-09', 1),
+(25, 3, NULL, 2, 2, 'nhu shit', '2019-11-09', 1),
+(26, 3, NULL, 2, 5, 'qua tot6', '2019-11-09', 1),
+(27, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
+(28, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
+(29, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
+(30, 3, NULL, 3, 4, 'hoi tot', '2019-11-09', 1),
+(31, 3, NULL, 4, 2, 'nhu shit', '2019-11-09', 1),
+(32, 3, NULL, 5, 5, 'qua tot6', '2019-11-09', 1),
+(33, 3, NULL, 5, 5, 'qua tot7', '2019-11-09', 1),
+(34, 3, NULL, 6, 4, 'hoi tot 8', '2019-11-09', 1),
+(35, 3, NULL, 7, 5, 'qua tot', '2019-11-09', 1),
+(36, 3, NULL, 8, 5, 'qua tot', '2019-11-09', 1),
+(37, 3, NULL, 9, 5, 'qua tot', '2019-11-09', 1),
+(38, 3, NULL, 10, 4, 'hoi tot', '2019-11-09', 1),
+(39, 3, NULL, 11, 2, 'nhu shit', '2019-11-09', 1),
+(40, 3, NULL, 12, 5, 'qua tot6', '2019-11-09', 1);
 
 -- --------------------------------------------------------
 
@@ -155,9 +190,10 @@ CREATE TABLE `hotel` (
   `image` varchar(50) DEFAULT NULL,
   `description` text,
   `address_full` varchar(500) DEFAULT NULL,
-  `city` varchar(250) NOT NULL,
-  `provincial` varchar(250) DEFAULT NULL,
-  `country` varchar(250) NOT NULL,
+  `ward` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `provincial` varchar(50) DEFAULT NULL,
+  `country` varchar(50) NOT NULL,
   `wifi` tinyint(1) DEFAULT NULL,
   `parking` tinyint(1) DEFAULT NULL,
   `spa` tinyint(1) DEFAULT NULL,
@@ -184,17 +220,19 @@ CREATE TABLE `hotel` (
 -- Dumping data for table `hotel`
 --
 
-INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `city`, `provincial`, `country`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
-(1, 'Long Phung Hoang', 'longphunghoang.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(2, 'Vin Hotel', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(3, 'Hanh Phuc', 'hanhphuc.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(4, 'Da nang', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(5, 'Da nang 2', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(6, 'Da nang 3', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(7, 'Da nang 4', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(8, 'Sapa ', 'sapa.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Sapa', 'sapa', 'Lao Cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(9, 'Sapa2', 'vinhotel.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 ,Sapa', 'Sapa', 'Lao cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(10, 'Hanh Phuc false', 'hanhphuc.PNG', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 0);
+INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward`, `city`, `provincial`, `country`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
+(1, 'Long Phung', 'hotel-1.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 5, NULL, 1),
+(2, 'Vin Hotel', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(3, 'Hanh Phuc', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(4, 'Da nang', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Phuong 10', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(5, 'Da nang 2', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(6, 'Da nang 3', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Phuong 10', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(7, 'Da nang 4', 'hotel-1.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(8, 'Sapa ', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Sapa', 'Phuong 10', 'sapa', 'Lao Cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(9, 'Sapa2', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 ,Sapa', 'Phuong 12', 'Sapa', 'Lao cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(10, 'Hanh Phuc false', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 0),
+(11, 'Chua Ba Danh', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(12, 'Cho Dem', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -233,9 +271,17 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `created` date DEFAULT NULL,
   `account_id` int(11) NOT NULL,
-  `sale_id` int(11) NOT NULL,
+  `sale_id` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `created`, `account_id`, `sale_id`, `status`) VALUES
+(1, '2019-11-06', 3, NULL, 1),
+(2, '2019-11-05', 3, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -253,6 +299,16 @@ CREATE TABLE `order_detail` (
   `order_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `room_id`, `check_in_date`, `check_out_date`, `quantity`, `note`, `order_id`, `status`) VALUES
+(1, 1, '2019-11-06', '2019-11-10', 2, 'nho mua do an sang !', 1, 1),
+(2, 1, '2019-11-06', '2019-11-10', 3, 'nho mua do an sang 2 !', 1, 1),
+(3, 1, '2019-11-07', '2019-11-11', 3, 'nho mua do an sang 2 !', 2, 1),
+(4, 1, '2019-11-20', '2019-11-23', 2, 'nho mua do an sang 2 !', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -386,8 +442,17 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `id_coppon_room`, `status`) VALUES
-(1, 'Thu dong', 'thudong.PNG', 800000, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
-(2, 'Mua Xuan', 'muaxuan.PNG', 10000000, 2, 4, 1, 2, 1, 2, 1, NULL, 1);
+(1, 'Thu dong', 'thudong.PNG', 80, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
+(2, 'Mua Xuan', 'muaxuan.PNG', 100, 2, 4, 1, 2, 1, 2, 1, NULL, 1),
+(3, 'Thu dong Vin', 'thudong.PNG', 90, 1, 2, 1, 1, 2, 10, 2, NULL, 1),
+(4, 'Mua Xuan Vin', 'muaxuan.PNG', 100, 2, 4, 1, 2, 1, 2, 2, NULL, 1),
+(5, 'Thu dong Da Nang', 'thudong.PNG', 65, 1, 2, 1, 1, 2, 10, 4, NULL, 1),
+(6, 'Mua Xuan Dang', 'muaxuan.PNG', 110, 2, 4, 1, 2, 1, 2, 4, NULL, 1),
+(7, 'Mua Xuan Hanh Phuc', 'muaxuan.PNG', 10, 2, 4, 1, 2, 1, 2, 3, NULL, 1),
+(8, 'Mua Xuan cho Dem', 'muaxuan.PNG', 20, 2, 4, 1, 2, 1, 2, 12, NULL, 1),
+(9, 'Thu dong ChoDem', 'thudong.PNG', 53, 1, 2, 1, 1, 2, 10, 12, NULL, 1),
+(10, 'Thu dong chua', 'thudong.PNG', 70, 1, 2, 1, 1, 2, 10, 11, NULL, 1),
+(11, 'Mua Xuan chua', 'muaxuan.PNG', 80, 2, 4, 1, 2, 1, 2, 11, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -467,6 +532,16 @@ CREATE TABLE `service` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `name`, `price`, `core`, `priority`, `icon_src`, `id_account`, `type_id`, `description`, `status`) VALUES
+(1, 'QC', '80000', 'QC01', 1, NULL, 1, 1, 'Day tin Len dau muc 1', 1),
+(2, 'QC', '90000', 'QC02', 2, NULL, 1, 1, 'Day tin Len dau muc 2', 1),
+(3, 'QC', '100000', 'QC03', 3, NULL, 1, 1, 'Day tin Len dau muc 3', 1),
+(4, 'QC', '110000', 'QC04', 4, NULL, 1, 1, 'Day tin Len dau muc 4', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -477,6 +552,13 @@ CREATE TABLE `servicetype` (
   `id` int(11) NOT NULL,
   `name` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `servicetype`
+--
+
+INSERT INTO `servicetype` (`id`, `name`) VALUES
+(1, 'Push the news first');
 
 -- --------------------------------------------------------
 
@@ -493,6 +575,20 @@ CREATE TABLE `service_hotel` (
   `created` date NOT NULL,
   `status` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `service_hotel`
+--
+
+INSERT INTO `service_hotel` (`id`, `id_hotel`, `id_service`, `start_date`, `end_date`, `created`, `status`) VALUES
+(1, 1, 4, '2019-11-06', '2019-12-06', '2019-11-07', 1),
+(2, 4, 2, '2019-11-06', '2019-12-06', '2019-11-07', 1),
+(3, 2, 1, '2019-11-06', '2019-12-06', '2019-11-07', 1),
+(4, 4, 3, '2019-11-06', '2019-12-06', '2019-11-07', 1),
+(5, 2, 3, '2019-10-05', '2019-11-05', '2019-10-04', 1),
+(6, 11, 3, '2019-10-05', '2019-11-05', '2019-10-04', 1),
+(7, 11, 3, '2019-11-06', '2020-01-31', '2019-11-07', 1),
+(8, 12, 3, '2019-11-06', '2019-12-06', '2019-11-07', 1);
 
 -- --------------------------------------------------------
 
@@ -751,12 +847,12 @@ ALTER TABLE `email`
 -- AUTO_INCREMENT for table `evaluate`
 --
 ALTER TABLE `evaluate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `imageblog`
 --
@@ -771,12 +867,12 @@ ALTER TABLE `image_room`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `panel`
 --
@@ -806,7 +902,7 @@ ALTER TABLE `role_account`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `room_category`
 --
@@ -826,12 +922,17 @@ ALTER TABLE `sale`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `servicetype`
 --
 ALTER TABLE `servicetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `service_hotel`
+--
+ALTER TABLE `service_hotel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `star_rating`
 --
@@ -867,7 +968,7 @@ ALTER TABLE `evaluate`
 ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `hotel_ibfk_2` FOREIGN KEY (`starrating_id`) REFERENCES `star_rating` (`id`),
-  ADD CONSTRAINT `hotel_ibfk_3` FOREIGN KEY (`id_coppon_hotel`) REFERENCES `hotel` (`id`),
+  ADD CONSTRAINT `hotel_ibfk_3` FOREIGN KEY (`id_coppon_hotel`) REFERENCES `coppon_hotel` (`id`),
   ADD CONSTRAINT `hotel_ibfk_4` FOREIGN KEY (`id_ac_employee`) REFERENCES `account` (`id`);
 
 --
