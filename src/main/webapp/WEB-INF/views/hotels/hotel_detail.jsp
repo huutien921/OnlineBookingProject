@@ -2,79 +2,89 @@
     pageEncoding="ISO-8859-1"%>
 
     <section class="ftco-section ftco-degree-bg">
+    
+    <!-- --------------------------------------------------------dialog------------------------------------------------- -->
+    <!-- Trigger the modal with a button -->
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<p>Content Content Content Content content content content content content content content content content content content content content content...</p>
+        			<hr>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<p>Content Content Content Content contentcontent content content content content content content content content content content contentcontent content content content content content content content content content content content...</p>
+
+        			<hr>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<p>Content Content Content Content content content content content content content content content content content content content content...</p>
+
+        			<hr>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+     <!-- --------------------------------------------------------/dialog------------------------------------------------- -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
       <div class="container">
         <div class="row">
         	<div class="col-lg-3 sidebar">
         		<div class="sidebar-wrap ftco-animate fadeInUp ftco-animated">
         			<h3>Feedback</h3>
-        			<br>
+        			<hr>
         			<form class="star-rating" method="get">
         				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-        				<p>Content Content Content Content Content Content Content Content Content Content Content Content Content </p>
-        				<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				<p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<small>Content Content Content Content content...</small><small style="color: blue"><a href="" class="" data-toggle="modal" data-target="#myModal">See more...</a></small>
         			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<small>Content Content Content Content content...</small><small style="color: blue"><a href="" class="" data-toggle="modal" data-target="#myModal">See more...</a></small>
         			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<small>Content Content Content Content content...</small><small style="color: blue"><a href="" class="" data-toggle="modal" data-target="#myModal">See more...</a></small>
         			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<small>Content Content Content Content content...</small><small style="color: blue"><a href="" class="" data-toggle="modal" data-target="#myModal">See more...</a></small>
         			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
+        			<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
+        				<small class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></small>
+        				<small>Content Content Content Content content...</small><small style="color: blue"><a href="" class="" data-toggle="modal" data-target="#myModal">See more...</a></small>
         			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        				<img width="35" height="35" src="${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg"><span>Username</span> 
-        				</p><p class="rate" style="font-size: 5"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-        				<p>Content Content Content Content Content Content Content... <span style="color: blue">See more</span></p><p>
-        			<br>
-        			<span style="color: blue">See more</span>
-        			</p></form>
+        				
+        			<small style="color: blue">See more...</small>
+        			<hr>
+        			</form>
         			
         		</div>
         		
           </div>
           <div class="col-lg-9">
           	<div class="row">
-          		<div class="col-md-12 ftco-animate fadeInUp ftco-animated">
+          		<!--<div class="col-md-12 ftco-animate fadeInUp ftco-animated">
           			<div class="single-slider owl-carousel owl-loaded owl-drag">
           				
           				
           				
-          			<div class="owl-stage-outer"><div class="owl-stage" style="transition:all; width: 5775px; transform: translate3d(-3300px, 0px, 0px);"><div class="owl-item cloned" style="width: 825px;"><div class="item">
+          			  <div class="owl-stage-outer"><div class="owl-stage" style="transition:all; width: 5775px; transform: translate3d(-3300px, 0px, 0px);"><div class="owl-item cloned" style="width: 825px;"><div class="item">
           					<div class="hotel-img" style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg);"></div>
           				</div></div><div class="owl-item cloned" style="width: 825px;"><div class="item">
           					<div class="hotel-img" style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-4.jpg);"></div>
@@ -89,16 +99,78 @@
           				</div></div><div class="owl-item cloned" style="width: 825px;"><div class="item">
           					<div class="hotel-img" style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg);"></div>
           				</div></div></div></div><div class="owl-nav"><button class="owl-prev" role="presentation"><span class="ion-ios-arrow-back"></span></button><button class="owl-next" role="presentation"><span class="ion-ios-arrow-forward"></span></button></div><div class="owl-dots"><button class="owl-dot"><span></span></button><button class="owl-dot"><span></span></button><button class="owl-dot active"><span></span></button></div></div>
-          		</div>
+          		</div> -->
           		
-          		<br>
-          		<div class="row">
+<div class="container">
+  <h2>Carousel Example</h2>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-        			<div class="col-lg-7 sidebar">
-        				<input class="form-control btn btn-primary" type="button" value="Book now">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+      <div class="item active">
+        <img src="${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg" alt="Los Angeles" style="width:100%;">
+        <div class="carousel-caption">
+          <h3>Los Angeles</h3>
+          <p>LA is always so much fun!</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg" alt="Chicago" style="width:100%;">
+        <div class="carousel-caption">
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago!</p>
+        </div>
+      </div>
+    
+      <div class="item">
+        <img src="${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg" alt="New York" style="width:100%;">
+        <div class="carousel-caption">
+          <h3>New York</h3>
+          <p>We love the Big Apple!</p>
+        </div>
+      </div>
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+          		
+          		<!--  -->
+          		<br>
+        		
+	
+</div>
+</div>
+		<div class="container">
+          		<div class="row">
+					<div class="col-lg-6 sidebar">
+        				
         			</div>
-        			<div class="col-lg-5 sidebar">
-        				<input class="form-control btn btn-primary" type="button" value="Save">
+        			
+        			<div class="col-lg-3 sidebar">
+        				<input class="btn btn-info btn-lg" type="button" value="Save">
+        			</div>
+        			<div class="col-lg-3 sidebar">
+        				
+        				<input class="form-control btn btn-primary" type="button" value="Book now">
         			</div>
           		</div>
           		
@@ -331,9 +403,7 @@
           		</div>
 
           	</div>
-          </div> <!-- .col-md-8 -->
-        </div>
-      </div>
+
     </section>
     
     <section class="ftco-section-parallax">

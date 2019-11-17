@@ -6,13 +6,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h3>List hotel unconfirmed</h3>
+<h3>List hotel blocked</h3>
 
 <section class="content">
 	<div class="container" style="margin-top: 20px;">
 
+	
+
 		<div class="row">
-			<jsp:useBean id="hotelNotActive" scope="request"
+			<jsp:useBean id="hotelsBlock" scope="request"
 				type="org.springframework.beans.support.PagedListHolder" />
 			<c:url value="/employee/partner" var="pagedLink">
 				<c:param name="p" value="~" />
@@ -20,7 +22,7 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">New hotel unconfirmed</h3>
+						<h3 class="box-title">Blocked</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -106,7 +108,7 @@
 												<th class="sorting" tabindex="0" aria-controls="example1"
 													rowspan="1" colspan="1"
 													aria-label="CSS grade: activate to sort column ascending"
-													style="width: 100px;">Confirmer</th>
+													style="width: 100px;">Block by</th>
 												<th class="sorting" tabindex="0" aria-controls="example1"
 													rowspan="1" colspan="1"
 													aria-label="CSS grade: activate to sort column ascending"
@@ -114,7 +116,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="hotels" items="${hotelNotActive.pageList }">
+											<c:forEach var="hotels" items="${hotelsBlock.pageList }">
 												<tr role="row" class="odd">
 													<td class="">${hotels.id}</td>
 													<td class="">${hotels.name}</td>
@@ -166,7 +168,7 @@
 									</table>
 								</div>
 							</div>
-							<tg:paging pagedListHolder="${hotelNotActive}"
+							<tg:paging pagedListHolder="${hotelsBlock}"
 								pagedLink="${pagedLink}" />
 
 						</div>
@@ -176,19 +178,11 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
 	
-
-
 
 		<!-- /.tab-pane -->
 	</div>
-	</div>
+
 	<!-- /.tab-content -->
 
 

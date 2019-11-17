@@ -7,5 +7,5 @@ import com.online.booking.entities.Account;
 
 @Repository("accountRepository")
 public interface AccountRepository extends  CrudRepository<Account,Integer>{
-
+	
 }

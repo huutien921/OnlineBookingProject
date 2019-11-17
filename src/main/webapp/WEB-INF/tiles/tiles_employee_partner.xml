@@ -9,7 +9,14 @@
 	<definition name="employee.partner.index" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/employee/partner_management/index.jsp"></put-attribute>
 	</definition>
+	<definition name="employee.partner.detail" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/partner_management/detail.jsp"></put-attribute>
+	</definition>
+	<definition name="employee.partner.indexBlocked" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/partner_management/indexBlock.jsp"></put-attribute>
+	</definition>
+	<definition name="employee.partner.indexConfirmed" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/partner_management/indexConfirmed.jsp"></put-attribute>
+	</definition>
 	
-	
-
 </tiles-definitions>

@@ -11,8 +11,19 @@
 	<uri>tags</uri>
 	
 	<tag>
-		<name>Category</name>
-		<tag-class>com.example.demo.tags.CategoryTag</tag-class>
+		<name>header</name>
+		<tag-class>com.online.booking.tags.HeaderTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>partners</name>
+		<tag-class>com.online.booking.tags.PartnersTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	
+	<tag>
+		<name>promotions</name>
+		<tag-class>com.online.booking.tags.PromotionsTag</tag-class>
 		<body-content>empty</body-content>
 	</tag>
 	

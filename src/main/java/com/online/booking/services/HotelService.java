@@ -60,4 +60,30 @@ public class HotelService implements IHotelService {
 		return hotelResult;
 	}
 
+	@Override
+	public List<Hotel> searchHotelByStatusFalseAndIdAccountEmployeeNull() {
+		return hotelRepository.searchHotelByStatusFalseAndIdAccountEmployeeNull();
+	}
+
+	@Override
+	public Hotel FindHotelByStatusFalseAndIdAccountEmployeeNullById(int id) {
+		return hotelRepository.FindHotelByStatusFalseAndIdAccountEmployeeNullById(id);
+	}
+
+	@Override
+	public Iterable<Hotel> searchHotelByStatusAndIdAccountEmployee(boolean status) {
+		return hotelRepository.searchHotelByStatusAndIdAccountEmployee(status);
+	}
+
+	@Override
+	public Hotel find(int id) {
+		return hotelRepository.findById(id).get();
+	}
+
+	@Override
+	public Iterable<Hotel> filterHotelForEmployee(boolean status, String name, int starRating, String country,
+			String city, String provincial) {
+		return hotelRepository.filterHotelForEmployee(status, name, starRating, country, city, provincial);
+	}
+
 }
