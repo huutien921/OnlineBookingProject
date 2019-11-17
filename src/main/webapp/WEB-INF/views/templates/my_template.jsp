@@ -51,6 +51,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/style.css">
 
+	
 </head>
 <body>
 
@@ -210,12 +211,14 @@
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
 
-
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.min.js"></script>
-	<script
+<script
+	src="${pageContext.request.contextPath }/resources/user/js/jquery-3.4.1.min.js"
+	type="text/javascript">
+	
+	</script>
+ 		<script
 		src="${pageContext.request.contextPath }/resources/user/js/jquery-migrate-3.0.1.min.js"></script>
-	<script
+	 <script
 		src="${pageContext.request.contextPath }/resources/user/js/popper.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/user/js/bootstrap.min.js"></script>
@@ -247,5 +250,7 @@
 		src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
 <script
 		src="${pageContext.request.contextPath }/resources/user/js/loading-bar.js"></script>
+	
+
 </body>
 </html>

@@ -3,70 +3,138 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script
+	src="${pageContext.request.contextPath }/resources/user/js/jquery-3.4.1.min.js"
+	type="text/javascript">
+	
+</script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
 
-<!--   <div class="hero-wrap js-fullheight" style="background-image: url('${pageContext.request.contextPath }/resources/user/images/bg_1.jpg');">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-          <div class="col-md-9 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Hotel</span></p>
-            <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels</h1>
-          </div>
-        </div>
-      </div>
-    </div>-->
+		$('#bt').click(function() {
 
+			var address = $('#address').val();
+			var checkin = $('#checkin_date').val();
+			var checkout = $('#checkout_date').val();
+			var guests = $('#guests').val();
+			var rooms = $('#rooms').val();
+			var minprice = $('#minprice').val();
+			var maxprice = $('#maxprice').val();
 
+			$.ajax({
+				type : 'GET',
+
+				url : '${pageContext.request.contextPath }/search/ajax/price',
+				data : {
+					address : address,
+					checkin : checkin,
+					checkout : checkout,
+					guests : guests,
+					rooms : rooms,
+					minprice : minprice,
+					maxprice : maxprice
+				},
+				dataType : 'json',
+				contentType : 'aplication/json',
+				success : function(result) {
+					var s = '';
+					for (var i = 0; i < result.length; i++) {
+						s += ' <div class="col-sm col-md-6 col-lg-4  "> <div class="destination">' ;
+						s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail" class="img img-2 d-flex justify-content-center align-items-center"';
+						s += ' style="background-image: url(${pageContext.request.contextPath }/uploads/images/' + result[i].image + ');">';
+						s += ' <div class="icon d-flex justify-content-center align-items-center"> <span class="icon-link"></span></div>';
+						s +=' </a> <div class="text p-3"><div class="d-flex"> <div class="one"> <h3> ' ;
+							s += '<a href="#"> '+result[i].name+' </a></h3><p class="rate">';
+							for(var j =0 ; j < result[i].starRating.amount ; j++)
+								{s += '<i class="icon-star"></i>';}
+							s += '</p>'; 
+								s +='</div> <div class="two"> <span class="price per-price">';
+								var quantity = 0;
+								var tatolPrice = 0;
+							
+							
+							s += ' </div> </div>';
+								s += ' <span class="icon-map-marker"></span> <span>'+ result[i].ward +','+ result[i].city +'</span> <br>' ;
+							
+								s += ' <div class="row"> <div class="col-md-12"><span>'	;
+								s += ' <span style="text-decoration: line-through;">$ 00 <span> /night</span></span></div></div>';
+								s += ' <hr><p class="bottom-area d-flex">'	;
+								s += ' <img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">';
+								s += ' <a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span>'+4+'</a> <span class="ml-auto">';
+								s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail">Book Now</a></span>';
+								s += ' </p></div></div></div></div>';
+					}
+					$('#resss').html(s);
+					alert(result[1].room[1].name );
+					
+					$('#res').text(JSON.stringify(result));
+
+				}
+
+			});
+
+		});
+		
+	});
+</script>
+<span id="res"></span>
 <section class="ftco-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3 sidebar order-md-last ftco-animate">
 				<div class="sidebar-wrap ftco-animate">
 					<h3 class="heading mb-4">Filter Results</h3>
-					<form action="#">
-						<div class="fields">
-							<div class="form-group">
-								<input type="text" class="form-control"
-									placeholder="Destination, City">
-							</div>
 
-							<div class="form-group">
-								<input type="text" id="checkin_date"
-									class="form-control checkin_date" placeholder="Check in">
-							</div>
-							<div class="form-group">
-								<input type="text" id="checkout_date"
-									class="form-control checkout_date" placeholder="Check out">
-							</div>
-							<div class="form-group">
-								<div class="select-wrap one-third">
-									<div class="icon"></div>
-									<input type="text" class="form-control" placeholder="Guest">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="select-wrap one-third">
-									<div class="icon"></div>
-									<input type="text" class="form-control" placeholder="Rooms">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="range-slider">
-									<span> <input type="number" value="25000" min="0"
-										max="120000" /> - <input type="number" value="50000" min="0"
-										max="120000" />
-									</span> <input value="1000" min="0" max="120000" step="500"
-										type="range" /> <input value="50000" min="0" max="120000"
-										step="500" type="range" />
-									</svg>
-								</div>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Search"
-									class="btn btn-primary py-3 px-5">
+					<div class="fields">
+						<div class="form-group">
+							<input type="text" class="form-control" value="${address }"
+								id="address" placeholder="Destination, City">
+						</div>
+
+						<div class="form-group">
+							<input type="text" id="checkin_date"
+								class="form-control checkin_date" value="${checkin }"
+								placeholder="Check in">
+						</div>
+						<div class="form-group">
+							<input type="text" id="checkout_date"
+								class="form-control checkout_date" value="${checkout }"
+								placeholder="Check out">
+						</div>
+						<div class="form-group">
+							<div class="select-wrap one-third">
+								<div class="icon"></div>
+								<input type="text" class="form-control" value="${guests }"
+									id="guests" placeholder="Guest">
 							</div>
 						</div>
-					</form>
+						<div class="form-group">
+							<div class="select-wrap one-third">
+								<div class="icon"></div>
+								<input type="text" class="form-control" value="${rooms }"
+									id="rooms" placeholder="Rooms">
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<div class="range-slider">
+
+								<span> <input type="number" value=0 min="0" max="120000"
+									id="minprice" /> - <input type="number" value="50" min="0"
+									max="100000" id="maxprice" />
+								</span> <input value="1000" min="0" max="120000" step="500"
+									type="range" id="minprice" /> <input value="50000" min="0"
+									max="120000" step="500" type="range" id="maxprice" />
+
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" id="bt" value="Search"
+								class="btn btn-primary py-3 px-5">
+						</div>
+					</div>
+
 				</div>
 				<div class="sidebar-wrap ftco-animate">
 					<h3 class="heading mb-4">Star Rating</h3>
@@ -384,8 +452,8 @@
 			</div>
 			<!-- END-->
 
-			<div class="col-lg-9">
-				<div class="row">
+			<div  class="col-lg-9">
+				<div id="resss"  class="row">
 					<c:forEach var="item" items="${hotels }">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="destination">
@@ -431,8 +499,7 @@
 															value="${tatolPrice + (room.price * room.amountOfRoom ) }">
 														</c:set>
 													</c:if>
-												</c:forEach> <fmt:formatNumber type="number"
-													value="${tatolPrice / quantity }" pattern="###,###" /> $ <small>/night</small></span>
+												</c:forEach>
 										</div>
 									</div>
 
@@ -450,28 +517,35 @@
 
 									<div class="row">
 
-										<div class="col-md-4">
-										
-											
-										
+										<div class="col-md-12">
+
+
+											<span> <c:if
+													test="${item.copponHotel != null and item.copponHotel.status == true }">
+													<span style="text-decoration: line-through;">$ <fmt:formatNumber
+															type="number" value="${tatolPrice / quantity }"
+															pattern="###,###" /><span> /night</span></span>
+													<br>
+												</c:if> $ <fmt:formatNumber type="number"
+													value="${(tatolPrice / quantity) * (100 -item.copponHotel.sale )/100 }"
+													pattern="###,###" /> <span>/night</span></span>
 										</div>
-										<div class="col-md-3">
-											
-										</div>
+
 
 									</div>
 
 									<hr>
 									<p class="bottom-area d-flex">
-									
-									<c:if test="${((numstar / item.evaluates.size() )) > 3.5 }">
-									<img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">
-										
-									</c:if>
-									<a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span> ${ item.evaluates.size() }</a>
-									<span
+
+										<c:if test="${((numstar / item.evaluates.size() )) > 3.5 }">
+											<img alt="icon"
+												src="${pageContext.request.contextPath }/resources/user/icon/home.png">
+
+										</c:if>
+										<a href="#" class="meta-chat" style="color: black;"><span
+											class="icon-chat"></span> ${ item.evaluates.size() }</a> <span
 											class="ml-auto"><a
-											href="${pageContext.request.contextPath }/hotels/hotel_detail">Book
+											href="${pageContext.request.contextPath }/hotels/hotel_detail/${item.id}">Book
 												Now</a></span>
 									</p>
 								</div>
@@ -479,7 +553,7 @@
 						</div>
 
 					</c:forEach>
-					
+
 
 
 					<c:if test="${hotels.isEmpty()}">

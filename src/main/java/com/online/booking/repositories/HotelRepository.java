@@ -14,4 +14,5 @@ import com.online.booking.entities.Hotel;
 public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
 	@Query(value=" from Hotel where  (provincial like %:address% or city like %:address% ) and status = true")
 	public List<Hotel> searchByAddress(@Param("address") String address);
+
 }
