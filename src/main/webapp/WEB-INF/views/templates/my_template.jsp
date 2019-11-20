@@ -10,7 +10,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Home page</title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700"
 	rel="stylesheet">
@@ -51,7 +51,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/style.css">
 
-	
+
 </head>
 <body>
 
@@ -69,7 +69,7 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a
+					<!--  <li class="nav-item"><a
 						href="${pageContext.request.contextPath }/hotels" class="nav-link">Hotels</a></li>
 					<li class="nav-item"><a
 						href="${pageContext.request.contextPath }/promotions"
@@ -85,7 +85,8 @@
 						href="${pageContext.request.contextPath }/aboutus"
 						class="nav-link">About</a></li>
 					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/login" class="nav-link">Login/Register</a></li>
+						href="${pageContext.request.contextPath }/login" class="nav-link">Login/Register</a></li>-->
+					<tags:header/>
 				</ul>
 			</div>
 		</div>
@@ -250,7 +251,9 @@
 		src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
 <script
 		src="${pageContext.request.contextPath }/resources/user/js/loading-bar.js"></script>
-	
+
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

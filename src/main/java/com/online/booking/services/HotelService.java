@@ -11,7 +11,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.online.booking.entities.Evaluate;
 import com.online.booking.entities.Hotel;
+import com.online.booking.entities.HotelEntity;
 import com.online.booking.entities.Room;
 import com.online.booking.repositories.HotelRepository;
 
@@ -60,13 +62,12 @@ public class HotelService implements IHotelService {
 		return hotelResult;
 	}
 
-	@Override
 	public List<Hotel> searchByAddressAddPriorityAddPrice(String address, Date checkIn, Date checkOut, int guests,
 			int rooms, double minPrice, double maxPrice) {
 		List<Hotel> hotels = searchByAddressAddPriority(address, checkIn, checkOut, guests, rooms);
 		List<Hotel> indexsObj = getIndexRemoveRrice(hotels, minPrice, maxPrice);
 		if (indexsObj != null) {
-			for (Hotel hotel  : indexsObj) {
+			for (Hotel hotel : indexsObj) {
 				hotels.remove(hotel);
 			}
 		}
@@ -106,8 +107,107 @@ public class HotelService implements IHotelService {
 
 	@Override
 	public Hotel findById(int id) {
-	
+
 		return hotelRepository.findById(id).get();
+	}
+
+	public List<Hotel> searchHotelByStatusFalseAndIdAccountEmployeeNull() {
+		return hotelRepository.searchHotelByStatusFalseAndIdAccountEmployeeNull();
+	}
+
+	@Override
+	public Hotel FindHotelByStatusFalseAndIdAccountEmployeeNullById(int id) {
+		return hotelRepository.FindHotelByStatusFalseAndIdAccountEmployeeNullById(id);
+	}
+
+	@Override
+	public Iterable<Hotel> searchHotelByStatusAndIdAccountEmployee(boolean status) {
+		return hotelRepository.searchHotelByStatusAndIdAccountEmployee(status);
+	}
+
+	@Override
+	public Hotel find(int id) {
+		return hotelRepository.findById(id).get();
+	}
+
+	@Override
+	public Iterable<Hotel> filterHotelForEmployee(boolean status, String name, int starRating, String country,
+			String city, String provincial) {
+		return hotelRepository.filterHotelForEmployee(status, name, starRating, country, city, provincial);
+	}
+
+	@Override
+	public List<HotelEntity> searchByAddressAddPriorityAddPriceJsonObject(String address, Date checkIn, Date checkOut,
+			int guests, int room, double minPrice, double maxPrice) {
+
+		return convertToHotelEntity(
+				searchByAddressAddPriorityAddPrice(address, checkIn, checkOut, guests, room, minPrice, maxPrice));
+	}
+
+	private List<HotelEntity> convertToHotelEntity(List<Hotel> hotels) {
+
+		List<HotelEntity> hotelEntities = new ArrayList<>();
+		for (Hotel hotel : hotels) {
+			HotelEntity hotelEntity = new HotelEntity();
+			hotelEntity.setId(hotel.getId());
+			hotelEntity.setName(hotel.getName());
+			hotelEntity.setStarRatingNum(hotel.getStarRating().getAmount());
+			hotelEntity.setImage(hotel.getImage());
+			hotelEntity.setWard(hotel.getWard());
+			hotelEntity.setCity(hotel.getCity());
+			hotelEntity.setPriceCoppon(getPriceHotelCoppon(hotel));
+			hotelEntity.setPrice(getAvragePriceHotel(hotel));
+			hotelEntity.setPrestige(checkPrestige(hotel));
+			hotelEntity.setComment(getQuantityCommentHotel(hotel));
+			hotelEntities.add(hotelEntity);
+		}
+		return hotelEntities;
+
+	}
+
+	private Double getAvragePriceHotel(Hotel hotel) {
+
+		double priceTatol = 0;
+		int roomQuantity = 0;
+		for (Room roomPrice : hotel.getRooms()) {
+			if (roomPrice.getAmountOfRoom() > 0 && roomPrice.isStatus() == true) {
+				priceTatol = priceTatol + (roomPrice.getAmountOfRoom() * roomPrice.getPrice());
+				roomQuantity = roomQuantity + roomPrice.getAmountOfRoom();
+			}
+
+		}
+		return priceTatol / roomQuantity;
+
+	}
+
+	private Double getPriceHotelCoppon(Hotel hotel) {
+
+		Double priceAverage = getAvragePriceHotel(hotel);
+		if (hotel.getCopponHotel() != null && hotel.getCopponHotel().isStatus() == true) {
+			return (priceAverage * (100 - hotel.getCopponHotel().getSale()) / 100);
+		} else {
+			return null;
+
+		}
+
+	}
+
+	private int getQuantityCommentHotel(Hotel hotel) {
+
+		return hotel.getEvaluates().size();
+	}
+
+	private boolean checkPrestige(Hotel hotel) {
+		boolean result = false;
+		int numStar = 0;
+		for (Evaluate evaluate : hotel.getEvaluates()) {
+			numStar = numStar + evaluate.getNumberOfStars();
+		}
+		if ((numStar / getQuantityCommentHotel(hotel)) > 3.5) {
+			result = true;
+		}
+
+		return result;
 	}
 
 }

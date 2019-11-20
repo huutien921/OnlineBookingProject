@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.online.booking.entities.Hotel;
-
+import com.online.booking.entities.HotelEntity;
 import com.online.booking.services.HotelService;
 
 @Controller
@@ -64,7 +64,7 @@ public class SearchController {
 
 	@RequestMapping(value = "ajax/price", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
-	public  List<Hotel> searchPrice(@RequestParam("address") String address,
+	public  List<HotelEntity> searchPrice(@RequestParam("address") String address,
 
 			@RequestParam("checkin") String checkin, @RequestParam("checkout") String checkout,
 
@@ -77,11 +77,11 @@ public class SearchController {
 			Date dateCheckIn = new SimpleDateFormat("MM/dd/yyyy").parse(checkin);
 			Date dateCheckOut = new SimpleDateFormat("MM/dd/yyyy").parse(checkout);
 
-			List<Hotel> hotels = hotelService.searchByAddressAddPriorityAddPrice(address, dateCheckIn, dateCheckOut,
-					guests, rooms, minprice, maxprice);
+			List<HotelEntity> hotels = hotelService.searchByAddressAddPriorityAddPriceJsonObject(address, dateCheckIn, dateCheckOut, guests, rooms, minprice, maxprice);
 
-			for (Hotel hotel : hotels) {
+			for (HotelEntity hotel : hotels) {
 				System.out.println(hotel.getName());
+				System.out.println(hotel.getComment());
 			}
 			
 	
@@ -91,7 +91,7 @@ public class SearchController {
 			System.err.println(e.getMessage());
 			return  null;
 		}
-
+		
 		
 
 	}

@@ -37,4 +37,10 @@ public class EvaluateService implements IEvaluateService {
 		return evaluateRepository.findByRoomDescAndLimit(id, n);
 	}
 
+	@Override
+	public Evaluate findById(int id) {
+		// TODO Auto-generated method stub
+		return evaluateRepository.findById(id).get();
+	}
+
 }

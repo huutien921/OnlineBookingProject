@@ -13,5 +13,6 @@ public interface IEvaluateService {
 	public List<Evaluate> findByHotelDescAndLimit(int id, int n);
 
 	public List<Evaluate> findByRoomDescAndLimit(int id, int n);
+	public Evaluate findById(int id);
 
 }

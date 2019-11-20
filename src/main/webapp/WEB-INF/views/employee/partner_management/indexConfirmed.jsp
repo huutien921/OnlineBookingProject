@@ -6,13 +6,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h3>List hotel unconfirmed</h3>
+<h3>List hotel confirmed</h3>
 
 <section class="content">
 	<div class="container" style="margin-top: 20px;">
 
+	
+
+
+		<!-- /.tab-pane -->
+
 		<div class="row">
-			<jsp:useBean id="hotelNotActive" scope="request"
+			<jsp:useBean id="hotelActive" scope="request"
 				type="org.springframework.beans.support.PagedListHolder" />
 			<c:url value="/employee/partner" var="pagedLink">
 				<c:param name="p" value="~" />
@@ -20,7 +25,7 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">New hotel unconfirmed</h3>
+						<h3 class="box-title">Hotel confirmed</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -41,14 +46,30 @@
 													<h4>Filter</h4>
 												</div>
 											</div>
-											<div class="col-sm-12">
+											<div class="col-sm-2">
 												<div class="dataTables_length" id="example1_length">
 													<input type="search" class="form-control input-sm"
-														placeholder="ID" aria-controls="example1"> <input
+														placeholder="ID" aria-controls="example1">
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<div class="dataTables_length" id="example1_length">
+													<button class="btn btn-success pull-right btn-block btn-sm">Search by id</button>
+												</div>
+											</div>
+											<div class="col-sm-8"></div>
+											<div class="col-sm-8">
+												<hr>
+											</div>
+											<div class="col-sm-12">
+												<div class="dataTables_length" id="example1_length">
+													 <input
 														type="search" class="form-control input-sm"
 														placeholder="Hotel name" aria-controls="example1">
 													<input type="search" class="form-control input-sm"
 														placeholder="Star rating" aria-controls="example1">
+														<input type="search" class="form-control input-sm"
+														placeholder="Employee" aria-controls="example1">
 												</div>
 											</div>
 											<div class="col-sm-6">
@@ -114,7 +135,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="hotels" items="${hotelNotActive.pageList }">
+											<c:forEach var="hotels" items="${hotelActive.pageList }">
 												<tr role="row" class="odd">
 													<td class="">${hotels.id}</td>
 													<td class="">${hotels.name}</td>
@@ -166,7 +187,7 @@
 									</table>
 								</div>
 							</div>
-							<tg:paging pagedListHolder="${hotelNotActive}"
+							<tg:paging pagedListHolder="${hotelActive}"
 								pagedLink="${pagedLink}" />
 
 						</div>
@@ -179,16 +200,11 @@
 
 
 
-
-
-
 	
-
-
 
 		<!-- /.tab-pane -->
 	</div>
-	</div>
+
 	<!-- /.tab-content -->
 
 

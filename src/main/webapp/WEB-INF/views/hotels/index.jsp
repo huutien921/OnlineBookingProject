@@ -45,28 +45,35 @@
 						s += ' <div class="icon d-flex justify-content-center align-items-center"> <span class="icon-link"></span></div>';
 						s +=' </a> <div class="text p-3"><div class="d-flex"> <div class="one"> <h3> ' ;
 							s += '<a href="#"> '+result[i].name+' </a></h3><p class="rate">';
-							for(var j =0 ; j < result[i].starRating.amount ; j++)
+							for(var j =0 ; j < result[i].starRatingNum ; j++)
 								{s += '<i class="icon-star"></i>';}
 							s += '</p>'; 
 								s +='</div> <div class="two"> <span class="price per-price">';
-								var quantity = 0;
-								var tatolPrice = 0;
+								
 							
 							
 							s += ' </div> </div>';
 								s += ' <span class="icon-map-marker"></span> <span>'+ result[i].ward +','+ result[i].city +'</span> <br>' ;
 							
 								s += ' <div class="row"> <div class="col-md-12"><span>'	;
-								s += ' <span style="text-decoration: line-through;">$ 00 <span> /night</span></span></div></div>';
+								if(result[i].priceCoppon != null){
+									s += ' <span style="text-decoration: line-through;">$ '+ Math.round(result[i].priceCoppon) +' <span> /night</span></span> <br> ';
+									}
+									s += Math.round(result[i].price) + ' <span>/night</span></span>';
+
+
+								s +=	'</div></div>';
 								s += ' <hr><p class="bottom-area d-flex">'	;
-								s += ' <img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">';
-								s += ' <a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span>'+4+'</a> <span class="ml-auto">';
+								if(result[i].prestige == true){
+									s += ' <img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">';
+									
+									}
+								s += ' <a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span>'+result[i].comment+'</a> <span class="ml-auto">';
 								s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail">Book Now</a></span>';
 								s += ' </p></div></div></div></div>';
 					}
 					$('#resss').html(s);
-					alert(result[1].room[1].name );
-					
+										
 					$('#res').text(JSON.stringify(result));
 
 				}
@@ -545,7 +552,7 @@
 										<a href="#" class="meta-chat" style="color: black;"><span
 											class="icon-chat"></span> ${ item.evaluates.size() }</a> <span
 											class="ml-auto"><a
-											href="${pageContext.request.contextPath }/hotels/hotel_detail/${item.id}">Book
+											href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
 												Now</a></span>
 									</p>
 								</div>

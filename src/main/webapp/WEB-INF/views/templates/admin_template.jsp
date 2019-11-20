@@ -8,6 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <title>AdminLTE 2 | Dashboard</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -23,12 +24,15 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/bower_components/Ionicons/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/dist/css/AdminLTE.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/admin/dist/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/admin/dist/css/skins/_all-skins.min.css">
 <!-- Morris chart -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.css">
 <!-- jvectormap -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/bower_components/jvectormap/jquery-jvectormap.css">
@@ -250,9 +254,9 @@
 						<!-- User Account: style can be found in dropdown.less -->
 						<li class="dropdown user user-menu"><a href="#"
 							class="dropdown-toggle" data-toggle="dropdown"> <img
-								src="${pageContext.request.contextPath }/resources/admin/dist/img/user2-160x160.jpg" class="user-image"
-								alt="User Image"> <span class="hidden-xs">Alexander
-									Pierce</span>
+								src="${pageContext.request.contextPath }/resources/admin/dist/img/user2-160x160.jpg"
+								class="user-image" alt="User Image"> <span
+								class="hidden-xs">Alexander Pierce</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
@@ -302,8 +306,9 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="${pageContext.request.contextPath }/resources/admin/dist/img/user2-160x160.jpg" class="img-circle"
-							alt="User Image">
+						<img
+							src="${pageContext.request.contextPath }/resources/admin/dist/img/user2-160x160.jpg"
+							class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
 						<p>Alexander Pierce</p>
@@ -326,21 +331,23 @@
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
-					
+
 					<!-- super admin -->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
-							<span>Super admin</span> <span class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
+							<span>Super admin</span> <span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath }/superadmin/account"><i
+							<li><a
+								href="${pageContext.request.contextPath }/superadmin/account"><i
 									class="fa fa-circle-o"></i> Account management</a></li>
-							<li><a href="${pageContext.request.contextPath }/superadmin/template "><i
+							<li><a
+								href="${pageContext.request.contextPath }/superadmin/template "><i
 									class="fa fa-circle-o"></i> Template management</a></li>
 						</ul></li>
 					<!-- end admin -->
-					
+
 					<!-- admin -->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 							<span>Admin</span> <span class="pull-right-container"> <i
@@ -348,54 +355,80 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath }/admin/employee"><i
+							<li><a
+								href="${pageContext.request.contextPath }/admin/employee"><i
 									class="fa fa-circle-o"></i> Employee management</a></li>
-							<li><a href="${pageContext.request.contextPath }/admin/service "><i
+							<li><a
+								href="${pageContext.request.contextPath }/admin/service "><i
 									class="fa fa-circle-o"></i> Service management</a></li>
-							<li><a href="${pageContext.request.contextPath }/admin/statistical "><i
+							<li><a
+								href="${pageContext.request.contextPath }/admin/statistical "><i
 									class="fa fa-circle-o"></i> Statistical</a></li>
 						</ul></li>
 					<!-- end admin -->
 					<!-- employee-->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
-							<span>Employee</span> <span class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
+							<span>Employee</span> <span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath }/employee/blog"><i
+							<li><a
+								href="${pageContext.request.contextPath }/employee/blog"><i
 									class="fa fa-circle-o"></i> Blog management</a></li>
-							<li><a href="${pageContext.request.contextPath }/employee/feedback "><i
+							<li><a
+								href="${pageContext.request.contextPath }/employee/feedback "><i
 									class="fa fa-circle-o"></i> Feedback management</a></li>
-							<li><a href="${pageContext.request.contextPath }/employee/partner "><i
-									class="fa fa-circle-o"></i> Partner management</a></li>
-							<li><a href="${pageContext.request.contextPath }/employee/promotion "><i
-									class="fa fa-circle-o"></i> Promotion management</a></li>
-							<li><a href="${pageContext.request.contextPath }/employee/user "><i
-									class="fa fa-circle-o"></i> User management</a></li>
-						
-						</ul></li>
-					<!-- end employee -->
+							
+									
+							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
+									<span>Hotels management</span> <span class="pull-right-container">
+										<i class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu">
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/unconfirmed"><i
+											class="fa fa-circle-o"></i>Hotel unconfirmed </a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/confirmed "><i
+											class="fa fa-circle-o"></i> Hotel confirmed</a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/block "><i
+											class="fa fa-circle-o"></i> Hotel blocked</a></li>
+											
+								</ul></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/promotion "><i
+											class="fa fa-circle-o"></i> Promotion management</a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/user "><i
+											class="fa fa-circle-o"></i> User management</a></li>
+
+								</ul></li>
+							<!-- end employee -->
 
 
 
-					<li><a href="https://adminlte.io/docs"><i
-							class="fa fa-book"></i> <span>Documentation</span></a></li>
-					<li class="header">LABELS</li>
-					<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-					<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
-							<span>Warning</span></a></li>
-					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-				</ul>
+							<li><a href="https://adminlte.io/docs"><i
+									class="fa fa-book"></i> <span>Documentation</span></a></li>
+							<li class="header">LABELS</li>
+							<li><a href="#"><i class="fa fa-circle-o text-red"></i>
+									<span>Important</span></a></li>
+							<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
+									<span>Warning</span></a></li>
+							<li><a href="#"><i class="fa fa-circle-o text-aqua"></i>
+									<span>Information</span></a></li>
+						</ul>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			
+
 			<tiles:insertAttribute name="content"></tiles:insertAttribute>
-			
+
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
@@ -586,28 +619,37 @@
 	<!-- ./wrapper -->
 
 	<!-- jQuery 3 -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery/dist/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<!-- Morris.js charts -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/raphael/raphael.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/raphael/raphael.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.min.js"></script>
 	<!-- Sparkline -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 	<!-- jvectormap -->
-	<script src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<!-- jQuery Knob Chart -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 	<!-- daterangepicker -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/moment/min/moment.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/moment/min/moment.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<!-- datepicker -->
@@ -620,12 +662,16 @@
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
-	<script src="${pageContext.request.contextPath }/resources/admin/bower_components/fastclick/lib/fastclick.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/fastclick/lib/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="${pageContext.request.contextPath }/resources/admin/dist/js/adminlte.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="${pageContext.request.contextPath }/resources/admin/dist/js/pages/dashboard.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/dist/js/pages/dashboard.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="${pageContext.request.contextPath }/resources/admin/dist/js/demo.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/dist/js/demo.js"></script>
 </body>
 </html>
