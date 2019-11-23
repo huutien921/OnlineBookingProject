@@ -45,7 +45,13 @@
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<!-- datatable -->
+<link
+	href="${pageContext.request.contextPath }/resources/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"
+	rel="stylesheet">
 
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -379,11 +385,12 @@
 							<li><a
 								href="${pageContext.request.contextPath }/employee/feedback "><i
 									class="fa fa-circle-o"></i> Feedback management</a></li>
-							
-									
+
+
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
-									<span>Hotels management</span> <span class="pull-right-container">
-										<i class="fa fa-angle-left pull-right"></i>
+									<span>Hotels management</span> <span
+									class="pull-right-container"> <i
+										class="fa fa-angle-left pull-right"></i>
 								</span>
 							</a>
 								<ul class="treeview-menu">
@@ -396,30 +403,70 @@
 									<li><a
 										href="${pageContext.request.contextPath }/employee/partner/block "><i
 											class="fa fa-circle-o"></i> Hotel blocked</a></li>
-											
-								</ul></li>
-									<li><a
-										href="${pageContext.request.contextPath }/employee/promotion "><i
-											class="fa fa-circle-o"></i> Promotion management</a></li>
-									<li><a
-										href="${pageContext.request.contextPath }/employee/user "><i
-											class="fa fa-circle-o"></i> User management</a></li>
 
 								</ul></li>
-							<!-- end employee -->
+							<li><a
+								href="${pageContext.request.contextPath }/employee/promotion "><i
+									class="fa fa-circle-o"></i> Promotion management</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/employee/user "><i
+									class="fa fa-circle-o"></i> User management</a></li>
+
+						</ul></li>
+					<!-- end employee -->
+<!-- super user-->
+					<li class="treeview active"><a href="#"> <i class="fa fa-table"></i>
+							<span>Super User</span> <span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+						<ul class="treeview-menu">
+							<li><a
+								href="${pageContext.request.contextPath }/superuser/myhotel"><i
+									class="fa fa-circle-o"></i> Hotel management</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/employee/feedback "><i
+									class="fa fa-circle-o"></i> Feedback management</a></li>
+
+
+							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
+									<span>My hotels</span> <span
+									class="pull-right-container"> <i
+										class="fa fa-angle-left pull-right"></i>
+								</span>
+							</a>
+								<ul class="treeview-menu">
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/unconfirmed"><i
+											class="fa fa-circle-o"></i>Hotel unconfirmed </a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/confirmed "><i
+											class="fa fa-circle-o"></i> Hotel confirmed</a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/employee/partner/block "><i
+											class="fa fa-circle-o"></i> Hotel blocked</a></li>
+
+								</ul></li>
+							<li><a
+								href="${pageContext.request.contextPath }/employee/promotion "><i
+									class="fa fa-circle-o"></i> Promotion management</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/employee/user "><i
+									class="fa fa-circle-o"></i> User management</a></li>
+
+						</ul></li>
+					<!-- end superuser -->
 
 
 
-							<li><a href="https://adminlte.io/docs"><i
-									class="fa fa-book"></i> <span>Documentation</span></a></li>
-							<li class="header">LABELS</li>
-							<li><a href="#"><i class="fa fa-circle-o text-red"></i>
-									<span>Important</span></a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
-									<span>Warning</span></a></li>
-							<li><a href="#"><i class="fa fa-circle-o text-aqua"></i>
-									<span>Information</span></a></li>
-						</ul>
+					<li><a href="https://adminlte.io/docs"><i
+							class="fa fa-book"></i> <span>Documentation</span></a></li>
+					<li class="header">LABELS</li>
+					<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+					<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
+							<span>Warning</span></a></li>
+					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+				</ul>
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -673,5 +720,25 @@
 	<!-- AdminLTE for demo purposes -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/dist/js/demo.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/datatables-demo.js"></script>
+	<!-- DataTables -->
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script>
+		$(function() {
+			$('#example1').DataTable()
+			$('#example2').DataTable({
+				'paging' : true,
+				'lengthChange' : false,
+				'searching' : false,
+				'ordering' : true,
+				'info' : true,
+				'autoWidth' : false
+			})
+		})
+	</script>
 </body>
 </html>

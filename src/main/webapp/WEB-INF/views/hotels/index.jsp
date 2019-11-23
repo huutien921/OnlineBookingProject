@@ -57,9 +57,12 @@
 							
 								s += ' <div class="row"> <div class="col-md-12"><span>'	;
 								if(result[i].priceCoppon != null){
-									s += ' <span style="text-decoration: line-through;">$ '+ Math.round(result[i].priceCoppon) +' <span> /night</span></span> <br> ';
-									}
-									s += Math.round(result[i].price) + ' <span>/night</span></span>';
+									s += ' <span style="text-decoration: line-through;">$ '+ Math.round(result[i].price) +' <span> /night</span></span> <br> ';
+									s += Math.round(result[i].priceCoppon) + ' <span>/night</span></span>';
+									}else{
+										s += Math.round(result[i].price) + ' <span>/night</span></span>';
+										}
+									
 
 
 								s +=	'</div></div>';
@@ -69,7 +72,7 @@
 									
 									}
 								s += ' <a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span>'+result[i].comment+'</a> <span class="ml-auto">';
-								s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail">Book Now</a></span>';
+								s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail?address='+address+'&checkin='+checkin+'&checkout='+checkout+'&guests='+guests+'&room='+rooms+'&id='+result[i].id+'">Book Now</a></span>';
 								s += ' </p></div></div></div></div>';
 					}
 					$('#resss').html(s);
@@ -84,7 +87,7 @@
 		
 	});
 </script>
-<span id="res"></span>
+
 <section class="ftco-section">
 	<div class="container">
 		<div class="row">

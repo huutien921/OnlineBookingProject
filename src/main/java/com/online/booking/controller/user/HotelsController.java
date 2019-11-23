@@ -1,5 +1,7 @@
 package com.online.booking.controller.user;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.online.booking.entities.Evaluate;
+import com.online.booking.entities.Hotel;
 import com.online.booking.services.EvaluateService;
 import com.online.booking.services.HotelService;
 
@@ -21,17 +24,27 @@ public class HotelsController {
 	private HotelService hotelService;
 	@Autowired
 	private EvaluateService evaluateService;
-	
-	@RequestMapping(value = "hotel_detail",method = RequestMethod.GET)
-	public String hotel_detail( @RequestParam("address") String address,
-			@RequestParam("checkin") String checkin, @RequestParam("checkout") String checkout,
-			@RequestParam("guests") String guests, @RequestParam("room") String room,@RequestParam("id") int id ,ModelMap map) {
-	map.put("hotel", hotelService.findById(id));
-	System.out.println(checkin);
-	List<Evaluate> evaluatesHotel = evaluateService.findByHotelDescAndLimit(id, 5);
-	map.put("evaluates", evaluatesHotel);
-	
+
+	@RequestMapping(value = "hotel_detail", method = RequestMethod.GET)
+	public String hotel_detail(@RequestParam("address") String address, @RequestParam("checkin") String checkin,
+			@RequestParam("checkout") String checkout, @RequestParam("guests") int guests,
+			@RequestParam("room") int room, @RequestParam("id") int id, ModelMap map) {
+		try {
+			Date dateCheckIn = new SimpleDateFormat("MM/dd/yyyy").parse(checkin);
+			Date dateCheckOut = new SimpleDateFormat("MM/dd/yyyy").parse(checkout);
+			map.put("hotel", hotelService.findById(id));
+		
+			List<Evaluate> evaluatesHotel = evaluateService.findByHotelDescAndLimit(id, 5);
+			map.put("evaluates", evaluatesHotel);
+			// lay khach san lien quan limit
+			List<Hotel> hotelsRelated = hotelService.relatedHotelLimitAddPriority(address, dateCheckIn, dateCheckOut,
+					guests, room, 3, hotelService.findById(id));
+			map.put("hotelsRelated", hotelsRelated);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 		return "hotels.hotel_detail";
+
 	}
-	
+
 }

@@ -30,7 +30,7 @@ public class Room implements java.io.Serializable {
 	private BedType bedType;
 	@JsonIgnore
 	private CopponRoom copponRoom;
-	@JsonManagedReference
+	@JsonIgnore
 	private Hotel hotel;
 	@JsonIgnore
 	private RoomCategory roomCategory;

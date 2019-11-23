@@ -73,7 +73,7 @@ public class Hotel implements java.io.Serializable {
 	private boolean status;
 	
 	@JsonBackReference
-	private Set<Room> rooms = new HashSet<Room>(0);
+	private List<Room> rooms = new ArrayList<Room>(0);
 	@JsonBackReference
 	private Set<ServiceHotel> serviceHotels = new HashSet<ServiceHotel>(0);
 	@JsonBackReference
@@ -100,7 +100,7 @@ public class Hotel implements java.io.Serializable {
 			String city, String provincial, String country, Boolean wifi, Boolean parking, Boolean spa, Boolean gym,
 			Boolean carRental, Boolean airportTransfer, Boolean freeBreakfast, Boolean swimmingPool, Boolean elevator,
 			Boolean receptionist, Boolean airConditioner, Boolean freeCancellation, Boolean payAtHotel,
-			Boolean assemblyFacilites, Boolean driveway, boolean status, Set<Room> rooms,
+			Boolean assemblyFacilites, Boolean driveway, boolean status, List<Room> rooms,
 			Set<ServiceHotel> serviceHotels, List<Evaluate> evaluates) {
 		super();
 		this.id = id;
@@ -410,11 +410,11 @@ public class Hotel implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
 
-	public Set<Room> getRooms() {
+	public List<Room> getRooms() {
 		return this.rooms;
 	}
 
-	public void setRooms(Set<Room> rooms) {
+	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
 

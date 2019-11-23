@@ -1,8 +1,10 @@
 package com.online.booking.entities;
 // Generated Nov 1, 2019 4:41:20 PM by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,7 +53,7 @@ public class Account implements java.io.Serializable {
 	
 	private Set<Service> services = new HashSet<Service>(0);
 	
-	private Set<Hotel> hotelsForAccountId = new HashSet<Hotel>(0);
+	private List<Hotel> hotelsForAccountId = new ArrayList<Hotel>();
 	
 	private Set<Orders> orderses = new HashSet<Orders>(0);
 	
@@ -72,7 +74,7 @@ public class Account implements java.io.Serializable {
 	public Account(String username, String password, String fullname, Date birthday, String email, String address,
 			String type, String gender, String avatar, String identitycard, Integer score, Boolean status,
 			Set<Evaluate> evaluates, Set<Blog> blogs, Set<Hotel> hotelsForIdAcEmployee, Set<Report> reports,
-			Set<Panel> panels, Set<Service> services, Set<Hotel> hotelsForAccountId, Set<Orders> orderses,
+			Set<Panel> panels, Set<Service> services, List<Hotel> hotelsForAccountId, Set<Orders> orderses,
 			Set<RoleAccount> roleAccounts, Set<Email> emails, Set<Sale> sales) {
 		this.username = username;
 		this.password = password;
@@ -275,11 +277,11 @@ public class Account implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accountByAccountId")
-	public Set<Hotel> getHotelsForAccountId() {
+	public List<Hotel> getHotelsForAccountId() {
 		return this.hotelsForAccountId;
 	}
 
-	public void setHotelsForAccountId(Set<Hotel> hotelsForAccountId) {
+	public void setHotelsForAccountId(List<Hotel> hotelsForAccountId) {
 		this.hotelsForAccountId = hotelsForAccountId;
 	}
 

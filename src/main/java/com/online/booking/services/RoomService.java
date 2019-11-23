@@ -17,4 +17,10 @@ public class RoomService implements IRoomService {
 		return roomRepository.findAll();
 	}
 
+	@Override
+	public Room findById(int id) {
+		// TODO Auto-generated method stub
+		return roomRepository.findById(id).get();
+	}
+
 }

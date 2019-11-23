@@ -26,6 +26,8 @@ public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
 	public Iterable<Hotel> searchHotelByStatusAndIdAccountEmployee(@Param("status") boolean status);
 	
 	@Query(value=" from Hotel where status = :status and accountByIdAcEmployee != null and name like %:name% and starRating.amount =:starRating and country like %:country% and city like %:city% and provincial like %:provincial%")
-	public Iterable<Hotel> filterHotelForEmployee(@Param("status") boolean status, @Param("name") String name, @Param("starRating") int starRating, @Param("country") String country, @Param("city") String city, @Param("provincial") String provincial); 
+	public Iterable<Hotel> filterHotelForEmployee(@Param("status") boolean status, @Param("name") String name, @Param("starRating") int starRating, @Param("country") String country, @Param("city") String city, @Param("provincial") String provincial);
+	@Query(value = "from Hotel where accountByAccountId.id = :id")
+	public  List<Hotel> findByAccountId(@Param("id") int id);
 
 }

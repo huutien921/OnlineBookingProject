@@ -213,99 +213,77 @@
 					class="col-md-12 hotel-single ftco-animate mb-5 mt-4 fadeInUp ftco-animated">
 					<h4 class="mb-4">Our Rooms</h4>
 					<div class="row">
-						<div class="col-md-4">
+					<c:forEach var="room" items="${hotel.rooms }">
+					
+					<div class="col-md-4">
 							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/room-4.jpg);"
-									href="hotel-single.html"></a>
+								<a
+									href="${pageContext.request.contextPath }/hotels/hotel_detail"
+									class="img img-2 d-flex justify-content-center align-items-center"
+									style="background-image: url(${pageContext.request.contextPath }/uploads/images/${room.srcIcon });">
+									<div
+										class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-link"></span>
+									</div>
+								</a>
 								<div class="text p-3">
 									<div class="d-flex">
 										<div class="one">
 											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
+												<a href="#"> ${room.name} </a>
 											</h3>
-											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
-											</p>
+											
 										</div>
 										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
+											<span class="price per-price">${room.roomCategory.name} </span>
 										</div>
 									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
+									<p >
+												<span>Room type </span>${room.roomType.name }
+												<br>
+												<span>Amount Of Bed </span>${room.amountOfBed }
+
+											</p>
+
+								
+
+
+
+									<div class="row">
+
+										<div class="col-md-12">
+
+
+											<span> <c:if test="${(room.copponRoom != null and room.copponRoom.status == true) or(room.hotel.copponHotel != null and room.hotel.copponHotel.status == true)}">
+													<span style="text-decoration: line-through;">$ <fmt:formatNumber
+															type="number" value="${room.price }"
+															pattern="###,###" /><span> /night</span></span>
+													<br>
+												</c:if> $ <fmt:formatNumber type="number"
+													value="${((room.price) * (100 - room.hotel.copponHotel.sale )/100)*(100 - room.copponRoom.sale)/100 }"
+													pattern="###,###" /> <span>/night</span></span>
+										</div>
+
+
+									</div>
+
 									<hr>
 									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
+
+										
+										<a href="#" class="meta-chat" style="color: black;"><span
+											class="icon-chat"></span> ${ room.evaluates.size() }</a> <span
+											class="ml-auto"><a
+											href="#">Book
+												Now</a></span>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/room-5.jpg);"
-									href="hotel-single.html"></a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
-											</h3>
-											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
-											</p>
-										</div>
-										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
-										</div>
-									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
-									<hr>
-									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/room-6.jpg);"
-									href="hotel-single.html"></a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
-											</h3>
-											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
-											</p>
-										</div>
-										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
-										</div>
-									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
-									<hr>
-									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
-									</p>
-								</div>
-							</div>
-						</div>
+					</c:forEach>
+						
+						
+						
 					</div>
 				</div>
 
@@ -315,99 +293,104 @@
 					class="col-md-12 hotel-single ftco-animate mb-5 mt-5 fadeInUp ftco-animated">
 					<h4 class="mb-4">Related Hotels</h4>
 					<div class="row">
+					<c:forEach var="item" items="${hotelsRelated }">
 						<div class="col-md-4">
 							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-1.jpg);"
-									href="hotel-single.html"></a>
+								<a
+									href="${pageContext.request.contextPath }/hotels/hotel_detail"
+									class="img img-2 d-flex justify-content-center align-items-center"
+									style="background-image: url(${pageContext.request.contextPath }/uploads/images/${item.image });">
+									<div
+										class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-link"></span>
+									</div>
+								</a>
 								<div class="text p-3">
 									<div class="d-flex">
 										<div class="one">
 											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
+												<a href="#"> ${item.name} </a>
 											</h3>
 											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
+												<c:forEach var="star" begin="1"
+													end="${ item.starRating.amount }" step="1">
+													<i class="icon-star"></i>
+
+												</c:forEach>
+
+
 											</p>
 										</div>
 										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
+											<span class="price per-price"> <c:set var="quantity"
+													value="${0 }">
+
+												</c:set> <c:set var="tatolPrice" value="${0 }">
+
+												</c:set> <c:forEach var="room" items="${ item.rooms }">
+													<c:if
+														test="${ room.status == true && room.amountOfRoom > 0 }">
+
+														<c:set var="quantity"
+															value="${ quantity + room.amountOfRoom }">
+														</c:set>
+														<c:set var="tatolPrice"
+															value="${tatolPrice + (room.price * room.amountOfRoom ) }">
+														</c:set>
+													</c:if>
+												</c:forEach>
 										</div>
 									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
+
+									<span class="icon-map-marker"></span> <span>
+										${item.ward} , ${item.city } </span> <br>
+									<c:set var="numstar" value="${ 0 }"></c:set>
+									<c:forEach var="evaluate" items="${item.evaluates }">
+
+										<c:set var="numstar"
+											value="${ numstar + evaluate.numberOfStars }"></c:set>
+
+									</c:forEach>
+
+
+
+									<div class="row">
+
+										<div class="col-md-12">
+
+
+											<span> <c:if
+													test="${item.copponHotel != null and item.copponHotel.status == true }">
+													<span style="text-decoration: line-through;">$ <fmt:formatNumber
+															type="number" value="${tatolPrice / quantity }"
+															pattern="###,###" /><span> /night</span></span>
+													<br>
+												</c:if> $ <fmt:formatNumber type="number"
+													value="${(tatolPrice / quantity) * (100 -item.copponHotel.sale )/100 }"
+													pattern="###,###" /> <span>/night</span></span>
+										</div>
+
+
+									</div>
+
 									<hr>
 									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
+
+										<c:if test="${((numstar / item.evaluates.size() )) > 3.5 }">
+											<img alt="icon"
+												src="${pageContext.request.contextPath }/resources/user/icon/home.png">
+
+										</c:if>
+										<a href="#" class="meta-chat" style="color: black;"><span
+											class="icon-chat"></span> ${ item.evaluates.size() }</a> <span
+											class="ml-auto"><a
+											href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
+												Now</a></span>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-2.jpg);"
-									href="hotel-single.html"></a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
-											</h3>
-											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
-											</p>
-										</div>
-										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
-										</div>
-									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
-									<hr>
-									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="destination">
-								<a class="img img-2"
-									style="background-image: url(${pageContext.request.contextPath }/resources/user/images/hotel-3.jpg);"
-									href="hotel-single.html"></a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3>
-												<a href="hotel-single.html">Hotel, Italy</a>
-											</h3>
-											<p class="rate">
-												<i class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star"></i> <i class="icon-star"></i> <i
-													class="icon-star-o"></i> <span>8 Rating</span>
-											</p>
-										</div>
-										<div class="two">
-											<span class="price per-price">$40<br> <small>/night</small></span>
-										</div>
-									</div>
-									<p>Far far away, behind the word mountains, far from the
-										countries</p>
-									<hr>
-									<p class="bottom-area d-flex">
-										<span><i class="icon-map-o"></i> Miami, Fl</span> <span
-											class="ml-auto"><a href="#">Book Now</a></span>
-									</p>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 

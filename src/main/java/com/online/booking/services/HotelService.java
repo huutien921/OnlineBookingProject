@@ -210,4 +210,29 @@ public class HotelService implements IHotelService {
 		return result;
 	}
 
+	@Override
+	public List<Hotel> relatedHotelLimitAddPriority(String address, Date checkIn, Date checkOut, int guests, int room,
+			int n , Hotel hotel1) {
+		List<Hotel> hotelsSearchByAddressAddPriority = searchByAddressAddPriority(address, checkIn, checkOut, guests, room);
+		hotelsSearchByAddressAddPriority.remove(hotel1);
+		
+		
+		List<Hotel> hotels = new ArrayList<>();
+				for (Hotel hotel : hotelsSearchByAddressAddPriority) {
+					hotels.add(hotel);
+					if (hotels.size() == 3) {
+						break;
+					}
+				}
+				
+		
+		return hotels;
+	}
+
+	@Override
+	public List<Hotel> findByAccountId(int id) {
+		
+		return hotelRepository.findByAccountId(id);
+	}
+
 }

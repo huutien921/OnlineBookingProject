@@ -31,13 +31,13 @@ public class ServiceHotel implements java.io.Serializable {
 	private Date startDate;
 	private Date endDate;
 	private Date created;
-	private long status;
+	private boolean status;
 	private Set<Payment> payments = new HashSet<Payment>(0);
 
 	public ServiceHotel() {
 	}
 
-	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, long status) {
+	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, boolean status) {
 		this.id = id;
 		this.hotel = hotel;
 		this.service = service;
@@ -47,7 +47,7 @@ public class ServiceHotel implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, long status,
+	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, boolean status,
 			Set<Payment> payments) {
 		this.id = id;
 		this.hotel = hotel;
@@ -122,11 +122,11 @@ public class ServiceHotel implements java.io.Serializable {
 	}
 
 	@Column(name = "status", nullable = false)
-	public long getStatus() {
+	public boolean getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(long status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

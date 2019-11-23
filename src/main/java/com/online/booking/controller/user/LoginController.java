@@ -11,5 +11,4 @@ public class LoginController {
 	public String index() {
 		return "login.index";
 	}
-	
 }
