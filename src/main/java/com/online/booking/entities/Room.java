@@ -63,6 +63,11 @@ public class Room implements java.io.Serializable {
 		this.status = status;
 	}
 
+	public Room(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public Room(BedType bedType, CopponRoom copponRoom, Hotel hotel, RoomCategory roomCategory, RoomType roomType,
 			String name, String srcIcon, Double price, Integer amountOfBed, Integer capacity, Integer amountOfRoom,
 			boolean status, Set<Evaluate> evaluates, Set<ImageRoom> imageRooms, Set<OrderDetail> orderDetails,

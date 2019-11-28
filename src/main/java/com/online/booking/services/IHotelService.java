@@ -27,4 +27,5 @@ public interface IHotelService {
 	public Iterable<Hotel> filterHotelForEmployee(boolean status, String name, int starRating, String country, String city, String provincial);
 	public List<Hotel> relatedHotelLimitAddPriority(String address, Date checkIn,Date checkOut,int guests,int room , int n, Hotel hotel);
 	public  List<Hotel> findByAccountId(int id);
+	public Hotel save(Hotel hotel);
 }

@@ -10,4 +10,7 @@
 		<definition name="superuser.myhotel.detail" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/superuser/hotels/detail.jsp"></put-attribute>
 	</definition>
+		<definition name="superuser.myhotel.edit" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/superuser/hotels/edit.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

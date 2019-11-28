@@ -13,7 +13,24 @@
       </ol>
     </section>
     <section class="content">
+  <c:if test="${ms == 'ok' }">
   
+   <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Successfully updated!</h4>
+              Updated information has been saved.
+              </div>
+  </c:if>
+  <c:if test="${ms == 'unactive'}">
+     <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i> Successfully updated !</h4>
+               You have updated some important information. 
+               Therefore, your hotel needs our confirmation.
+                Confirmation results will be notified via email : ${email } 
+              </div>
+  
+  </c:if>
      <div class="row">
      <c:forEach var="hotel" items="${hotels }">
         <div class="col-md-4">
@@ -85,8 +102,10 @@
                 </li>
               </ul>
 				<div class="row">
-				<div class="col-md-6"> <a href="#" class="btn btn-block btn-danger"><i class="fa fa-edit"></i> Edit </a></div>
-					<div class="col-md-6"> <a href="#" class="btn btn-block btn-info "><i class="fa fa-fw fa-building-o"></i> Detail</a></div>
+				<div class="col-md-4"> <a href="${pageContext.request.contextPath }/superuser/myroom/create/${hotel.id}" class="btn  btn-primary"><i class="fa fa-fw fa-plus"></i>Add Room </a></div>
+				
+				<div class="col-md-4"> <a href="${pageContext.request.contextPath }/superuser/myhotel/edit/${hotel.id}" class="btn btn-block btn-danger"><i class="fa fa-edit"></i> Edit </a></div>
+					<div class="col-md-4"> <a href="${pageContext.request.contextPath }/superuser/myhotel/detail/${hotel.id}" class="btn btn-block btn-info "><i class="fa fa-fw fa-building-o"></i> Detail</a></div>
 				
 				</div>             
              

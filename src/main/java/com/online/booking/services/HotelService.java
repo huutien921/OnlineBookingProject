@@ -25,6 +25,7 @@ public class HotelService implements IHotelService {
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private ServiceHotelService serviceHotelService;
+	
 
 	@Override
 	public List<Hotel> searchByAddressAddPriority(String address, Date checkIn, Date checkOut, int guests,
@@ -233,6 +234,12 @@ public class HotelService implements IHotelService {
 	public List<Hotel> findByAccountId(int id) {
 		
 		return hotelRepository.findByAccountId(id);
+	}
+
+	@Override
+	public Hotel save(Hotel hotel) {
+		// TODO Auto-generated method stub
+		return hotelRepository.save(hotel);
 	}
 
 }

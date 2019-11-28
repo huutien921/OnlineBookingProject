@@ -43,6 +43,7 @@ public class TemplateConfiguration implements WebMvcConfigurer {
 				"/WEB-INF/tiles/tiles_superadmin_account.xml",
 				"/WEB-INF/tiles/tiles_superadmin_template.xml",
 				"/WEB-INF/tiles/tiles_superuser_hotels.xml",
+				"/WEB-INF/tiles/tiles_superuser_rooms.xml",
 				
 		});
 		return configurer;

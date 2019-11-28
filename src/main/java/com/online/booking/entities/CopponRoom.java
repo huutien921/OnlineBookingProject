@@ -1,7 +1,9 @@
 package com.online.booking.entities;
 // Generated Nov 1, 2019 4:41:20 PM by Hibernate Tools 5.1.10.Final
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +25,7 @@ public class CopponRoom implements java.io.Serializable {
 	private String name;
 	private Double sale;
 	private boolean status;
-	private Set<Room> rooms = new HashSet<Room>(0);
+	private List<Room> rooms = new ArrayList<Room>();
 
 	public CopponRoom() {
 	}
@@ -33,7 +35,12 @@ public class CopponRoom implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public CopponRoom(String name, Double sale, boolean status, Set<Room> rooms) {
+	public CopponRoom(Integer id) {
+		super();
+		this.id = id;
+	}
+
+	public CopponRoom(String name, Double sale, boolean status, List<Room> rooms) {
 		this.name = name;
 		this.sale = sale;
 		this.status = status;
@@ -80,11 +87,11 @@ public class CopponRoom implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "copponRoom")
-	public Set<Room> getRooms() {
+	public List<Room> getRooms() {
 		return this.rooms;
 	}
 
-	public void setRooms(Set<Room> rooms) {
+	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
 

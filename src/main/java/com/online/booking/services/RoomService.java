@@ -23,4 +23,10 @@ public class RoomService implements IRoomService {
 		return roomRepository.findById(id).get();
 	}
 
+	@Override
+	public Room save(Room room) {
+		// TODO Auto-generated method stub
+		return roomRepository.save(room);
+	}
+
 }

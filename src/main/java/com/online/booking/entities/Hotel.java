@@ -15,8 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.NotFound;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.NonNullFields;
 import org.springframework.web.bind.annotation.Mapping;
 
@@ -37,16 +39,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Table(name = "hotel")
 
 public class Hotel implements java.io.Serializable {
-
+	
 	private Integer id;
-	@JsonIgnore
+
 	private Account accountByIdAcEmployee;
-	@JsonIgnore
+
 	private Account accountByAccountId;
-	@JsonManagedReference
+	
 	private CopponHotel copponHotel;
-	@JsonManagedReference
+
 	private StarRating starRating;
+	@NotEmpty
+	@Length(max = 250)
 	private String name;
 	private String image;
 	private String description;
@@ -72,11 +76,11 @@ public class Hotel implements java.io.Serializable {
 	private Boolean driveway;
 	private boolean status;
 	
-	@JsonBackReference
+
 	private List<Room> rooms = new ArrayList<Room>(0);
-	@JsonBackReference
+
 	private Set<ServiceHotel> serviceHotels = new HashSet<ServiceHotel>(0);
-	@JsonBackReference
+
 	private List<Evaluate> evaluates = new ArrayList<Evaluate>(0);
 	
 	
@@ -436,6 +440,20 @@ public class Hotel implements java.io.Serializable {
 
 	public void setEvaluates(List<Evaluate> evaluates) {
 		this.evaluates = evaluates;
+	}
+
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", accountByIdAcEmployee=" + accountByIdAcEmployee + ", accountByAccountId="
+				+ accountByAccountId + ", copponHotel=" + copponHotel + ", starRating=" + starRating.getAmount() + ", name=" + name
+				+ ", image=" + image + ", description=" + description + ", addressFull=" + addressFull + ", ward="
+				+ ward + ", city=" + city + ", provincial=" + provincial + ", country=" + country + ", wifi=" + wifi
+				+ ", parking=" + parking + ", spa=" + spa + ", gym=" + gym + ", carRental=" + carRental
+				+ ", airportTransfer=" + airportTransfer + ", freeBreakfast=" + freeBreakfast + ", swimmingPool="
+				+ swimmingPool + ", elevator=" + elevator + ", receptionist=" + receptionist + ", airConditioner="
+				+ airConditioner + ", freeCancellation=" + freeCancellation + ", payAtHotel=" + payAtHotel
+				+ ", assemblyFacilites=" + assemblyFacilites + ", driveway=" + driveway + ", status=" + status
+				+ ", rooms=" + rooms + ", serviceHotels=" + serviceHotels + ", evaluates=" + evaluates + "]";
 	}
 
 	
