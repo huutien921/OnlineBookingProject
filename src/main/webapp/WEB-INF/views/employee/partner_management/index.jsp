@@ -3,194 +3,112 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h3>List hotel unconfirmed</h3>
+<!-- Content Wrapper. Contains page content -->
 
-<section class="content">
-	<div class="container" style="margin-top: 20px;">
-
-		<div class="row">
-			<jsp:useBean id="hotelNotActive" scope="request"
-				type="org.springframework.beans.support.PagedListHolder" />
-			<c:url value="/employee/partner" var="pagedLink">
-				<c:param name="p" value="~" />
-			</c:url>
-			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">New hotel unconfirmed</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<div id="example2_wrapper"
-							class="dataTables_wrapper form-inline dt-bootstrap">
-							<div class="row">
-								<div class="col-sm-6"></div>
-								<div class="col-sm-6"></div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<table id="example2"
-										class="table table-bordered table-hover dataTable" role="grid"
-										aria-describedby="example2_info">
-										<div class="row">
-											<div class="col-sm-12">
-												<div class="dataTables_length" id="example1_length">
-													<h4>Filter</h4>
-												</div>
-											</div>
-											<div class="col-sm-12">
-												<div class="dataTables_length" id="example1_length">
-													<input type="search" class="form-control input-sm"
-														placeholder="ID" aria-controls="example1"> <input
-														type="search" class="form-control input-sm"
-														placeholder="Hotel name" aria-controls="example1">
-													<input type="search" class="form-control input-sm"
-														placeholder="Star rating" aria-controls="example1">
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="dataTables_length" id="example1_length">
-													<input type="search" class="form-control input-sm"
-														placeholder="Country" aria-controls="example1"> <input
-														type="search" class="form-control input-sm"
-														placeholder="City" aria-controls="example1"> <input
-														type="search" class="form-control input-sm"
-														placeholder="Provincial" aria-controls="example1">
-
-												</div>
-											</div>
-											<div class="col-sm-2">
-												<div class="dataTables_length" id="example1_length">
-													<button class="btn btn-success pull-right btn-block btn-sm">Search</button>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class="dataTables_length" id="example1_length"></div>
-											</div>
-											<div class="col-sm-12">
-												<div class="dataTables_length" id="example1_length">
-													<span style="color: white">.</span>
-												</div>
-											</div>
-										</div>
-										<thead>
-											<tr role="row">
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="Browser: activate to sort column ascending"
-													style="width: 100px;">Id</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="Rendering engine: activate to sort column ascending"
-													style="width: 100px;">Name</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="Browser: activate to sort column ascending"
-													style="width: 100px;">Country</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="Browser: activate to sort column ascending"
-													style="width: 100px;">City</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="Platform(s): activate to sort column ascending"
-													style="width: 100px;">Provincial</th>
-												<th class="sorting_asc" tabindex="0"
-													aria-controls="example1" rowspan="1" colspan="1"
-													aria-label="Engine version: activate to sort column descending"
-													aria-sort="ascending" style="width: 100px;">Star
-													rating</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="CSS grade: activate to sort column ascending"
-													style="width: 100px;">Confirmer</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-													rowspan="1" colspan="1"
-													aria-label="CSS grade: activate to sort column ascending"
-													style="width: 100px;"><p>Action</p></th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="hotels" items="${hotelNotActive.pageList }">
-												<tr role="row" class="odd">
-													<td class="">${hotels.id}</td>
-													<td class="">${hotels.name}</td>
-													<td class="">${hotels.country}</td>
-													<td class="">${hotels.city}</td>
-													<td class="">${hotels.provincial}</td>
-													<c:if test="${hotels.starRating.amount == 1}">
-														<td class="">(${hotels.starRating.amount}) <i
-															class="glyphicon glyphicon-star"></i></td>
-													</c:if>
-													<c:if test="${hotels.starRating.amount == 2}">
-														<td class="">(${hotels.starRating.amount}) <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i>
-														</td>
-													</c:if>
-													<c:if test="${hotels.starRating.amount == 3}">
-														<td class="">(${hotels.starRating.amount}) <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i>
-														</td>
-													</c:if>
-													<c:if test="${hotels.starRating.amount == 4}">
-														<td class="">(${hotels.starRating.amount}) <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i></td>
-													</c:if>
-													<c:if test="${hotels.starRating.amount == 5}">
-														<td class="">(${hotels.starRating.amount}) <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i> <i
-															class="glyphicon glyphicon-star"></i></td>
-													</c:if>
-													<td class="">${hotels.accountByIdAcEmployee.fullname}</td>
-													<td class=""><a
-														href="${pageContext.request.contextPath }/employee/partner/detail/${hotels.id}">Detail</a>
-													</td>
-												</tr>
-
-											</c:forEach>
-
-										</tbody>
-
-									</table>
-								</div>
-							</div>
-							<tg:paging pagedListHolder="${hotelNotActive}"
-								pagedLink="${pagedLink}" />
-
-						</div>
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
-				</div>
-			</div>
-		</div>
-
-
-
-
-
-
-	
-
-
-
-		<!-- /.tab-pane -->
-	</div>
-	</div>
-	<!-- /.tab-content -->
-
-
-
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>
+		Data Tables <small>advanced tables</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li><a href="#">Tables</a></li>
+		<li class="active">Data tables</li>
+	</ol>
 </section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">Hotel unconfirmed</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+
+					<table id="example1" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Country</th>
+								<th>City</th>
+								<th>Provincial</th>
+								<th>Star rating</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="hotel" items="${hotelNotActive }">
+								<tr>
+									<td>${ hotel.id}</td>
+									<td>${hotel.name}</td>
+									<td>${hotel.country}</td>
+									<td>${hotel.city}</td>
+									<td>${hotel.provincial}</td>
+									<c:if test="${hotels.starRating.amount == 1}">
+														<td class="">(${hotel.starRating.amount}) <i
+															class="glyphicon glyphicon-star"></i></td>
+													</c:if>
+													<c:if test="${hotel.starRating.amount == 2}">
+														<td class="">(${hotel.starRating.amount}) <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i>
+														</td>
+													</c:if>
+													<c:if test="${hotel.starRating.amount == 3}">
+														<td class="">(${hotel.starRating.amount}) <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i>
+														</td>
+													</c:if>
+													<c:if test="${hotel.starRating.amount == 4}">
+														<td class="">(${hotel.starRating.amount}) <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i></td>
+													</c:if>
+													<c:if test="${hotel.starRating.amount == 5}">
+														<td class="">(${hotel.starRating.amount}) <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i> <i
+															class="glyphicon glyphicon-star"></i></td>
+													</c:if>
+									<td> <a href="${pageContext.request.contextPath }/employee/partner/detail/${hotel.id}">Detail</a></td>
+								</tr>
+							</c:forEach>
+
+							
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Country</th>
+								<th>City</th>
+								<th>Provincial</th>
+								<th>Star rating</th>
+								<th>Action</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+</section>
+<!-- /.content -->
+
+<!-- /.content-wrapper -->

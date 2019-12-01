@@ -1,50 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="tags" uri="tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <br>
-<div class="container">
-        <div class="row d-flex">
-        
-        <c:forEach var="blog" items="${blogs }">
-			 <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
-            <div class="blog-entry align-self-stretch">
-            	
-            	
-              <a class="block-20" style="background-image: url('${pageContext.request.contextPath }/resources/user/images/');" href="${pageContext.request.contextPath }/blog/blog_detail">
-              </a>
-              <div class="text">
-              	<span class="tag">Tips, Travel</span>
-                <h3 class="heading mt-3"><a href="#">${blog.title }</a></h3>
-                <div class="meta mb-3">
-                  <div><a href="#">October 3, 2018</a></div>
-                  <div><a href="#">${blog.account.fullname }</a></div>
-                  <div><a class="meta-chat" href="#"><span class="icon-chat"></span> 3</a></div>
-                </div>
-              </div>
-            </div>
-          </div>	
-	</c:forEach>
-        
-         
-          
-          
-          
-          
-          
-        </div>
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+
+<h3 style="text-align: center;">
+	<i class="fa fa-blog" style="color: violet"></i> <i class="fa fa-book" style="color: violet"></i> Blog
+</h3>
+<hr>
+<br>
+<div class="container" style="margin-top: 20px;">
+	<jsp:useBean id="pagedListHolder" scope="request"
+		type="org.springframework.beans.support.PagedListHolder" />
+	<c:url value="/blog" var="pagedLink">
+		<c:param name="p" value="~" />
+	</c:url>
+
+
+	<div class="row">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-11">
+
+			<tg:paging pagedListHolder="${pagedListHolder}"
+				pagedLink="${pagedLink}" />
+			<div class="row">
+
+				<c:forEach var="item" items="${pagedListHolder.pageList}">
+					<!-- promo -->
+					<div class="col-sm-4">
+						<a href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"><img alt="promo"
+							src="${pageContext.request.contextPath }/uploads/images/${item.src}"
+							style="width: 250px; height: 200px"></a>
+						<h5 style="color: gray;">
+							${item.title }
+						</h5>
+						<div class="row">
+							<div class="col">
+								<small style="color: gray;">Created:${item.created }
+									
+								</small>
+							</div>
+							<div class="col">
+								<a
+									href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"
+									class="btn btn-outline-info">Detail</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<!-- promo -->
+				</c:forEach>
+
+			</div>
+			<tg:paging pagedListHolder="${pagedListHolder}"
+				pagedLink="${pagedLink}" />
+		</div>
+	</div>
+</div>
+<br>

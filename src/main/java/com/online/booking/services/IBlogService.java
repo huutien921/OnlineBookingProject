@@ -2,6 +2,7 @@ package com.online.booking.services;
 
 import java.util.List;
 
+
 import com.online.booking.entities.Blog;
 
 public interface IBlogService {
@@ -13,6 +14,10 @@ public interface IBlogService {
 	
 	public void delete(int id);
 	
+	
 	public List<Blog> searchBlogByStatus(boolean status);
+
+
+	public List<Blog> searchLimitBlog(boolean status, int n);
 	
 }

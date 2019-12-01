@@ -32,6 +32,7 @@ public class Sale implements java.io.Serializable {
 	private double sales;
 	private Date startday;
 	private Date endday;
+	private String src;
 	private boolean status;
 	private Set<Orders> orderses = new HashSet<Orders>(0);
 
@@ -52,6 +53,22 @@ public class Sale implements java.io.Serializable {
 		this.sales = sales;
 		this.startday = startday;
 		this.endday = endday;
+		this.status = status;
+		this.orderses = orderses;
+	}
+	
+
+	public Sale(Integer id, Account account, String code, String description, double sales, Date startday, Date endday,
+			String src, boolean status, Set<Orders> orderses) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.code = code;
+		this.description = description;
+		this.sales = sales;
+		this.startday = startday;
+		this.endday = endday;
+		this.src = src;
 		this.status = status;
 		this.orderses = orderses;
 	}
@@ -141,6 +158,14 @@ public class Sale implements java.io.Serializable {
 
 	public void setOrderses(Set<Orders> orderses) {
 		this.orderses = orderses;
+	}
+
+	public String getSrc() {
+		return src;
+	}
+
+	public void setSrc(String src) {
+		this.src = src;
 	}
 
 }

@@ -38,6 +38,11 @@ public class BlogService implements IBlogService {
 		return blogRepository.searchBlogByStatus(status);
 	}
 
+	@Override
+	public List<Blog> searchLimitBlog(boolean status, int n) {
+		return blogRepository.searchLimitBlog(status, n);
+	}
+
 
 
 }

@@ -40,8 +40,9 @@ public class SearchController {
 		model.put("guests", guests);
 		model.put("rooms", room);
 		try {
-			Date dateCheckIn = new SimpleDateFormat("MM/dd/yyyy").parse(checkin);
-			Date dateCheckOut = new SimpleDateFormat("MM/dd/yyyy").parse(checkout);
+			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
+			System.out.println(checkin);
+			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 
 			List<Hotel> hotels = hotelService.searchByAddressAddPriority(address, dateCheckIn, dateCheckOut,
 					Integer.parseInt(guests), Integer.parseInt(room));
@@ -56,6 +57,7 @@ public class SearchController {
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
+			System.out.println("Loi");
 		}
 
 		return "hotels.index";
@@ -74,8 +76,8 @@ public class SearchController {
 
 		try {
 		
-			Date dateCheckIn = new SimpleDateFormat("MM/dd/yyyy").parse(checkin);
-			Date dateCheckOut = new SimpleDateFormat("MM/dd/yyyy").parse(checkout);
+			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
+			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 
 			List<HotelEntity> hotels = hotelService.searchByAddressAddPriorityAddPriceJsonObject(address, dateCheckIn, dateCheckOut, guests, rooms, minprice, maxprice);
 

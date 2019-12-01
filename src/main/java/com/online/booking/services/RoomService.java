@@ -1,5 +1,7 @@
 package com.online.booking.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class RoomService implements IRoomService {
 	public Room save(Room room) {
 		// TODO Auto-generated method stub
 		return roomRepository.save(room);
+	}
+
+	@Override
+	public List<Room> searchRoomByStatusAndIdHotel(boolean status, int hotel_id) {
+		return roomRepository.searchRoomByStatusAndIdHotel(status, hotel_id);
 	}
 
 }

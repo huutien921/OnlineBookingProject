@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+	pageEncoding="ISO-8859-1"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -9,614 +10,385 @@
 	
 </script>
 <script type="text/javascript">
-	jQuery(document).ready(function() {
+	//http://192.168.1.112:9597/api/search/price?address=Da+lat&checkin=2019-11-22&checkout=2019-11-15&guests=2&rooms=2&minprice=80&maxprice=90
+	jQuery(document)
+			.ready(
+					function() {
 
-		$('#bt').click(function() {
+						$('#bt')
+								.click(
+										function() {
 
-			var address = $('#address').val();
-			var checkin = $('#checkin_date').val();
-			var checkout = $('#checkout_date').val();
-			var guests = $('#guests').val();
-			var rooms = $('#rooms').val();
-			var minprice = $('#minprice').val();
-			var maxprice = $('#maxprice').val();
+											var address = $('#address').val();
+											var checkin = $('#checkin_date')
+													.val();
+											var checkout = $('#checkout_date')
+													.val();
+											var guests = $('#guests').val();
+											var rooms = $('#rooms').val();
+											var minprice = $('#minprice').val();
+											var maxprice = $('#maxprice').val();
 
-			$.ajax({
-				type : 'GET',
+											$
+													.ajax({
+														type : 'GET',
 
-				url : '${pageContext.request.contextPath }/search/ajax/price',
-				data : {
-					address : address,
-					checkin : checkin,
-					checkout : checkout,
-					guests : guests,
-					rooms : rooms,
-					minprice : minprice,
-					maxprice : maxprice
-				},
-				dataType : 'json',
-				contentType : 'aplication/json',
-				success : function(result) {
-					var s = '';
-					for (var i = 0; i < result.length; i++) {
-						s += ' <div class="col-sm col-md-6 col-lg-4  "> <div class="destination">' ;
-						s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail" class="img img-2 d-flex justify-content-center align-items-center"';
-						s += ' style="background-image: url(${pageContext.request.contextPath }/uploads/images/' + result[i].image + ');">';
-						s += ' <div class="icon d-flex justify-content-center align-items-center"> <span class="icon-link"></span></div>';
-						s +=' </a> <div class="text p-3"><div class="d-flex"> <div class="one"> <h3> ' ;
-							s += '<a href="#"> '+result[i].name+' </a></h3><p class="rate">';
-							for(var j =0 ; j < result[i].starRatingNum ; j++)
-								{s += '<i class="icon-star"></i>';}
-							s += '</p>'; 
-								s +='</div> <div class="two"> <span class="price per-price">';
-								
-							
-							
-							s += ' </div> </div>';
-								s += ' <span class="icon-map-marker"></span> <span>'+ result[i].ward +','+ result[i].city +'</span> <br>' ;
-							
-								s += ' <div class="row"> <div class="col-md-12"><span>'	;
-								if(result[i].priceCoppon != null){
-									s += ' <span style="text-decoration: line-through;">$ '+ Math.round(result[i].price) +' <span> /night</span></span> <br> ';
-									s += Math.round(result[i].priceCoppon) + ' <span>/night</span></span>';
-									}else{
-										s += Math.round(result[i].price) + ' <span>/night</span></span>';
-										}
-									
+														url : '${pageContext.request.contextPath }/search/ajax/price',
+														data : {
+															address : address,
+															checkin : checkin,
+															checkout : checkout,
+															guests : guests,
+															rooms : rooms,
+															minprice : minprice,
+															maxprice : maxprice
+														},
+														dataType : 'json',
+														contentType : 'aplication/json',
+														success : function(
+																result) {
+															var s = '';
+															for (var i = 0; i < result.length; i++) {
+																
+																s += '<div class="card">';
+																s += ' <div class="card"> <h5 class="card-header">'
+																		+ result[i].name
+																		+ '  </h5>';
+																s += '<div class="card-body">';
+																s += '<div class="container">';
+																s += '<div class="row">';
+																s += '<div class="col-6 col-md-4">';
+																s += '<img src="${pageContext.request.contextPath }/uploads/images/'+result[i].image+'" alt="Snow" style="width: 200px; height: 200px"></div>';
+																s += '<div class="col-6 col-md-4">';
+																s += '<p><i class="fa fa-map-marker" style="color: #B1293E"></i>'+result[i].ward+','+result[i].city +' </p>';
+																s += '<p>';
+																for(var j =0 ; j < result[i].starRating ; j++)
+																{s += '<i class="fa fa-star" style="color: orange;"></i>';}
+																s += '</p>';
+																
+																s += '<img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">';
+																s += '<a href="#" class="meta-chat" style="color: black;"> <i class="fa fa-comment"></i> (10 )</a>';
+																s += '</div>';
+																s += '<div class="col-6 col-md-4">';
+																s += '<p style="color: green;"><i class="fa fa-user"></i>Login deal</p>';
+															
+																s += '<p style="color: green;"><span style="color: green; font-size: 20px; font-weight: bold;">%</span>Save 30%</p>';
 
+																s += '<h5 style="color: #2E64FE">';
+																s += '<span class="price per-price">';
+																
+																if(result[i].priceCoppon != null){
+																	s +='';
+																	s +='';
+																	s += ' <span style="text-decoration: line-through;">$ '+ Math.round(result[i].price) +' <span> /night</span></span> <br> ';
+																	s += Math.round(result[i].priceCoppon) + ' <span>/night</span></span>';
+																	}else{
+																		s += Math.round(result[i].price) + ' <span>/night</span></span>';
+																		}
+															
+																
+																s += '</span></h5>';
+																s += '<br> <a class="btn-s" href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book Now</a>';
+																s += '</div>';
+																s += '</div></div></div></div>';
 
-								s +=	'</div></div>';
-								s += ' <hr><p class="bottom-area d-flex">'	;
-								if(result[i].prestige == true){
-									s += ' <img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">';
-									
-									}
-								s += ' <a href="#" class="meta-chat" style="color: black;"><span class="icon-chat"></span>'+result[i].comment+'</a> <span class="ml-auto">';
-								s += ' <a href="${pageContext.request.contextPath }/hotels/hotel_detail?address='+address+'&checkin='+checkin+'&checkout='+checkout+'&guests='+guests+'&room='+rooms+'&id='+result[i].id+'">Book Now</a></span>';
-								s += ' </p></div></div></div></div>';
-					}
-					$('#resss').html(s);
-										
-					$('#res').text(JSON.stringify(result));
+															}
+															$('#resss').html(s);
 
-				}
+															$('#res')
+																	.text(
+																			JSON
+																					.stringify(result));
 
-			});
+														}
 
-		});
-		
-	});
+													});
+
+										});
+
+					});
 </script>
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-3 sidebar order-md-last ftco-animate">
-				<div class="sidebar-wrap ftco-animate">
-					<h3 class="heading mb-4">Filter Results</h3>
+<br>
 
-					<div class="fields">
-						<div class="form-group">
-							<input type="text" class="form-control" value="${address }"
-								id="address" placeholder="Destination, City">
-						</div>
+<div class="sidebar">
+	<h3>Filter</h3>
+	<div class="form-group">
+		<input type="number" id="minprice" placeholder="min" value="0"><input
+			type="number" id="maxprice" placeholder="max" value="100">
+	</div>
+	<div class="form-group">
+		<input type="submit" id="bt" value="fillter">
+	</div>
 
-						<div class="form-group">
-							<input type="text" id="checkin_date"
-								class="form-control checkin_date" value="${checkin }"
-								placeholder="Check in">
-						</div>
-						<div class="form-group">
-							<input type="text" id="checkout_date"
-								class="form-control checkout_date" value="${checkout }"
-								placeholder="Check out">
-						</div>
-						<div class="form-group">
-							<div class="select-wrap one-third">
-								<div class="icon"></div>
-								<input type="text" class="form-control" value="${guests }"
-									id="guests" placeholder="Guest">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="select-wrap one-third">
-								<div class="icon"></div>
-								<input type="text" class="form-control" value="${rooms }"
-									id="rooms" placeholder="Rooms">
-							</div>
-						</div>
+	<button class="dropdown-btn">
+		Star rating <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><i
+				class="fa fa-star" style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><i
+				class="fa fa-star" style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><i
+				class="fa fa-star" style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><i
+				class="fa fa-star" style="color: orange;"></i><i class="fa fa-star"
+				style="color: orange;"></i>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><i
+				class="fa fa-star" style="color: orange;"></i>
+			</label>
+		</div>
 
-						<div class="form-group">
+	</div>
 
-							<div class="range-slider">
+	<button class="dropdown-btn">
+		Facilities <i class="fa fa-caret-down"></i>
+	</button>
 
-								<span> <input type="number" value=0 min="0" max="120000"
-									id="minprice" /> - <input type="number" value="50" min="0"
-									max="100000" id="maxprice" />
-								</span> <input value="1000" min="0" max="120000" step="500"
-									type="range" id="minprice" /> <input value="50000" min="0"
-									max="120000" step="500" type="range" id="maxprice" />
 
-							</div>
-						</div>
-						<div class="form-group">
-							<input type="submit" id="bt" value="Search"
-								class="btn btn-primary py-3 px-5">
-						</div>
-					</div>
+	<button class="dropdown-btn">
+		Facilities <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
 
-				</div>
-				<div class="sidebar-wrap ftco-animate">
-					<h3 class="heading mb-4">Star Rating</h3>
-					<form method="post" class="star-rating">
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									<span><i class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star"></i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									<span><i class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star-o"></i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									<span><i class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star"></i><i class="icon-star-o"></i><i
-										class="icon-star-o"></i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									<span><i class="icon-star"></i><i class="icon-star"></i><i
-										class="icon-star-o"></i><i class="icon-star-o"></i><i
-										class="icon-star-o"></i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									<span><i class="icon-star"></i><i class="icon-star-o"></i><i
-										class="icon-star-o"></i><i class="icon-star-o"></i><i
-										class="icon-star-o"></i></span>
-								</p>
-							</label>
-						</div>
-					</form>
-				</div>
-				<div class="sidebar-wrap ftco-animate">
-					<h3 class="heading mb-4">Sort Results</h3>
-					<form method="post" class="star-rating">
-						<div class="form-check">
-							<input type="radio"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Highest Price</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="radio"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Lowest Price</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="radio"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Highest Price</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="radio"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Highest Price</p>
-							</label>
-						</div>
-					</form>
-				</div>
-				<div class="sidebar-wrap ftco-animate">
-					<h3 class="heading mb-4">Facilities</h3>
-					<form method="post" class="star-rating">
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Wifi</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Parking</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Spa</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Gym</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Car rental</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Airport transfer</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Free breakfast</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Swimming pool</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Elevator</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Receptionist</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Air conditioner</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Free cancellation</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Pay at hotel</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Assembly facilites</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Driveway</i></span>
-								</p>
-							</label>
-						</div>
-					</form>
-				</div>
-				<div class="sidebar-wrap ftco-animate">
-					<h3 class="heading mb-4">Accommodation Type</h3>
-					<form method="post" class="star-rating">
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Apartments</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Homes</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">Resorts</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									B&B</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Villas</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Luxury</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Guest Housesr</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Hotels</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Homestays</i></span>
-								</p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input"
-								id="exampleCheck1"> <label class="form-check-label"
-								for="exampleCheck1">
-								<p class="rate">
-									Hostels</i></span>
-								</p>
-							</label>
-						</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Wifi</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Parking</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Spa</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Gym</span>
+			</label>
+		</div>
+	</div>
 
-					</form>
-				</div>
-			</div>
-			<!-- END-->
+	<button class="dropdown-btn">
+		Accommodation Type <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Apartments</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Homes</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Resorts</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>B&B</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Villas</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Luxury</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Guest
+					Houser</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Hotels</span>
+			</label>
+		</div>
+		<div class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label"> <input type="checkbox"><span>Homestays</span>
+			</label>
+		</div>
+	</div>
 
-			<div  class="col-lg-9">
-				<div id="resss"  class="row">
+	<button class="dropdown-btn">
+		Dropdown <i class="fa fa-caret-down"></i>
+	</button>
+	<div class="dropdown-container">
+		<a href="#">Link 1</a> <a href="#">Link 2</a> <a href="#">Link 3</a><a
+			href="#">Link 3</a><a href="#">Link 3</a>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-8">
+			<div data-spy="scroll" data-target="#myScrollspy" data-offset="10"
+				style="height: 600px; overflow-y: scroll; padding: 5px; border: 1px solid #ccc;">
+				<!-- hotels -->
+				<div id="resss">
 					<c:forEach var="item" items="${hotels }">
-						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
-							<div class="destination">
-								<a
-									href="${pageContext.request.contextPath }/hotels/hotel_detail"
-									class="img img-2 d-flex justify-content-center align-items-center"
-									style="background-image: url(${pageContext.request.contextPath }/uploads/images/${item.image });">
-									<div
-										class="icon d-flex justify-content-center align-items-center">
-										<span class="icon-link"></span>
-									</div>
-								</a>
-								<div class="text p-3">
-									<div class="d-flex">
-										<div class="one">
-											<h3>
-												<a href="#"> ${item.name} </a>
-											</h3>
-											<p class="rate">
+						<div class="card">
+							<h5 class="card-header">${item.name}</h5>
+							<div class="card-body">
+								<div class="container">
+									<div class="row">
+										<div class="col-6 col-md-4">
+											<img
+												src="${pageContext.request.contextPath }/uploads/images/${item.image }"
+												alt="Snow" style="width: 200px; height: 200px">
+										</div>
+										<div class="col-6 col-md-4">
+											<p><i class="fa fa-map-marker" style="color: #B1293E"></i>${item.ward}, ${item.city }</p>
+											<p>
 												<c:forEach var="star" begin="1"
 													end="${ item.starRating.amount }" step="1">
-													<i class="icon-star"></i>
+													<i class="fa fa-star" style="color: orange;"></i>
 
 												</c:forEach>
-
-
 											</p>
+
+											
+											<c:set var="numstar" value="${ 0 }"></c:set>
+											<c:forEach var="evaluate" items="${item.evaluates }">
+
+												<c:set var="numstar" value="${ numstar + evaluate.numberOfStars }"></c:set>
+
+											</c:forEach>
+											<i> <c:if test="${numstar/ item.evaluates.size() > 3.5 }">
+													<img alt="icon" src="${pageContext.request.contextPath }/resources/user/icon/home.png">
+
+												</c:if>
+											</i> <a href="#" class="meta-chat" style="color: black;"> <i class="fa fa-comment"></i> (${ item.evaluates.size() })</a>
 										</div>
-										<div class="two">
-											<span class="price per-price"> <c:set var="quantity"
-													value="${0 }">
+										<div class="col-6 col-md-4">
+											<p style="color: green;"><i class="fa fa-user"></i>Login deal</p>
+											<p style="color: green;"><span style="color: green; font-size: 20px; font-weight: bold;">%</span>Save 30%</p>
+											
+											<h5 style="color: #2E64FE">
+												<span class="price per-price"> <c:set var="quantity"
+														value="${0 }">
 
-												</c:set> <c:set var="tatolPrice" value="${0 }">
+													</c:set> <c:set var="tatolPrice" value="${0 }">
 
-												</c:set> <c:forEach var="room" items="${ item.rooms }">
-													<c:if
-														test="${ room.status == true && room.amountOfRoom > 0 }">
+													</c:set> <c:forEach var="room" items="${ item.rooms }">
+														<c:if
+															test="${ room.status == true && room.amountOfRoom > 0 }">
 
-														<c:set var="quantity"
-															value="${ quantity + room.amountOfRoom }">
-														</c:set>
-														<c:set var="tatolPrice"
-															value="${tatolPrice + (room.price * room.amountOfRoom ) }">
-														</c:set>
-													</c:if>
-												</c:forEach>
-										</div>
-									</div>
-
-									<span class="icon-map-marker"></span> <span>
-										${item.ward} , ${item.city } </span> <br>
-									<c:set var="numstar" value="${ 0 }"></c:set>
-									<c:forEach var="evaluate" items="${item.evaluates }">
-
-										<c:set var="numstar"
-											value="${ numstar + evaluate.numberOfStars }"></c:set>
-
-									</c:forEach>
-
-
-
-									<div class="row">
-
-										<div class="col-md-12">
-
-
-											<span> <c:if
+															<c:set var="quantity"
+																value="${ quantity + room.amountOfRoom }">
+															</c:set>
+															<c:set var="tatolPrice"
+																value="${tatolPrice + (room.price * room.amountOfRoom ) }">
+															</c:set>
+														</c:if>
+													</c:forEach>
+												</span>
+												<c:if
 													test="${item.copponHotel != null and item.copponHotel.status == true }">
 													<span style="text-decoration: line-through;">$ <fmt:formatNumber
 															type="number" value="${tatolPrice / quantity }"
 															pattern="###,###" /><span> /night</span></span>
 													<br>
-												</c:if> $ <fmt:formatNumber type="number"
+												</c:if>
+												$
+												<fmt:formatNumber type="number"
 													value="${(tatolPrice / quantity) * (100 -item.copponHotel.sale )/100 }"
-													pattern="###,###" /> <span>/night</span></span>
+													pattern="###,###" />
+												<span>/night</span>
+											</h5>
+
+											<br> <a class="btn-s" href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book Now</a>
+
+
 										</div>
-
-
 									</div>
-
-									<hr>
-									<p class="bottom-area d-flex">
-
-										<c:if test="${((numstar / item.evaluates.size() )) > 3.5 }">
-											<img alt="icon"
-												src="${pageContext.request.contextPath }/resources/user/icon/home.png">
-
-										</c:if>
-										<a href="#" class="meta-chat" style="color: black;"><span
-											class="icon-chat"></span> ${ item.evaluates.size() }</a> <span
-											class="ml-auto"><a
-											href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
-												Now</a></span>
-									</p>
 								</div>
 							</div>
 						</div>
-
+						<br>
 					</c:forEach>
-
-
-
-					<c:if test="${hotels.isEmpty()}">
-						<h3>khong tim thays khach san</h3>
-					</c:if>
-
 				</div>
+				<!-- /hotels -->
+				<c:if test="${hotels.isEmpty()}">
+					<h3>khong tim thays khach san</h3>
+				</c:if>
 
-				<div class="row mt-5">
-					<div class="col text-center">
-						<div class="block-27">
-							<ul>
-								<li><a href="#">&lt;</a></li>
-								<li class="active"><span>1</span></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&gt;</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+
 			</div>
-			<!-- .col-md-8 -->
+
+
+
+
+		</div>
+		<div class="col-3">
+			<!-- form search -->
+
+
+			<div class="container">
+				<form>
+
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<label for="state">City name <i class="fa fa-map-marker"></i></label>
+							<input type="text" placeholder="City" id="address"
+								value="${address }">
+						</div>
+						<div class="col-auto">
+							<label>Guest <i class="fa fa-user"></i></label> <input
+								class="inputRoom" type="number" id="guests" placeholder="0"
+								value="${guests }">
+						</div>
+						<div class="col-auto">
+							<label>Room <i class="fa fa-home"></i></label> <input
+								class="inputRoom" type="number" id="rooms" placeholder="0"
+								value="${rooms }">
+						</div>
+
+						<div class="col-auto">
+							<label>Check in <i class="fa fa-sign-in"></i></label> <input
+								type="date" value="${checkin }" id="checkin_date">
+						</div>
+						<div class="col-auto">
+							<label>Check out <i class="fa fa-sign-out"></i></label> <input
+								type="date" value="${checkout}" id="checkout_date">
+						</div>
+
+
+						<div class="col-auto">
+							<input type="button" id="bt" value="Re-Search" class="btn-s">
+						</div>
+
+					</div>
+
+
+				</form>
+			</div>
+			<!-- /form search -->
 		</div>
 	</div>
-</section>
-<!-- .section -->
+</div>
 
-<section class="ftco-section-parallax">
-	<div class="parallax-img d-flex align-items-center">
-		<div class="container">
-			<div class="row d-flex justify-content-center">
-				<div
-					class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-					<h2>Subcribe to our Newsletter</h2>
-					<p>Far far away, behind the word mountains, far from the
-						countries Vokalia and Consonantia, there live the blind texts.
-						Separated they live in</p>
-					<div class="row d-flex justify-content-center mt-5">
-						<div class="col-md-8">
-							<form action="#" class="subscribe-form">
-								<div class="form-group d-flex">
-									<input type="text" class="form-control"
-										placeholder="Enter email address"> <input
-										type="submit" value="Subscribe" class="submit px-3">
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>

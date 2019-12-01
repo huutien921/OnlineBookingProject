@@ -1,259 +1,303 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="tags" uri="tags"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home page</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Abril+Fatface"
-	rel="stylesheet">
+<title>Bootstrap 4 Website Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  -->
 
+<!--  -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/animate.css">
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/loading-bar.css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/owl.theme.default.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/magnific-popup.css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/aos.css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/ionicons.min.css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/bootstrap-datepicker.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/jquery.timepicker.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/bootstrap.min.css">
-
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/flaticon.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/user/css/icomoon.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/user/css/style.css">
+	href="${pageContext.request.contextPath }/resources/user/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/custom/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/custom/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/custom/css/bootstrap-theme.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/css/my.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/user/custom/css/all.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+</head>
+<script
+	src="${pageContext.request.contextPath }/resources/user/custom/js/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/resources/user/custom/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/resources/user/custom/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/resources/user/custom/js/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+.fakeimg {
+	height: 200px;
+	background: #aaa;
+}
+</style>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+</style>
+<style type="text/css">
+.roww>.columnn {
+	padding: 0 8px;
+}
 
+.roww:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.columnn {
+	float: left;
+	width: 25%;
+}
+
+/* The Modal (background) */
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	width: 90%;
+	max-width: 800px;
+}
+
+/* The Close Button */
+.close {
+	color: black;
+	position: absolute;
+	top: 10px;
+	right: 25px;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: red;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.mySlides {
+	display: none;
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 20px;
+	margin-top: -200px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+}
+
+img {
+	margin-bottom: -4px;
+}
+
+.caption-container {
+	text-align: center;
+	background-color: black;
+	padding: 2px 16px;
+	color: white;
+}
+
+.demo {
+	opacity: 0.6;
+}
+
+.active, .demo:hover {
+	opacity: 1;
+}
+
+img.hover-shadow {
+	transition: 0.3s;
+}
+
+.hover-shadow:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+</style>
 
 </head>
 <body>
 
-	<nav
-		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-		id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand"
-				href="${pageContext.request.contextPath }/home">Bookbed</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#ftco-nav" aria-controls="ftco-nav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-2">
+				<h3>
+					<a href="${pageContext.request.contextPath }/home">
+						<img alt="logo" src="${pageContext.request.contextPath }/uploads/images/bookbed_logo.png" style="width: 150px" height="50px">
+					</a>
+				</h3>
+			</div>
+			<div class="col-4"></div>
+			<div class="col-6">
+				<ul class="nav justify-content-end">
+					<li class="nav-item"><a class="nav-link" href="#">Languages</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">$USD</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i
+							class="fa fa-calendar"></i>History</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#"><i
+							class="fa fa-shopping-cart"></i>Cart</a></li>
+					<li class="nav-item"><a class="nav-link" href="contact.html"><i
+							class="fa fa-user"></i>Login/Register</a></li>
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<!--  <li class="nav-item"><a
-						href="${pageContext.request.contextPath }/hotels" class="nav-link">Hotels</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/promotions"
-						class="nav-link">Promotions</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/saved" class="nav-link">Saved</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/myinbox"
-						class="nav-link">My Inbox</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/blog" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/aboutus"
-						class="nav-link">About</a></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath }/login" class="nav-link">Login/Register</a></li>-->
-					<tags:header/>
 				</ul>
 			</div>
 		</div>
-	</nav>
-	<!-- END nav -->
-	<div class="hero-wrap js-fullheight"
-		style="background-image: url('${pageContext.request.contextPath }/resources/user/images/bg_1.jpg');">
-		<div class="overlay"></div>
-		<div class="container">
-			<div
-				class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
-				data-scrollax-parent="true">
-				<div class="col-md-9 text-center ftco-animate"
-					data-scrollax=" properties: { translateY: '70%' }">
-					<p class="breadcrumbs"
-						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-						<span class="mr-2"><a href="index.html">Home</a></span> <span>Hotel</span>
-					</p>
-					<h1 class="mb-3 bread"
-						data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Hotels</h1>
-				</div>
-			</div>
-		</div>
+
+
 	</div>
+
+
+
+	<ul class="nav justify-content-center">
+		<!-- <li class="nav-item"><a class="nav-link"
+			href="${pageContext.request.contextPath }/hotels"><i
+				class="fa fa-building-o" style="color: #2E64FE;"></i>Hotels</a></li> -->
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/promotions"><span
+				style="font-size: 18px; font-weight: bold; color: orange;">%</span>Promotions</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/saved"> <i
+				class="fa fa-download" style="color: #8181F7;"></i>Saved
+		</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/myinbox"><i
+				class="fa fa-envelope" style="color: #8A0808;"></i>My Inbox</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/blog"><i
+				class="fa fa-book" style="color: #8904B1"></i>Blog</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/aboutus"><i
+				class="fa fa-info" style="color: #04B4AE"></i>About</a></li>
+		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/news"><i
+				class="fa fa-phone" style="color: #088A08"></i>Contact</a></li>
+
+	</ul>
 
 	<tiles:insertAttribute name="content"></tiles:insertAttribute>
 
 
+	<script type="text/javascript">
+		var dropdown = document.getElementsByClassName("dropdown-btn");
+		var i;
 
-	<br>
-	<br>
-	<!-- -----------------------------------------------------------FOOTER------------------------------------------------------------------------------------ -->
-	<footer class="ftco-footer ftco-bg-dark ftco-section">
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2">Adventure</h2>
-						<p>Far far away, behind the word mountains, far from the
-							countries Vokalia and Consonantia, there live the blind texts.</p>
-						<ul
-							class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-							<li class="ftco-animate"><a href="#"><span
-									class="icon-twitter"></span></a></li>
-							<li class="ftco-animate"><a href="#"><span
-									class="icon-facebook"></span></a></li>
-							<li class="ftco-animate"><a href="#"><span
-									class="icon-instagram"></span></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4 ml-md-4">
-						<h2 class="ftco-heading-2">Information</h2>
-						<ul class="list-unstyled">
-							<li><a href="#" class="py-2 d-block">About Us</a></li>
-							<li><a href="#" class="py-2 d-block">Online enquiry</a></li>
-							<li><a href="#" class="py-2 d-block">Call Us</a></li>
-							<li><a href="#" class="py-2 d-block">General enquiries</a></li>
-							<li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-							<li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-							<li><a href="#" class="py-2 d-block">Refund policy</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2">Experience</h2>
-						<ul class="list-unstyled">
-							<li><a href="#" class="py-2 d-block">Beach</a></li>
-							<li><a href="#" class="py-2 d-block">Adventure</a></li>
-							<li><a href="#" class="py-2 d-block">Wildlife</a></li>
-							<li><a href="#" class="py-2 d-block">Honeymoon</a></li>
-							<li><a href="#" class="py-2 d-block">Nature</a></li>
-							<li><a href="#" class="py-2 d-block">Party</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md">
-					<div class="ftco-footer-widget mb-4">
-						<h2 class="ftco-heading-2">Have a Questions?</h2>
-						<div class="block-23 mb-3">
-							<ul>
-								<li><span class="icon icon-map-marker"></span><span
-									class="text">203 Fake St. Mountain View, San Francisco,
-										California, USA</span></li>
-								<li><a href="#"><span class="icon icon-phone"></span><span
-										class="text">+2 392 3929 210</span></a></li>
-								<li><a href="#"><span class="icon icon-envelope"></span><span
-										class="text">info@yourdomain.com</span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;
-						<script>
-							document.write(new Date().getFullYear());
-						</script>
-						All rights reserved | This template is made with <i
-							class="icon-heart" aria-hidden="true"></i> by <a
-							href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">
-			<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke="#eeeeee" />
-			<circle class="path" cx="24" cy="24" r="22" fill="none"
-				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
-	</div>
-
-<script
-	src="${pageContext.request.contextPath }/resources/user/js/jquery-3.4.1.min.js"
-	type="text/javascript">
-	
+		for (i = 0; i < dropdown.length; i++) {
+			dropdown[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var dropdownContent = this.nextElementSibling;
+				if (dropdownContent.style.display === "block") {
+					dropdownContent.style.display = "none";
+				} else {
+					dropdownContent.style.display = "block";
+				}
+			});
+		}
 	</script>
- 		<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery-migrate-3.0.1.min.js"></script>
-	 <script
-		src="${pageContext.request.contextPath }/resources/user/js/popper.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.easing.1.3.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.waypoints.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.stellar.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.magnific-popup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/aos.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.animateNumber.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/bootstrap-datepicker.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/jquery.timepicker.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/scrollax.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/google-map.js"></script>
-	<script
-		src="${pageContext.request.contextPath }/resources/user/js/main.js"></script>
-<script
-		src="${pageContext.request.contextPath }/resources/user/js/loading-bar.js"></script>
+	<script>
+		function openModal() {
+			document.getElementById("myModal").style.display = "block";
+		}
 
-		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		function closeModal() {
+			document.getElementById("myModal").style.display = "none";
+		}
+
+		var slideIndex = 1;
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("demo");
+			var captionText = document.getElementById("caption");
+			if (n > slides.length) {
+				slideIndex = 1
+			}
+			if (n < 1) {
+				slideIndex = slides.length
+			}
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+			captionText.innerHTML = dots[slideIndex - 1].alt;
+		}
+	</script>
 
 </body>
 </html>

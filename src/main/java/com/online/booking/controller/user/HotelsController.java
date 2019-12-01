@@ -30,11 +30,12 @@ public class HotelsController {
 			@RequestParam("checkout") String checkout, @RequestParam("guests") int guests,
 			@RequestParam("room") int room, @RequestParam("id") int id, ModelMap map) {
 		try {
-			Date dateCheckIn = new SimpleDateFormat("MM/dd/yyyy").parse(checkin);
-			Date dateCheckOut = new SimpleDateFormat("MM/dd/yyyy").parse(checkout);
+			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
+			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 			map.put("hotel", hotelService.findById(id));
 		
-			List<Evaluate> evaluatesHotel = evaluateService.findByHotelDescAndLimit(id, 5);
+			List<Evaluate> evaluatesHotel = evaluateService.findByHotelDescAndLimit(id, 10);
+			System.out.println(evaluatesHotel.size());
 			map.put("evaluates", evaluatesHotel);
 			// lay khach san lien quan limit
 			List<Hotel> hotelsRelated = hotelService.relatedHotelLimitAddPriority(address, dateCheckIn, dateCheckOut,
@@ -42,9 +43,14 @@ public class HotelsController {
 			map.put("hotelsRelated", hotelsRelated);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
+			System.out.println("loi");
 		}
 		return "hotels.hotel_detail";
 
 	}
-
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	public String cart() {
+		return "hotels.cart";
+	}
+			
 }
