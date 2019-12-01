@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2019 at 11:57 AM
+-- Generation Time: Dec 01, 2019 at 06:22 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookinghotel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about`
+--
+
+CREATE TABLE `about` (
+  `id` int(11) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `country` varchar(250) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `about`
+--
+
+INSERT INTO `about` (`id`, `address`, `country`, `email`, `phone`, `name`, `status`) VALUES
+(1, 'Nguyen Kiem , Phu Nhuan , Tp HCM', 'Viet Nam', 'bookbed@gmail.com', '0947443148', 'BookBed Online', 1);
 
 -- --------------------------------------------------------
 
@@ -70,7 +93,8 @@ CREATE TABLE `bed_type` (
 --
 
 INSERT INTO `bed_type` (`id`, `name`, `status`) VALUES
-(1, 'Don', 1);
+(1, 'Don', 1),
+(2, 'DOi', 1);
 
 -- --------------------------------------------------------
 
@@ -83,8 +107,20 @@ CREATE TABLE `blog` (
   `title` varchar(250) DEFAULT NULL,
   `content` text,
   `account_id` int(11) NOT NULL,
+  `src` varchar(250) DEFAULT NULL,
+  `created` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `title`, `content`, `account_id`, `src`, `created`, `status`) VALUES
+(1, '8 Best hotel in Dubai that you don\'t miss out', '8 Best hotel in Dubai that you don\'t miss out8 Best hotel in Dubai that you don\'t miss out8 Best hotel in Dubai that you don\'t miss out8 Best hotel in Dubai that you don\'t miss out8 Best hotel in Dubai that you don\'t miss out', 5, 'hotel-6.jpg', '2019-11-30', 1),
+(2, 'Share 4 ideal destinations for the winter 2019', 'Share 4 ideal destinations for the winter 2019Share 4 ideal destinations for the winter 2019Share 4 ideal destinations for the winter 2019Share 4 ideal destinations for the winter 2019Share 4 ideal destinations for the winter 2019', 5, 'destination-6.jpg', '2019-11-30', 1),
+(3, '5 best restauran in Dubai that you don\'t miss out', '5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out\r\n\r\n5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out\r\n\r\n5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out\r\n\r\n5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out\r\n\r\n\r\n5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out5 best restauran in Dubai that you don\'t miss out', 5, 'restaurant-1.jpg', '2019-11-30', 1),
+(4, 'Share 10 experience of traveling abroad', 'Share 10 experience of traveling abroadShare 10 experience of traveling abroadShare 10 experience of traveling abroadShare 10 experience of traveling abroadShare 10 experience of traveling abroadShare 10 experience of traveling abroadShare 10 experience of traveling abroad', 5, 'image_1.jpg', '2019-11-30', 1);
 
 -- --------------------------------------------------------
 
@@ -99,6 +135,16 @@ CREATE TABLE `coppon_hotel` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `coppon_hotel`
+--
+
+INSERT INTO `coppon_hotel` (`id`, `name`, `sale`, `status`) VALUES
+(1, 'envet 11', 70, 1),
+(2, 'sale Manh', 50, 1),
+(3, 'sale 20', 20, 1),
+(4, 't2222', 25, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -111,6 +157,14 @@ CREATE TABLE `coppon_room` (
   `sale` double DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `coppon_room`
+--
+
+INSERT INTO `coppon_room` (`id`, `name`, `sale`, `status`) VALUES
+(109, '66', 6, 1),
+(111, 'hhhh', 22, 1);
 
 -- --------------------------------------------------------
 
@@ -149,14 +203,14 @@ CREATE TABLE `evaluate` (
 --
 
 INSERT INTO `evaluate` (`id`, `account_id`, `room_id`, `hotel_id`, `number_of_stars`, `content`, `created`, `status`) VALUES
-(1, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
+(1, 3, NULL, 1, 5, 'qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
 (2, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
 (3, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
 (4, 3, NULL, 1, 4, 'hoi tot', '2019-11-09', 1),
 (5, 3, NULL, 1, 2, 'nhu shit', '2019-11-09', 1),
-(6, 3, NULL, 1, 5, 'qua tot6', '2019-11-09', 1),
+(6, 3, NULL, 1, 5, 'qua tot6 qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
 (7, 3, NULL, 1, 5, 'qua tot7', '2019-11-09', 1),
-(8, 3, NULL, 1, 4, 'hoi tot 8', '2019-11-09', 1),
+(8, 3, NULL, 1, 4, 'qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
 (21, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
 (22, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
 (23, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
@@ -221,8 +275,8 @@ CREATE TABLE `hotel` (
 --
 
 INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward`, `city`, `provincial`, `country`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
-(1, 'Long Phung', 'hotel-1.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 5, NULL, 1),
-(2, 'Vin Hotel', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
+(1, 'Long Phung hoang', '28112019172057about.jpg', '<h1>toi ten</h1><p>Nguyen Huu<u> Tien</u><br></p><h1></h1>', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 5, 4, 1),
+(2, 'Vin Hotel', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 2, 2, 0),
 (3, 'Hanh Phuc', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
 (4, 'Da nang', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Phuong 10', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
 (5, 'Da nang 2', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
@@ -230,9 +284,9 @@ INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward
 (7, 'Da nang 4', 'hotel-1.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
 (8, 'Sapa ', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Sapa', 'Phuong 10', 'sapa', 'Lao Cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
 (9, 'Sapa2', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 ,Sapa', 'Phuong 12', 'Sapa', 'Lao cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(10, 'Hanh Phuc false', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 0),
-(11, 'Chua Ba Danh', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(12, 'Cho Dem', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1);
+(10, 'Hanh Phuc false', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 2, NULL, 1),
+(11, 'Chua Ba Danh', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, 2, 1),
+(12, 'Cho Dem', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -260,6 +314,45 @@ CREATE TABLE `image_room` (
   `room_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image_room`
+--
+
+INSERT INTO `image_room` (`id`, `src`, `alt`, `room_id`, `status`) VALUES
+(1, 'room-1.jpg', 'hinh mo ta', 1, 1),
+(2, 'room-2.jpg', 'hinh mo ta', 1, 1),
+(5, 'room-1.jpg', 'hinh mo ta', 2, 1),
+(6, 'room-2.jpg', 'hinh mo ta', 2, 1),
+(7, 'room-3.jpg', 'hinh mo ta', 2, 1),
+(8, 'room-4.jpg', 'hinh mo ta', 2, 1),
+(9, 'room-2.jpg', 'hinh mo ta', 2, 1),
+(10, 'room-3.jpg', 'hinh mo ta', 2, 1),
+(11, 'room-4.jpg', 'hinh mo ta', 2, 1),
+(12, 'room-4.jpg', 'hinh mo ta', 2, 1),
+(13, '30112019095022destination-4.jpg', 'tttt', 23, 0),
+(14, '30112019095022destination-5.jpg', 'tttt', 23, 0),
+(15, '30112019095022destination-6.jpg', 'tttt', 23, 0),
+(16, '30112019095022hotel-1.jpg', 'tttt', 23, 0),
+(17, '30112019095022hotel-2.jpg', 'tttt', 23, 0),
+(18, '30112019095022hotel-3.jpg', 'tttt', 23, 0),
+(19, '30112019095022hotel-5.jpg', 'tttt', 23, 0),
+(20, '30112019095022hotel-6.jpg', 'tttt', 23, 0),
+(21, '30112019095022image_1.jpg', 'tttt', 23, 0),
+(22, '30112019095326bg_1.jpg', 'tttt', 24, 0),
+(23, '30112019095326destination-1.jpg', 'tttt', 24, 0),
+(24, '30112019095326destination-2.jpg', 'tttt', 24, 0),
+(25, '30112019095326destination-2-1.jpg', 'tttt', 24, 0),
+(26, '30112019095326destination-3.jpg', 'tttt', 24, 0),
+(27, '30112019095326destination-4.jpg', 'tttt', 24, 0),
+(28, '30112019095326destination-5.jpg', 'tttt', 24, 0),
+(29, '30112019095447bg_1.jpg', 'tttt', 25, 0),
+(30, '30112019095447destination-1.jpg', 'tttt', 25, 0),
+(31, '30112019095447destination-2.jpg', 'tttt', 25, 0),
+(32, '30112019095447destination-2-1.jpg', 'tttt', 25, 0),
+(33, '30112019095447destination-3.jpg', 'tttt', 25, 0),
+(34, '30112019095447destination-4.jpg', 'tttt', 25, 0),
+(35, '30112019095447destination-5.jpg', 'tttt', 25, 0);
 
 -- --------------------------------------------------------
 
@@ -442,17 +535,20 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `id_coppon_room`, `status`) VALUES
-(1, 'Thu dong', 'thudong.PNG', 80, 1, 2, 1, 1, 2, 10, 1, NULL, 1),
-(2, 'Mua Xuan', 'muaxuan.PNG', 100, 2, 4, 1, 2, 1, 2, 1, NULL, 1),
+(1, 'Thu dong', 'room-1.jpg', 80, 1, 2, 1, 1, 2, 10, 1, 111, 1),
+(2, 'Mua Xuan', 'muaxuan.jpg', 100, 2, 4, 1, 2, 1, 2, 1, 109, 1),
 (3, 'Thu dong Vin', 'thudong.PNG', 90, 1, 2, 1, 1, 2, 10, 2, NULL, 1),
-(4, 'Mua Xuan Vin', 'muaxuan.PNG', 100, 2, 4, 1, 2, 1, 2, 2, NULL, 1),
+(4, 'Mua Xuan Vin', 'muaxuan.jpg', 100, 2, 4, 1, 2, 1, 2, 2, NULL, 1),
 (5, 'Thu dong Da Nang', 'thudong.PNG', 65, 1, 2, 1, 1, 2, 10, 4, NULL, 1),
-(6, 'Mua Xuan Dang', 'muaxuan.PNG', 110, 2, 4, 1, 2, 1, 2, 4, NULL, 1),
-(7, 'Mua Xuan Hanh Phuc', 'muaxuan.PNG', 10, 2, 4, 1, 2, 1, 2, 3, NULL, 1),
-(8, 'Mua Xuan cho Dem', 'muaxuan.PNG', 20, 2, 4, 1, 2, 1, 2, 12, NULL, 1),
+(6, 'Mua Xuan Dang', 'muaxuan.jpg', 110, 2, 4, 1, 2, 1, 2, 4, NULL, 1),
+(7, 'Mua Xuan Hanh Phuc', 'muaxuan.jpg', 10, 2, 4, 1, 2, 1, 2, 3, NULL, 1),
+(8, 'Mua Xuan cho Dem', 'muaxuan.jpg', 20, 2, 4, 1, 2, 1, 2, 12, NULL, 1),
 (9, 'Thu dong ChoDem', 'thudong.PNG', 53, 1, 2, 1, 1, 2, 10, 12, NULL, 1),
-(10, 'Thu dong chua', 'thudong.PNG', 70, 1, 2, 1, 1, 2, 10, 11, NULL, 1),
-(11, 'Mua Xuan chua', 'muaxuan.PNG', 80, 2, 4, 1, 2, 1, 2, 11, NULL, 1);
+(10, 'Thu dong chua', 'room-1.jpg', 70, 1, 2, 1, 1, 2, 10, 11, NULL, 1),
+(11, 'Mua Xuan chua', 'muaxuan.jpg', 80, 2, 4, 1, 2, 1, 2, 11, NULL, 1),
+(23, 'tttt', NULL, 10, 10, 10, 1, 1, 1, 10, 1, NULL, 0),
+(24, 'tttt', NULL, 10, 10, 7, 1, 1, 1, 20, 1, NULL, 1),
+(25, 'tttt', NULL, 10, 10, 7, 1, 1, 1, 20, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -509,9 +605,23 @@ CREATE TABLE `sale` (
   `sales` double NOT NULL,
   `startday` date DEFAULT NULL,
   `endday` date DEFAULT NULL,
+  `src` varchar(250) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sale`
+--
+
+INSERT INTO `sale` (`id`, `code`, `description`, `sales`, `startday`, `endday`, `src`, `account_id`, `status`) VALUES
+(1, 'MERRYXMAX', 'description description description description description description description description description description description description description description description description description description description description description description description description  description description description description description  description description description description description  description description description description description  description description description description description description  description description', 0.1, '2019-12-20', '2019-12-31', 'promotion1.png', 5, 1),
+(2, 'TETDUONGLICH', NULL, 0.1, '2020-01-28', '2020-01-11', 'promotion2.png', 5, 1),
+(3, 'VIVUTET', NULL, 0.2, '2019-12-26', '2020-01-31', 'promotion3.png', 5, 1),
+(4, 'CUOINAM', NULL, 0.3, '2019-12-17', '2020-01-31', 'promotion4.png', 5, 1),
+(5, 'DULICHANTETNIEN', NULL, 0.25, '2020-01-02', '2020-01-31', 'promotion5.png', 5, 1),
+(6, 'TETAMLICH', NULL, 0.35, '2020-01-17', '2020-01-31', 'promotion6.png', 5, 1),
+(8, 'TIMETOGOHOME', NULL, 0.35, '2020-01-17', '2020-01-31', 'promotion6.png', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -540,7 +650,8 @@ INSERT INTO `service` (`id`, `name`, `price`, `core`, `priority`, `icon_src`, `i
 (1, 'QC', '80000', 'QC01', 1, NULL, 1, 1, 'Day tin Len dau muc 1', 1),
 (2, 'QC', '90000', 'QC02', 2, NULL, 1, 1, 'Day tin Len dau muc 2', 1),
 (3, 'QC', '100000', 'QC03', 3, NULL, 1, 1, 'Day tin Len dau muc 3', 1),
-(4, 'QC', '110000', 'QC04', 4, NULL, 1, 1, 'Day tin Len dau muc 4', 1);
+(4, 'QC', '110000', 'QC04', 4, NULL, 1, 1, 'Day tin Len dau muc 4', 1),
+(5, 'Add Hotel', '120000', 'add', 0, NULL, 1, 2, 'Create Hotel', 1);
 
 -- --------------------------------------------------------
 
@@ -558,7 +669,8 @@ CREATE TABLE `servicetype` (
 --
 
 INSERT INTO `servicetype` (`id`, `name`) VALUES
-(1, 'Push the news first');
+(1, 'Push the news first'),
+(2, 'Create Hotel');
 
 -- --------------------------------------------------------
 
@@ -573,7 +685,7 @@ CREATE TABLE `service_hotel` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `created` date NOT NULL,
-  `status` bigint(20) NOT NULL
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -615,6 +727,12 @@ INSERT INTO `star_rating` (`id`, `amount`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `account`
@@ -814,6 +932,11 @@ ALTER TABLE `star_rating`
 --
 
 --
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
@@ -822,22 +945,22 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `bed_type`
 --
 ALTER TABLE `bed_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `coppon_hotel`
 --
 ALTER TABLE `coppon_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `coppon_room`
 --
 ALTER TABLE `coppon_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 --
 -- AUTO_INCREMENT for table `email`
 --
@@ -852,7 +975,7 @@ ALTER TABLE `evaluate`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `imageblog`
 --
@@ -862,7 +985,7 @@ ALTER TABLE `imageblog`
 -- AUTO_INCREMENT for table `image_room`
 --
 ALTER TABLE `image_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -897,12 +1020,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `role_account`
 --
 ALTER TABLE `role_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `room_category`
 --
@@ -917,17 +1040,17 @@ ALTER TABLE `room_type`
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `servicetype`
 --
 ALTER TABLE `servicetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `service_hotel`
 --
