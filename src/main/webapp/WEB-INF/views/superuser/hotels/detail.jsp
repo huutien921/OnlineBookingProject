@@ -6,6 +6,7 @@
 <section class="content">
 
 	<div class="row">
+
 		<div class="col-md-3">
 
 			<!-- Profile Image -->
@@ -61,12 +62,19 @@
 
 					</ul>
 					<div class="row">
-						<div class="col-md-12">
-							<a href="${pageContext.request.contextPath }/superuser/myhotel/edit/${hotel.id}" class="btn btn-block btn-danger"><i
-								class="fa fa-edit"></i> Update hotel </a>
+						<div class="col-md-6">
+							<a
+								href="${pageContext.request.contextPath }/superuser/myhotel/edit/${hotel.id}"
+								class="btn btn-block btn-danger"><i class="fa fa-edit"></i>
+								Update </a>
 						</div>
-			
+						<div class="col-md-6">
+							<a
+								href="${pageContext.request.contextPath }/superuser/myroom/create/${hotel.id}"
+								class="btn  btn-primary"><i class="fa fa-fw fa-plus"></i>Add
+								Room </a>
 
+						</div>
 					</div>
 
 				</div>
@@ -167,6 +175,30 @@
 		<!-- /.col -->
 		<div class="col-md-9">
 			<div class="nav-tabs-custom">
+				<c:if test="${ms == 'ok' }">
+
+					<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Successfully Created!
+						</h4>
+						Created information has been saved.
+					</div>
+				</c:if>
+				<c:if test="${ms == 'noImageDesription'}">
+					<div class="alert alert-warning alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Successfully Created !
+						</h4>
+						Created information has been saved . However, there are no
+						description images
+					</div>
+
+				</c:if>
+
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#activity" data-toggle="tab">Rooms</a></li>
 					<li><a href="#timeline" data-toggle="tab">Discounts</a></li>
@@ -255,7 +287,7 @@
 															src="${pageContext.request.contextPath }/uploads/images/${room.srcIcon}"
 															alt="Photo">
 													</div>
-												
+
 
 												</c:if>
 											</c:forEach>
@@ -283,9 +315,7 @@
 									<h3 class="box-title">Coppon Room</h3>
 
 								</div>
-								<div class="box-body" id ="tb">
-									
-								</div>
+								<div class="box-body" id="tb"></div>
 								<form role="form">
 									<div class="box-body">
 										<div class="form-group">
@@ -293,7 +323,7 @@
 												required="required" class="form-control select2"
 												multiple="multiple" data-placeholder="Select a room"
 												style="width: 100%;">
-												
+
 												<c:forEach var="room" items="${hotel.rooms }">
 													<option value="${room.id }">${room.name }</option>
 												</c:forEach>
@@ -322,7 +352,8 @@
 									<!-- /.box-body -->
 
 									<div class="box-footer">
-										<button type="button" id="btroom" class="btn btn-primary">Submit</button><input id="hotelId" value="${hotel.id }" type="hidden">
+										<button type="button" id="btroom" class="btn btn-primary">Submit</button>
+										<input id="hotelId" value="${hotel.id }" type="hidden">
 									</div>
 								</form>
 								<table id="example2" class="table table-bordered table-hover">
@@ -344,7 +375,7 @@
 												<tr>
 													<td>${room.name }</td>
 													<td>${room.copponRoom.name }</td>
-													<td>${Math.round(room.copponRoom.sale) } % </td>
+													<td>${Math.round(room.copponRoom.sale) }%</td>
 													<td>${room.copponRoom.status ? 'Active' : 'Inactive' }</td>
 												</tr>
 											</c:if>
@@ -371,28 +402,29 @@
 							</div>
 							<div class="col-md-6">
 								<div class="box-header with-border">
-									<h3 class="box-title">Coppon  ${hotel.name }</h3>
+									<h3 class="box-title">Coppon ${hotel.name }</h3>
 
 								</div>
-								<div class="box-body" id ="tbHotel">
-									
-								</div>
+								<div class="box-body" id="tbHotel"></div>
 								<form role="form">
 									<div class="box-body">
-									
+
 										<div class="form-group">
 											<label for="exampleInputEmail1">Discount name</label> <input
-												type="text" class="form-control" id="disNameHotel" value="${hotel.copponHotel.name }"
+												type="text" class="form-control" id="disNameHotel"
+												value="${hotel.copponHotel.name }"
 												placeholder="Discount name">
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">Discount value (%)</label>
 											<input type="number" class="form-control" min="0" max="100"
-												id="disValHotel" placeholder="Discount value" value="${hotel.copponHotel.sale }">
+												id="disValHotel" placeholder="Discount value"
+												value="${hotel.copponHotel.sale }">
 										</div>
 
 										<div class="checkbox">
-											<label> <input id="statusHotel" ${hotel.copponHotel.status ? 'checked' :''} type="checkbox" >
+											<label> <input id="statusHotel"
+												${hotel.copponHotel.status ? 'checked' :''} type="checkbox">
 												Active now
 											</label>
 										</div>
@@ -401,41 +433,45 @@
 									<!-- /.box-body -->
 
 									<div class="box-footer">
-										<button type="button" id="btHotel" class="btn btn-primary">Submit</button><input id="copponHotelId" value="<c:if test="${hotel.copponHotel.id == null }">0</c:if><c:if test="${hotel.copponHotel.id != null }">${hotel.copponHotel.id }</c:if>" type="hidden">
+										<button type="button" id="btHotel" class="btn btn-primary">Submit</button>
+										<input id="copponHotelId"
+											value="<c:if test="${hotel.copponHotel.id == null }">0</c:if><c:if test="${hotel.copponHotel.id != null }">${hotel.copponHotel.id }</c:if>"
+											type="hidden">
 									</div>
 								</form>
-							  <table id="tbHotel" class="table table-bordered table-hover">
-							  <thead>
-                <tr>
-                
-                  <th>Discount</th>
-                  <th>Progress</th>
-                  <th style="width: 40px">Value</th>
-                   <th>Status</th>
-                </tr>
-                
-               </thead>
-               
-              <tbody>
-              <c:if test="${hotel.copponHotel != null }">
-                <tr>
-                 
-                  <td>${hotel.copponHotel.name }</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: ${Math.round(hotel.copponHotel.sale) }%"></div>
-                    </div>
-                  </td>
-                  <td><span  class="badge bg-green"><span id="vl">${Math.round(hotel.copponHotel.sale )}</span>%</span></td>
-                  <td>${hotel.copponHotel.status ? 'Active' : 'Inactive' }</td>
-                </tr>
-                  </c:if>
-                </tbody>
-              
-                
-                
-                
-              </table>
+								<table id="tbHotel" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+
+											<th>Discount</th>
+											<th>Progress</th>
+											<th style="width: 40px">Value</th>
+											<th>Status</th>
+										</tr>
+
+									</thead>
+
+									<tbody>
+										<c:if test="${hotel.copponHotel != null }">
+											<tr>
+
+												<td>${hotel.copponHotel.name }</td>
+												<td>
+													<div class="progress progress-xs progress-striped active">
+														<div class="progress-bar progress-bar-success"
+															style="width: ${Math.round(hotel.copponHotel.sale) }%"></div>
+													</div>
+												</td>
+												<td><span class="badge bg-green"><span id="vl">${Math.round(hotel.copponHotel.sale )}</span>%</span></td>
+												<td>${hotel.copponHotel.status ? 'Active' : 'Inactive' }</td>
+											</tr>
+										</c:if>
+									</tbody>
+
+
+
+
+								</table>
 							</div>
 						</div>
 					</div>
@@ -473,78 +509,93 @@
 										function() {
 
 											var hotelId = $('#hotelId').val();
-											var disName = $('#disNameHotel').val();
-											var disVal = $('#disValHotel').val();
+											var disName = $('#disNameHotel')
+													.val();
+											var disVal = $('#disValHotel')
+													.val();
 											var status = $('#statusHotel').is(
 													":checked") ? 1 : 0;
-											var copponHotelId = $('#copponHotelId').val() ;
-											
-											
-											alert(hotelId + ' '+ disName + ' '+ disVal + ' '+ status + ' ///'+ copponHotelId);
-											$.ajax({
-												type : 'GET',
+											var copponHotelId = $(
+													'#copponHotelId').val();
 
-												url : '${pageContext.request.contextPath }/superuser/myhotel/ajax/copponhotel/update',
-												data : {
-													copponHotelId : copponHotelId,
-													disName : disName,
-													disVal : disVal,
-													status : status,
-													hotelId : hotelId
-												},
-												dataType : 'json',
-												contentType : 'aplication/json',
-												success : function(result) {
-													alert(result.id);
-													var	tb = '' ;
-													var	s = '' ;
-														if( result.id != null){
-															
-															tb += '<div class="alert alert-success alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+											alert(hotelId + ' ' + disName + ' '
+													+ disVal + ' ' + status
+													+ ' ///' + copponHotelId);
+											$
+													.ajax({
+														type : 'GET',
+
+														url : '${pageContext.request.contextPath }/superuser/myhotel/ajax/copponhotel/update',
+														data : {
+															copponHotelId : copponHotelId,
+															disName : disName,
+															disVal : disVal,
+															status : status,
+															hotelId : hotelId
+														},
+														dataType : 'json',
+														contentType : 'aplication/json',
+														success : function(
+																result) {
+															alert(result.id);
+															var tb = '';
+															var s = '';
+															if (result.id != null) {
+
+																tb += '<div class="alert alert-success alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 																tb += '	<i class="icon fa fa-check"></i> Add discount successfully  ';
 																tb += '</div>';
-																 s += '   <td>'+result.name+'</td> <td>  <div class="progress progress-xs progress-striped active">';
-													                  
-												                   
-												                 s += '<div class="progress-bar progress-bar-success" style="width:' + result.sale + '%"></div> </div> </td> <td><span  class="badge bg-green">';
-												                   
-												                 
-												                s += ' <span id="vl">'+ Math.round(result.sale) +'</span>%</span></td>';
-												                if(result.status == true){ s +=' <td> Active </td>' ;}else{
+																s += '   <td>'
+																		+ result.name
+																		+ '</td> <td>  <div class="progress progress-xs progress-striped active">';
 
-												                	s +=' <td> inactive </td>' ;
+																s += '<div class="progress-bar progress-bar-success" style="width:'
+																		+ result.sale
+																		+ '%"></div> </div> </td> <td><span  class="badge bg-green">';
 
-													                }
-												                
-															
-																	
-																$('#tbHotel').html(tb);
-																$('#disNameHotel').val('');
-																$('#disValHotel').val('');
-																
-																$('#status').prop('checked', false);
-																$('#tbHotel tbody tr').html(s);
-																
-												
-															}else{
-														
+																s += ' <span id="vl">'
+																		+ Math
+																				.round(result.sale)
+																		+ '</span>%</span></td>';
+																if (result.status == true) {
+																	s += ' <td> Active </td>';
+																} else {
+
+																	s += ' <td> inactive </td>';
+
+																}
+
+																$('#tbHotel')
+																		.html(
+																				tb);
+																$(
+																		'#disNameHotel')
+																		.val('');
+																$(
+																		'#disValHotel')
+																		.val('');
+
+																$('#status')
+																		.prop(
+																				'checked',
+																				false);
+																$(
+																		'#tbHotel tbody tr')
+																		.html(s);
+
+															} else {
+
 																tb += '<div class="alert alert-danger alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
 																tb += '	<i class="icon fa fa-ban"></i> Add discount failed  ';
 																tb += '</div>';
-																$('#tbHotel').html(tb);
-																}
+																$('#tbHotel')
+																		.html(
+																				tb);
+															}
 
-														
-													
-					
+														}
 
-														
-													}
-													
-												
-
-											});
-
+													});
 
 										});
 
@@ -554,32 +605,27 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
-						$("#tbHotel tbody  tr")
-								.on(
-										"click",
-										function(event) {
+	$(document).ready(function() {
+		$("#tbHotel tbody  tr").on("click", function(event) {
 
-											var valHotel = $('#vl').html();
-											
-											var disNameHotel = $(this).find("td").eq(0).html();
-										
-											var statusHotel = $(this).find("td").eq(3).html();
-										
-											$('#disNameHotel').val(disNameHotel);
-											$('#disValHotel').val(valHotel);
-											if(statusHotel == 'Active'){
-												$('#statusHotel').prop('checked', true);
-												}else{$('#statusHotel').prop('checked', false);
+			var valHotel = $('#vl').html();
 
-													}
-											
-											
-										});
+			var disNameHotel = $(this).find("td").eq(0).html();
 
-					});
+			var statusHotel = $(this).find("td").eq(3).html();
+
+			$('#disNameHotel').val(disNameHotel);
+			$('#disValHotel').val(valHotel);
+			if (statusHotel == 'Active') {
+				$('#statusHotel').prop('checked', true);
+			} else {
+				$('#statusHotel').prop('checked', false);
+
+			}
+
+		});
+
+	});
 </script>
 <script>
 	$(document)
@@ -661,9 +707,9 @@
 													":checked") ? 1 : 0;
 											var hotelId = $('#hotelId').val();
 											var json = JSON.stringify(roomId);
-											
 
-											$.ajax({
+											$
+													.ajax({
 														type : 'GET',
 
 														url : '${pageContext.request.contextPath }/superuser/myhotel/ajax/copponroom/create',
@@ -676,52 +722,63 @@
 														},
 														dataType : 'json',
 														contentType : 'aplication/json',
-														success : function(result) {
-														var	tb = '';
-														var	s = '';
-															if( result.length > 0){
-																
+														success : function(
+																result) {
+															var tb = '';
+															var s = '';
+															if (result.length > 0) {
+
 																tb += '<div class="alert alert-success alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-																	tb += '	<i class="icon fa fa-check"></i> Add discount successfully  ';
-																	tb += '</div>';
-																	for (var i = 0; i < result.length; i++) {
-																		
-																		s += '<tr>';
-																		s += '	<td>' +result[i].roomName+'</td>';
-																		s += '	<td>'+result[i].discountName+'</td>';
-																		s += '<td>'+ Math.round(result[i].discountValue )+'% </td>';
-																		if(result[i].status == true ){
+																tb += '	<i class="icon fa fa-check"></i> Add discount successfully  ';
+																tb += '</div>';
+																for (var i = 0; i < result.length; i++) {
 
-																			s += '<td> Active </td>';}
+																	s += '<tr>';
+																	s += '	<td>'
+																			+ result[i].roomName
+																			+ '</td>';
+																	s += '	<td>'
+																			+ result[i].discountName
+																			+ '</td>';
+																	s += '<td>'
+																			+ Math
+																					.round(result[i].discountValue)
+																			+ '% </td>';
+																	if (result[i].status == true) {
 
-																		else {
-																			s += '<td> Inactive</td>';
-																			}
-																		
-																		s += '</tr>'
-																		}
-																	$('#tb').html(tb);
-																	$('#disName').val('');
-																	$('#disVal').val('');
-																	
-																	$('#status').prop('checked', false);
-																	$('#example2 tbody').html(s);
-																	
-													
-																}else{
-															
-																	tb += '<div class="alert alert-danger alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
-																	tb += '	<i class="icon fa fa-ban"></i> Add discount failed  ';
-																	tb += '</div>';
-																	$('#tb').html(tb);
+																		s += '<td> Active </td>';
 																	}
 
+																	else {
+																		s += '<td> Inactive</td>';
+																	}
 
-															
-														
-						
+																	s += '</tr>'
+																}
+																$('#tb').html(
+																		tb);
+																$('#disName')
+																		.val('');
+																$('#disVal')
+																		.val('');
 
-															
+																$('#status')
+																		.prop(
+																				'checked',
+																				false);
+																$(
+																		'#example2 tbody')
+																		.html(s);
+
+															} else {
+
+																tb += '<div class="alert alert-danger alert-dismissible"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+																tb += '	<i class="icon fa fa-ban"></i> Add discount failed  ';
+																tb += '</div>';
+																$('#tb').html(
+																		tb);
+															}
+
 														}
 
 													});

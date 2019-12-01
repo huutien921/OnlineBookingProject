@@ -47,4 +47,10 @@ public class ImageRoomService implements IImageRoomService {
 		return resultRooms;
 	}
 
+	@Override
+	public ImageRoom save(ImageRoom imageRoom) {
+		// TODO Auto-generated method stub
+		return imageRoomRepository.save(imageRoom);
+	}
+
 }

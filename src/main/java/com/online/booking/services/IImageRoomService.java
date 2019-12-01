@@ -10,5 +10,5 @@ import com.online.booking.entities.ImageRoomEntity;
 public interface IImageRoomService {
 	public List<ImageRoom> findByIdRoom( int id);
 	public List<ImageRoomEntity> findByIdRoomImageRoomEntity(int id);
-	
+	public ImageRoom save(ImageRoom roomService);
 }

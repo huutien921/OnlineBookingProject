@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,8 +40,13 @@ public class Room implements java.io.Serializable {
 	private RoomCategory roomCategory;
 	@JsonIgnore
 	private RoomType roomType;
+	@NotEmpty
 	private String name;
+	
 	private String srcIcon;
+	@NotNull
+	@Min(1)
+	@Max(100)
 	private Double price;
 	private Integer amountOfBed;
 	private Integer capacity;
@@ -250,5 +259,15 @@ public class Room implements java.io.Serializable {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", bedType=" + bedType + ", copponRoom=" + copponRoom + ", hotel=" + hotel
+				+ ", roomCategory=" + roomCategory + ", roomType=" + roomType + ", name=" + name + ", srcIcon="
+				+ srcIcon + ", price=" + price + ", amountOfBed=" + amountOfBed + ", capacity=" + capacity
+				+ ", amountOfRoom=" + amountOfRoom + ", status=" + status + ", evaluates=" + evaluates + ", imageRooms="
+				+ imageRooms + ", orderDetails=" + orderDetails + ", reports=" + reports + "]";
+	}
+	
 
 }

@@ -3,7 +3,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
    <%@taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
-   
+   <script type="text/javascript">
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#hotel_image').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
 <section class="content">
 
 	<div class="row">
@@ -173,7 +184,7 @@
   
     <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Update failed !</h4>
+                <h4><i class="icon fa fa-ban"></i> Create failed !</h4>
                 We found some errors, be sure to enter the correct fields.
               </div>
   </c:if>
@@ -243,10 +254,18 @@
 					<label>Amount Of Room</label><p class="text-red"> <s:errors path="amountOfRoom" ></s:errors></p> <s:input  path="amountOfRoom" min="1" max="100"  type="number" class="form-control"
 						placeholder="Amount Of Room ..."/>
 				</div>
+					<div class="form-group">
+				<s:checkbox path="status" /> Active Now
+				</div>
+						<div class="form-group">
+						<label>Upload description picture</label>
+						  <input type="file" class="form-control" id="images" max="12" name="images[]" onchange="preview_images();" multiple/>
+				 <div class="row" id="image_preview"></div>
+				</div>
 				
    <div class="box-footer">
                 <a href="${pageContext.request.contextPath}/superuser/myhotel/detail/${hotel.id}" class="btn btn-default">Cancel</a>
-                <button type="submit" class="btn btn-primary pull-right">Save </button> <s:hidden path="hotel"/>
+                <button type="submit" class="btn btn-primary pull-right">Save </button> <input type="hidden" value="${hotel.id }" name="idHotel">
               </div>
 			</s:form>
 		</div>
@@ -255,4 +274,15 @@
 		</div>
 		
 		</div></section>
-		
+		<script>
+function preview_images() 
+{
+	 $('#image_preview').html("");
+ var total_file=document.getElementById("images").files.length;
+
+ for(var i=0;i < total_file;i++)
+ {
+  $('#image_preview').append("<div class='col-md-3'><img class='img-responsive img-rounded' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+ }
+}
+</script>

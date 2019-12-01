@@ -40,7 +40,6 @@ public class Account implements java.io.Serializable {
 	private String identitycard;
 	private Integer score;
 	private Boolean status;
-	
 	private Set<Evaluate> evaluates = new HashSet<Evaluate>(0);
 
 	private Set<Blog> blogs = new HashSet<Blog>(0);
@@ -64,6 +63,11 @@ public class Account implements java.io.Serializable {
 	private Set<Sale> sales = new HashSet<Sale>(0);
 
 	public Account() {
+	}
+
+	public Account(Integer id) {
+		super();
+		this.id = id;
 	}
 
 	public Account(String username, String password) {

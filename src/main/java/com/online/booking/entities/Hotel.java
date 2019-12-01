@@ -88,6 +88,13 @@ public class Hotel implements java.io.Serializable {
 	
 		
 	}
+	
+
+	public Hotel(Integer id) {
+		super();
+		this.id = id;
+	}
+
 
 	public Hotel(Account accountByAccountId, StarRating starRating, String city, String country, boolean status) {
 		this.accountByAccountId = accountByAccountId;

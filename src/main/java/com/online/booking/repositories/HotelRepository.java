@@ -30,4 +30,5 @@ public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
 	@Query(value = "from Hotel where accountByAccountId.id = :id")
 	public  List<Hotel> findByAccountId(@Param("id") int id);
 
+
 }
