@@ -9,7 +9,20 @@
 	<definition name="admin.service.index" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/index.jsp"></put-attribute>
 	</definition>
-	
+	<definition name="admin/service_management/add" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/add.jsp"></put-attribute>
+	</definition>
+	<definition name="admin/service_management/detail" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/detail.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin/service_management/update" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/update.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin/service_management/addservicetype" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/addservicetype.jsp"></put-attribute>
+	</definition>
 	
 
 </tiles-definitions>

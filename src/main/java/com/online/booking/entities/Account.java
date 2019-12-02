@@ -39,6 +39,7 @@ public class Account implements java.io.Serializable {
 	private String avatar;
 	private String identitycard;
 	private Integer score;
+	private Date created;
 	private Boolean status;
 	private Set<Evaluate> evaluates = new HashSet<Evaluate>(0);
 
@@ -76,7 +77,7 @@ public class Account implements java.io.Serializable {
 	}
 
 	public Account(String username, String password, String fullname, Date birthday, String email, String address,
-			String type, String gender, String avatar, String identitycard, Integer score, Boolean status,
+			String type, String gender, String avatar, String identitycard, Integer score,Date created, Boolean status,
 			Set<Evaluate> evaluates, Set<Blog> blogs, Set<Hotel> hotelsForIdAcEmployee, Set<Report> reports,
 			Set<Panel> panels, Set<Service> services, List<Hotel> hotelsForAccountId, Set<Orders> orderses,
 			Set<RoleAccount> roleAccounts, Set<Email> emails, Set<Sale> sales) {
@@ -91,6 +92,7 @@ public class Account implements java.io.Serializable {
 		this.avatar = avatar;
 		this.identitycard = identitycard;
 		this.score = score;
+		this.created=created;
 		this.status = status;
 		this.evaluates = evaluates;
 		this.blogs = blogs;
@@ -216,7 +218,14 @@ public class Account implements java.io.Serializable {
 	public void setScore(Integer score) {
 		this.score = score;
 	}
+	@Column(name = "created")
+	public Date getCreated() {
+		return created;
+	}
 
+	public void setCreated(Date created) {
+		this.created = created;
+	}
 	@Column(name = "status")
 	public Boolean getStatus() {
 		return this.status;

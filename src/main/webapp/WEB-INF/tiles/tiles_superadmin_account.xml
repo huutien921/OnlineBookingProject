@@ -10,6 +10,14 @@
 		<put-attribute name="content" value="/WEB-INF/views/super_admin/account_management/index.jsp"></put-attribute>
 	</definition>
 	
-	
+	<definition name="superadmin/account_management/add" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/super_admin/account_management/add.jsp"></put-attribute>
+	</definition>
+	<definition name="superadmin/account_management/update" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/super_admin/account_management/update.jsp"></put-attribute>
+	</definition>
+	<definition name="superadmin/account_management/detail" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/super_admin/account_management/detail.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

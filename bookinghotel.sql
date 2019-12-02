@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 01, 2019 at 06:22 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 01, 2019 at 11:26 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,15 +28,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `about`
 --
 
-CREATE TABLE `about` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `about`;
+CREATE TABLE IF NOT EXISTS `about` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(250) NOT NULL,
   `country` varchar(250) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `name` varchar(250) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `about`
@@ -49,8 +53,9 @@ INSERT INTO `about` (`id`, `address`, `country`, `email`, `phone`, `name`, `stat
 -- Table structure for table `account`
 --
 
-CREATE TABLE `account` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `fullname` varchar(250) DEFAULT NULL,
@@ -62,19 +67,22 @@ CREATE TABLE `account` (
   `avatar` varchar(250) DEFAULT NULL,
   `identitycard` varchar(25) DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created` date DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `email`, `address`, `type`, `gender`, `avatar`, `identitycard`, `score`, `status`) VALUES
-(1, 'admin', '123', 'Admin Admin', '1998-01-01', 'admin@gmail.com', 'Ho Chi Minh', NULL, 'Male', 'admin.PNG', '123456987963', 0, 1),
-(2, 'superadmin', '123', 'Super Admin', '1998-01-01', 'superadmin@gmail.com', 'Ha Noi', NULL, 'Male', 'superadmin.PNG', '123456987963', 0, 1),
-(3, 'tien_user', '123', 'Nguyen Tien', '1998-01-01', 'huutien921@gmail.com', 'ca mau', NULL, 'Male', 'tien.PNG', '381839139', 0, 1),
-(4, 'thuan_super', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'thuan.PNG', '381839139', 0, 1),
-(5, 'lam_employee', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'lam.PNG', '381839139', 0, 1);
+INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `email`, `address`, `type`, `gender`, `avatar`, `identitycard`, `score`, `created`, `status`) VALUES
+(1, 'admin', '123', 'Admin Admin', '1998-01-01', 'admin@gmail.com', 'Ho Chi Minh', NULL, 'Male', 'admin.PNG', '123456987963', 0, '2019-12-03', 1),
+(2, 'superadmin', '123', 'Super Admin', '1998-01-01', 'superadmin@gmail.com', 'Ha Noi', NULL, 'Male', 'superadmin.PNG', '123456987963', 0, NULL, 1),
+(3, 'tien_user', '123', 'Nguyen Tien', '1998-01-01', 'huutien921@gmail.com', 'ca mau', NULL, 'Male', 'tien.PNG', '381839139', 0, '2019-12-04', 1),
+(4, 'thuan_super', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'thuan.PNG', '381839139', 0, NULL, 1),
+(5, 'lam_employee', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'lam.PNG', '381839139', 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -82,11 +90,13 @@ INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `em
 -- Table structure for table `bed_type`
 --
 
-CREATE TABLE `bed_type` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bed_type`;
+CREATE TABLE IF NOT EXISTS `bed_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bed_type`
@@ -102,15 +112,18 @@ INSERT INTO `bed_type` (`id`, `name`, `status`) VALUES
 -- Table structure for table `blog`
 --
 
-CREATE TABLE `blog` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) DEFAULT NULL,
   `content` text,
   `account_id` int(11) NOT NULL,
   `src` varchar(250) DEFAULT NULL,
   `created` date DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `blog`
@@ -128,12 +141,15 @@ INSERT INTO `blog` (`id`, `title`, `content`, `account_id`, `src`, `created`, `s
 -- Table structure for table `coppon_hotel`
 --
 
-CREATE TABLE `coppon_hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coppon_hotel`;
+CREATE TABLE IF NOT EXISTS `coppon_hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `sale` double DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hotel_id` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `coppon_hotel`
@@ -151,12 +167,15 @@ INSERT INTO `coppon_hotel` (`id`, `name`, `sale`, `status`) VALUES
 -- Table structure for table `coppon_room`
 --
 
-CREATE TABLE `coppon_room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coppon_room`;
+CREATE TABLE IF NOT EXISTS `coppon_room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `sale` double DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hotel_id` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `coppon_room`
@@ -172,13 +191,16 @@ INSERT INTO `coppon_room` (`id`, `name`, `sale`, `status`) VALUES
 -- Table structure for table `email`
 --
 
-CREATE TABLE `email` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `email`;
+CREATE TABLE IF NOT EXISTS `email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `emailsend` varchar(50) NOT NULL,
   `title` varchar(500) DEFAULT NULL,
   `content` text,
   `status` tinyint(1) NOT NULL,
-  `account_id` int(11) NOT NULL
+  `account_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -187,16 +209,21 @@ CREATE TABLE `email` (
 -- Table structure for table `evaluate`
 --
 
-CREATE TABLE `evaluate` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `evaluate`;
+CREATE TABLE IF NOT EXISTS `evaluate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `room_id` int(11) DEFAULT NULL,
   `hotel_id` int(11) DEFAULT NULL,
   `number_of_stars` int(11) DEFAULT '3',
   `content` text,
   `created` date DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `room_id` (`room_id`),
+  KEY `hotel_id` (`hotel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `evaluate`
@@ -238,8 +265,9 @@ INSERT INTO `evaluate` (`id`, `account_id`, `room_id`, `hotel_id`, `number_of_st
 -- Table structure for table `hotel`
 --
 
-CREATE TABLE `hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE IF NOT EXISTS `hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL,
   `description` text,
@@ -267,8 +295,13 @@ CREATE TABLE `hotel` (
   `id_ac_employee` int(11) DEFAULT NULL,
   `starrating_id` int(11) NOT NULL,
   `id_coppon_hotel` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `starrating_id` (`starrating_id`),
+  KEY `id_coppon_hotel` (`id_coppon_hotel`),
+  KEY `id_ac_employee` (`id_ac_employee`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hotel`
@@ -294,11 +327,14 @@ INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward
 -- Table structure for table `imageblog`
 --
 
-CREATE TABLE `imageblog` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `imageblog`;
+CREATE TABLE IF NOT EXISTS `imageblog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `src` varchar(250) NOT NULL,
   `blog_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `blog_id` (`blog_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -307,13 +343,16 @@ CREATE TABLE `imageblog` (
 -- Table structure for table `image_room`
 --
 
-CREATE TABLE `image_room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `image_room`;
+CREATE TABLE IF NOT EXISTS `image_room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `src` varchar(250) DEFAULT NULL,
   `alt` varchar(250) DEFAULT NULL,
   `room_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `room_id` (`room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `image_room`
@@ -360,13 +399,17 @@ INSERT INTO `image_room` (`id`, `src`, `alt`, `room_id`, `status`) VALUES
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `created` date DEFAULT NULL,
   `account_id` int(11) NOT NULL,
   `sale_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `sale_id` (`sale_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
@@ -382,16 +425,20 @@ INSERT INTO `orders` (`id`, `created`, `account_id`, `sale_id`, `status`) VALUES
 -- Table structure for table `order_detail`
 --
 
-CREATE TABLE `order_detail` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order_detail`;
+CREATE TABLE IF NOT EXISTS `order_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `room_id` int(11) NOT NULL,
   `check_in_date` date NOT NULL,
   `check_out_date` date NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1',
   `note` text,
   `order_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `room_id` (`room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_detail`
@@ -409,14 +456,17 @@ INSERT INTO `order_detail` (`id`, `room_id`, `check_in_date`, `check_out_date`, 
 -- Table structure for table `panel`
 --
 
-CREATE TABLE `panel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `panel`;
+CREATE TABLE IF NOT EXISTS `panel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `title` varchar(250) NOT NULL,
   `content` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `image_src` varchar(250) NOT NULL,
-  `id_super_admin` int(11) DEFAULT NULL
+  `id_super_admin` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_super_admin` (`id_super_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -425,13 +475,17 @@ CREATE TABLE `panel` (
 -- Table structure for table `payment`
 --
 
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_service_hotel` int(11) DEFAULT NULL,
   `id_order` int(11) DEFAULT NULL,
   `name` varchar(250) DEFAULT NULL,
   `paymentcode` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_service_hotel` (`id_service_hotel`),
+  KEY `id_order` (`id_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -440,10 +494,12 @@ CREATE TABLE `payment` (
 -- Table structure for table `reason_report`
 --
 
-CREATE TABLE `reason_report` (
+DROP TABLE IF EXISTS `reason_report`;
+CREATE TABLE IF NOT EXISTS `reason_report` (
   `id` int(11) NOT NULL,
   `content` text NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -452,14 +508,19 @@ CREATE TABLE `reason_report` (
 -- Table structure for table `report`
 --
 
-CREATE TABLE `report` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `report`;
+CREATE TABLE IF NOT EXISTS `report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `hotel_id` int(11) NOT NULL,
   `content` text,
   `created` date NOT NULL,
   `id_reason` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `room_id` (`hotel_id`),
+  KEY `id_reason` (`id_reason`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -468,10 +529,12 @@ CREATE TABLE `report` (
 -- Table structure for table `role`
 --
 
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role`
@@ -490,12 +553,16 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- Table structure for table `role_account`
 --
 
-CREATE TABLE `role_account` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `role_account`;
+CREATE TABLE IF NOT EXISTS `role_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role_account`
@@ -514,8 +581,9 @@ INSERT INTO `role_account` (`id`, `account_id`, `role_id`, `status`) VALUES
 -- Table structure for table `room`
 --
 
-CREATE TABLE `room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `src_icon` varchar(50) DEFAULT NULL,
   `price` double DEFAULT NULL,
@@ -527,8 +595,14 @@ CREATE TABLE `room` (
   `amount_of_room` int(11) DEFAULT NULL,
   `hotel_id` int(11) NOT NULL,
   `id_coppon_room` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bedtype_id` (`bedtype_id`),
+  KEY `hotel_id` (`hotel_id`),
+  KEY `roomcategory_id` (`roomcategory_id`),
+  KEY `roomtype_id` (`roomtype_id`),
+  KEY `id_coppon_room` (`id_coppon_room`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room`
@@ -556,11 +630,13 @@ INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacit
 -- Table structure for table `room_category`
 --
 
-CREATE TABLE `room_category` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room_category`;
+CREATE TABLE IF NOT EXISTS `room_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room_category`
@@ -577,11 +653,13 @@ INSERT INTO `room_category` (`id`, `name`, `status`) VALUES
 -- Table structure for table `room_type`
 --
 
-CREATE TABLE `room_type` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room_type`;
+CREATE TABLE IF NOT EXISTS `room_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `room_type`
@@ -598,8 +676,9 @@ INSERT INTO `room_type` (`id`, `name`, `status`) VALUES
 -- Table structure for table `sale`
 --
 
-CREATE TABLE `sale` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sale`;
+CREATE TABLE IF NOT EXISTS `sale` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(250) NOT NULL,
   `description` text,
   `sales` double NOT NULL,
@@ -607,8 +686,11 @@ CREATE TABLE `sale` (
   `endday` date DEFAULT NULL,
   `src` varchar(250) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sale`
@@ -629,8 +711,9 @@ INSERT INTO `sale` (`id`, `code`, `description`, `sales`, `startday`, `endday`, 
 -- Table structure for table `service`
 --
 
-CREATE TABLE `service` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE IF NOT EXISTS `service` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `core` char(10) DEFAULT NULL,
@@ -639,8 +722,11 @@ CREATE TABLE `service` (
   `id_account` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `description` text,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type_id` (`type_id`),
+  KEY `id_account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
@@ -659,10 +745,12 @@ INSERT INTO `service` (`id`, `name`, `price`, `core`, `priority`, `icon_src`, `i
 -- Table structure for table `servicetype`
 --
 
-CREATE TABLE `servicetype` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `servicetype`;
+CREATE TABLE IF NOT EXISTS `servicetype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `servicetype`
@@ -678,15 +766,19 @@ INSERT INTO `servicetype` (`id`, `name`) VALUES
 -- Table structure for table `service_hotel`
 --
 
-CREATE TABLE `service_hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `service_hotel`;
+CREATE TABLE IF NOT EXISTS `service_hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_hotel` int(11) NOT NULL,
   `id_service` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `created` date NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_hotel` (`id_hotel`),
+  KEY `id_service` (`id_service`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service_hotel`
@@ -708,10 +800,12 @@ INSERT INTO `service_hotel` (`id`, `id_hotel`, `id_service`, `start_date`, `end_
 -- Table structure for table `star_rating`
 --
 
-CREATE TABLE `star_rating` (
-  `id` int(11) NOT NULL,
-  `amount` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `star_rating`;
+CREATE TABLE IF NOT EXISTS `star_rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `star_rating`
@@ -724,343 +818,6 @@ INSERT INTO `star_rating` (`id`, `amount`) VALUES
 (4, 4),
 (5, 5);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `about`
---
-ALTER TABLE `about`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `account`
---
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `bed_type`
---
-ALTER TABLE `bed_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `blog`
---
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Indexes for table `coppon_hotel`
---
-ALTER TABLE `coppon_hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`name`);
-
---
--- Indexes for table `coppon_room`
---
-ALTER TABLE `coppon_room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`name`);
-
---
--- Indexes for table `email`
---
-ALTER TABLE `email`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Indexes for table `evaluate`
---
-ALTER TABLE `evaluate`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`);
-
---
--- Indexes for table `hotel`
---
-ALTER TABLE `hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `starrating_id` (`starrating_id`),
-  ADD KEY `id_coppon_hotel` (`id_coppon_hotel`),
-  ADD KEY `id_ac_employee` (`id_ac_employee`);
-
---
--- Indexes for table `imageblog`
---
-ALTER TABLE `imageblog`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `blog_id` (`blog_id`);
-
---
--- Indexes for table `image_room`
---
-ALTER TABLE `image_room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `sale_id` (`sale_id`);
-
---
--- Indexes for table `order_detail`
---
-ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Indexes for table `panel`
---
-ALTER TABLE `panel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_super_admin` (`id_super_admin`);
-
---
--- Indexes for table `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_service_hotel` (`id_service_hotel`),
-  ADD KEY `id_order` (`id_order`);
-
---
--- Indexes for table `reason_report`
---
-ALTER TABLE `reason_report`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `report`
---
-ALTER TABLE `report`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`hotel_id`),
-  ADD KEY `id_reason` (`id_reason`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `role_account`
---
-ALTER TABLE `role_account`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
--- Indexes for table `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bedtype_id` (`bedtype_id`),
-  ADD KEY `hotel_id` (`hotel_id`),
-  ADD KEY `roomcategory_id` (`roomcategory_id`),
-  ADD KEY `roomtype_id` (`roomtype_id`),
-  ADD KEY `id_coppon_room` (`id_coppon_room`);
-
---
--- Indexes for table `room_category`
---
-ALTER TABLE `room_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `room_type`
---
-ALTER TABLE `room_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sale`
---
-ALTER TABLE `sale`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Indexes for table `service`
---
-ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `type_id` (`type_id`),
-  ADD KEY `id_account` (`id_account`);
-
---
--- Indexes for table `servicetype`
---
-ALTER TABLE `servicetype`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `service_hotel`
---
-ALTER TABLE `service_hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_hotel` (`id_hotel`),
-  ADD KEY `id_service` (`id_service`);
-
---
--- Indexes for table `star_rating`
---
-ALTER TABLE `star_rating`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `about`
---
-ALTER TABLE `about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `account`
---
-ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `bed_type`
---
-ALTER TABLE `bed_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `blog`
---
-ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `coppon_hotel`
---
-ALTER TABLE `coppon_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `coppon_room`
---
-ALTER TABLE `coppon_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
---
--- AUTO_INCREMENT for table `email`
---
-ALTER TABLE `email`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `evaluate`
---
-ALTER TABLE `evaluate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT for table `hotel`
---
-ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `imageblog`
---
-ALTER TABLE `imageblog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `image_room`
---
-ALTER TABLE `image_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `order_detail`
---
-ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `panel`
---
-ALTER TABLE `panel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `payment`
---
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `report`
---
-ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `role_account`
---
-ALTER TABLE `role_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `room`
---
-ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `room_category`
---
-ALTER TABLE `room_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `room_type`
---
-ALTER TABLE `room_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `sale`
---
-ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `service`
---
-ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `servicetype`
---
-ALTER TABLE `servicetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `service_hotel`
---
-ALTER TABLE `service_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `star_rating`
---
-ALTER TABLE `star_rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --
@@ -1177,6 +934,7 @@ ALTER TABLE `service`
 ALTER TABLE `service_hotel`
   ADD CONSTRAINT `service_hotel_ibfk_1` FOREIGN KEY (`id_hotel`) REFERENCES `hotel` (`id`),
   ADD CONSTRAINT `service_hotel_ibfk_2` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

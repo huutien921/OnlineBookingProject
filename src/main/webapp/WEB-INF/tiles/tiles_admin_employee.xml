@@ -9,7 +9,15 @@
 	<definition name="admin.employee.index" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/admin/employee_management/index.jsp"></put-attribute>
 	</definition>
-	
+	<definition name="admin/employee_management/insertaccount" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/employee_management/insertaccount.jsp"></put-attribute>
+	</definition>
+	<definition name="admin/employee_management/accountupdate" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/employee_management/accountupdate.jsp"></put-attribute>
+	</definition>
+	<definition name="admin/employee_management/accountdetail" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/employee_management/accountdetail.jsp"></put-attribute>
+	</definition>
 	
 
 </tiles-definitions>

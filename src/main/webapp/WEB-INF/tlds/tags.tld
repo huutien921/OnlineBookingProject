@@ -26,5 +26,20 @@
 		<tag-class>com.online.booking.tags.PromotionsTag</tag-class>
 		<body-content>empty</body-content>
 	</tag>
+	<tag>
+		<name>employee</name>
+		<tag-class>com.online.booking.tags.EmployeeTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
 	
+	<tag>
+		<name>servicetype</name>
+		<tag-class>com.online.booking.tags.ServiceTypeTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>servicetypeadd</name>
+		<tag-class>com.online.booking.tags.ServiceTypeAddTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
 </taglib>
