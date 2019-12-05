@@ -9,7 +9,9 @@
 	<definition name="promotions.index" extends="my_template">
 		<put-attribute name="content" value="/WEB-INF/views/promotions/index.jsp"></put-attribute>
 	</definition>
-	
+	<definition name="promotions.detail" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/promotions/detail.jsp"></put-attribute>
+	</definition>
 	
 
 </tiles-definitions>

@@ -27,6 +27,11 @@ public class SaleService implements ISaleService {
 	public List<Sale> searchLimitSale(boolean status, int n) {
 		return saleRepository.searchLimitSale(status, n);
 	}
+
+	@Override
+	public Sale save(Sale sale) {
+		return saleRepository.save(sale);
+	}
 	
 	
 	

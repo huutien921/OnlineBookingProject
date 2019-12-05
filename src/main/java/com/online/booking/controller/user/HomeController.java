@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.online.booking.entities.ServiceHotel;
-
+import com.online.booking.services.BlogService;
 import com.online.booking.services.RoomService;
+import com.online.booking.services.SaleService;
 import com.online.booking.services.ServiceHotelService;
 
 @Controller
@@ -23,11 +24,18 @@ public class HomeController {
 	private RoomService roomService;
 	@Autowired
 	private ServiceHotelService serviceHotelService;
-	
+	@Autowired
+	private SaleService saleService;
+	@Autowired
+	private BlogService blogService;
 	
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
 	public String index(ModelMap map, HttpSession httpSession) {
+		map.put("new1Promotions", saleService.searchLimitSale(true, 1));
+		map.put("new1Blog", blogService.searchLimitBlog(true, 1));
+		map.put("newPromotions", saleService.searchLimitSale(true, 3));
+		map.put("newBlog", blogService.searchLimitBlog(true, 3));
 		map.put("rooms", roomService.findAll());
 		return "home.index";
 	}

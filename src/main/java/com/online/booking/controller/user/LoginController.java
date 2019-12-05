@@ -7,8 +7,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("login")
 public class LoginController {
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = {"","login"} ,method = RequestMethod.GET)
 	public String index() {
 		return "login.index";
+	}
+	
+	@RequestMapping( value = "statusOrder", method = RequestMethod.GET)
+	public String statusOrder() {
+		return "login.statusOrder";
+	}
+	
+	@RequestMapping( value = "profile", method = RequestMethod.GET)
+	public String profile() {
+		return "login.profile";
 	}
 }

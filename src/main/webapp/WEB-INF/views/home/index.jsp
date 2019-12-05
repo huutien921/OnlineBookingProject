@@ -2,6 +2,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<br>
+<div
+	style="background-color: #819FF7; background-image: linear-gradient(to right, #2E64FE, #81F7F3); padding: 40px;">
+	<div class="container">
+		<div class="container">
+			<div class="row">
+				<div class="col-5">
+					<br> <br> <br>
+					<h3 style="color: white;">Welcome back, Lam!</h3>
+					<h5 style="color: #E3E5EA;">Did you know? Traveling nurtures
+						modesty as we experience the bigness of this world.</h5>
+				</div>
+				<div class="col-1"></div>
+				<div class="col-3">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="item" items="${new1Promotions}">
+								<!-- promo -->
+
+								<h5 style="color: white"><i style="color: #BF00FF;" class="fa fa-gift"></i> New Promotion</h5>
+								<a
+									href="${pageContext.request.contextPath }/promotions/detail/${item.id}"><img
+									alt="promo"
+									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
+									style="width: 250px; height: 200px"></a>
+								<h5 style="color: white;">#${item.code }</h5>
+
+
+								<!-- promo -->
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="container">
+						<div class="row">
+							<c:forEach var="item" items="${new1Blog}">
+								<!-- promo -->
+								<h5 style="color: white"><i style="color: #BF00FF;" class="fa fa-blog"></i> New Blog</h5>
+								<a
+									href="${pageContext.request.contextPath }/blog/detail/${item.id}"><img
+									alt="blog"
+									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
+									style="width: 250px; height: 200px"></a>
+								<h5 style="color: white;">${item.title }</h5>
+								<!-- promo -->
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- form search -->
 <div class="jumbotron jumbotron-fluid">
 
@@ -239,8 +295,8 @@
 										</div>
 										<div class="col">
 											<a
-									href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"
-									class="btn btn-outline-info">Detail</a>
+												href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"
+												class="btn btn-outline-info">Detail</a>
 										</div>
 									</div>
 
@@ -415,9 +471,11 @@
 						<li><a href="#!">Instagram</a></li>
 						<li><a href="#!">Youtube</a></li>
 					</ul>
-					<h5>Download Bookbed App</h5> <br> <img alt="logo"
+					<h5>Download Bookbed App</h5>
+					<br> <img alt="logo"
 						src="${pageContext.request.contextPath }/uploads/images/googleplay.png"
-						style="width: 150px" height="60px"> <br><br><img alt="logo"
+						style="width: 150px" height="60px"> <br> <br> <img
+						alt="logo"
 						src="${pageContext.request.contextPath }/uploads/images/appstore.png"
 						style="width: 150px" height="60px">
 				</div>

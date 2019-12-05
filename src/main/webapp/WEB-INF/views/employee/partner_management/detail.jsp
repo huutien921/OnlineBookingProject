@@ -46,8 +46,8 @@
 										class="glyphicon glyphicon-star"></i></i>
 								</a>
 							</c:if></li>
-						<li class="list-group-item"><b>Following</b> <a
-							class="pull-right">543</a></li>
+						<li class="list-group-item"><b>Report</b> <a
+							class="pull-right">0</a></li>
 					</ul>
 					
 						
