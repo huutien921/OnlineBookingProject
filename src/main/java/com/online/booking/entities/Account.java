@@ -40,26 +40,27 @@ public class Account implements java.io.Serializable {
 	private String identitycard;
 	private Integer score;
 	private Boolean status;
+	@JsonIgnore
 	private Set<Evaluate> evaluates = new HashSet<Evaluate>(0);
-
+	@JsonIgnore
 	private Set<Blog> blogs = new HashSet<Blog>(0);
-	
+	@JsonIgnore
 	private Set<Hotel> hotelsForIdAcEmployee = new HashSet<Hotel>(0);
-	
+	@JsonIgnore
 	private Set<Report> reports = new HashSet<Report>(0);
-	
+	@JsonIgnore
 	private Set<Panel> panels = new HashSet<Panel>(0);
-	
+	@JsonIgnore
 	private Set<Service> services = new HashSet<Service>(0);
-	
+	@JsonIgnore
 	private List<Hotel> hotelsForAccountId = new ArrayList<Hotel>();
-	
+	@JsonIgnore
 	private Set<Orders> orderses = new HashSet<Orders>(0);
-	
+	@JsonIgnore
 	private Set<RoleAccount> roleAccounts = new HashSet<RoleAccount>(0);
-	
+	@JsonIgnore
 	private Set<Email> emails = new HashSet<Email>(0);
-	
+	@JsonIgnore
 	private Set<Sale> sales = new HashSet<Sale>(0);
 
 	public Account() {

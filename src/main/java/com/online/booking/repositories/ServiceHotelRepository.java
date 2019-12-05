@@ -21,4 +21,8 @@ public interface ServiceHotelRepository extends  CrudRepository<ServiceHotel,Int
 			+ "( id_hotel = :id ) and status = :stt",nativeQuery = true)
 	public List<ServiceHotel> findByIdActive(@Param("today") Date today
 			, @Param("id") int id,@Param("stt") boolean stt);
+	@Query(value = "from ServiceHotel where hotel.id = :idHotel and service.id = :idservice and status = :stt")
+	public ServiceHotel findByServiceCreate(@Param("idHotel") int id ,@Param("idservice") int idService
+			,@Param("stt") boolean stt
+			);
 }

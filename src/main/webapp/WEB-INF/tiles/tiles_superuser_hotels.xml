@@ -4,13 +4,25 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="superuser.myhotel.index" extends="admin_template">
-		<put-attribute name="content" value="/WEB-INF/views/superuser/hotels/index.jsp"></put-attribute>
+	<definition name="superuser.myhotel.index"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/hotels/index.jsp"></put-attribute>
 	</definition>
-		<definition name="superuser.myhotel.detail" extends="admin_template">
-		<put-attribute name="content" value="/WEB-INF/views/superuser/hotels/detail.jsp"></put-attribute>
+	<definition name="superuser.myhotel.detail"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/hotels/detail.jsp"></put-attribute>
 	</definition>
-		<definition name="superuser.myhotel.edit" extends="admin_template">
-		<put-attribute name="content" value="/WEB-INF/views/superuser/hotels/edit.jsp"></put-attribute>
+	<definition name="superuser.myhotel.edit"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/hotels/edit.jsp"></put-attribute>
+	</definition>
+
+	<definition name="superuser.myhotel.management"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/hotels/management.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

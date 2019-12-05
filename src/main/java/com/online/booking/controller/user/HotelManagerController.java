@@ -2,6 +2,7 @@ package com.online.booking.controller.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class HotelManagerController {
 	public String createHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult,
 			@RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttributes, ModelMap map ,
-			@RequestParam("idac") int idac) {
+			@RequestParam("idac") int idac ,HttpSession httpSession) {
 		hotelValidator.validate(hotel, bindingResult);
 
 		if (bindingResult.hasErrors()) {
@@ -93,14 +94,17 @@ public class HotelManagerController {
 				}else {
 					map.put("hotel", hotel);
 					map.put("starRatings", (List<StarRating>) starRatingService.findAll());
+					
 					redirectAttributes.addFlashAttribute("ms", "failed");
 		
 					return "user.superuser.create.hotel";
 					
 				}
 			} else {
-				System.out.println("da co khach sanj");
-				return null;
+				
+				redirectAttributes.addFlashAttribute("ms", "createService");
+				httpSession.setAttribute("hotel", hotel);
+				return "redirect:/superuser/servicehotel/buyService";
 			}
 	
 		

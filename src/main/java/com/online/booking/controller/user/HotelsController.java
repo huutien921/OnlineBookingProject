@@ -33,6 +33,9 @@ public class HotelsController {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 			map.put("hotel", hotelService.findById(id));
+			map.put("checkin", checkin);
+			map.put("checkout", checkout);
+			map.put("rooms", room);
 		
 			List<Evaluate> evaluatesHotel = evaluateService.findByHotelDescAndLimit(id, 10);
 			System.out.println(evaluatesHotel.size());

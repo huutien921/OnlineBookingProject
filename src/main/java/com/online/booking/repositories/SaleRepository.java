@@ -1,5 +1,6 @@
 package com.online.booking.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,6 @@ public interface SaleRepository extends  CrudRepository<Sale,Integer>{
 	
 	@Query(value="select * from Sale where status = :status order by id desc limit :n ", nativeQuery = true)
 	public List<Sale> searchLimitSale(@Param("status") boolean status, @Param("n") int n);
+	@Query(value = "select * from sale where code = :code and startday < :date and endday > :date " , nativeQuery = true)
+	public Sale findByCodeAndDate(@Param("code") String code, @Param("date") Date date);
 }

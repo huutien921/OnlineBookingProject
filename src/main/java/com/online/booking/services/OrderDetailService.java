@@ -27,5 +27,25 @@ private OrderDetailRepository orderDetailRepository;
 		return tem;
 		
 	}
+	@Override
+	public OrderDetail save(OrderDetail orderDetail) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.save(orderDetail);
+	}
+	@Override
+	public OrderDetail findById(int id) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findById(id).get();
+	}
+	@Override
+	public Iterable<OrderDetail> findAll() {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findAll();
+	}
+	@Override
+	public List<OrderDetail> findByIdHotel(int idHotel) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findByIdHotel(idHotel);
+	}
 
 }
