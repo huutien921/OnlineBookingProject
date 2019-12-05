@@ -54,10 +54,24 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/iCheck/all.css">
 
 
+
+
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap datepicker -->
+ 
+
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/iCheck/all.css">
+
+
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+  
+
+
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -342,9 +356,15 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a
+							<!--  <li><a
 								href="${pageContext.request.contextPath }/superadmin/account"><i
+									class="fa fa-circle-o"></i> Account management</a></li>-->
+									
+									<li><a
+								href="${pageContext.request.contextPath }/superadmin/account/index"><i
 									class="fa fa-circle-o"></i> Account management</a></li>
+									
+									
 							<li><a
 								href="${pageContext.request.contextPath }/superadmin/template "><i
 									class="fa fa-circle-o"></i> Template management</a></li>
@@ -358,7 +378,7 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a
+							<!-- <li><a
 								href="${pageContext.request.contextPath }/admin/employee"><i
 									class="fa fa-circle-o"></i> Employee management</a></li>
 							<li><a
@@ -367,7 +387,18 @@
 							<li><a
 								href="${pageContext.request.contextPath }/admin/statistical "><i
 									class="fa fa-circle-o"></i> Statistical</a></li>
+						</ul></li> -->
+						<li><a
+								href="${pageContext.request.contextPath }/admin/employee/index"><i
+									class="fa fa-circle-o"></i> Employee management</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/admin/service/index "><i
+									class="fa fa-circle-o"></i> Service management</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/admin/statistical/index "><i
+									class="fa fa-circle-o"></i> Statistical</a></li>
 						</ul></li>
+						
 					<!-- end admin -->
 					<!-- employee-->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
@@ -728,6 +759,22 @@
 <script src="${pageContext.request.contextPath }/resources/admin/plugins/iCheck/icheck.min.js"></script>
 	<!-- Bootstrap WYSIHTML5 -->
 <script src="${pageContext.request.contextPath }/resources/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+
+
+
+<!-- Select2 -->
+
+
+	<script src="${pageContext.request.contextPath }/resources/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/bower_components/ckeditor/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+
+<script src="${pageContext.request.contextPath }/resources/admin/plugins/iCheck/icheck.min.js"></script>
+
+
+
 	<script>
 		$(function() {
 			$('#example1').DataTable()
@@ -809,5 +856,36 @@
     })
   })
 </script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+    //Initialize Select2 Elements
+
+    
+  })
+</script>
+ <script>
+     //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+	</script>
+
+
 </body>
 </html>

@@ -81,7 +81,7 @@ public class Statistical_AdminController {
 	@RequestMapping(value="ajax/linechartdata")
 	@ResponseBody
 	public String getDataFromDB(){
-		List<UserGroup> dataList = accountServices.statisticalUserses(3);
+		List<UserGroup> dataList = accountServices.statisticalUserses(4);
 		JsonArray jsonArrayCategory = new JsonArray();
 		JsonArray jsonArraySeries = new JsonArray();
 		JsonObject jsonObject = new JsonObject();

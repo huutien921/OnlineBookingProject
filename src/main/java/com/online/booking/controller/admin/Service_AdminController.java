@@ -112,34 +112,39 @@ public class Service_AdminController implements ServletContextAware{
 	public String edit(@PathVariable("id") int id, ModelMap modelMap) {
 		Service service = serviceservice.find(id);
 	
-		//modelMap.put("services", serviceTypeService.findAll());
+		modelMap.put("services", serviceTypeService.findAll());
 		modelMap.put("service", service);
 		
 		return "admin/service_management/update";
 	}
 	
-	@RequestMapping(value="update/{id}", method= RequestMethod.POST)
-	public String update(@ModelAttribute("service") Service service,@ModelAttribute("servicetype") Servicetype servicetype,
-			ModelMap modelMap,
-			@PathVariable("id") int id)
+	@RequestMapping(value="update", method= RequestMethod.POST)
+	public String update(@ModelAttribute("service") Service service,
+			@ModelAttribute("servicetype") Servicetype servicetype,
+			@RequestParam("servicetypeid") Integer serviceid,
+			@ModelAttribute("account") Account account,
+			ModelMap modelMap)
 	{
 	
-		Service service1 = serviceservice.find(id);
+		Service service1 = serviceservice.find(service.getId());
 		
 		
 		try {
-		
-			service1.setCore(service1.getCore());
-			service1.setDescription(service1.getDescription());
-			service1.setIconSrc(service1.getIconSrc());
-			service1.setName(service1.getName());
-			service1.setPrice(service1.getPrice());
-	
-			service1.setPriority(Integer.valueOf(service1.getPriority()));
-			service1.setServicetype(service1.getServicetype());
+			account.setId(2);
+		servicetype.setId(serviceid);
 			
+		service1.setAccount(account);
+		service1.setCore(service.getCore());
+		service1.setDescription(service.getDescription());
+		service1.setIconSrc(service.getIconSrc());
+		service1.setName(service.getName());
+		service1.setPrice(service.getPrice());
+	
+		service1.setPriority(Integer.valueOf(service.getPriority()));
+		service1.setServicetype(servicetype);
+		service1.setStatus(true);
 			serviceservice.save(service1);
-			modelMap.put("service", serviceservice.findAll());
+			//modelMap.put("service", serviceservice.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -113,10 +113,8 @@
 						
 						<a href="${pageContext.request.contextPath }/admin/employee/accountupdate/${account.id }" class="btn btn-success">Update</a>
 						
-						<s:form method="post" modelAttribute="account" action="${pageContext.request.contextPath }/admin/employee/save/${account.id}">
-						<input type="submit" name="block" value="UnActive" class="btn btn-success">
-						<input type="hidden" name="id" value="12">
-						</s:form>
+						<a href="${pageContext.request.contextPath }/admin/employee/unactive/${account.id}" class="btn btn-success">Unactive</a>
+						
 						</td>
 					</tr>
 						</c:forEach>

@@ -48,7 +48,7 @@ public interface AccountRepository extends  CrudRepository<Account,Integer>{
 	public List<UserGroup> statisticalUserses(@Param("id") Integer id);*/
 	//@Query("select new com.online.booking.entities.UserGroup(count(a.id) as sumQuantity,Year(a.created) as year ) from Account a,RoleAccount r	where a.id=r.account_id and r.role_id=:id GROUP BY Year(a.created)")
 			
-	@Query("select new com.online.booking.entities.UserGroup(count(a.id) as sumQuantity,year(a.created) as year ) from Account as a join a.roleAccounts ra join ra.role r where r.id=:id  group by year(a.created)")
+	@Query("select new com.online.booking.entities.UserGroup(count(a.id) as sumQuantity,month(a.created) as year ) from Account as a join a.roleAccounts ra join ra.role r where r.id=:id and year(a.created)='2019'  group by month(a.created)")
 			public List<UserGroup> statisticalUserses(@Param("id") Integer id);
 	
 }

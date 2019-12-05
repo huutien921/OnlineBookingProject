@@ -25,7 +25,7 @@
           
             <!-- /.box-header -->
             <!-- form start -->
-             <s:form method="post" modelAttribute="service" action="${pageContext.request.contextPath }/admin/service/update/${id}" >
+             <s:form method="post" modelAttribute="service" action="${pageContext.request.contextPath }/admin/service/update" >
            
               <div class="box-body ">
                 <div class="form-group col-md-6">
@@ -63,7 +63,7 @@
               
                  <div class="form-group">
                   <label for="exampleInputPassword1">Service Type</label>
-                <select class="form-control select2" name="servicetypeid" style="width: 50%;">
+               <select class="form-control select2" name="servicetypeid" style="width: 50%;">
               	<c:forEach var="service" items="${services }">
               	
               			<option value="${service.id }">${service.name }</option>
@@ -130,6 +130,7 @@
               <div class="box-footer">
             
                 <button type="submit" class="btn btn-info pull-right">Submit</button>
+                <s:hidden path="id"/>
               </div>
             </s:form>
           </div>

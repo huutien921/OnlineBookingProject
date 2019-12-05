@@ -4,6 +4,6 @@ import com.online.booking.entities.RoleAccount;
 
 public interface IRoleAccountService {
 	public RoleAccount save(RoleAccount account);
-	
+	public RoleAccount find(int id);
 	
 }

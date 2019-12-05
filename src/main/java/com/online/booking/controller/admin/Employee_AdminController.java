@@ -170,27 +170,44 @@ public class Employee_AdminController  implements ServletContextAware{
 	}
 	@RequestMapping(value="accountupdate", method= RequestMethod.POST)
 	public String update(@ModelAttribute("account") Account account, ModelMap modelMap,
-			@RequestParam("password") String password/*,@RequestParam("birthday") String birthday*/)
+			@RequestParam("password") String password,
+			@RequestParam("birthday") String birthday,
+			@RequestParam("file") MultipartFile file,
+			@ModelAttribute("roles") Role role,
+			@ModelAttribute("roleaccount") RoleAccount roleAccount,
+			@RequestParam("gender") String gender,
+		
+			//@RequestParam("role") Integer[] roleName
+			@RequestParam("role") Integer roleName)
 	{
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		Account account2= accountService.find(account.getId());
+		RoleAccount roleAccount2=roleAccountService.find(roleAccount.getId());
 		
 		try {
-			account2.setFullname(account2.getFullname());
-			account2.setGender(account2.getGender());
-			account2.setScore(account2.getScore());
+			String fileName=saveFile(file);
+			account2.setFullname(account.getFullname());
+			account2.setGender(account.getGender());
+			account2.setScore(account.getScore());
+			account2.setBirthday(simpleDateFormat.parse(birthday));
 			account2.setPassword(BCrypt.hashpw(password,BCrypt.gensalt()));
-			account2.setEmail(account2.getEmail());
-			account2.setAddress(account2.getAddress());
-			account2.setAvatar(account2.getAddress());
+			account2.setEmail(account.getEmail());
+			account2.setAddress(account.getAddress());
+			account2.setAvatar(fileName);
+		account2.setBirthday(account.getBirthday());
+			account2.setType(account.getType());
+			account2.setIdentitycard(account.getIdentitycard());
 		
-		
-			account2.setType(account2.getType());
-			account2.setIdentitycard(account2.getIdentitycard());
-			
 			accountService.save(account2);
 			
-			modelMap.put("accounts", accountService.findAll());
+			roleAccount2.setStatus(true);
+			role.setId(roleName);
+			roleAccount2.setRole(role);
+			roleAccount2.setAccount(account);
+			roleAccountService.save(roleAccount2);
+		
+			
+		//	modelMap.put("accounts", accountService.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -209,18 +226,18 @@ public class Employee_AdminController  implements ServletContextAware{
 		return "redirect:index";
 	}
 	*/
-	@RequestMapping(value="/save/{id}", method= RequestMethod.POST,params = "block")
-	public String blockAccount(@PathVariable("id") Integer id, @ModelAttribute("account") Account account, ModelMap modelMap
+	@RequestMapping(value="unactive/{id}", method= RequestMethod.GET)
+	public String blockAccount(@PathVariable("id") int id, @ModelAttribute("account") Account account, ModelMap modelMap
 			)
 	{
 		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-		Account account2= accountService.find(id);
+		Account account2= accountService.findById(id);
 		
 		try {
 			account2.setStatus(false);
 			
 			accountService.save(account2);
-			modelMap.put("accounts", accountService.findAll());
+			//modelMap.put("accounts", accountService.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

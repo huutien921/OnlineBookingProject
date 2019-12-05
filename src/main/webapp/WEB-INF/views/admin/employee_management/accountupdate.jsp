@@ -20,141 +20,258 @@
 </head>
 <body>
 
-<s:form method="post" modelAttribute="account" action="${pageContext.request.contextPath }/admin/employee/accountupdate">
-		<table>
-		<tr>
-				<td>Username</td>
-				<td>
-					<s:input path="username"/>
-					
-				</td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>
-					<input type="text" name="password">
-				
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Name</td>
-				<td>
-					<s:input path="fullname"/>
-					
-				</td>
-			</tr>
-			<tr>
-			
-			<!--  <td>Birthday</td>
-				<td>
-					<input type="text" name="birthday" id="birthday">
-				
-				</td>-->	
-			</tr>
-			<tr>
-				<td>Type</td>
-				<td>
-					<s:input path="type"/>
-					
-				</td>
-			</tr>
-			
-			
-			<tr>
-				<td>Email</td>
-				<td>
-				
-					<s:input path="email"/>
-					
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Address</td>
-				<td>
-					<s:input path="address"/>
-				</td>
-			</tr>
-			
-			<tr>
+	
+	
+	<section class="content">
+	<s:form method="post" modelAttribute="account" enctype="multipart/form-data"  action="${pageContext.request.contextPath }/admin/employee/accountupdate">
+		<div class="row">
+			<div class="col-md-6">
 
-				<td>Gender</td>
-				<td>
-				<input type="radio" name="gender" value="Male" checked="checked">Male
-				<br>
-				<input type="radio" name="gender" value="Female" checked="checked">Female
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Avatar</td>
-				<td>
-					<s:input path="avatar"/>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>Identity Card</td>
-				<td>
-					<s:input path="identitycard"/>
-				
-				</td>
-			</tr>
-			<tr>
-				<td>Score</td>
-				<td>
-					<s:input path="score"/>
-				</td>
-			</tr>
-				
+				<div class="box box-danger">
+					<div class="box-header">
+						<h3 class="box-title">Input masks</h3>
+					</div>
 					
-		 
-			<!--  	<tr>
+						<div class="box-body">
+							<!-- Date dd/mm/yyyy -->
 
-				<td>Role</td>
-				<td>
-				-->
-				<!--  <input type="radio" name="role" value=1 checked="checked">Super Admin
-				<br>
-				<input type="radio" name="role" value=2 checked="checked">Admin
-				<br>
-				<input type="radio" name="role" value=3 checked="checked">Employee
-				<br>
-				<input type="radio" name="role" value=5 checked="checked">Super User
-				<br>
-				<input type="radio" name="role" value=4 checked="checked">User
-				-->
-				<!--  <input type="checkbox" name="role" value=1 >Super Admin
-				<br>
-				<input type="checkbox" name="role" value=2 >Admin
-				<br>
-				<input type="checkbox" name="role" value=3 >Employee
-				<br>
-				<input type="checkbox" name="role" value=5 >Super User
-				<br>
-				<input type="checkbox" name="role" value=4 >User
-				</td>
-				
-			</tr>
-				-->		
-			
-		
-		
-			
-			
-			
-			<tr>
-				<td>&nbsp;</td>
-				<td>
-					<input type="submit" value="Save"/>
-					<!--<input type="hidden" value="${id}"/>-->
-				</td>
-			</tr>
-		</table>
-		
-		
-	</s:form>
+							<div class="form-group">
+								<label>Username</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</div>
+
+									<s:input path="username" cssClass="form-control"
+										placeholder="UserName" />
+								</div>
+								<!-- /.input group -->
+
+								<!-- /.form group -->
+							</div>
+							<!-- Date mm/dd/yyyy -->
+							<div class="form-group">
+							<label>Password</label>
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-key"></i>
+									</div>
+									<input type="password" name="password" class="form-control"
+										placeholder="Password">
+								</div>
+								<!-- /.input group -->
+							</div>
+							<!-- /.form group -->
+
+							<!-- phone mask -->
+							<div class="form-group">
+								<label>Name</label>
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-user-md"></i>
+									</div>
+									<s:input path="fullname" cssClass="form-control" placeholder="Name"/>
+								</div>
+								<!-- /.input group -->
+							</div>
+							<!-- /.form group -->
+
+							<!-- phone mask -->
+							<div class="form-group">
+								<label>Type</label>
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-star-o"></i>
+									</div>
+									<s:input path="type" cssClass="form-control" placeholder="Type"/>
+								</div>
+								<!-- /.input group -->
+							</div>
+							<!-- /.form group -->
+
+							<!-- IP mask -->
+							<div class="form-group">
+								<label>Email</label>
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="fa fa-envelope"></i>
+									</div>
+									<s:input path="email" cssClass="form-control" placeholder="Email"/>
+							
+								</div>
+								<!-- /.input group -->
+							</div>
+							<!-- /.form group -->
+
+
+
+							<div class="form-group">
+								<label>Address</label>
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="glyphicon glyphicon-home"></i>
+									</div>
+									<s:input path="address" cssClass="form-control" placeholder="Address"/>
+							
+								</div>
+								<!-- /.input group -->
+							</div>
+							
+							
+							
+							
+						</div>
+						<!-- /.box-body -->
+					
+				</div>
+				<!-- /.box -->
+
+
+				<!-- /.box -->
+
+			</div>
+
+
+
+
+
+
+
+			<!-- /.col (left) -->
+			<div class="col-md-6">
+				<div class="box box-primary">
+					<div class="box-header">
+						<h3 class="box-title">Date picker</h3>
+					</div>
+					<div class="box-body">
+						<!-- Date -->
+						<div class="form-group">
+							<label>BirthDate:</label>
+
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right"
+									id="birthday" name="birthday" placeholder="Birthday">
+							</div>
+							<!-- /.input group -->
+						</div>
+						<!-- /.form group -->
+
+						<!-- Date range -->
+						<div class="form-group">
+							<label>Identity Card:</label>
+
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-cc-amex"></i>
+								</div>
+								<s:input path="identitycard" cssClass="form-control" placeholder="Identity Card"/>
+							</div>
+							<!-- /.input group -->
+						</div>
+						<!-- /.form group -->
+
+						<!-- Date and time range -->
+						<div class="form-group" >
+							<label>Gender:</label>
+
+							<div class="input-group" >
+							<div class="form-group" align="center">	
+								
+                <label>
+                  <input type="radio" name="gender" value="Male" class="flat-red" checked="checked">
+                  Male
+                </label>
+              <label></label>
+                <label></label>
+                <label>
+                  <input type="radio" name="gender" value="Female" class="flat-red" checked="checked">
+                  Female
+                </label>
+            
+              </div>
+							</div>
+							<!-- /.input group -->
+						</div>
+						<!-- /.form group -->
+						
+						
+						
+						<div class="form-group" >
+							<label>Role:</label>
+
+							<div class="input-group" >
+							<div class="form-group" align="center">	
+								
+                <label>
+                  <input type="radio" name="role" value="2" class="flat-red" checked="checked">
+                  Admin
+                </label>
+              <label></label>
+                <label></label>
+                <label>
+                  <input type="radio" name="role" value="3" class="flat-red" checked="checked">
+                 Employee
+                </label>
+            
+              </div>
+							</div>
+							<!-- /.input group -->
+						</div>
+						
+						
+						
+						
+
+
+<div class="form-group">
+							<label>Score:</label>
+
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<s:input path="score" cssClass="form-control" placeholder="Score"/>
+							</div>
+							<!-- /.input group -->
+						</div>
+
+
+
+						<!-- Date and time range -->
+						<div class="form-group">
+							<label>Avatar:</label>
+
+							<div class="input-group">
+								 <input type="file" name="file" id="exampleInputFile" >
+								
+							</div>
+						</div>
+						
+						
+						<div class="form-group">
+							
+
+							<div class="input-group">
+								<button type="submit" class="btn btn-info pull-right">Submit</button>
+								<s:hidden path="id"/>
+							</div>
+						</div>
+						<!-- /.form group -->
+
+					</div>
+					<!-- /.box-body -->
+				</div>
+			</div>
+		</div>
+		</s:form>
+	</section>
 
 	
 </body>

@@ -15,5 +15,10 @@ private RoleAccountRepository roleAccountRepository;
 		
 		return roleAccountRepository.save(account);
 	}
+	@Override
+	public RoleAccount find(int id) {
+		// TODO Auto-generated method stub
+		return roleAccountRepository.findById(id).get();
+	}
 
 }
