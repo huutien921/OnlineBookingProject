@@ -10,6 +10,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/employee/promotion_management/index.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="employee.promotion.add" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/promotion_management/add.jsp"></put-attribute>
+	</definition>
 	
+	<definition name="employee.promotion.edit" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/promotion_management/edit.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

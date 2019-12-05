@@ -34,6 +34,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
+								<th>Avatar</th>
 								<th>Name</th>
 								<th>Country</th>
 								<th>City</th>
@@ -46,6 +47,7 @@
 							<c:forEach var="hotel" items="${hotelNotActive }">
 								<tr>
 									<td>${ hotel.id}</td>
+									<td><img alt="avatar" src="${pageContext.request.contextPath }/uploads/images/${hotel.image}" style="width: 60px; height: 50px"></td>
 									<td>${hotel.name}</td>
 									<td>${hotel.country}</td>
 									<td>${hotel.city}</td>
@@ -91,6 +93,7 @@
 						<tfoot>
 							<tr>
 								<th>ID</th>
+								<th>Avatar</th>
 								<th>Name</th>
 								<th>Country</th>
 								<th>City</th>

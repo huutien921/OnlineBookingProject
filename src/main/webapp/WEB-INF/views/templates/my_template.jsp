@@ -200,12 +200,11 @@ img.hover-shadow {
 					<li class="nav-item"><a class="nav-link" href="#">Languages</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">$USD</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="fa fa-calendar"></i>History</a>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/statusOrder"><i
+							class="fa fa-calendar"></i><!--  History-->My Order</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="fa fa-shopping-cart"></i>Cart</a></li>
-					<li class="nav-item"><a class="nav-link" href="contact.html"><i
+					
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login"><i
 							class="fa fa-user"></i>Login/Register</a></li>
 
 				</ul>
@@ -234,6 +233,8 @@ img.hover-shadow {
 				class="fa fa-info" style="color: #04B4AE"></i>About</a></li>
 		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/news"><i
 				class="fa fa-phone" style="color: #088A08"></i>Contact</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/superuser/create/hotel"><i
+				class="fa fa-phone" style="color: #088A08"></i>Become partner</a></li>
 
 	</ul>
 

@@ -176,8 +176,8 @@
 
 							</div>
 							<div class="col-6 col-md-4">
-								<p style="color: gray; text-decoration: line-through;">$5000/night</p>
-								<h4 style="color: orange;">$5000/night</h4>
+								<!--  <p style="color: gray; text-decoration: line-through;">$5000/night</p>
+								<h4 style="color: orange;">$5000/night</h4>-->
 								<input type="button" value="Book now"
 									style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;">
 							</div>

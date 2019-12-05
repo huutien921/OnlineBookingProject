@@ -30,9 +30,14 @@ public class SaleService implements ISaleService {
 	}
 
 	@Override
+
 	public Sale findByCodeAndDate(String code, Date date) {
 	
-		return saleRepository.findByCodeAndDate(code, date);
+		return saleRepository.findByCodeAndDate(code, date);}
+
+	public Sale save(Sale sale) {
+		return saleRepository.save(sale);
+
 	}
 	
 	
