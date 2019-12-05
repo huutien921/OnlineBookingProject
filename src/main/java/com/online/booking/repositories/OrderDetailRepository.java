@@ -23,4 +23,6 @@ public interface OrderDetailRepository extends CrudRepository<OrderDetail, Integ
 			+ " and room_id =:roomId ", nativeQuery = true)
 	public Long sumQuantityByIdRoomAndDate(@Param("roomId") int idRoom 
 	,@Param("vao") Date dateCheckIn,@Param("ra") Date dateCheckOut );
+	@Query("from OrderDetail where room.id =:hotelid")
+	public List<OrderDetail> findByIdHotel(@Param("hotelid") int idhotel);
 }

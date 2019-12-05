@@ -32,12 +32,14 @@ public class ServiceHotel implements java.io.Serializable {
 	private Date endDate;
 	private Date created;
 	private boolean status;
+	private Long tatol;
 	private Set<Payment> payments = new HashSet<Payment>(0);
 
 	public ServiceHotel() {
 	}
 
-	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, boolean status) {
+	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created,
+			boolean status) {
 		this.id = id;
 		this.hotel = hotel;
 		this.service = service;
@@ -46,9 +48,18 @@ public class ServiceHotel implements java.io.Serializable {
 		this.created = created;
 		this.status = status;
 	}
+	@Column(name = "tatol", precision = 10, scale = 0)
+	public Long getTatol() {
+		return tatol;
+	}
 
-	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created, boolean status,
-			Set<Payment> payments) {
+	public void setTatol(Long tatol) {
+		this.tatol = tatol;
+	}
+
+	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created,
+			boolean status, Long tatol, Set<Payment> payments) {
+		super();
 		this.id = id;
 		this.hotel = hotel;
 		this.service = service;
@@ -56,13 +67,14 @@ public class ServiceHotel implements java.io.Serializable {
 		this.endDate = endDate;
 		this.created = created;
 		this.status = status;
+		this.tatol = tatol;
 		this.payments = payments;
 	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	
+
 	public int getId() {
 		return this.id;
 	}

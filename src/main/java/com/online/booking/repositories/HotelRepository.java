@@ -15,6 +15,7 @@ public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
 	@Query(value=" from Hotel where  (provincial like %:address% or city like %:address% ) and status = true")
 	public List<Hotel> searchByAddress(@Param("address") String address);
 
+
 	
 	@Query(value=" from Hotel where status = false and accountByIdAcEmployee = null")
 	public List<Hotel> searchHotelByStatusFalseAndIdAccountEmployeeNull();
@@ -30,5 +31,8 @@ public interface HotelRepository extends  CrudRepository<Hotel,Integer>{
 	@Query(value = "from Hotel where accountByAccountId.id = :id")
 	public  List<Hotel> findByAccountId(@Param("id") int id);
 
+	
+	
+	
 
 }

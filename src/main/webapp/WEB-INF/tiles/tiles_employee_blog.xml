@@ -10,6 +10,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/employee/blog_management/index.jsp"></put-attribute>
 	</definition>
 	
-	
-
+	<definition name="employee.blog.add" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/blog_management/add_blog.jsp"></put-attribute>
+	</definition>
+<definition name="employee.blog.edit" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/employee/blog_management/edit_blog.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

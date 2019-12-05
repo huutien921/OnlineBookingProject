@@ -451,36 +451,19 @@
 						<ul class="treeview-menu">
 							<li><a
 								href="${pageContext.request.contextPath }/superuser/myhotel"><i
-									class="fa fa-circle-o"></i> Hotel management</a></li>
+									class="fa fa-circle-o"></i> My Hotel</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/employee/feedback "><i
-									class="fa fa-circle-o"></i> Feedback management</a></li>
+								href="${pageContext.request.contextPath }/user/superuser/create/hotel "><i
+									class="fa fa-circle-o"></i> New Hotel</a></li>
 
 
-							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
-									<span>My hotels</span> <span
-									class="pull-right-container"> <i
-										class="fa fa-angle-left pull-right"></i>
-								</span>
-							</a>
-								<ul class="treeview-menu">
-									<li><a
-										href="${pageContext.request.contextPath }/employee/partner/unconfirmed"><i
-											class="fa fa-circle-o"></i>Hotel unconfirmed </a></li>
-									<li><a
-										href="${pageContext.request.contextPath }/employee/partner/confirmed "><i
-											class="fa fa-circle-o"></i> Hotel confirmed</a></li>
-									<li><a
-										href="${pageContext.request.contextPath }/employee/partner/block "><i
-											class="fa fa-circle-o"></i> Hotel blocked</a></li>
-
-								</ul></li>
+				
 							<li><a
 								href="${pageContext.request.contextPath }/employee/promotion "><i
-									class="fa fa-circle-o"></i> Promotion management</a></li>
+									class="fa fa-circle-o"></i> Customers</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/employee/user "><i
-									class="fa fa-circle-o"></i> User management</a></li>
+									class="fa fa-circle-o"></i>Analytics</a></li>
 
 						</ul></li>
 					<!-- end superuser -->
@@ -779,6 +762,7 @@
 		$(function() {
 			$('#example1').DataTable()
 			$('#example3').DataTable()
+			$('#example5').DataTable()
 			$('#example2').DataTable({
 				'paging' : true,
 				'lengthChange' : false,

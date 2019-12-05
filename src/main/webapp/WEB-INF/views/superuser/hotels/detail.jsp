@@ -518,9 +518,6 @@
 											var copponHotelId = $(
 													'#copponHotelId').val();
 
-											alert(hotelId + ' ' + disName + ' '
-													+ disVal + ' ' + status
-													+ ' ///' + copponHotelId);
 											$
 													.ajax({
 														type : 'GET',

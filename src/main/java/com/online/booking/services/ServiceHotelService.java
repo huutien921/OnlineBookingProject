@@ -36,4 +36,16 @@ public class ServiceHotelService implements IServiceHotelService {
 		return prioriti;
 	}
 
+	@Override
+	public ServiceHotel save(ServiceHotel serviceHotel) {
+		// TODO Auto-generated method stub
+		return serviceHotelRepository.save(serviceHotel);
+	}
+
+	@Override
+	public ServiceHotel findByServiceCreate(int id, int idService, boolean stt) {
+		// TODO Auto-generated method stub
+		return serviceHotelRepository.findByServiceCreate(id, idService, stt);
+	}
+
 }

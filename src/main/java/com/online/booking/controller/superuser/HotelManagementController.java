@@ -36,14 +36,14 @@ import com.online.booking.entities.CopponRoomEntity;
 import com.online.booking.entities.Hotel;
 
 import com.online.booking.entities.ImageRoomEntity;
-
+import com.online.booking.entities.OrderDetail;
 import com.online.booking.entities.StarRating;
 import com.online.booking.helper.UploadFileHelper;
 import com.online.booking.services.CopponHotelService;
 import com.online.booking.services.CopponRoomService;
 import com.online.booking.services.HotelService;
 import com.online.booking.services.ImageRoomService;
-
+import com.online.booking.services.OrderDetailService;
 import com.online.booking.services.StarRatingService;
 import com.online.booking.validations.HotelValidator;
 
@@ -64,6 +64,8 @@ public class HotelManagementController {
 	private HotelValidator hotelValidator;
 	@Autowired
 	private UploadFileHelper uploadFileHelper;
+	@Autowired
+	private OrderDetailService orderDetailService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap map) {
@@ -231,7 +233,25 @@ public class HotelManagementController {
 		}
 
 	}
+	
+	@RequestMapping(value = "management/{id}", method = RequestMethod.GET)
+	public String management(ModelMap map, @PathVariable("id") int id) {
+		map.put("hotel", hotelService.findById(id));
+		map.put("orderdetail",orderDetailService.findByIdHotel(id));
+		map.put("now", new Date());
 
+		return "superuser.myhotel.management";
+	}
+	@RequestMapping(value = "ajax/find/order", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@ResponseBody
+	public List<OrderDetail> findByidRoom(@RequestParam("id") int idRoom) {
+		System.out.println( orderDetailService.findByIdRoom(idRoom).size());
+		
+		return orderDetailService.findByIdRoom(idRoom);
+		
+		
+	}
+	
 
 
 

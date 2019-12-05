@@ -176,8 +176,8 @@
 
 							</div>
 							<div class="col-6 col-md-4">
-								<p style="color: gray; text-decoration: line-through;">$5000/night</p>
-								<h4 style="color: orange;">$5000/night</h4>
+								<!--  <p style="color: gray; text-decoration: line-through;">$5000/night</p>
+								<h4 style="color: orange;">$5000/night</h4>-->
 								<input type="button" value="Book now"
 									style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;">
 							</div>
@@ -321,7 +321,7 @@
 																			<img
 																				src="${pageContext.request.contextPath }/uploads/images/${imgRoom.src}"
 																				style="width: 100%"
-																				"
+																				
 											alt="${imgRoom.alt}">
 																			<hr>
 																		</c:forEach>
@@ -377,7 +377,7 @@
 																	<hr>
 																	<a
 																		style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;"
-																		href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
+																		href="${pageContext.request.contextPath }/hotels/booking?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
 																		Now</a> <br> <br>
 																</div>
 															</div>
@@ -451,7 +451,7 @@
 											<hr>
 											<a
 												style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;"
-												href="${pageContext.request.contextPath }/hotels/hotel_detail?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
+												href="${pageContext.request.contextPath }/booking?roomid=${room.id }&checkin=${checkin }&checkout=${checkout }&room=${rooms}">Book
 												Now</a>
 
 

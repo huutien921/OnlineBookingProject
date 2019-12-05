@@ -1,5 +1,6 @@
 package com.online.booking.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,17 @@ public class SaleService implements ISaleService {
 	@Override
 	public List<Sale> searchLimitSale(boolean status, int n) {
 		return saleRepository.searchLimitSale(status, n);
+	}
+
+	@Override
+
+	public Sale findByCodeAndDate(String code, Date date) {
+	
+		return saleRepository.findByCodeAndDate(code, date);}
+
+	public Sale save(Sale sale) {
+		return saleRepository.save(sale);
+
 	}
 	
 	

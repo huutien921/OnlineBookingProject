@@ -107,7 +107,12 @@
 				<div class="col-md-4"> <a href="${pageContext.request.contextPath }/superuser/myhotel/edit/${hotel.id}" class="btn btn-block btn-danger"><i class="fa fa-edit"></i> Edit </a></div>
 					<div class="col-md-4"> <a href="${pageContext.request.contextPath }/superuser/myhotel/detail/${hotel.id}" class="btn btn-block btn-info "><i class="fa fa-fw fa-building-o"></i> Detail</a></div>
 				
-				</div>             
+				</div>    
+				<hr>
+				<div class="row">
+				<div class="col-md-12"> <a href="${pageContext.request.contextPath }/superuser/myhotel/management/${hotel.id}" class="btn btn-block  btn-primary">Management </a></div>
+			
+				</div>          
              
             </div>
             <!-- /.box-body -->
