@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.online.booking.entities.Account;
 import com.online.booking.entities.Role;
@@ -88,7 +89,8 @@ public class Account_SuperAdminController implements ServletContextAware{
 			@RequestParam("gender") String gender,
 			@RequestParam("file") MultipartFile file,
 			//@RequestParam("role") Integer[] roleName
-			@RequestParam("role") Integer roleName
+			@RequestParam("role") Integer roleName,
+			RedirectAttributes redirectAttributes
 			//@RequestParam Integer[] accountid
 			
 			) 
@@ -97,8 +99,11 @@ public class Account_SuperAdminController implements ServletContextAware{
 	//	map.put("roles", roleService.findAll());
 		
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-		
+		String existUserName=account.getUsername();
 		try {
+			if(accountService.findByUsername(existUserName)==null) {
+				
+			
 			String fileName=saveFile(file);
 			account.setBirthday(simpleDateFormat.parse(birthday));
 			account.setCreated(new Date());
@@ -128,7 +133,11 @@ public class Account_SuperAdminController implements ServletContextAware{
 			roleAccount.setAccount(account);
 		
 			roleAccountService.save(roleAccount);
-			
+			}
+			else {
+				redirectAttributes.addFlashAttribute("err", "Username existed");
+				return "redirect:/superadmin/account/add";
+			}
 			
 			
 			
@@ -167,13 +176,16 @@ public class Account_SuperAdminController implements ServletContextAware{
 		
 		return "superadmin/account_management/update";
 	}
-	@RequestMapping(value="update/{id}", method= RequestMethod.POST)
-	public String update(@PathVariable("id") Integer id, @ModelAttribute("account") Account account, ModelMap modelMap,
-			@RequestParam("password") String password,@RequestParam("birthday") String birthday)
+	@RequestMapping(value="update", method= RequestMethod.POST)
+	public String update(@ModelAttribute("account") Account account, ModelMap modelMap,
+			@RequestParam("password") String password,@RequestParam("birthday") String birthday
+			,	@ModelAttribute("roleaccount") RoleAccount roleAccount,
+			@RequestParam("role") Integer roleName,
+			@ModelAttribute("roles") Role role)
 	{
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-		Account account2= accountService.find(id);
-		
+		Account account2= accountService.find(account.getId());
+		RoleAccount roleAccount2=roleAccountService.find(roleAccount.getId());
 		try {
 			account2.setFullname(account2.getFullname());
 			account2.setGender(account2.getGender());
@@ -187,7 +199,20 @@ public class Account_SuperAdminController implements ServletContextAware{
 			account2.setType(account2.getType());
 			account2.setIdentitycard(account2.getIdentitycard());
 			
+			
+			
 			accountService.save(account2);
+			
+			
+			
+			
+			
+			roleAccount2.setStatus(true);
+			role.setId(roleName);
+			roleAccount2.setRole(role);
+			roleAccount2.setAccount(account);
+			roleAccountService.save(roleAccount2);
+		
 			
 			modelMap.put("accounts", accountService.findAll());
 		} catch (ParseException e) {
@@ -208,18 +233,18 @@ public class Account_SuperAdminController implements ServletContextAware{
 		return "redirect:index";
 	}
 	*/
-	@RequestMapping(value="/save/{id}", method= RequestMethod.POST,params = "block")
-	public String blockAccount(@PathVariable("id") Integer id, @ModelAttribute("account") Account account, ModelMap modelMap
+	@RequestMapping(value="unactive/{id}", method= RequestMethod.GET)
+	public String blockAccount(@PathVariable("id") int id, @ModelAttribute("account") Account account, ModelMap modelMap
 			)
 	{
 		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-		Account account2= accountService.find(id);
+		Account account2= accountService.findById(id);
 		
 		try {
 			account2.setStatus(false);
 			
 			accountService.save(account2);
-			modelMap.put("accounts", accountService.findAll());
+			//modelMap.put("accounts", accountService.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -228,10 +253,31 @@ public class Account_SuperAdminController implements ServletContextAware{
 		
 		
 		
-		return "redirect:index";
+		return "redirect:/superadmin/account/index";
 	}
 	
-	
+	@RequestMapping(value="active/{id}", method= RequestMethod.GET)
+	public String activeAccount(@PathVariable("id") int id, @ModelAttribute("account") Account account, ModelMap modelMap
+			)
+	{
+		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		Account account2= accountService.findById(id);
+		
+		try {
+			account2.setStatus(true);
+			
+			accountService.save(account2);
+			//modelMap.put("accounts", accountService.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return "redirect:/superadmin/account/index";
+	}
 	
 	
 	

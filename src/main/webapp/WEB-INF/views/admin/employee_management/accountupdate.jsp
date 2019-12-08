@@ -33,9 +33,10 @@
 					</div>
 					
 						<div class="box-body">
+						
 							<!-- Date dd/mm/yyyy -->
 
-							<div class="form-group">
+						<!--  	<div class="form-group">
 								<label>Username</label>
 								<div class="input-group">
 									<div class="input-group-addon">
@@ -48,7 +49,7 @@
 								<!-- /.input group -->
 
 								<!-- /.form group -->
-							</div>
+						<!-- </div>-->
 							<!-- Date mm/dd/yyyy -->
 							<div class="form-group">
 							<label>Password</label>
@@ -120,7 +121,18 @@
 								</div>
 								<!-- /.input group -->
 							</div>
-							
+							<div class="form-group">
+							<label>BirthDate:</label>
+
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<input type="text" class="form-control pull-right"
+									id="birthday" name="birthday" placeholder="Birthday">
+							</div>
+							<!-- /.input group -->
+						</div>
 							
 							
 							
@@ -149,18 +161,7 @@
 					</div>
 					<div class="box-body">
 						<!-- Date -->
-						<div class="form-group">
-							<label>BirthDate:</label>
-
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<input type="text" class="form-control pull-right"
-									id="birthday" name="birthday" placeholder="Birthday">
-							</div>
-							<!-- /.input group -->
-						</div>
+						
 						<!-- /.form group -->
 
 						<!-- Date range -->

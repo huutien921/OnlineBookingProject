@@ -50,6 +50,7 @@
 
 									<s:input path="username" cssClass="form-control"
 										placeholder="UserName" />
+											<span style="color:red">${err }</span>
 								</div>
 								<!-- /.input group -->
 
@@ -63,7 +64,7 @@
 										<i class="fa fa-key"></i>
 									</div>
 									<input type="password" name="password" class="form-control"
-										placeholder="Password">
+										placeholder="Password" required="required">
 								</div>
 								<!-- /.input group -->
 							</div>
@@ -114,18 +115,6 @@
 
 
 
-							<div class="form-group">
-								<label>Address</label>
-
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="glyphicon glyphicon-home"></i>
-									</div>
-									<s:input path="address" cssClass="form-control" placeholder="Address"/>
-							
-								</div>
-								<!-- /.input group -->
-							</div>
 							
 							
 							
@@ -154,6 +143,20 @@
 						<h3 class="box-title">Date picker</h3>
 					</div>
 					<div class="box-body">
+					
+					<div class="form-group">
+								<label>Address</label>
+
+								<div class="input-group">
+									<div class="input-group-addon">
+										<i class="glyphicon glyphicon-home"></i>
+									</div>
+									<s:input path="address" cssClass="form-control" placeholder="Address"/>
+							
+								</div>
+								<!-- /.input group -->
+							</div>
+					
 						<!-- Date -->
 						<div class="form-group">
 							<label>BirthDate:</label>
@@ -207,18 +210,8 @@
 						</div>
 						<!-- /.form group -->
 
+							
 
-<div class="form-group">
-							<label>Score:</label>
-
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<s:input path="score" cssClass="form-control" placeholder="Score"/>
-							</div>
-							<!-- /.input group -->
-						</div>
 
 
 

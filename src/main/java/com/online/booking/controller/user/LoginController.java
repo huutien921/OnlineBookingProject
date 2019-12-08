@@ -69,6 +69,8 @@ public class LoginController {
 				RoleAccount roleAccount = new RoleAccount();
 				roleAccount.setAccount(new Account(account.getId()));
 				roleAccount.setRole(new Role(4));
+				//roleAccount.setRole(new Role(1));
+				//roleAccount.setRole(new Role(2));;
 				roleAccount.setStatus(true);
 				roleAccountService.save(roleAccount);
 				

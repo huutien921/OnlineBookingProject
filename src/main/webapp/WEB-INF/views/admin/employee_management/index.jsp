@@ -49,11 +49,9 @@
 						<th>Full name</th>
 						<th>Birthday</th>
 						<th>Email</th>
-						<th>Address</th>
+						
 						<th>Gender</th>
-						<th>Avatar</th>
-						<th>Identity card</th>
-						<th>Score</th>
+						
 						<th>Created</th>
 						<th>Status</th>
 						<th>Role</th>
@@ -71,11 +69,9 @@
 						<td>${ account.fullname}</td>
 						<td>${ account.birthday}</td>
 						<td>${account.email }</td>
-						<td>${account.address }</td>
+					
 						<td>${account.gender }</td>
-						<td>${ account.avatar } </td>
-						<td>${account.identitycard } </td>
-						<td>${account.score } </td>
+						
 						<td>${account.created } </td>
 							<c:if test="${account.status ==true}">
 							<td> Active</td>
@@ -109,12 +105,15 @@
 						</c:if>
 						</c:forEach>
 						
-						<td><a href="${pageContext.request.contextPath }/admin/employee/accountdetail/${account.id }" class="btn btn-success">Detail</a>
+						<td align="center"><a href="${pageContext.request.contextPath }/admin/employee/accountdetail/${account.id }" class="btn btn-success">Detail</a>
 						
 						<a href="${pageContext.request.contextPath }/admin/employee/accountupdate/${account.id }" class="btn btn-success">Update</a>
-						
-						<a href="${pageContext.request.contextPath }/admin/employee/unactive/${account.id}" class="btn btn-success">Unactive</a>
-						
+						<c:if test="${account.status ==true}">
+						<a href="${pageContext.request.contextPath }/admin/employee/unactive/${account.id}" class="btn btn-danger">Unactive</a>
+						</c:if>
+						<c:if test="${account.status ==false}">
+							<a href="${pageContext.request.contextPath }/admin/employee/active/${account.id}" class="btn btn-success">Active</a>
+						</c:if>
 						</td>
 					</tr>
 						</c:forEach>
@@ -156,16 +155,3 @@
 
 
 
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>

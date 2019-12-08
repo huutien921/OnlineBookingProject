@@ -49,7 +49,7 @@ import com.online.booking.services.ServicetypeService;
 public class Service_AdminController implements ServletContextAware{
 	
 	@Autowired
-	private ServiceService serviceservice;
+	private ServiceService serviceService;
 	@Autowired
 	private ServicetypeService serviceTypeService;
 	
@@ -58,13 +58,13 @@ public class Service_AdminController implements ServletContextAware{
 	
 	@RequestMapping(value = "index",method = RequestMethod.GET)
 	public String index(ModelMap map) {
-		map.put("services",serviceservice.findAll());
+		map.put("services",serviceService.findAll());
 		
 		return "admin.service.index";
 	}
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String details(@PathVariable("id") int id, ModelMap modelMap) {
-		modelMap.put("service", serviceservice.find(id));
+		modelMap.put("service", serviceService.find(id));
 		return "admin/service_management/detail";
 	}
 	
@@ -90,7 +90,7 @@ public class Service_AdminController implements ServletContextAware{
 		service.setIconSrc(fileName);
 		service.setStatus(true);
 		service.setServicetype(servicetype);
-		serviceservice.save(service);
+		serviceService.save(service);
 		return "redirect:index";
 	}
 	
@@ -110,7 +110,7 @@ public class Service_AdminController implements ServletContextAware{
 	
 	@RequestMapping(value="update/{id}", method= RequestMethod.GET)
 	public String edit(@PathVariable("id") int id, ModelMap modelMap) {
-		Service service = serviceservice.find(id);
+		Service service = serviceService.find(id);
 	
 		modelMap.put("services", serviceTypeService.findAll());
 		modelMap.put("service", service);
@@ -126,7 +126,7 @@ public class Service_AdminController implements ServletContextAware{
 			ModelMap modelMap)
 	{
 	
-		Service service1 = serviceservice.find(service.getId());
+		Service service1 = serviceService.find(service.getId());
 		
 		
 		try {
@@ -143,7 +143,7 @@ public class Service_AdminController implements ServletContextAware{
 		service1.setPriority(Integer.valueOf(service.getPriority()));
 		service1.setServicetype(servicetype);
 		service1.setStatus(true);
-			serviceservice.save(service1);
+		serviceService.save(service1);
 			//modelMap.put("service", serviceservice.findAll());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -153,6 +153,54 @@ public class Service_AdminController implements ServletContextAware{
 		
 		return "redirect:index";
 	}
+	@RequestMapping(value="unactive/{id}", method= RequestMethod.GET)
+	public String blockService(@PathVariable("id") int id, @ModelAttribute("service") Service service, ModelMap modelMap
+			)
+	{
+		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+
+		Service service2=serviceService.findById(id);
+		
+		try {
+			service2.setStatus(false);
+			
+			serviceService.save(service2);
+			//modelMap.put("accounts", accountService.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return "redirect:/admin/service/index";
+	}
+	@RequestMapping(value="active/{id}", method= RequestMethod.GET)
+	public String activeService(@PathVariable("id") int id,@ModelAttribute("service") Service service, ModelMap modelMap
+			)
+	{
+		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+Service service2=serviceService.findById(id);
+		
+		try {
+			service2.setStatus(true);
+			
+			serviceService.save(service2);
+			//modelMap.put("accounts", accountService.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return "redirect:/admin/service/index";
+	}
+	
+	
+	
 	
 	
 	

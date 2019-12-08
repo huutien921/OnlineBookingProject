@@ -135,7 +135,12 @@ public class EmployeeTag extends RequestContextAwareTag{
 					
 						writer.write("<td><a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/accountdetail/"+account.getId()+"\" class=\"btn btn-success\">Detail</a>");
 						writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/accountupdate/"+account.getId()+"\" class=\"btn btn-success\">Update</a>");
-						
+						if(account.getStatus()==true) {
+
+							writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/unactive/"+account.getId()+"\" class=\"btn btn-success\">Unactive</a>");
+						}else {
+							writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/active/"+account.getId()+"\" class=\"btn btn-success\">Active</a>");
+						}
 						writer.write("</td>");
 						writer.write("</tr>");
 					

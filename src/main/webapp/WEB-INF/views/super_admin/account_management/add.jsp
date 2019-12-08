@@ -50,6 +50,7 @@
 
 									<s:input path="username" cssClass="form-control"
 										placeholder="UserName" />
+											<span style="color:red">${err }</span>
 								</div>
 								<!-- /.input group -->
 
@@ -111,10 +112,7 @@
 								<!-- /.input group -->
 							</div>
 							<!-- /.form group -->
-
-
-
-							<div class="form-group">
+	<div class="form-group">
 								<label>Address</label>
 
 								<div class="input-group">
@@ -126,6 +124,9 @@
 								</div>
 								<!-- /.input group -->
 							</div>
+
+
+							
 							
 							
 							
@@ -154,6 +155,8 @@
 						<h3 class="box-title">Date picker</h3>
 					</div>
 					<div class="box-body">
+				
+					
 						<!-- Date -->
 						<div class="form-group">
 							<label>BirthDate:</label>
@@ -236,17 +239,6 @@
 						
 
 
-<div class="form-group">
-							<label>Score:</label>
-
-							<div class="input-group">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<s:input path="score" cssClass="form-control" placeholder="Score"/>
-							</div>
-							<!-- /.input group -->
-						</div>
 
 
 

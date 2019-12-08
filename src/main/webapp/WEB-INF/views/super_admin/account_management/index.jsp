@@ -123,10 +123,13 @@
 						
 						<a href="${pageContext.request.contextPath }/superadmin/account/update/${account.id }" class="btn btn-success">Update</a>
 						
-						<s:form method="post" modelAttribute="account" action="${pageContext.request.contextPath }/superadmin/account/save/${account.id}">
-						<input type="submit" name="block" value="UnActive" class="btn btn-success">
-						<input type="hidden" name="id" value="12">
-						</s:form>
+						<c:if test="${account.status ==true}">
+						<a href="${pageContext.request.contextPath }/superadmin/account/unactive/${account.id}" class="btn btn-danger">Unactive</a>
+						</c:if>
+						<c:if test="${account.status ==false}">
+							<a href="${pageContext.request.contextPath }/superadmin/account/active/${account.id}" class="btn btn-success">Active</a>
+						</c:if>
+						
 						</td>
 					</tr>
 						</c:forEach>

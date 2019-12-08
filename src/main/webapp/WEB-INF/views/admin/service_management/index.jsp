@@ -107,7 +107,7 @@
 										<td>Active</td>
 
 									</c:if>
-									<c:if test="${account.status ==false}">
+									<c:if test="${service.status ==false}">
 										<td>UnActive</td>
 
 									</c:if>
@@ -119,9 +119,12 @@
 										href="${pageContext.request.contextPath }/admin/service/update/${service.id }"
 										class="btn btn-success">Update</a>
 										
-										<a
-										href="${pageContext.request.contextPath }/admin/service/update/${service.id }"
-										class="btn btn-success">Unactive</a>
+										<c:if test="${service.status ==true}">
+						<a href="${pageContext.request.contextPath }/admin/service/unactive/${service.id}" class="btn btn-danger">Unactive</a>
+						</c:if>
+						<c:if test="${service.status ==false}">
+							<a href="${pageContext.request.contextPath }/admin/service/active/${service.id}" class="btn btn-success">Active</a>
+						</c:if>
 										
 										</td>
 								</tr>

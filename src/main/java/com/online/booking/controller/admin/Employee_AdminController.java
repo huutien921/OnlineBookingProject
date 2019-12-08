@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.online.booking.entities.Account;
 import com.online.booking.entities.Role;
@@ -87,7 +88,8 @@ public class Employee_AdminController  implements ServletContextAware{
 			@RequestParam("password") String password,
 			@RequestParam("birthday")String birthday,
 			@RequestParam("gender") String gender,
-			@RequestParam("file") MultipartFile file
+			@RequestParam("file") MultipartFile file,
+			RedirectAttributes redirectAttributes
 			//@RequestParam("role") Integer[] roleName
 		//	@RequestParam("role") Integer roleName
 			//@RequestParam Integer[] accountid
@@ -98,8 +100,11 @@ public class Employee_AdminController  implements ServletContextAware{
 	//	map.put("roles", roleService.findAll());
 		
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-		
+		String existUserName=account.getUsername();
 		try {
+			if (accountService.findByUsername(existUserName)==null) {
+				
+		
 			String fileName=saveFile(file);
 			account.setBirthday(simpleDateFormat.parse(birthday));
 			account.setCreated(new Date());
@@ -130,7 +135,10 @@ public class Employee_AdminController  implements ServletContextAware{
 		
 			roleAccountService.save(roleAccount);
 			
-			
+			}else {
+				redirectAttributes.addFlashAttribute("err", "Username existed");
+				return "redirect:/admin/employee/insertaccount";
+			}
 			
 			
 		} catch (ParseException e) {
@@ -174,15 +182,15 @@ public class Employee_AdminController  implements ServletContextAware{
 			@RequestParam("birthday") String birthday,
 			@RequestParam("file") MultipartFile file,
 			@ModelAttribute("roles") Role role,
-			@ModelAttribute("roleaccount") RoleAccount roleAccount,
-			@RequestParam("gender") String gender,
+	
+			@RequestParam("gender") String gender
 		
 			//@RequestParam("role") Integer[] roleName
-			@RequestParam("role") Integer roleName)
+			)
 	{
 		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		Account account2= accountService.find(account.getId());
-		RoleAccount roleAccount2=roleAccountService.find(roleAccount.getId());
+	
 		
 		try {
 			String fileName=saveFile(file);
@@ -200,12 +208,7 @@ public class Employee_AdminController  implements ServletContextAware{
 		
 			accountService.save(account2);
 			
-			roleAccount2.setStatus(true);
-			role.setId(roleName);
-			roleAccount2.setRole(role);
-			roleAccount2.setAccount(account);
-			roleAccountService.save(roleAccount2);
-		
+			
 			
 		//	modelMap.put("accounts", accountService.findAll());
 		} catch (Exception e) {
@@ -246,9 +249,34 @@ public class Employee_AdminController  implements ServletContextAware{
 		
 		
 		
-		return "redirect:index";
+		return "redirect:/admin/employee/index";
 	}
-
+	@RequestMapping(value="active/{id}", method= RequestMethod.GET)
+	public String activeAccount(@PathVariable("id") int id, @ModelAttribute("account") Account account, ModelMap modelMap
+			)
+	{
+		//SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		Account account2= accountService.findById(id);
+		
+		try {
+			account2.setStatus(true);
+			
+			accountService.save(account2);
+			//modelMap.put("accounts", accountService.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return "redirect:/admin/employee/index";
+	}
+	
+	
+	
+	
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
