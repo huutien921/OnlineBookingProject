@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 02:42 PM
+-- Generation Time: Dec 08, 2019 at 10:44 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -62,19 +62,21 @@ CREATE TABLE `account` (
   `avatar` varchar(250) DEFAULT NULL,
   `identitycard` varchar(25) DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL
+  `status` tinyint(1) DEFAULT NULL,
+  `created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `email`, `address`, `type`, `gender`, `avatar`, `identitycard`, `score`, `status`) VALUES
-(1, 'admin', '123', 'Admin Admin', '1998-01-01', 'admin@gmail.com', 'Ho Chi Minh', NULL, 'Male', 'admin.PNG', '123456987963', 0, 1),
-(2, 'superadmin', '123', 'Super Admin', '1998-01-01', 'superadmin@gmail.com', 'Ha Noi', NULL, 'Male', 'superadmin.PNG', '123456987963', 0, 1),
-(3, 'tien_user', '123', 'Nguyen Tien', '1998-01-01', 'huutien921@gmail.com', 'ca mau', NULL, 'Male', 'tien.PNG', '381839139', 0, 1),
-(4, 'thuan_super', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'thuan.PNG', '381839139', 0, 1),
-(5, 'lam_employee', '123', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'lam.PNG', '381839139', 0, 1);
+INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `email`, `address`, `type`, `gender`, `avatar`, `identitycard`, `score`, `status`, `created`) VALUES
+(1, 'admin', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Admin Admin', '1998-01-01', 'admin@gmail.com', 'Ho Chi Minh', NULL, 'Male', 'admin.PNG', '123456987963', 0, 1, NULL),
+(2, 'superadmin', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Super Admin', '1998-01-01', 'superadmin@gmail.com', 'Ha Noi', NULL, 'Male', 'superadmin.PNG', '123456987963', 0, 1, NULL),
+(3, 'tien_user', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Nguyen Tien', '1998-01-01', 'huutien921@gmail.com', 'ca mau', NULL, 'Male', '08122019144921destination-2.jpg', '381839139', 0, 1, NULL),
+(4, 'thuan_super', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'thuan.PNG', '381839139', 0, 1, NULL),
+(5, 'lam_employee', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'lam.PNG', '381839139', 0, 1, NULL),
+(6, 'Huutien', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Tien', '1998-12-25', 'huutien921@gmail.com', 'ca mau', '', 'Male', '08122019083258thit.jpg', '7414585205252', NULL, 1, '2019-12-08');
 
 -- --------------------------------------------------------
 
@@ -290,7 +292,9 @@ INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward
 (12, 'Cho Dem', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, 3, 1),
 (16, 'ttt', '0212201909025328112019110139thit.jpg', '<p>ttt</p>', 'ttt', 'ttt', 'ttt', 'tt', 'tt', 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0),
 (17, 'ttt', '02122019095837destination-2.jpg', '<p>ttt</p>', 'ttt', 'ttt', 'ttt', 'ttt', 'ttt', 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0),
-(18, 'tttt', 'hotelDefault.jpg', '<p>tttt</p>', 'ttttt', 'ttt', 'ttt', 'ttt', 'ttt', 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0);
+(18, 'tttt', 'hotelDefault.jpg', '<p>tttt</p>', 'ttttt', 'ttt', 'ttt', 'ttt', 'ttt', 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0),
+(19, 'hhh', 'hotelDefault.jpg', '<p>hhh</p>', 'hhh', 'hhh', 'hhh', 'hhh', 'hhh', 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0),
+(20, 'tttt', 'hotelDefault.jpg', '<p>ttt</p>', 'ttt', 'ttt', 'ttt', 'ttt', 'ttt', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, NULL, 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -381,7 +385,12 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `name`, `payment`, `created`, `account_id`, `sale_id`, `status`) VALUES
 (1, NULL, NULL, '2019-11-06', 3, NULL, 1),
 (2, NULL, NULL, '2019-11-05', 3, NULL, 1),
-(10, 'TS4GDET7V57TS', 'PAYID-LXTT4RA0LP38218M2720291V', '2019-12-04', 3, NULL, 1);
+(10, 'TS4GDET7V57TS', 'PAYID-LXTT4RA0LP38218M2720291V', '2019-12-04', 3, NULL, 1),
+(11, 'TS4GDET7V57TS', 'PAYID-LXU2FNY16X232145J2052453', '2019-12-06', 3, NULL, 1),
+(12, 'TS4GDET7V57TS', 'PAYID-LXU4SZY0AK73220UD7681433', '2019-12-06', 3, NULL, 1),
+(13, 'TS4GDET7V57TS', 'PAYID-LXWL27Q46D964785A664963V', '2019-12-08', 3, NULL, 1),
+(14, 'TS4GDET7V57TS', 'PAYID-LXWMUSI3SK068463J759860V', '2019-12-08', 3, NULL, 1),
+(15, 'TS4GDET7V57TS', 'PAYID-LXWMZ7I5ER63458EM3621038', '2019-12-08', 3, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -410,7 +419,12 @@ INSERT INTO `order_detail` (`id`, `room_id`, `check_in_date`, `check_out_date`, 
 (1, 1, '2019-11-06', '2019-11-10', 2, NULL, NULL, 'nho mua do an sang !', 1, 1),
 (2, 2, '2019-11-06', '2019-11-10', 3, NULL, NULL, 'nho mua do an sang 2 !', 1, 1),
 (3, 1, '2019-11-07', '2019-11-11', 3, NULL, NULL, 'nho mua do an sang 2 !', 2, 1),
-(4, 1, '2019-11-20', '2019-11-23', 2, NULL, NULL, 'nho mua do an sang 2 !', 2, 1);
+(4, 1, '2019-11-20', '2019-11-23', 2, NULL, NULL, 'nho mua do an sang 2 !', 2, 1),
+(13, 10, '2019-12-06', '2019-12-08', 1, 'Nguyen Tien', 'huutien921@gmail.com', '', 11, 1),
+(14, 10, '2019-12-06', '2019-12-14', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 12, 1),
+(15, 10, '2019-12-08', '2019-12-12', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 13, 1),
+(16, 10, '2019-12-08', '2019-12-09', 3, 'Nguyen Tien', 'huutien921@gmail.com', '', 14, 1),
+(17, 10, '2019-12-08', '2019-12-09', 1, 'Nguyen Tien', 'huutien921@gmail.com', '', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -516,7 +530,8 @@ INSERT INTO `role_account` (`id`, `account_id`, `role_id`, `status`) VALUES
 (5, 3, 4, 1),
 (6, 4, 5, 1),
 (7, 5, 3, 1),
-(9, 3, 5, 1);
+(9, 3, 5, 1),
+(10, 6, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -657,10 +672,10 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`id`, `name`, `price`, `core`, `priority`, `icon_src`, `id_account`, `type_id`, `description`, `status`) VALUES
-(1, 'QC', '80000', 'QC01', 1, NULL, 1, 1, 'Day tin Len dau muc 1', 1),
-(2, 'QC', '90000', 'QC02', 2, NULL, 1, 1, 'Day tin Len dau muc 2', 1),
-(3, 'QC', '100000', 'QC03', 3, NULL, 1, 1, 'Day tin Len dau muc 3', 1),
-(4, 'QC', '110000', 'QC04', 4, NULL, 1, 1, 'Day tin Len dau muc 4', 1),
+(1, 'QC', '80000', 'QC01', 1, 'lv1.PNG', 2, 1, '<p>Day tin Len dau muc 1</p>\r\n', 1),
+(2, 'QC', '90000', 'QC02', 2, 'lv2.PNG', 1, 1, 'Day tin Len dau muc 2', 1),
+(3, 'QC', '100000', 'QC03', 3, 'lv2.PNG', 2, 1, '<p>Day tin Len dau muc 3</p>\r\n', 1),
+(4, 'QC', '110000', 'QC04', 4, 'lv2.PNG', 2, 1, '<p>Day tin Len dau muc 4</p>\r\n', 1),
 (5, 'Add Hotel', '120000', 'add', 0, NULL, 1, 2, 'Create Hotel', 1);
 
 -- --------------------------------------------------------
@@ -714,7 +729,10 @@ INSERT INTO `service_hotel` (`id`, `id_hotel`, `id_service`, `start_date`, `end_
 (8, 12, 3, '2019-11-06', '2019-12-06', '2019-11-07', NULL, 1),
 (9, 16, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, 0),
 (11, 17, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, 1),
-(12, 18, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, 1);
+(12, 18, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, 1),
+(13, 1, 1, '2019-12-07', '2020-12-07', '2019-12-07', 960000, 1),
+(14, 4, 1, '2019-12-07', '2020-12-07', '2019-12-07', 960000, 1),
+(15, 20, 5, '2019-12-07', '2020-12-07', '2019-12-07', 1440000, 1);
 
 -- --------------------------------------------------------
 
@@ -954,7 +972,7 @@ ALTER TABLE `about`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `bed_type`
 --
@@ -989,7 +1007,7 @@ ALTER TABLE `evaluate`
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `imageblog`
 --
@@ -1004,12 +1022,12 @@ ALTER TABLE `image_room`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `panel`
 --
@@ -1034,7 +1052,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `role_account`
 --
 ALTER TABLE `role_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `room`
 --
@@ -1059,7 +1077,7 @@ ALTER TABLE `sale`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `servicetype`
 --
@@ -1069,7 +1087,7 @@ ALTER TABLE `servicetype`
 -- AUTO_INCREMENT for table `service_hotel`
 --
 ALTER TABLE `service_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `star_rating`
 --
