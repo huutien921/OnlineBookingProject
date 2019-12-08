@@ -151,4 +151,11 @@ public class ServiceHotel implements java.io.Serializable {
 		this.payments = payments;
 	}
 
+	@Override
+	public String toString() {
+		return "ServiceHotel [id=" + id + ", hotel=" + hotel + ", service=" + service + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", created=" + created + ", status=" + status + ", tatol=" + tatol
+				+ ", payments=" + payments + "]";
+	}
+
 }

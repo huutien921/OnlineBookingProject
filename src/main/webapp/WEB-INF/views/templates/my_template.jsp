@@ -11,6 +11,7 @@
 <!--  -->
 
 <!--  -->
+	<link rel="icon" type="image/gif" href="${pageContext.request.contextPath }/uploads/images/bookbed_logo.png" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -200,7 +201,7 @@ img.hover-shadow {
 					<li class="nav-item"><a class="nav-link" href="#">Languages</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">$USD</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/statusOrder"><i
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/account/statusOrder"><i
 							class="fa fa-calendar"></i><!--  History-->My Order</a>
 					</li>
 					

@@ -117,30 +117,32 @@ public class BookingController {
 				if (result) {
 					redirectAttributes.addFlashAttribute("ms", "ok");
 					System.out.println("oke");
-					// tra ve trang hoa don dat phong
+					return "redirect:/user/account/statusOrder";
 					
-					return null;
+					
 				}else {
 					redirectAttributes.addFlashAttribute("ms", "failed");
 					System.out.println("filed");
 					
-					return null;
+					return "redirect:/user/account/statusOrder";
 					
 					
 				}
 
 			}else {
 				System.out.println("thanh toan the");
-				return "user.booking";
+				return "redirect:/user/account/statusOrder";
 				
-				/// thanh toan tai the
+			
 			}
 
 			
 			
 		} catch (Exception e) {
-			System.out.println("thanh toan loi");
-			return "user.booking";
+			redirectAttributes.addFlashAttribute("ms", "failed");
+			System.out.println("filed");
+			
+			return "redirect:/user/account/statusOrder";
 		}
 
 	}

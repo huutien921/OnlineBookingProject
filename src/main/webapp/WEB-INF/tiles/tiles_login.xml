@@ -10,13 +10,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/login/index.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="login.statusOrder" extends="my_template">
-		<put-attribute name="content" value="/WEB-INF/views/login/StatusOrder.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="login.profile" extends="my_template">
-		<put-attribute name="content" value="/WEB-INF/views/login/profile.jsp"></put-attribute>
-	</definition>
+
 	
 
 </tiles-definitions>

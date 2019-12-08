@@ -316,7 +316,37 @@
 					
 					</div>
 						<div class="tab-pane" id="store">
-						okkkk
+			<div class="row">
+			<c:forEach var="service" items="${services }">
+			
+					<div class="col-sm-4">
+						<a href="/promotions/detail/8"><img alt="promo" src="/uploads/images/${service.iconSrc }" style="width: 250px; height: 200px"></a>
+						<h5 style="color: gray;">
+							Name: ${service.name }
+						</h5>
+							<h5 style="color: gray;">
+							Price:$ ${service.price } /month
+						</h5>
+							<h5 style="color: gray;">
+							Priority: ${service.priority }
+						</h5>
+						<div class="row">
+							<div class="col-sm-12">
+								<small style="color: gray;">
+								
+									${ service.description}
+								</small>
+							</div>
+							<div class="col">
+								<a href="/superuser/servicehotel/buyService/${service.id }/${hotel.id}" class="btn btn-outline-info">buy</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+			</c:forEach>
+      		
+					
+         </div>
 						</div>
 
 				</div>
