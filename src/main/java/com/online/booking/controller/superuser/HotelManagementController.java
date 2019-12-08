@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -72,42 +73,36 @@ public class HotelManagementController {
 	@Autowired
 	private OrderDetailService orderDetailService;
 	@Autowired
-	private ServiceService serviceService ;
+	private ServiceService serviceService;
 	@Autowired
 	private AccountService accountService;
 	@Autowired
-	private CheckHelper checkHelper; 
-	
+	private CheckHelper checkHelper;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String index(ModelMap map ,HttpSession httpSession) {
-		
-		
-		httpSession.setAttribute("account", accountService.findById(3));
-		
-		
-		
-	Account account =	(Account) httpSession.getAttribute("account");
-		
+	public String index(ModelMap map, Authentication authentication, HttpSession session) {
+
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		session.setAttribute("account", account);
+
 		map.put("hotels", hotelService.findByAccountId(account.getId()));
 		map.put("now", new Date());
+		map.put("title", "My Hotel");
 		return "superuser.myhotel.index";
 	}
 
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-	public String detail(ModelMap map, @PathVariable("id") int id ,HttpSession httpSession) {
-		Account account =	(Account) httpSession.getAttribute("account");
+	public String detail(ModelMap map, @PathVariable("id") int id, Authentication authentication) {
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
 			map.put("hotel", hotelService.findById(id));
+			map.put("title", "Detail");
 
 			return "superuser.myhotel.detail";
 		} else {
 			return "error.404";
 		}
-	
-		
 
-	
 	}
 
 	@RequestMapping(value = "ajax/image", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -201,34 +196,32 @@ public class HotelManagementController {
 	}
 
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-	public String edit(ModelMap map, @PathVariable("id") int id , HttpSession httpSession) {
-		Account account =	(Account) httpSession.getAttribute("account");
+	public String edit(ModelMap map, @PathVariable("id") int id, Authentication authentication) {
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
 			map.put("hotel", hotelService.findById(id));
 
 			map.put("starRatings", (List<StarRating>) starRatingService.findAll());
+			map.put("title", "Edit");
 
 			return "superuser.myhotel.edit";
 		} else {
 			return "error.404";
 		}
-		
-	
-	
 
 	}
 
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String edit(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult,
-			@RequestParam("file") MultipartFile file ,RedirectAttributes redirectAttributes , ModelMap map) {
+			@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, ModelMap map) {
 		hotelValidator.validate(hotel, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 
 			return "superuser.myhotel.edit/" + hotel.getId();
-			
+
 		} else {
-		
+
 			if (!file.isEmpty()) {
 
 				String fileName = uploadFileHelper.saveFile(file); // save file
@@ -251,19 +244,17 @@ public class HotelManagementController {
 			hotel.setAccountByAccountId(hotelBefore.getAccountByAccountId());
 			hotel.setCopponHotel(hotelBefore.getCopponHotel());
 			hotel.setStatus(hotelBefore.isStatus());
-			Hotel  hotelResult = hotelService.save(hotel);
-			if(hotelResult != null && hotelResult.getAccountByIdAcEmployee() == null ){
-				
+			Hotel hotelResult = hotelService.save(hotel);
+			if (hotelResult != null && hotelResult.getAccountByIdAcEmployee() == null) {
+
 				redirectAttributes.addFlashAttribute("ms", "unactive");
 				return "redirect:/superuser/myhotel";
-				
-			}else 
-			if (hotelResult != null) {
+
+			} else if (hotelResult != null) {
 				redirectAttributes.addFlashAttribute("ms", "ok");
 				return "redirect:/superuser/myhotel";
 			}
-			
-			
+
 			else {
 				map.put("ms", "failed");
 				return "superuser.myhotel.edit/" + hotel.getId();
@@ -271,37 +262,32 @@ public class HotelManagementController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "management/{id}", method = RequestMethod.GET)
-	public String management(ModelMap map, @PathVariable("id") int id , HttpSession httpSession) {
-		
-		Account account =	(Account) httpSession.getAttribute("account");
+	public String management(ModelMap map, @PathVariable("id") int id, Authentication authentication) {
+
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
 			map.put("hotel", hotelService.findById(id));
-			map.put("orderdetail",orderDetailService.findByIdHotel(id));
+			map.put("orderdetail", orderDetailService.findByIdHotel(id));
 			map.put("services", serviceService.findByTypeService(1));
 			map.put("now", new Date());
-			
+			map.put("title", "Management");
 
 			return "superuser.myhotel.management";
 		} else {
 			return "error.404";
 		}
-		
-	
+
 	}
+
 	@RequestMapping(value = "ajax/find/order", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public List<OrderDetail> findByidRoom(@RequestParam("id") int idRoom) {
-		System.out.println( orderDetailService.findByIdRoom(idRoom).size());
-		
+		System.out.println(orderDetailService.findByIdRoom(idRoom).size());
+
 		return orderDetailService.findByIdRoom(idRoom);
-		
-		
+
 	}
-	
-	
-
-
 
 }

@@ -51,6 +51,7 @@ public class SearchController {
 			pagedListHolder.setPage(page);
 			pagedListHolder.setPageSize(3);
 			model.put("hotels", hotels);
+			model.put("title", "Search");
 			for (Hotel hotel : hotels) {
 				System.out.println(hotel.getName());
 			}

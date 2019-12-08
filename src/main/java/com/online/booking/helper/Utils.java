@@ -18,5 +18,6 @@ public class Utils {
 	    if(url.toString().endsWith("/")){
 	    	url.append("/");
 	    }
+	    System.out.println(url.toString());
 	    return url.toString();
 }}

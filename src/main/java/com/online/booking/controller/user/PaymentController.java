@@ -35,7 +35,7 @@ import com.online.booking.services.SaleService;
 import com.online.booking.helper.Utils;
 
 @Controller
-
+@RequestMapping("user")
 public class PaymentController {
 	@Autowired
 	private OrderDetailService orderDetailService;
@@ -97,8 +97,8 @@ public class PaymentController {
 			orderDetail.setStatus(true);
 			httpSession.setAttribute("orderdetail", orderDetail);
 
-			String cancelUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
-			String successUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
+			String cancelUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_CANCEL;
+			String successUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_SUCCESS;
 
 			Payment payment = paypalService.createPayment(price, "USD", PaypalPaymentMethod.paypal,
 					PaypalPaymentIntent.sale, "payment description", cancelUrl, successUrl);

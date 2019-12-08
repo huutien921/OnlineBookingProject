@@ -54,6 +54,7 @@ public class HotelManagerController {
 		Hotel hotel = new Hotel();
 		map.put("hotel", hotel);
 		map.put("starRatings", (List<StarRating>) starRatingService.findAll());
+		map.put("title", "Create Hotel");
 
 		return "user.superuser.create.hotel";
 	}

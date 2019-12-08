@@ -17,8 +17,9 @@
 		<div class="col-2"></div>
 		<div class="col-4">
 			<div>
+				<span style="color: green;">${registerSuccess }</span>
 				<h1 style="color: white;">Login</h1>
-				<form action="/action_page.php">
+				<form action="${pageContext.request.contextPath }/login/process" method="post">
 					<div class="form-group">
 						<label style="color: white;">Name:</label> <input type="text"
 							class="form-control" id="usr" name="username">
@@ -27,8 +28,11 @@
 						<label style="color: white;">Password:</label> <input
 							type="password" class="form-control" id="pwd" name="password">
 					</div>
+					<p style="color: red;">${msg }</p>
 					<button type="submit" class="btn btn-light">Login</button>
 				</form>
+				<br>
+				<a href="${pageContext.request.contextPath }/login/register" style="color: white">Register</a>
 			</div>
 		</div>
 	</div>

@@ -10,7 +10,15 @@
 			<div class="row">
 				<div class="col-5">
 					<br> <br> <br>
-					<h3 style="color: white;">Welcome back, Lam!</h3>
+					
+					<c:if test="${name != null }">
+						<h3 style="color: white;">Welcome back, ${name }!</h3>
+					</c:if>
+					
+					<c:if test="${name == null }">
+						<h3 style="color: white;">Welcome to Bookbed</h3>
+					</c:if>
+					
 					<h5 style="color: #E3E5EA;">Did you know? Traveling nurtures
 						modesty as we experience the bigness of this world.</h5>
 				</div>

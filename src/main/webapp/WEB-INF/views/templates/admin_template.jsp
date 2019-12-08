@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="tags" uri="tags"%>
@@ -146,7 +147,7 @@ ${title }
 							class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>${sessionScope.account.fullname }</p>
+						<p>${pageContext.request.userPrincipal.name}</p>
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
@@ -166,7 +167,7 @@ ${title }
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
-
+					<sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
 					<!-- super admin -->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 							<span>Super admin</span> <span class="pull-right-container">
@@ -188,7 +189,8 @@ ${title }
 									class="fa fa-circle-o"></i> Template management</a></li>
 						</ul></li>
 					<!-- end admin -->
-
+</sec:authorize>
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<!-- admin -->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 							<span>Admin</span> <span class="pull-right-container"> <i
@@ -218,6 +220,8 @@ ${title }
 						</ul></li>
 						
 					<!-- end admin -->
+				</sec:authorize>
+				<sec:authorize access="hasRole('ROLE_EMPLOYEE')">
 					<!-- employee-->
 					<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 							<span>Employee</span> <span class="pull-right-container">
@@ -260,6 +264,7 @@ ${title }
 
 						</ul></li>
 					<!-- end employee -->
+					</sec:authorize>
 <!-- super user-->
 					<li class="treeview active"><a href="#"> <i class="fa fa-table"></i>
 							<span>Super User</span> <span class="pull-right-container">

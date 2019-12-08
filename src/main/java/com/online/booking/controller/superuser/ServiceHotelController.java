@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,10 +47,11 @@ public class ServiceHotelController {
 	@RequestMapping(value = {"buyService/{id}/{idhotel}","buyService"}, method = RequestMethod.GET)
 	public String buyServiceAddHotel(ModelMap map , @PathVariable( value = "id" ,required = false) Integer id
 			,@PathVariable( value = "idhotel" ,required = false) Integer idhotel
-			, HttpSession httpSession) {
+			, Authentication authentication) {
+		map.put("title", "BuyService");
 		
 		
-		Account account =	(Account) httpSession.getAttribute("account");
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 	
 		map.put("account", account);
 		if (id != null && idhotel != null) {

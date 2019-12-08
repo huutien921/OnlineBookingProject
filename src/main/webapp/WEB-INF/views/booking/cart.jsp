@@ -250,7 +250,7 @@
 							</c:if>
 							</form>
 							
-				<form method="post" action="${pageContext.request.contextPath }/pay">
+				<form method="post" action="${pageContext.request.contextPath }user/pay">
 					<div class="row">
 							<div class="col-6">
 							

@@ -44,15 +44,18 @@ public class HotelsController {
 			List<Hotel> hotelsRelated = hotelService.relatedHotelLimitAddPriority(address, dateCheckIn, dateCheckOut,
 					guests, room, 3, hotelService.findById(id));
 			map.put("hotelsRelated", hotelsRelated);
+			map.put("title", "Hotel detail");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			System.out.println("loi");
 		}
+		
 		return "hotels.hotel_detail";
 
 	}
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
-	public String cart() {
+	public String cart(ModelMap map) {
+		map.put("title", "Cart");
 		return "hotels.cart";
 	}
 			

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import com.online.booking.services.SaleService;
 import com.online.booking.services.ServiceHotelService;
 
 @Controller
-@RequestMapping(value = { "", "home" })
+@RequestMapping(value = { "","home"})
 public class HomeController {
 	@Autowired
 	private RoomService roomService;
@@ -30,13 +31,24 @@ public class HomeController {
 	private BlogService blogService;
 	
 
-	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(ModelMap map, HttpSession httpSession) {
+	@RequestMapping(value = { "" ,"index"}, method = RequestMethod.GET)
+	public String index(Authentication authentication, ModelMap map, HttpSession httpSession) {
+		try {
+			String username = authentication.getName();
+			map.put("name", username);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+			
+			
+		
+		
 		map.put("new1Promotions", saleService.searchLimitSale(true, 1));
 		map.put("new1Blog", blogService.searchLimitBlog(true, 1));
 		map.put("newPromotions", saleService.searchLimitSale(true, 3));
 		map.put("newBlog", blogService.searchLimitBlog(true, 3));
 		map.put("rooms", roomService.findAll());
+		map.put("title", "Home");
 		return "home.index";
 	}
 }

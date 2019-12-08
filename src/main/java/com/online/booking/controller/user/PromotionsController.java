@@ -24,6 +24,7 @@ public class PromotionsController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap modelMap) {
+		modelMap.put("title", "Promotions");
 		
 		List<Sale> sale = (List<Sale>) saleService.searchSaleByStatus(true);
 		PagedListHolder pagedListHolder = new PagedListHolder(sale);
@@ -37,6 +38,7 @@ public class PromotionsController {
 	
 	@RequestMapping(value = "detail/{id}",method = RequestMethod.GET)
 	public String detail(@PathVariable("id") int id, ModelMap modelMap) {
+		modelMap.put("title", "Promotions");
 		modelMap.put("detail", saleService.find(id));
 		modelMap.put("newPromotions", saleService.searchLimitSale(true, 3));
 		

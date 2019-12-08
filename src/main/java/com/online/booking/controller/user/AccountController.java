@@ -25,11 +25,13 @@ public class AccountController {
 	
 		map.put("ordernew", ordersService.findOrderNew(accountid, new Date()));
 		map.put("orders", ordersService.findOrderByAccount(accountid));
+		map.put("title", "My order");
 		return "account.statusOrder";
 	}
 	
 	@RequestMapping( value = "profile", method = RequestMethod.GET)
-	public String profile() {
+	public String profile(ModelMap map) {
+		map.put("title", "Profile");
 		return "account.profile";
 	}
 }
