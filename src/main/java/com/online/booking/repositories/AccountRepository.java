@@ -51,4 +51,9 @@ public interface AccountRepository extends  CrudRepository<Account,Integer>{
 	@Query("select new com.online.booking.entities.UserGroup(count(a.id) as sumQuantity,month(a.created) as year ) from Account as a join a.roleAccounts ra join ra.role r where r.id=:id and year(a.created)='2019'  group by month(a.created)")
 			public List<UserGroup> statisticalUserses(@Param("id") Integer id);
 	
+	@Query("from Account where username =:username and status =:status")
+	public Account findByUsernameAndStatus(@Param("username") String username, @Param("status") boolean status);
+	
+	@Query("from Account where username =:username")
+	public Account findByUsername(@Param("username") String username);
 }

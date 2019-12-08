@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,17 @@ public class HomeController {
 	
 
 	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
-	public String index(ModelMap map, HttpSession httpSession) {
+	public String index(Authentication authentication, ModelMap map, HttpSession httpSession) {
+		try {
+			String username = authentication.getName();
+			map.put("name", username);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+			
+			
+		
+		
 		map.put("new1Promotions", saleService.searchLimitSale(true, 1));
 		map.put("new1Blog", blogService.searchLimitBlog(true, 1));
 		map.put("newPromotions", saleService.searchLimitSale(true, 3));
