@@ -8,6 +8,15 @@
 	type="text/javascript">
 	
 </script>
+<script type="text/javascript">
+
+$('#clickToRoom').click(function() {
+	$("html, body").animate({ scrollDown: $('#ourRoom').scrollDown() }, 1000);
+
+	});
+
+
+</script>
 <br>
 <div class="sidebar">
 	<h3>Comment</h3>
@@ -24,7 +33,8 @@
 					<div class="col-auto">
 						<small><strong>${evaluate.account.username }</strong></small>
 						<p>
-							<small style="font-size: 10px"><i class="fas fa-calendar"></i> ${evaluate.create }</small>
+							<small style="font-size: 10px"><i class="fas fa-calendar"></i>
+								${evaluate.create }</small>
 						</p>
 						<i><c:forEach var="star" begin="1"
 								end="${ evaluate.numberOfStars }" step="1">
@@ -84,9 +94,26 @@
 						<i class="fa fa-map-marker" style="color: #B1293E"></i>${hotel.addressFull }
 					</p>
 					<hr>
+					<!-- image hotel -->
+					<div >
+						<div data-spy="scroll" data-target="#myScrollspy" data-offset="10"
+							style="height: 600px; overflow-y: scroll; padding: 5px; border: 1px solid #ccc;">
+							<c:forEach var="room" items="${hotel.rooms }">
+								<c:forEach var="imgRoom" items="${room.imageRooms }">
+
+								<img
+									src="${pageContext.request.contextPath }/uploads/images/${imgRoom.src}"
+									style="width: 100%" alt="${imgRoom.alt}">
+								<hr>
+							</c:forEach></c:forEach>
+						</div>
+					</div>
+
+					<!-- /image hotel -->
+
 					<!-- modal image -->
 
-					<div class="row">
+					<!-- 	<div class="row">
 						<div class="col-12">
 							<img
 								src="${pageContext.request.contextPath }/uploads/images/${hotel.image}"
@@ -109,10 +136,10 @@
 							</c:forEach>
 
 						</div>
-					</div>
+					</div> -->
 
 
-					<div id="myModal" class="modal">
+					<!--  	<div id="myModal" class="modal">
 						<span class="close cursor" onclick="closeModal()">&times;</span>
 						<div class="modal-content">
 							<c:forEach var="room" items="${hotel.rooms }">
@@ -149,36 +176,39 @@
 							</div>
 						</div>
 					</div>
-					<hr>
+					<hr>-->
 					<!-- /modal image -->
 					<br>
 					<div class="container">
 						<div class="row">
 							<div class="col-6 col-md-4">
 								<c:set var="numstar" value="${ 0 }"></c:set>
-										<c:forEach var="evaluate" items="${hotels.evaluates }">
+								<c:forEach var="evaluate" items="${hotels.evaluates }">
 
-											<c:set var="numstar"
-												value="${ numstar + evaluate.numberOfStars }"></c:set>
+									<c:set var="numstar"
+										value="${ numstar + evaluate.numberOfStars }"></c:set>
 
-										</c:forEach>
-										<i> <c:if test="${numstar/ evaluate.size() > 3.5 }">
-												<img alt="icon"
-													src="${pageContext.request.contextPath }/resources/user/icon/home.png">
+								</c:forEach>
+								<i> <c:if test="${numstar/ evaluate.size() > 3.5 }">
+										<img alt="icon"
+											src="${pageContext.request.contextPath }/resources/user/icon/home.png">
 
-											</c:if>
-										</i> 
+									</c:if>
+								</i>
 
 
 							</div>
 							<div class="col-6 col-md-4">
-								<p> <i class="fas fa-comment" style="font-size: 30px"></i>(${ evaluate.size()})</p>
+								<p>
+									<i class="fas fa-comment" style="font-size: 30px"></i>(${ evaluates.size()})
+								</p>
 
 							</div>
 							<div class="col-6 col-md-4">
 								<!--  <p style="color: gray; text-decoration: line-through;">$5000/night</p>
 								<h4 style="color: orange;">$5000/night</h4>-->
-								<input type="button" value="Book now"
+								<a href="" id="clickToRoom">click me</a>
+								<input type="button" value="Book now" id="clickToRoom"
 									style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;">
 							</div>
 						</div>
@@ -275,7 +305,7 @@
 			</div>
 			<!-- end card 2 -->
 			<br>
-			<div class="card">
+			<div class="card" id="ourRoom">
 				<h5 class="card-header">Our rooms</h5>
 				<div class="card-body">
 					<!-- hotels -->
@@ -320,9 +350,7 @@
 
 																			<img
 																				src="${pageContext.request.contextPath }/uploads/images/${imgRoom.src}"
-																				style="width: 100%"
-																				
-											alt="${imgRoom.alt}">
+																				style="width: 100%" alt="${imgRoom.alt}">
 																			<hr>
 																		</c:forEach>
 																	</div>
@@ -377,7 +405,7 @@
 																	<hr>
 																	<a
 																		style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;"
-																		href="${pageContext.request.contextPath }/hotels/booking?address=${address }&checkin=${checkin }&checkout=${checkout }&guests=${guests }&room=${rooms}&id=${item.id}">Book
+																		href="${pageContext.request.contextPath }/booking?roomid=${room.id }&checkin=${checkin }&checkout=${checkout }&room=${rooms}">Book
 																		Now</a> <br> <br>
 																</div>
 															</div>

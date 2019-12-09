@@ -4,6 +4,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="tags" uri="tags"%>
 	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,6 +206,22 @@ img.hover-shadow {
 			<div class="col-4"></div>
 			<div class="col-6">
 				<ul class="nav justify-content-end">
+					<!-- go to super admin template -->
+					<sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/superadmin/account/index"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>SuperAdmin</a>
+					</li>
+					
+					</sec:authorize>
+					<!-- go to admin template -->
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/admin/home"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Admin</a>
+					</li>
+					</sec:authorize>
+					<!-- go to employee template -->
+					<sec:authorize access="hasRole('ROLE_EMPLOYEE')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/employee/blog"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Employee</a>
+					</li>
+					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Languages</a>
 					</li>
 
@@ -212,9 +229,9 @@ img.hover-shadow {
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/account/statusOrder"><i
 							class="fa fa-calendar"></i><!--  History-->My Order</a>
 
-					<li class="nav-item"><a class="nav-link" href="#"><!-- $--><i class="fas fa-dollar-sign" style="color: #0B3B17"></i>USD</a></li>
+				<!-- 	<li class="nav-item"><a class="nav-link" href="#">  --><!-- $--><!--<i class="fas fa-dollar-sign" style="color: #0B3B17"></i>USD</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/statusOrder"><i
-							class="fa fa-calendar" style="color: #BDBDBD"></i><!--  History-->My Order</a>
+							class="fa fa-calendar" style="color: #BDBDBD"></i><!--  History--><!----><!-- My Order</a>  -->
 
 					</li>
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
