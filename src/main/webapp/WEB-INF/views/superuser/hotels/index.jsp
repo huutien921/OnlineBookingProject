@@ -31,6 +31,24 @@
               </div>
   
   </c:if>
+  <c:if test="${ms == 'okp' }">
+  
+   <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Successfully payment!</h4>
+              Updated information has been saved.
+              </div>
+  </c:if>
+  <c:if test="${ms == 'failedp'}">
+     <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i> Successfully updated !</h4>
+               You have updated some important information. 
+               Therefore, your hotel needs our confirmation.
+                Confirmation results will be notified via email : ${email } 
+              </div>
+  
+  </c:if>
      <div class="row">
      <c:forEach var="hotel" items="${hotels }">
         <div class="col-md-4">

@@ -35,18 +35,16 @@ import com.online.booking.services.SaleService;
 import com.online.booking.helper.Utils;
 
 @Controller
-
+@RequestMapping("user")
 public class PaymentController {
 	@Autowired
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private OrdersService ordersService;
-	@Autowired
-	private RoomService roomService;
+
 	@Autowired
 	private SaleService saleService;
-	@Autowired
-	private AccountService accountService;
+
 
 	public static final String URL_PAYPAL_SUCCESS = "pay/success";
 	public static final String URL_PAYPAL_CANCEL = "pay/cancel";
@@ -99,8 +97,8 @@ public class PaymentController {
 			orderDetail.setStatus(true);
 			httpSession.setAttribute("orderdetail", orderDetail);
 
-			String cancelUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_CANCEL;
-			String successUrl = Utils.getBaseURL(request) + "/" + URL_PAYPAL_SUCCESS;
+			String cancelUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_CANCEL;
+			String successUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_SUCCESS;
 
 			Payment payment = paypalService.createPayment(price, "USD", PaypalPaymentMethod.paypal,
 					PaypalPaymentIntent.sale, "payment description", cancelUrl, successUrl);
@@ -121,7 +119,8 @@ public class PaymentController {
 	}
 
 	@GetMapping(URL_PAYPAL_SUCCESS)
-	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId , HttpSession httpSession
+	public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId , HttpSession httpSession ,
+			RedirectAttributes redirectAttributes
 			
 		
 			){
@@ -132,8 +131,10 @@ public class PaymentController {
 			System.out.println("thanh toan thanh cong");
 			if (httpSession.getAttribute("order") == null ||  httpSession.getAttribute("orderdetail") == null) {
 				
-				/// returen ve cho loi
-				return "" ;
+				redirectAttributes.addFlashAttribute("ms", "failed");
+				
+				
+				return "redirect:/user/account/statusOrder";
 			} else {
 
 			
@@ -151,16 +152,22 @@ public class PaymentController {
 			httpSession.removeAttribute("order");
 			httpSession.removeAttribute("orderdetail");
 				
-			// return ve trang thanh cong
-				return "null";
+			redirectAttributes.addFlashAttribute("ms", "ok");
+		
+			
+			return "redirect:/user/account/statusOrder";
 			}
 			}
 			
 		} catch (PayPalRESTException e) {
-			// return bug
-			log.error(e.getMessage());
+			redirectAttributes.addFlashAttribute("ms", "failed");
+			
+			
+			return "redirect:/user/account/statusOrder";
 		}
-		// bug
-		return "redirect:/";
+		redirectAttributes.addFlashAttribute("ms", "failed");
+		
+		
+		return "redirect:/user/account/statusOrder";
 	
 }}

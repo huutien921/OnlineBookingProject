@@ -34,6 +34,7 @@ public class LoginController {
 	@RequestMapping(value = { "", "login", "index" }, method = RequestMethod.GET)
 	public String index(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, ModelMap modelMap) {
+		modelMap.put("title", "Login");
 		if (error != null) {
 			modelMap.put("msg", "Failed");
 

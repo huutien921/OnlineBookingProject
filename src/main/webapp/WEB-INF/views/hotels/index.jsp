@@ -6280,37 +6280,37 @@
 
 
 			<div class="container">
-				<form>
+				<form action="${pageContext.request.contextPath}/search" method="get">
 
 					<div class="form-row align-items-center">
 						<div class="col-auto">
 							<label for="state">City name <i class="fa fa-map-marker"></i></label>
-							<input type="text" placeholder="City" id="address"
+							<input type="text" placeholder="City" id="address" name="address"
 								value="${address }">
 						</div>
 						<div class="col-auto">
 							<label>Guest <i class="fa fa-user"></i></label> <input
-								class="inputRoom" type="number" id="guests" placeholder="0"
+								class="inputRoom" type="number" id="guests" placeholder="0"  name="guests"
 								value="${guests }">
 						</div>
 						<div class="col-auto">
 							<label>Room <i class="fa fa-home"></i></label> <input
-								class="inputRoom" type="number" id="rooms" placeholder="0"
+								class="inputRoom" type="number" id="rooms" placeholder="0" name="room"
 								value="${rooms }">
 						</div>
 
 						<div class="col-auto">
 							<label>Check in <i class="fa fa-sign-in"></i></label> <input
-								type="date" value="${checkin }" id="checkin_date">
+								type="date" value="${checkin }" id="checkin_date" name="checkin">
 						</div>
 						<div class="col-auto">
 							<label>Check out <i class="fa fa-sign-out"></i></label> <input
-								type="date" value="${checkout}" id="checkout_date">
+								type="date" value="${checkout}" id="checkout_date" name="checkout">
 						</div>
 
 
 						<div class="col-auto">
-							<input type="button" id="bt" value="Re-Search" class="btn-s">
+							<input type="submit" id="bt" value="Re-Search" class="btn-s">
 						</div>
 
 					</div>

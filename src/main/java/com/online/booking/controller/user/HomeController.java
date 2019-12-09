@@ -19,7 +19,7 @@ import com.online.booking.services.SaleService;
 import com.online.booking.services.ServiceHotelService;
 
 @Controller
-@RequestMapping(value = { "", "home" })
+@RequestMapping(value = { "","home"})
 public class HomeController {
 	@Autowired
 	private RoomService roomService;
@@ -31,7 +31,7 @@ public class HomeController {
 	private BlogService blogService;
 	
 
-	@RequestMapping(value = { "", "index" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "" ,"index"}, method = RequestMethod.GET)
 	public String index(Authentication authentication, ModelMap map, HttpSession httpSession) {
 		try {
 			String username = authentication.getName();
@@ -48,6 +48,7 @@ public class HomeController {
 		map.put("newPromotions", saleService.searchLimitSale(true, 3));
 		map.put("newBlog", blogService.searchLimitBlog(true, 3));
 		map.put("rooms", roomService.findAll());
+		map.put("title", "Home");
 		return "home.index";
 	}
 }

@@ -28,6 +28,7 @@
 
 								$("#tatol").text(Math.round(dateH) * price);
 								$("#tatolin").val($('#tatol').html());
+								
 						
 							
 							
@@ -35,7 +36,7 @@
 						});
 	</script>
    <section class="invoice">
-       <s:form>
+    <form method="post" action="${pageContext.request.contextPath }/sup/pay">
       <!-- title row -->
       <div class="row">
         <div class="col-xs-12">
@@ -51,7 +52,8 @@
         <div class="col-sm-4 invoice-col">
           You
           <address>
-            <strong>${account.username }</strong><br>
+            <strong>${account.username } ( ${hotel.name })</strong><br>
+            <input type="hidden" value="${hotel.id }" name="idhotel">
            ${account.fullname }<br>
            ${account.address }<br>
             Card: ${account.identitycard }<br>
@@ -108,7 +110,7 @@
            <td>   <input type="date" id="datepicker" name="enddate" /></td>
               <td>$ <span id="tatol">${service.price * 12 }
               
-              </span><input type="hidden" name="tatol" id="tatolin">
+              </span><input type="hidden" name="price" id="tatolin">
               <input type="hidden" name="idac" value="${account.id }"> 
               <input type="hidden" name="idservice" value="${service.id }">
               </td>
@@ -150,6 +152,7 @@
       <div class="row no-print">
         <div class="col-xs-12">
           <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+         
           <button type="submit" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
           </button>
        
@@ -158,5 +161,5 @@
           </button>
         </div>
       </div>
-      </s:form>
+      </form>
     </section>

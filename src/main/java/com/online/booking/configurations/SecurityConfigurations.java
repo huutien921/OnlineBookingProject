@@ -29,7 +29,15 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/superadmin/**").access("hasRole('ROLE_SUPER_ADMIN')")
 				.antMatchers("/admin/**").access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
 				.antMatchers("/employee/**")
-				.access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')").and()
+				.access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
+				
+				.antMatchers("/superuser/**")
+				.access("hasRole('ROLE_SUPER_USER')")
+				.antMatchers("/booking/**")
+				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
+				.antMatchers("/user/superuser/**")
+				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
+				.and()
 				.formLogin().loginPage("/login").loginProcessingUrl("/login/process") /*
 																						 * url tu khai bao, giong voi
 																						 * action trong form login

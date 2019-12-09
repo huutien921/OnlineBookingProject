@@ -3,15 +3,23 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="tags" uri="tags"%>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap 4 Website Example</title>
+<title><c:if test="${title == null }">
+Bookbed
+</c:if>
+${title }
+</title>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--  -->
 
 <!--  -->
+	<link rel="icon" type="image/gif" href="${pageContext.request.contextPath }/uploads/images/bookbed_logo.png" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -198,11 +206,33 @@ img.hover-shadow {
 			<div class="col-4"></div>
 			<div class="col-6">
 				<ul class="nav justify-content-end">
+					<!-- go to super admin template -->
+					<sec:authorize access="hasRole('ROLE_SUPER_ADMIN')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/superadmin/account/index"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>SuperAdmin</a>
+					</li>
+					
+					</sec:authorize>
+					<!-- go to admin template -->
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/admin/home"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Admin</a>
+					</li>
+					</sec:authorize>
+					<!-- go to employee template -->
+					<sec:authorize access="hasRole('ROLE_EMPLOYEE')">
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/employee/blog"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Employee</a>
+					</li>
+					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-globe-asia" style="color: #0101DF;"></i>Languages</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="#"><!-- $--><i class="fas fa-dollar-sign" style="color: #0B3B17"></i>USD</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="#">$USD</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/account/statusOrder"><i
+							class="fa fa-calendar"></i><!--  History-->My Order</a>
+
+				<!-- 	<li class="nav-item"><a class="nav-link" href="#">  --><!-- $--><!--<i class="fas fa-dollar-sign" style="color: #0B3B17"></i>USD</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/statusOrder"><i
-							class="fa fa-calendar" style="color: #BDBDBD"></i><!--  History-->My Order</a>
+							class="fa fa-calendar" style="color: #BDBDBD"></i><!--  History--><!----><!-- My Order</a>  -->
+
 					</li>
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/profile"><i
@@ -240,9 +270,14 @@ img.hover-shadow {
 				class="fa fa-info" style="color: #04B4AE"></i>About</a></li>
 		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/news"><i
 				class="fa fa-phone" style="color: #088A08"></i>Contact</a></li>
+				
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/superuser/create/hotel"><!-- <i
 				class="fa fa-phone" style="color: #088A08"></i> --> <i class="fas fa-user-friends" style="color: #00BFFF"></i>Become partner</a></li>
 
+				<sec:authorize access="hasRole('ROLE_SUPER_USER')">
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/superuser/myhotel"><!-- <i
+				class="fa fa-phone" style="color: #088A08"></i> --> <i class="fas fa-chart-pie" style="color: #00BFFF"></i>Hotel Management</a></li>
+</sec:authorize>
 	</ul>
 
 	<tiles:insertAttribute name="content"></tiles:insertAttribute>

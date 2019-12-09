@@ -1,5 +1,7 @@
 package com.online.booking.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,10 @@ public class ServiceService implements IServiceService {
 	public com.online.booking.entities.Service save(com.online.booking.entities.Service service) {
 		// TODO Auto-generated method stub
 		return serviceRepository.save(service);
+	}
+	@Override
+	public List<com.online.booking.entities.Service> findByTypeService(int id) {
+		// TODO Auto-generated method stub
+		return serviceRepository.findByTypeService(id);
 	}
 }

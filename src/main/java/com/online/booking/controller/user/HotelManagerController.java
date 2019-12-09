@@ -45,14 +45,16 @@ public class HotelManagerController {
 	private RoleAccountService roleAccountService;
 
 	@RequestMapping(value = "create/hotel", method = RequestMethod.GET)
-	public String createHotel(ModelMap map) {
-		// lay doi tuong user
-		int iduser = 3;
+	public String createHotel(ModelMap map ,HttpSession httpSession) {
+		Account account =	(Account) httpSession.getAttribute("account");
+	
+		int iduser = account.getId();
 		map.put("user", accountService.findById(iduser));
 	
 		Hotel hotel = new Hotel();
 		map.put("hotel", hotel);
 		map.put("starRatings", (List<StarRating>) starRatingService.findAll());
+		map.put("title", "Create Hotel");
 
 		return "user.superuser.create.hotel";
 	}

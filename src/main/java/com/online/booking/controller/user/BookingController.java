@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,7 @@ public class BookingController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String booking(@RequestParam("roomid") int roomid, @RequestParam("checkin") String checkin,
 			@RequestParam("checkout") String checkout, @RequestParam("room") int rooms, ModelMap map
-
+,Authentication authentication
 	) {
 
 		try {
@@ -50,7 +51,8 @@ public class BookingController {
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 			long getDiff = dateCheckOut.getTime() - dateCheckIn.getTime();
 			long getDayDiff = TimeUnit.MILLISECONDS.toDays(getDiff);
-			Account account = accountService.findById(3);
+			Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+			
 			map.put("roomquan", rooms);
 			map.put("room", roomService.findById(roomid));
 			map.put("days", getDayDiff);
@@ -61,6 +63,7 @@ public class BookingController {
 			map.put("hotelFee", "FREE");
 			map.put("bookbedFee", "FREE");
 			map.put("user", account);
+			map.put("title", "Booking");
 
 		} catch (Exception e) {
 
@@ -117,30 +120,32 @@ public class BookingController {
 				if (result) {
 					redirectAttributes.addFlashAttribute("ms", "ok");
 					System.out.println("oke");
-					// tra ve trang hoa don dat phong
+					return "redirect:/user/account/statusOrder";
 					
-					return null;
+					
 				}else {
 					redirectAttributes.addFlashAttribute("ms", "failed");
 					System.out.println("filed");
 					
-					return null;
+					return "redirect:/user/account/statusOrder";
 					
 					
 				}
 
 			}else {
 				System.out.println("thanh toan the");
-				return "user.booking";
+				return "redirect:/user/account/statusOrder";
 				
-				/// thanh toan tai the
+			
 			}
 
 			
 			
 		} catch (Exception e) {
-			System.out.println("thanh toan loi");
-			return "user.booking";
+			redirectAttributes.addFlashAttribute("ms", "failed");
+			System.out.println("filed");
+			
+			return "redirect:/user/account/statusOrder";
 		}
 
 	}

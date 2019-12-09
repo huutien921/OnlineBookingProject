@@ -36,6 +36,11 @@ public class Service implements java.io.Serializable {
 	public Service() {
 	}
 
+	public Service(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public Service(Account account, Servicetype servicetype, int priority, boolean status) {
 		this.account = account;
 		this.servicetype = servicetype;

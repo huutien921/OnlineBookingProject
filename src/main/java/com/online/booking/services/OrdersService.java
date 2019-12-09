@@ -1,5 +1,8 @@
 package com.online.booking.services;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,18 @@ private OrdersRepository ordersRepository;
 	public Orders findById(int id) {
 		// TODO Auto-generated method stub
 		return ordersRepository.findById(id).get();
+	}
+
+	@Override
+	public Orders findOrderNew(int id, Date date) {
+		// TODO Auto-generated method stub
+		return ordersRepository.findOrderNew(id, date);
+	}
+
+	@Override
+	public List<Orders> findOrderByAccount(int id) {
+		// TODO Auto-generated method stub
+		return ordersRepository.findOrderByAccount(id);
 	}
 
 }

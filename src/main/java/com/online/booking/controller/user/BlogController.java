@@ -32,7 +32,7 @@ public class BlogController {
 		pagedListHolder.setPage(page);
 		pagedListHolder.setPageSize(6);
 		modelMap.put("pagedListHolder", pagedListHolder);
-
+		modelMap.put("title", "Blog");
 		
 		return "blog.index";
 	}
@@ -42,6 +42,7 @@ public class BlogController {
 		modelMap.put("detail", blogService.find(id));
 		
 		modelMap.put("newBlog", blogService.searchLimitBlog(true, 3));
+		modelMap.put("title", "Blog");
 		return "blog.blog_detail";
 	}
 }

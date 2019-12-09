@@ -1,10 +1,13 @@
 package com.online.booking.controller.superuser;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.online.booking.entities.Account;
 import com.online.booking.entities.Hotel;
 import com.online.booking.entities.ImageRoom;
 import com.online.booking.entities.Room;
+import com.online.booking.helper.CheckHelper;
 import com.online.booking.helper.UploadFileHelper;
+import com.online.booking.services.AccountService;
 import com.online.booking.services.BedTypeService;
 import com.online.booking.services.HotelService;
 import com.online.booking.services.ImageRoomService;
@@ -49,18 +55,26 @@ public class RoomManagementController {
 	private UploadFileHelper uploadFileHelper;
 	@Autowired
 	private ImageRoomService imageRoomService;
+	@Autowired
+	private CheckHelper checkHelper;
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(value = "create/{id}", method = RequestMethod.GET)
-	public String create(ModelMap map, @PathVariable("id") int idHotel) {
-
-		Room room = new Room();
-		map.put("room", room);
-		map.put("hotel", hotelService.findById(idHotel));
-		map.put("beds", bedTypeService.findAll());
-		map.put("categorys", roomCategoryService.findAll());
-		map.put("types", roomTypeService.findAll());
-		return "superuser.myroom.create";
-	}
+	public String create(ModelMap map, @PathVariable("id") int idHotel ,Authentication authentication) {
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		if (checkHelper.checkHotelofAccountSession(idHotel, account.getId())) {
+			Room room = new Room();
+			map.put("room", room);
+			map.put("hotel", hotelService.findById(idHotel));
+			map.put("beds", bedTypeService.findAll());
+			map.put("categorys", roomCategoryService.findAll());
+			map.put("types", roomTypeService.findAll());
+			map.put("title", "Create");
+			return "superuser.myroom.create";
+		} else {
+			return "error.404";
+}}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	public String create(ModelMap map, @ModelAttribute("room") @Valid Room room, BindingResult bindingResult,

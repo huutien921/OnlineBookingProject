@@ -26,6 +26,11 @@ public class Servicetype implements java.io.Serializable {
 	public Servicetype() {
 	}
 
+	public Servicetype(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public Servicetype(String name, Set<Service> services) {
 		this.name = name;
 		this.services = services;
