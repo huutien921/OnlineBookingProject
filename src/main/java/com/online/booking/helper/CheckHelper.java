@@ -19,8 +19,9 @@ public class CheckHelper {
 
 	public boolean checkHotelofAccountSession(int idHotel , int idac) {
 		Hotel hotel = hotelService.findById(idHotel);
+		
 		return  hotel != null && hotelService.find(idHotel).getAccountByAccountId().getId() == idac &&
-				 hotel.isStatus() == true ;
+				( hotel.isStatus() == true) || (hotel.getAccountByIdAcEmployee() == null && hotel.isStatus() == false);
 				
 				
 				
