@@ -8,4 +8,7 @@
 	<definition name="user.superuser.create.hotel" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/user/createhotel.jsp"></put-attribute>
 	</definition>
+	<definition name="becomepartner.index" extends="my_template">
+		<put-attribute name="content" value="/WEB-INF/views/become_partner/become_partner.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,12 +23,14 @@ import com.online.booking.entities.Blog;
 import com.online.booking.entities.Sale;
 import com.online.booking.helper.UploadFileHelper;
 import com.online.booking.repositories.SaleRepository;
+import com.online.booking.services.AccountService;
 import com.online.booking.services.SaleService;
 
 @Controller
 @RequestMapping("/employee/promotion")
 public class Promotion_EmployeeController {
-
+	@Autowired
+	private AccountService accountService;
 	@Autowired
 	private SaleService saleService;
 	@Autowired
@@ -54,7 +57,7 @@ public class Promotion_EmployeeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("saleModel") Sale sale, ModelMap modelMap, HttpServletRequest request,
+	public String add(Authentication authentication, @ModelAttribute("saleModel") Sale sale, ModelMap modelMap, HttpServletRequest request,
 			RedirectAttributes redirectAttributes, @RequestParam("file") MultipartFile file) {
 
 		System.out.println("blog name" + sale.getCode());
@@ -65,7 +68,9 @@ public class Promotion_EmployeeController {
 		String fileName = uploadFileHelper.saveFile(file);
 		System.out.println("file name:" + fileName);
 
-		sale.setAccount(new Account(5));
+		String username = authentication.getName();
+		
+		sale.setAccount(new Account(accountService.findByUsernameAndStatus(username, true).getId()));
 		sale.setSrc(fileName);
 		saleService.save(sale);
 

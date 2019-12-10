@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -30,8 +29,9 @@ import com.online.booking.services.StarRatingService;
 import com.online.booking.validations.HotelValidator;
 
 @Controller
-@RequestMapping("/user/superuser")
-public class HotelManagerController {
+@RequestMapping("/becomepartner")
+public class BecomePartner {
+
 	@Autowired
 	private HotelService hotelService;
 	@Autowired
@@ -46,25 +46,19 @@ public class HotelManagerController {
 	private RoleAccountService roleAccountService;
 
 	@RequestMapping(value = "create/hotel", method = RequestMethod.GET)
-	public String createHotel(Authentication authentication, ModelMap map ,HttpSession httpSession) {
-		//Account account =	(Account) httpSession.getAttribute("account");
+	public String createHotel(ModelMap map ,HttpSession httpSession) {
+		Account account =	(Account) httpSession.getAttribute("account");
 	
-		//int iduser = account.getId();
-		//map.put("user", accountService.findById(iduser));
+		int iduser = account.getId();
+		map.put("user", accountService.findById(iduser));
 	
-		String username = authentication.getName();
-		Account account2 = accountService.findByUsernameAndStatus(username, true);
-		map.put("user", account2);
-		
-		
 		Hotel hotel = new Hotel();
 		map.put("hotel", hotel);
 		map.put("starRatings", (List<StarRating>) starRatingService.findAll());
 		map.put("title", "Create Hotel");
 
-		return "user.superuser.create.hotel";
+		return "becomepartner.index";
 	}
-
 	@RequestMapping(value = "create/hotel", method = RequestMethod.POST)
 	public String createHotel(@ModelAttribute("hotel") @Valid Hotel hotel, BindingResult bindingResult,
 			@RequestParam("file") MultipartFile file,
@@ -74,7 +68,7 @@ public class HotelManagerController {
 
 		if (bindingResult.hasErrors()) {
 
-			return "user.superuser.create.hotel";
+			return "becomepartner.index";
 
 		} else {
 
@@ -105,7 +99,7 @@ public class HotelManagerController {
 					
 					redirectAttributes.addFlashAttribute("ms", "failed");
 		
-					return "user.superuser.create.hotel";
+					return "becomepartner.index";
 					
 				}
 			} else {

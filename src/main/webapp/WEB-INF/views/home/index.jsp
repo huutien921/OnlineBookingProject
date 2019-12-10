@@ -49,11 +49,17 @@
 							<c:forEach var="item" items="${new1Blog}">
 								<!-- promo -->
 								<h5 style="color: white"><i style="color: #BF00FF;" class="fa fa-blog"></i> New Blog</h5>
-								<a
+							<!--  	<a
 									href="${pageContext.request.contextPath }/blog/detail/${item.id}"><img
 									alt="blog"
 									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
+									style="width: 250px; height: 200px"></a>-->
+									<a
+									href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"><img
+									alt="blog"
+									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
 									style="width: 250px; height: 200px"></a>
+									
 								<h5 style="color: white;">${item.title }</h5>
 								<!-- promo -->
 							</c:forEach>

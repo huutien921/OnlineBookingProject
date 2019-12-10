@@ -265,6 +265,7 @@ ${title }
 						</ul></li>
 					<!-- end employee -->
 					</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_SUPER_USER')">
 <!-- super user-->
 					<li class="treeview active"><a href="#"> <i class="fa fa-table"></i>
 							<span>Super User</span> <span class="pull-right-container">
@@ -281,25 +282,25 @@ ${title }
 
 
 				
-							<li><a
+					<!-- 	<li><a
 								href="${pageContext.request.contextPath }/employee/promotion "><i
 									class="fa fa-circle-o"></i> Customers</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/employee/user "><i
-									class="fa fa-circle-o"></i>Analytics</a></li>
+									class="fa fa-circle-o"></i>Analytics</a></li> -->	
 
 						</ul></li>
 					<!-- end superuser -->
+</sec:authorize>
 
 
-
-					<li><a href="https://adminlte.io/docs"><i
+				<!-- <li><a href="https://adminlte.io/docs"><i
 							class="fa fa-book"></i> <span>Documentation</span></a></li>
 					<li class="header">LABELS</li>
 					<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
 					<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
 							<span>Warning</span></a></li>
-					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->	
 				</ul>
 			</section>
 			<!-- /.sidebar -->
