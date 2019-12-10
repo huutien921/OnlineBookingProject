@@ -30,11 +30,11 @@
               <div class="box-body ">
                 <div class="form-group col-md-6">
                   <label for="exampleInputEmail1">Name</label>
-                  <s:input path="name" cssClass="form-control" id="inputEmail3" placeholder="Name"/>
+                  <s:input path="name" cssClass="form-control" id="inputEmail3" placeholder="Name" required="required"/>
                 </div>
                   <div class="form-group col-md-6">
                   <label for="exampleInputPassword1">Price</label>
-                  <s:input path="price" cssClass="form-control" id="inputEmail3" placeholder="Price"/>
+                  <s:input path="price" cssClass="form-control" id="inputEmail3" placeholder="Price" required="required"/>
                 </div>
                 
                 
@@ -42,12 +42,12 @@
                 
                 <div class="form-group col-md-6">
                   <label for="exampleInputPassword1">Core</label>
-                  <s:input path="core" cssClass="form-control" id="inputEmail3" placeholder="Core"/>
+                  <s:input path="core" cssClass="form-control" id="inputEmail3" placeholder="Core" required="required"/>
                 </div>
                 
                  <div class="form-group col-md-6">
                   <label for="exampleInputPassword1">Priority</label>
-                  <s:input path="priority" cssClass="form-control" id="inputEmail3" placeholder="Priority"/>
+                  <s:input path="priority" cssClass="form-control" id="inputEmail3" placeholder="Priority" required="required"/>
                 </div>
                 
                 
@@ -101,7 +101,7 @@
             <!-- /.box-header -->
             <div class="box-body pad">
             
-              <s:textarea path="description" id="editor1" name="editor1" rows="10" cols="80" placeholder="Description"/>
+              <s:textarea path="description" id="editor1" name="editor1" rows="10" cols="80" placeholder="Description" required="required"/>
                   
             
             </div>

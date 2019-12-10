@@ -222,9 +222,17 @@ Service service2=serviceService.findById(id);
 		return "redirect:index";
 	}
 	
+	/*@RequestMapping(value="updateServiceType/{id}", method= RequestMethod.GET)
+	public String editServiceType(@PathVariable("id") int id, ModelMap modelMap) {
+		Service service = serviceTypeService.find;
 	
 	
+		modelMap.put("service", service);
+		
+		return "admin/service_management/update";
+	}
 	
+	*/
 	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;

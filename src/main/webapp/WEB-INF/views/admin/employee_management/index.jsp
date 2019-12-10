@@ -48,7 +48,7 @@
 					
 						<th>Full name</th>
 						<th>Birthday</th>
-						<th>Email</th>
+					
 						
 						<th>Gender</th>
 						
@@ -68,7 +68,7 @@
 					
 						<td>${ account.fullname}</td>
 						<td>${ account.birthday}</td>
-						<td>${account.email }</td>
+					
 					
 						<td>${account.gender }</td>
 						
@@ -109,10 +109,10 @@
 						
 						<a href="${pageContext.request.contextPath }/admin/employee/accountupdate/${account.id }" class="btn btn-success">Update</a>
 						<c:if test="${account.status ==true}">
-						<a href="${pageContext.request.contextPath }/admin/employee/unactive/${account.id}" class="btn btn-danger">Unactive</a>
+						<a href="${pageContext.request.contextPath }/admin/employee/unactive/${account.id}" class="btn btn-danger" onclick="return confirm('Are you sure to Unactive');">Unactive</a>
 						</c:if>
 						<c:if test="${account.status ==false}">
-							<a href="${pageContext.request.contextPath }/admin/employee/active/${account.id}" class="btn btn-success">Active</a>
+							<a href="${pageContext.request.contextPath }/admin/employee/active/${account.id}" class="btn btn-success" onclick="return confirm('Are you sure to Active');">Active</a>
 						</c:if>
 						</td>
 					</tr>

@@ -120,10 +120,10 @@
 										class="btn btn-success">Update</a>
 										
 										<c:if test="${service.status ==true}">
-						<a href="${pageContext.request.contextPath }/admin/service/unactive/${service.id}" class="btn btn-danger">Unactive</a>
+						<a href="${pageContext.request.contextPath }/admin/service/unactive/${service.id}" class="btn btn-danger"  onclick="return confirm('Are you sure to Unactive');">Unactive</a>
 						</c:if>
 						<c:if test="${service.status ==false}">
-							<a href="${pageContext.request.contextPath }/admin/service/active/${service.id}" class="btn btn-success">Active</a>
+							<a href="${pageContext.request.contextPath }/admin/service/active/${service.id}" class="btn btn-success"  onclick="return confirm('Are you sure to Active');">Active</a>
 						</c:if>
 										
 										</td>

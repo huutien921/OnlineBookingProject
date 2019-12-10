@@ -57,13 +57,13 @@
 						<th>User name</th>
 					
 						<th>Full name</th>
-						<th>Birthday</th>
+					
 						<th>Email</th>
 						<th>Address</th>
 						<th>Gender</th>
-						<th>Avatar</th>
-						<th>Identity card</th>
-						<th>Score</th>
+						
+					
+					
 						<th>Created</th>
 						<th>Status</th>
 						<th>Role</th>
@@ -79,13 +79,11 @@
 						<td>${ account.username}</td>
 					
 						<td>${ account.fullname}</td>
-						<td>${ account.birthday}</td>
+					
 						<td>${account.email }</td>
 						<td>${account.address }</td>
 						<td>${account.gender }</td>
-						<td>${ account.avatar } </td>
-						<td>${account.identitycard } </td>
-						<td>${account.score } </td>
+				
 						<td>${account.created } </td>
 							<c:if test="${account.status ==true}">
 							<td> Active</td>
@@ -119,15 +117,15 @@
 						</c:if>
 						</c:forEach>
 						
-						<td><a href="${pageContext.request.contextPath }/superadmin/account/detail/${account.id }" class="btn btn-success">Detail</a>
+						<td align="center"><a href="${pageContext.request.contextPath }/admin/employee/accountdetail/${account.id }" class="btn btn-success">Detail</a>
 						
 						<a href="${pageContext.request.contextPath }/superadmin/account/update/${account.id }" class="btn btn-success">Update</a>
 						
 						<c:if test="${account.status ==true}">
-						<a href="${pageContext.request.contextPath }/superadmin/account/unactive/${account.id}" class="btn btn-danger">Unactive</a>
+						<a href="${pageContext.request.contextPath }/superadmin/account/unactive/${account.id}" class="btn btn-danger"  onclick="return confirm('Are you sure to Unactive');">Unactive</a>
 						</c:if>
 						<c:if test="${account.status ==false}">
-							<a href="${pageContext.request.contextPath }/superadmin/account/active/${account.id}" class="btn btn-success">Active</a>
+							<a href="${pageContext.request.contextPath }/superadmin/account/active/${account.id}" class="btn btn-success"  onclick="return confirm('Are you sure to Active');">Active</a>
 						</c:if>
 						
 						</td>

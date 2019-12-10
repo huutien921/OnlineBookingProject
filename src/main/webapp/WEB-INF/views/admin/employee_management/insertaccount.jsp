@@ -49,7 +49,7 @@
 									</div>
 
 									<s:input path="username" cssClass="form-control"
-										placeholder="UserName" />
+										placeholder="UserName" required="required"/>
 											<span style="color:red">${err }</span>
 								</div>
 								<!-- /.input group -->
@@ -78,7 +78,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-user-md"></i>
 									</div>
-									<s:input path="fullname" cssClass="form-control" placeholder="Name"/>
+									<s:input path="fullname" cssClass="form-control" placeholder="Name" required="required"/>
 								</div>
 								<!-- /.input group -->
 							</div>
@@ -106,7 +106,7 @@
 									<div class="input-group-addon">
 										<i class="fa fa-envelope"></i>
 									</div>
-									<s:input path="email" cssClass="form-control" placeholder="Email"/>
+									<s:input path="email" cssClass="form-control" placeholder="Email" required="required"/>
 							
 								</div>
 								<!-- /.input group -->
@@ -151,7 +151,7 @@
 									<div class="input-group-addon">
 										<i class="glyphicon glyphicon-home"></i>
 									</div>
-									<s:input path="address" cssClass="form-control" placeholder="Address"/>
+									<s:input path="address" cssClass="form-control" placeholder="Address" required="required"/>
 							
 								</div>
 								<!-- /.input group -->
@@ -180,7 +180,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-cc-amex"></i>
 								</div>
-								<s:input path="identitycard" cssClass="form-control" placeholder="Identity Card"/>
+								<s:input path="identitycard" cssClass="form-control" placeholder="Identity Card" required="required"/>
 							</div>
 							<!-- /.input group -->
 						</div>

@@ -181,7 +181,7 @@ public class Employee_AdminController  implements ServletContextAware{
 			@RequestParam("password") String password,
 			@RequestParam("birthday") String birthday,
 			@RequestParam("file") MultipartFile file,
-			@ModelAttribute("roles") Role role,
+		//	@ModelAttribute("roles") Role role,
 	
 			@RequestParam("gender") String gender
 		
@@ -202,7 +202,7 @@ public class Employee_AdminController  implements ServletContextAware{
 			account2.setEmail(account.getEmail());
 			account2.setAddress(account.getAddress());
 			account2.setAvatar(fileName);
-		account2.setBirthday(account.getBirthday());
+		//account2.setBirthday(account.getBirthday());
 			account2.setType(account.getType());
 			account2.setIdentitycard(account.getIdentitycard());
 		

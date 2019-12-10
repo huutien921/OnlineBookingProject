@@ -55,11 +55,7 @@
                 
               
                 
-                
-                 <div class="form-group col-md-6">
-                  <label for="exampleInputPassword1">Icon</label>
-                  <s:input path="iconSrc" cssClass="form-control" id="inputEmail3" placeholder="Icon"/>
-                </div>
+               
               
                  <div class="form-group">
                   <label for="exampleInputPassword1">Service Type</label>
@@ -116,13 +112,13 @@
                 
                 
                 
-              <!--    <div class="form-group">
+                <div class="form-group">
                   <label for="exampleInputFile">File input</label>
                   <input type="file" id="exampleInputFile" name="file">
 
                   <p class="help-block">Example block-level help text here.</p>
                 </div>
-                -->
+            
                 
               </div>
               <!-- /.box-body -->

@@ -8,50 +8,73 @@
 <title>Detail</title>
 </head>
 <body>
+<h2 class="text-center"> <FONT color="#FF000">Profile</FONT></h2>
+<table class="table" style="background-color: white;">
+<tr>
+		<td rowspan="10" width="30%">
+ 
+			<img src="${pageContext.request.contextPath }/uploads/images/${ account.avatar }">
+			<br />
+
+		</td>
+		<th> 	UserName		</th>
+		<td> ${ account.username}</td>
+	</tr>
+	<tr>
+		<th> Name:		</th>
+		<td>      ${ account.fullname}</td>
+
+	</tr>
 
 
-				UserName:		${ account.username}
-					
-						
-						<br/>
-				Name:		${ account.fullname}
-						
-						<br/>
-				Birthday:		${ account.birthday}
-						
-						<br/>
-				Email:		${account.email }
-						
-						<br/>
-				Address:		${account.address }
-						
-						<br/>
-				Gender:		${account.gender }
-						
-						<br/>
-				Avatar:		${ account.avatar } 
-						
-						<br/>
-				Identity Card:		${account.identitycard } 
-						
-						
-						<br/>
-				Score:		${account.score } 
-				
-						<br/>
-						
-					Status		<c:if test="${account.status ==true}">
+	<tr>
+		<th>   Birthday		</th>
+		<td>     ${ account.birthday}</td>
+
+	</tr>
+	<tr>
+		<th>  	Email:		</th>
+		<td>      ${account.email }</td>
+
+	</tr>
+	<tr>
+		<th> 		Address:		</th>
+		<td>    ${account.address }</td>
+
+	</tr>
+	<tr>
+		<th>  Gender:</th>
+		<td>      		${account.gender }</td>
+
+	</tr>
+	<tr>
+		<th>  Score:	</th>
+		<td>      		${account.score } </td>
+
+	</tr>
+	
+	
+	<tr>
+		<th>  	Identity Card:		 	</th>
+		<td>      		${account.identitycard } </td>
+
+	</tr>
+	
+	<tr>
+		<th>  	Status	 	</th>
+		<td>      					<c:if test="${account.status ==true}">
 							 Active
 							
 							</c:if>
 							<c:if test="${account.status ==false}">
 							<td> UnActive</td>
 							
-							</c:if>
-							
-							
-						<br/>
-					Role	
+							</c:if></td>
+
+	</tr>
+	<tr>
+		<th>   Role</th>
+		<td>    	
 						<c:forEach var="roles" items="${account.roleAccounts}">
 						
 						<c:if test="${roles.role.id == 1}">
@@ -73,8 +96,11 @@
 								Super user
 						
 						</c:if>
-						</c:forEach>
+						</c:forEach></td>
 
+	</tr>
+	
+</table>
 
 </body>
 </html>
