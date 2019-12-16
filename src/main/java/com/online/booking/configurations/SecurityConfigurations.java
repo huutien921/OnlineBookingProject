@@ -31,9 +31,14 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 				.antMatchers("/employee/**")
 				.access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
 
-				.antMatchers("/superuser/**").access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')").antMatchers("/booking/**")
+				.antMatchers("/superuser/**").access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')").antMatchers("/"
+						+ "/**")
 				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
 				.antMatchers("/user/superuser/**")
+				.access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')")
+				.antMatchers("/booking/**")
+				.access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')")
+				.antMatchers("/user/account/**")
 				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
 				.and().formLogin().loginPage("/login").loginProcessingUrl("/login/process") /*
 																							 * url tu khai bao, giong

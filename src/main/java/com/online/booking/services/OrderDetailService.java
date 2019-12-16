@@ -47,5 +47,15 @@ private OrderDetailRepository orderDetailRepository;
 		// TODO Auto-generated method stub
 		return orderDetailRepository.findByIdHotel(idHotel);
 	}
+	@Override
+	public List<OrderDetail> findByAccountAndcheckInOut(int id, Date now) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findByAccountAndcheckInOut(id, now);
+	}
+	@Override
+	public List<OrderDetail> findByHistory(int id, Date now) {
+		// TODO Auto-generated method stub
+		return orderDetailRepository.findByHistory(id, now);
+	}
 
 }

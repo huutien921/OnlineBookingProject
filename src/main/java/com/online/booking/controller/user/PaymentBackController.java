@@ -35,15 +35,13 @@ import com.online.booking.services.SaleService;
 import com.online.booking.helper.Utils;
 
 @Controller
-@RequestMapping("user")
-public class PaymentController {
+@RequestMapping("user/back")
+public class PaymentBackController {
 	@Autowired
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private OrdersService ordersService;
 
-	@Autowired
-	private SaleService saleService;
 
 
 	public static final String URL_PAYPAL_SUCCESS = "pay/success";
@@ -60,45 +58,20 @@ public class PaymentController {
 	}
 
 	@PostMapping("/pay")
-	public String pay(HttpServletRequest request, @RequestParam("price") double price,
-			@RequestParam("idroom") int idroom, @RequestParam("checkin") String checkin,
-			@RequestParam("checkout") String checkout, @RequestParam("roomquan") int rooms
-
-			, @RequestParam("namestaying") String name, @RequestParam("email") String email,
-			@RequestParam("note") String note, @RequestParam("acid") int idac, @RequestParam("giftcode") String code,
+	public String pay(
+			@RequestParam("idorderdetail") int idorderdetail ,
+			 @RequestParam("price") double price,
+			 HttpServletRequest request,
 			RedirectAttributes redirectAttributes, HttpSession httpSession
-
 	) throws ParseException {
+		
 	
+		
 		try {
-			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
-			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
-			System.out.println(name);
-			Orders orders = new Orders();
-
-			orders.setCreated(new Date());
-			orders.setAccount(new Account(idac));
-			if (saleService.findByCodeAndDate(code, new Date()) != null) {
-				orders.setSale(saleService.findByCodeAndDate(code, new Date()));
-			}
-
-			orders.setStatus(true);
-			httpSession.setAttribute("order", orders);
-
-			OrderDetail orderDetail = new OrderDetail();
-			orderDetail.setRoom(new Room(idroom));
-			orderDetail.setCheckInDate(dateCheckIn);
-			orderDetail.setCheckOutDate(dateCheckOut);
-			orderDetail.setQuantity(rooms);
-			orderDetail.setNamestaying(name);
-			orderDetail.setEmail(email);
-			orderDetail.setNote(note);
-
-			orderDetail.setStatus(true);
-			httpSession.setAttribute("orderdetail", orderDetail);
-
-			String cancelUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_CANCEL;
-			String successUrl = Utils.getBaseURL(request) + "/user/" + URL_PAYPAL_SUCCESS;
+			OrderDetail orderDetailResult = orderDetailService.findById(idorderdetail);
+			httpSession.setAttribute("detail", orderDetailResult);
+			String cancelUrl = Utils.getBaseURL(request) + "/user/back/" + URL_PAYPAL_CANCEL;
+			String successUrl = Utils.getBaseURL(request) + "/user/back/" + URL_PAYPAL_SUCCESS;
 
 			Payment payment = paypalService.createPayment(price, "USD", PaypalPaymentMethod.paypal,
 					PaypalPaymentIntent.sale, "payment description", cancelUrl, successUrl);
@@ -115,7 +88,7 @@ public class PaymentController {
 
 	@GetMapping(URL_PAYPAL_CANCEL)
 	public String cancelPay(RedirectAttributes redirectAttributes){
-		redirectAttributes.addFlashAttribute("ms", "failed");
+		redirectAttributes.addFlashAttribute("ms", "payfailed");
 		
 		
 		return "redirect:/user/account/statusOrder";
@@ -132,7 +105,7 @@ public class PaymentController {
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
 			System.out.println("thanh toan thanh cong");
-			if (httpSession.getAttribute("order") == null ||  httpSession.getAttribute("orderdetail") == null) {
+			if (httpSession.getAttribute("detail") == null) {
 				
 				redirectAttributes.addFlashAttribute("ms", "failed");
 				
@@ -141,21 +114,15 @@ public class PaymentController {
 			} else {
 
 			
-			Orders orders = (Orders) httpSession.getAttribute("order");
-			
-			OrderDetail orderDetail = (OrderDetail) httpSession.getAttribute("orderdetail");
-			orderDetail.setOrders(orders);
-			orders.setName(payerId);
-			orders.setPayment(paymentId);
-			orders.setStatus(true);
-			Orders ordersResult = ordersService.save(orders);
-			if (ordersResult != null) {
-				 OrderDetail orderDetailResult = orderDetailService.save(orderDetail);
-			}
-			httpSession.removeAttribute("order");
-			httpSession.removeAttribute("orderdetail");
+			OrderDetail orderDetail = (OrderDetail) httpSession.getAttribute("detail");
+			 Orders orders = orderDetail.getOrders();
+			 orders.setPayment(paymentId);
+			 orders.setName(payerId);
+			 Orders ordersResult = ordersService.save(orders);
+		
+			httpSession.removeAttribute("detail");
 				
-			redirectAttributes.addFlashAttribute("ms", "ok");
+			redirectAttributes.addFlashAttribute("ms", "payok");
 		
 			
 			return "redirect:/user/account/statusOrder";
@@ -163,12 +130,12 @@ public class PaymentController {
 			}
 			
 		} catch (PayPalRESTException e) {
-			redirectAttributes.addFlashAttribute("ms", "failed");
+			redirectAttributes.addFlashAttribute("ms", "payfailed");
 			
 			
 			return "redirect:/user/account/statusOrder";
 		}
-		redirectAttributes.addFlashAttribute("ms", "failed");
+		redirectAttributes.addFlashAttribute("ms", "payfailed");
 		
 		
 		return "redirect:/user/account/statusOrder";

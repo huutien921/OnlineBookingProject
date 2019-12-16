@@ -25,4 +25,9 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/superuser/hotels/management.jsp"></put-attribute>
 	</definition>
+		<definition name="superuser.myhotel.analytics"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/hotels/analytics.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

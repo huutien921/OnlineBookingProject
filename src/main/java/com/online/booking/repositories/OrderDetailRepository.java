@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
 import com.online.booking.entities.OrderDetail;
@@ -25,4 +26,9 @@ public interface OrderDetailRepository extends CrudRepository<OrderDetail, Integ
 	,@Param("vao") Date dateCheckIn,@Param("ra") Date dateCheckOut );
 	@Query("from OrderDetail where room.id =:hotelid")
 	public List<OrderDetail> findByIdHotel(@Param("hotelid") int idhotel);
+	@Query("from OrderDetail where orders.account.id = :id and checkOutDate > :now order by id desc ")
+	public List<OrderDetail> findByAccountAndcheckInOut(@Param("id") int id, @Param("now") Date now);
+	@Query("from OrderDetail where orders.account.id = :id and checkOutDate < :now order by id desc ")
+	public List<OrderDetail> findByHistory(@Param("id") int id, @Param("now") Date now);
+
 }

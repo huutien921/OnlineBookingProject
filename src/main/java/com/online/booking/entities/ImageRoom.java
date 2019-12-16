@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class ImageRoom implements java.io.Serializable {
 
 	private Integer id;
-	@JsonManagedReference
+	@JsonIgnore
 	private Room room;
 	private String src;
 	private String alt;

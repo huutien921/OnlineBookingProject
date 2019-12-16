@@ -118,6 +118,7 @@ public class HotelManagementController {
 	public List<CopponRoomEntity> saveCopponRoom(@RequestParam("roomId") String roomId,
 			@RequestParam("disName") String name, @RequestParam("disVal") double val,
 			@RequestParam("status") boolean status, @RequestParam("hotelId") int hotelId) {
+		System.out.println("nnn" + hotelId);
 
 		if (roomId.length() <= 2 || val > 100 || val < 1 || name.length() > 205 || name.length() < 1) {
 			return new ArrayList<CopponRoomEntity>();
@@ -289,5 +290,16 @@ public class HotelManagementController {
 		return orderDetailService.findByIdRoom(idRoom);
 
 	}
+	@RequestMapping(value = "analytics", method = RequestMethod.GET)
+	public String analytics(ModelMap map , Authentication authentication) {
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		map.put("hotels", hotelService.findByAccountId(account.getId()));
+		System.out.println( hotelService.findByAccountId(account.getId()).size());
+		
+			return "superuser.myhotel.analytics";
+		}
 
-}
+	}
+	
+
+

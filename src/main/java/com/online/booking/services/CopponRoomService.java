@@ -65,6 +65,8 @@ public class CopponRoomService implements ICopponRoomService {
 			copponRoomEntity.setStatus(room.getCopponRoom().isStatus());
 			copponRoomEntities.add(copponRoomEntity);
 		}
+		System.out.println("lay duoc khong " + copponRoomEntities.size());
+		
 		return copponRoomEntities;
 	}
 

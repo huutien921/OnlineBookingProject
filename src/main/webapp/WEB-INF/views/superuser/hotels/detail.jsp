@@ -218,6 +218,7 @@
 										<th>Amount Room</th>
 										<th>Empty room</th>
 										<th>Status</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -244,7 +245,10 @@
 
 												</c:forEach> ${room.amountOfRoom - roomEmty}</td>
 											<td>${room.status ? '<p class="text-muted text-center" style="color: #0033cc ;"><i class="fa fa-fw fa-check-square"></i></p>' : '<p class="text-muted text-center" style="color: #ff0000 ;"><i class="fa fa-fw fa-minus-square"></i></p>' }</td>
-
+										<td>	<a
+								href="${pageContext.request.contextPath }/superuser/myroom/edit/${room.id}"
+								class="btn  btn-primary">Edit
+								 </a></td>
 										</tr>
 
 
@@ -258,6 +262,7 @@
 										<th>Amount Room</th>
 										<th>Empty room</th>
 										<th>Status</th>
+										<th>Action</th>
 									</tr>
 								</tfoot>
 							</table>

@@ -37,9 +37,7 @@ ${title }
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/dist/css/skins/_all-skins.min.css">
-<!-- Morris chart -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.css">
+
 <!-- jvectormap -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/bower_components/jvectormap/jquery-jvectormap.css">
@@ -121,10 +119,10 @@ ${title }
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
+										<a href="${pageContext.request.contextPath }/login/profile" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										<a href="${pageContext.request.contextPath }/login/logout" class="btn btn-default btn-flat">Sign out</a>
 									</div>
 								</li>
 							</ul></li>
@@ -279,7 +277,9 @@ ${title }
 							<li><a
 								href="${pageContext.request.contextPath }/user/superuser/create/hotel "><i
 									class="fa fa-circle-o"></i> New Hotel</a></li>
-
+<li><a
+								href="${pageContext.request.contextPath }/superuser/myhotel/analytics "><i
+									class="fa fa-circle-o"></i> Analytics</a></li>
 
 				
 					<!-- 	<li><a
@@ -513,9 +513,7 @@ ${title }
 	<!-- Bootstrap 3.3.7 -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- Morris.js charts -->
-	<script
-		src="${pageContext.request.contextPath }/resources/admin/bower_components/raphael/raphael.min.js"></script>
+	
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.min.js"></script>
 	<!-- Sparkline -->
@@ -526,7 +524,7 @@ ${title }
 		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<!-- jQuery Knob Chart -->
+	<!-- jQuery Knob  -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 	<!-- daterangepicker -->
