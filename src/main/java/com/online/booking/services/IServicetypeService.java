@@ -6,4 +6,5 @@ public interface IServicetypeService {
 	
 	public Iterable<Servicetype> findAll(); 
 	public Servicetype save(Servicetype servicetype);
+	public Servicetype find(int id);
 }

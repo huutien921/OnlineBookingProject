@@ -38,9 +38,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.online.booking.entities.Account;
 import com.online.booking.entities.Blog;
+import com.online.booking.entities.ServiceGroup;
 import com.online.booking.entities.UserGroup;
 import com.online.booking.repositories.BlogRepository;
 import com.online.booking.services.AccountService;
+import com.online.booking.services.ServiceService;
 
 
 
@@ -52,7 +54,8 @@ public class Statistical_AdminController {
 	@Autowired
 	private BlogRepository blogRepository;
 	
-	
+	@Autowired
+	private ServiceService serviceService;
 	
 	
 	@RequestMapping(value="index")
@@ -95,7 +98,21 @@ public class Statistical_AdminController {
 	}
 	
 	
-	
+	@RequestMapping(value="ajax/piechart")
+	@ResponseBody
+	public String statisticalService(){
+		List<ServiceGroup> dataList = serviceService.statisticalService();
+		JsonArray jsonArrayCategory = new JsonArray();
+		JsonArray jsonArraySeries = new JsonArray();
+		JsonObject jsonObject = new JsonObject();
+		dataList.forEach(data->{
+			jsonArrayCategory.add(data.getMonth());
+			jsonArraySeries.add(data.getSumPrice());
+		});
+		jsonObject.add("categories", jsonArrayCategory);
+		jsonObject.add("series", jsonArraySeries);
+		return jsonObject.toString();
+	}
 	
 	
 	

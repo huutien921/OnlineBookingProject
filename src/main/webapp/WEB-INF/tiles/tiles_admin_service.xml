@@ -24,5 +24,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/addservicetype.jsp"></put-attribute>
 	</definition>
 	
+	
+	<definition name="admin/service_management/updateservicetype" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/admin/service_management/updateservicetype.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

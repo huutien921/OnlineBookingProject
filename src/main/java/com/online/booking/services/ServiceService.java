@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.online.booking.entities.ServiceGroup;
 import com.online.booking.repositories.ServiceRepository;
 
 @Service("serviceService")
@@ -38,5 +39,10 @@ public class ServiceService implements IServiceService {
 	public List<com.online.booking.entities.Service> findByTypeService(int id) {
 		// TODO Auto-generated method stub
 		return serviceRepository.findByTypeService(id);
+	}
+	@Override
+	public List<ServiceGroup> statisticalService() {
+		// TODO Auto-generated method stub
+		return serviceRepository.statisticalService();
 	}
 }

@@ -108,8 +108,8 @@ public class ServiceTypeTag extends RequestContextAwareTag{
 					
 				 
 					
-						writer.write("<td><a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/accountdetail/"+servicetype.getId()+"\" class=\"btn btn-success\">Detail</a>");
-						writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/employee/accountupdate/"+servicetype.getId()+"\" class=\"btn btn-success\">Update</a>");
+					
+						writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/service/updateservicetype/"+servicetype.getId()+"\" class=\"btn btn-success\">Update</a>");
 						
 						writer.write("</td>");
 						writer.write("</tr>");

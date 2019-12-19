@@ -20,4 +20,9 @@ public class ServicetypeService implements IServicetypeService {
 		// TODO Auto-generated method stub
 		return serviceTypeRepository.save(servicetype);
 	}
+	@Override
+	public Servicetype find(int id) {
+		// TODO Auto-generated method stub
+		return serviceTypeRepository.findById(id).get();
+	}
 }

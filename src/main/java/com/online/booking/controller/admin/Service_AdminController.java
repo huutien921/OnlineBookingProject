@@ -222,6 +222,43 @@ Service service2=serviceService.findById(id);
 		return "redirect:index";
 	}
 	
+	@RequestMapping(value="updateservicetype/{id}", method= RequestMethod.GET)
+	public String updateServiceType(@PathVariable("id") int id, ModelMap modelMap) {
+		
+	Servicetype servicetype=serviceTypeService.find(id);
+	
+		modelMap.put("servicetype", servicetype);
+		
+		return "admin/service_management/updateservicetype";
+	}
+	
+	
+	@RequestMapping(value="updateservicetype", method= RequestMethod.POST)
+	public String updateServiceType(
+			@ModelAttribute("servicetype") Servicetype servicetype,
+			
+			ModelMap modelMap)
+	{
+	
+		
+		
+		Servicetype servicetype1=serviceTypeService.find(servicetype.getId());
+		try {
+			servicetype1.setName(servicetype.getName());
+	
+			
+		
+		serviceTypeService.save(servicetype1);
+			//modelMap.put("service", serviceservice.findAll());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+		return "redirect:index";
+	}
+	
 	/*@RequestMapping(value="updateServiceType/{id}", method= RequestMethod.GET)
 	public String editServiceType(@PathVariable("id") int id, ModelMap modelMap) {
 		Service service = serviceTypeService.find;

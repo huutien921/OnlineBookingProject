@@ -12,8 +12,6 @@
 <h1>Add</h1>
 
 
-
-
  <section class="content">
       <div class="row">
  <div class="col-md-12" >
@@ -25,12 +23,12 @@
           
             <!-- /.box-header -->
             <!-- form start -->
-             <s:form method="post" modelAttribute="servicetype" action="${pageContext.request.contextPath }/admin/service/saveservicetype" >
+             <s:form method="post" modelAttribute="servicetype" action="${pageContext.request.contextPath }/admin/service/updateservicetype" >
            
               <div class="box-body ">
                 <div class="form-group col-md-6">
                   <label for="exampleInputEmail1">Name</label>
-                  <s:input path="name" cssClass="form-control" id="inputEmail3" placeholder="Name"/>
+                  <s:input path="name" cssClass="form-control" id="inputEmail3" placeholder="Name" required="required"/>
                 </div>
                  
                 
@@ -43,7 +41,7 @@
               <div class="box-footer">
             
                 <button type="submit" class="btn btn-info pull-right">Submit</button>
-                  <s:hidden path="id"/>
+                <s:hidden path="id"/>
               </div>
             </s:form>
           </div>
@@ -56,7 +54,9 @@
           </div>
         
           </section>
-          
+
+
+ 
           
           
       
