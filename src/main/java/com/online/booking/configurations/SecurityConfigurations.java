@@ -30,18 +30,21 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/**").access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
 				.antMatchers("/employee/**")
 				.access("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
-				
-				.antMatchers("/superuser/**")
-				.access("hasRole('ROLE_SUPER_USER')")
-				.antMatchers("/booking/**")
+
+				.antMatchers("/superuser/**").access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')").antMatchers("/"
+						+ "/**")
 				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
 				.antMatchers("/user/superuser/**")
+				.access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')")
+				.antMatchers("/booking/**")
+				.access("hasRole('ROLE_SUPER_USER') or hasRole('ROLE_USER')")
+				.antMatchers("/user/account/**")
 				.access("hasRole('ROLE_SUPER_USER')or hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_USER')")
-				.and()
-				.formLogin().loginPage("/login").loginProcessingUrl("/login/process") /*
-																						 * url tu khai bao, giong voi
-																						 * action trong form login
-																						 */
+				.and().formLogin().loginPage("/login").loginProcessingUrl("/login/process") /*
+																							 * url tu khai bao, giong
+																							 * voi action trong form
+																							 * login
+																							 */
 				.defaultSuccessUrl("/home/index").failureUrl("/login/index?error").usernameParameter("username") /*
 																													 * name
 																													 * trong
@@ -49,8 +52,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 																													 * login
 																													 */
 				.passwordParameter("password").and().logout().logoutUrl("/login/logout")
-				.logoutSuccessUrl("/login/index?logout").and().exceptionHandling()
-				.accessDeniedPage("/home/index");
+				.logoutSuccessUrl("/login/index?logout").and().exceptionHandling().accessDeniedPage("/home/index");
 
 	}
 

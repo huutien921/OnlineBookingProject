@@ -20,6 +20,8 @@ import com.online.booking.entities.OrderDetail;
 import com.online.booking.entities.Orders;
 import com.online.booking.entities.Room;
 import com.online.booking.entities.Sale;
+import com.online.booking.helper.CheckPayatHotelHelper;
+import com.online.booking.helper.CheckUrlHelper;
 import com.online.booking.services.AccountService;
 import com.online.booking.services.OrderDetailService;
 import com.online.booking.services.OrdersService;
@@ -39,12 +41,19 @@ public class BookingController {
 	private SaleService saleService;
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private CheckPayatHotelHelper checkPayatHotelHelper;
+	@Autowired
+	private CheckUrlHelper checkUrlHelper; 
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String booking(@RequestParam("roomid") int roomid, @RequestParam("checkin") String checkin,
 			@RequestParam("checkout") String checkout, @RequestParam("room") int rooms, ModelMap map
 ,Authentication authentication
 	) {
+		if (checkUrlHelper.checkUrlBooking(roomid, checkin, checkout, rooms ,accountService.findByUsernameAndStatus(authentication.getName(), true))) {
+			
+	
 
 		try {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
@@ -52,7 +61,6 @@ public class BookingController {
 			long getDiff = dateCheckOut.getTime() - dateCheckIn.getTime();
 			long getDayDiff = TimeUnit.MILLISECONDS.toDays(getDiff);
 			Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
-			
 			map.put("roomquan", rooms);
 			map.put("room", roomService.findById(roomid));
 			map.put("days", getDayDiff);
@@ -69,6 +77,11 @@ public class BookingController {
 
 		}
 		return "user.booking";
+		} else {
+			
+			return "redirect:/home";
+		}
+	
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -77,14 +90,17 @@ public class BookingController {
 
 			, @RequestParam("namestaying") String name, @RequestParam("email") String email,
 			@RequestParam("note") String note, @RequestParam("paytype") String paytype, @RequestParam("acid") int idac,
-			@RequestParam("giftcode") String code ,RedirectAttributes redirectAttributes) {
+			@RequestParam("giftcode") String code ,RedirectAttributes redirectAttributes , Authentication authentication) {
 		boolean result = true;
 		System.out.println(checkout);
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		if (checkPayatHotelHelper.checkorderdetail(account.getId())) {
+			
 		try {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 			if (paytype.equalsIgnoreCase("payathotel")) {
-				System.out.println("ok");
+			
 				Orders orders = new Orders();
 				orders.setName("payathotel");
 				orders.setPayment("payathotel");
@@ -93,7 +109,7 @@ public class BookingController {
 				if (saleService.findByCodeAndDate(code, new Date()) != null) {
 					orders.setSale(saleService.findByCodeAndDate(code, new Date()));
 				}
-				System.out.println("ok2");
+				
 				orders.setStatus(false);
 				Orders orderResult = ordersService.save(orders);
 				if (orderResult != null) {
@@ -111,43 +127,31 @@ public class BookingController {
 					System.out.println("ok3");
 					if (orderDetailResult == null) {
 						result = false ;
-						
-						
 					}
-					
-					
 				}else {result = false;}
 				if (result) {
 					redirectAttributes.addFlashAttribute("ms", "ok");
 					System.out.println("oke");
 					return "redirect:/user/account/statusOrder";
-					
-					
 				}else {
 					redirectAttributes.addFlashAttribute("ms", "failed");
 					System.out.println("filed");
-					
 					return "redirect:/user/account/statusOrder";
-					
-					
 				}
-
 			}else {
 				System.out.println("thanh toan the");
 				return "redirect:/user/account/statusOrder";
-				
-			
 			}
 
-			
-			
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("ms", "failed");
 			System.out.println("filed");
-			
 			return "redirect:/user/account/statusOrder";
 		}
-
+		} else {
+			redirectAttributes.addFlashAttribute("ms", "pay");
+			return "redirect:/user/account/statusOrder";
+		}
 	}
 
 	@RequestMapping(value = "ajax/checksale", produces = { MediaType.APPLICATION_JSON_VALUE })

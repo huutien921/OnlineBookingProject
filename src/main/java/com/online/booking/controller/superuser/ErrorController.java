@@ -21,5 +21,11 @@ public class ErrorController {
 		return "error.500";
 		
 	}
+	@RequestMapping(value = "lock", method = RequestMethod.GET)
+	public String  lock(ModelMap model) {
+		model.put("title", "lock");
+		return "error.lock";
+		
+	}
 
 }

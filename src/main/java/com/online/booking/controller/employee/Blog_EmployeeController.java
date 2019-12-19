@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -28,13 +29,15 @@ import com.online.booking.entities.Account;
 import com.online.booking.entities.Blog;
 import com.online.booking.entities.Hotel;
 import com.online.booking.helper.UploadFileHelper;
+import com.online.booking.services.AccountService;
 import com.online.booking.services.BlogService;
 
 @Controller
 @RequestMapping("/employee/blog")
 public class Blog_EmployeeController{
 	
-
+	@Autowired
+	private AccountService accountService;
 	@Autowired
 	private BlogService blogService;
 	@Autowired
@@ -66,7 +69,7 @@ public class Blog_EmployeeController{
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("blogModel") Blog blog, ModelMap modelMap,HttpServletRequest request, RedirectAttributes redirectAttributes,
+	public String add(Authentication authentication, @ModelAttribute("blogModel") Blog blog, ModelMap modelMap,HttpServletRequest request, RedirectAttributes redirectAttributes,
 			@RequestParam("file") MultipartFile file) {
 			
 			System.out.println("blog name" + blog.getTitle());
@@ -76,7 +79,10 @@ public class Blog_EmployeeController{
 			System.out.println("file name:" + fileName);
 			
 			blog.setCreated(new Date());
-			blog.setAccount(new Account(5));
+			
+			String username = authentication.getName();
+			
+			blog.setAccount(new Account(accountService.findByUsernameAndStatus(username, true).getId()));
 			blog.setSrc(fileName);
 			blogService.save(blog);
 			

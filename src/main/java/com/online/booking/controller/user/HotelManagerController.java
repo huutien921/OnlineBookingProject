@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -45,12 +46,17 @@ public class HotelManagerController {
 	private RoleAccountService roleAccountService;
 
 	@RequestMapping(value = "create/hotel", method = RequestMethod.GET)
-	public String createHotel(ModelMap map ,HttpSession httpSession) {
-		Account account =	(Account) httpSession.getAttribute("account");
+	public String createHotel(Authentication authentication, ModelMap map ,HttpSession httpSession) {
+		//Account account =	(Account) httpSession.getAttribute("account");
 	
-		int iduser = account.getId();
-		map.put("user", accountService.findById(iduser));
+		//int iduser = account.getId();
+		//map.put("user", accountService.findById(iduser));
 	
+		String username = authentication.getName();
+		Account account2 = accountService.findByUsernameAndStatus(username, true);
+		map.put("user", account2);
+		
+		
 		Hotel hotel = new Hotel();
 		map.put("hotel", hotel);
 		map.put("starRatings", (List<StarRating>) starRatingService.findAll());

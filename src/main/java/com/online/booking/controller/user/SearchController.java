@@ -22,18 +22,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.online.booking.entities.Hotel;
 import com.online.booking.entities.HotelEntity;
+import com.online.booking.services.BlogService;
 import com.online.booking.services.HotelService;
+import com.online.booking.services.RoomService;
+import com.online.booking.services.SaleService;
 
 @Controller
 @RequestMapping(value = { "search" })
 public class SearchController {
 	@Autowired
 	private HotelService hotelService;
+	@Autowired
+	private RoomService roomService;
+
+	@Autowired
+	private SaleService saleService;
+	@Autowired
+	private BlogService blogService;
+	
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String index(HttpServletRequest request, ModelMap model, @RequestParam("address") String address,
 			@RequestParam("checkin") String checkin, @RequestParam("checkout") String checkout,
-			@RequestParam("guests") String guests, @RequestParam("room") String room) {
+			@RequestParam("guests") String guests, @RequestParam("room") String room ) {
 		model.put("address", address);
 		model.put("checkin", checkin);
 		model.put("checkout", checkout);
@@ -41,8 +52,29 @@ public class SearchController {
 		model.put("rooms", room);
 		try {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
-			System.out.println(checkin);
+		Date now = new Date();
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
+			if (address == null || dateCheckOut.getTime() < dateCheckIn.getTime()
+					|| guests == null || Integer.parseInt(guests) <= 0
+					|| room == null || Integer.parseInt(room) <= 0   || dateCheckIn.getTime() < now.getTime()) {
+				model.put("new1Promotions", saleService.searchLimitSale(true, 1));
+				model.put("new1Blog", blogService.searchLimitBlog(true, 1));
+				model.put("newPromotions", saleService.searchLimitSale(true, 3));
+				model.put("newBlog", blogService.searchLimitBlog(true, 3));
+				model.put("rooms", roomService.findAll());
+				model.put("title", "Home");
+				model.put("address", address);
+				model.put("checkin", checkin);
+				model.put("checkout", checkout);
+				model.put("guests", guests);
+				model.put("room", room);
+				model.put("ms", "failed");
+				return "home.index";
+				
+				
+			} else {
+
+			
 
 			List<Hotel> hotels = hotelService.searchByAddressAddPriority(address, dateCheckIn, dateCheckOut,
 					Integer.parseInt(guests), Integer.parseInt(room));
@@ -55,15 +87,30 @@ public class SearchController {
 			for (Hotel hotel : hotels) {
 				System.out.println(hotel.getName());
 			}
+			return "hotels.index";
+			}
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
-			System.out.println("Loi");
+			model.put("new1Promotions", saleService.searchLimitSale(true, 1));
+			model.put("new1Blog", blogService.searchLimitBlog(true, 1));
+			model.put("newPromotions", saleService.searchLimitSale(true, 3));
+			model.put("newBlog", blogService.searchLimitBlog(true, 3));
+			model.put("rooms", roomService.findAll());
+			model.put("title", "Home");
+			model.put("address", address);
+			model.put("checkin", checkin);
+			model.put("checkout", checkout);
+			model.put("guests", guests);
+			model.put("rooms", room);
+			model.put("ms", "failed");
+			return "home.index";
 		}
 
-		return "hotels.index";
+		
 
 	}
+		
 
 	@RequestMapping(value = "ajax/price", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody

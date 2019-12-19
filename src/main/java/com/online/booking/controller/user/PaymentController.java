@@ -73,7 +73,7 @@ public class PaymentController {
 		try {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
-			System.out.println(name);
+			
 			Orders orders = new Orders();
 
 			orders.setCreated(new Date());
@@ -82,7 +82,7 @@ public class PaymentController {
 				orders.setSale(saleService.findByCodeAndDate(code, new Date()));
 			}
 
-			orders.setStatus(true);
+			orders.setStatus(false);
 			httpSession.setAttribute("order", orders);
 
 			OrderDetail orderDetail = new OrderDetail();
@@ -114,8 +114,11 @@ public class PaymentController {
 	}
 
 	@GetMapping(URL_PAYPAL_CANCEL)
-	public String cancelPay(){
-		return "cancel";
+	public String cancelPay(RedirectAttributes redirectAttributes){
+		redirectAttributes.addFlashAttribute("ms", "failed");
+		
+		
+		return "redirect:/user/account/statusOrder";
 	}
 
 	@GetMapping(URL_PAYPAL_SUCCESS)
@@ -144,7 +147,7 @@ public class PaymentController {
 			orderDetail.setOrders(orders);
 			orders.setName(payerId);
 			orders.setPayment(paymentId);
-			orders.setStatus(true);
+			orders.setStatus(false);
 			Orders ordersResult = ordersService.save(orders);
 			if (ordersResult != null) {
 				 OrderDetail orderDetailResult = orderDetailService.save(orderDetail);

@@ -40,8 +40,10 @@ import com.online.booking.entities.Hotel;
 
 import com.online.booking.entities.ImageRoomEntity;
 import com.online.booking.entities.OrderDetail;
+import com.online.booking.entities.Orders;
 import com.online.booking.entities.StarRating;
 import com.online.booking.helper.CheckHelper;
+import com.online.booking.helper.RoleHotelEnum;
 import com.online.booking.helper.UploadFileHelper;
 import com.online.booking.services.AccountService;
 import com.online.booking.services.CopponHotelService;
@@ -49,6 +51,7 @@ import com.online.booking.services.CopponRoomService;
 import com.online.booking.services.HotelService;
 import com.online.booking.services.ImageRoomService;
 import com.online.booking.services.OrderDetailService;
+import com.online.booking.services.OrdersService;
 import com.online.booking.services.ServiceService;
 import com.online.booking.services.StarRatingService;
 import com.online.booking.validations.HotelValidator;
@@ -78,6 +81,8 @@ public class HotelManagementController {
 	private AccountService accountService;
 	@Autowired
 	private CheckHelper checkHelper;
+	@Autowired
+	private OrdersService ordersService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap map, Authentication authentication, HttpSession session) {
@@ -94,11 +99,18 @@ public class HotelManagementController {
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(ModelMap map, @PathVariable("id") int id, Authentication authentication) {
 		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
-			map.put("hotel", hotelService.findById(id));
-			map.put("title", "Detail");
+			String url ="superuser.myhotel.detail";
+			Hotel hotel = hotelService.findById(id);
+				map.put("hotel", hotel);
+				map.put("now", new Date());
+				map.put("title", "Detail");
+			
+			
 
-			return "superuser.myhotel.detail";
+			return checkHelper.checkRoleHotel(hotel, url);
+			
 		} else {
 			return "error.404";
 		}
@@ -118,6 +130,7 @@ public class HotelManagementController {
 	public List<CopponRoomEntity> saveCopponRoom(@RequestParam("roomId") String roomId,
 			@RequestParam("disName") String name, @RequestParam("disVal") double val,
 			@RequestParam("status") boolean status, @RequestParam("hotelId") int hotelId) {
+		System.out.println("nnn" + hotelId);
 
 		if (roomId.length() <= 2 || val > 100 || val < 1 || name.length() > 205 || name.length() < 1) {
 			return new ArrayList<CopponRoomEntity>();
@@ -198,13 +211,16 @@ public class HotelManagementController {
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
 	public String edit(ModelMap map, @PathVariable("id") int id, Authentication authentication) {
 		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
+			String url = "superuser.myhotel.edit";
+			Hotel hotel  = hotelService.findById(id) ;
 			map.put("hotel", hotelService.findById(id));
 
 			map.put("starRatings", (List<StarRating>) starRatingService.findAll());
 			map.put("title", "Edit");
 
-			return "superuser.myhotel.edit";
+			return checkHelper.checkRoleHotel(hotel, url);
 		} else {
 			return "error.404";
 		}
@@ -268,13 +284,19 @@ public class HotelManagementController {
 
 		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkHotelofAccountSession(id, account.getId())) {
-			map.put("hotel", hotelService.findById(id));
-			map.put("orderdetail", orderDetailService.findByIdHotel(id));
+			String url = "superuser.myhotel.management";
+			Hotel hotel =hotelService.findById(id);
+			map.put("hotel", hotel );
+			map.put("orderdetail", orderDetailService.findHistoryAllOrderDetail(id, new Date(), true));
 			map.put("services", serviceService.findByTypeService(1));
+			System.out.println("ok" +orderDetailService.findBookingReservesint(id, new Date(), false).size());
+			map.put("reserves", orderDetailService.findBookingReservesint(id, new Date(), false));
+			map.put("checkinRoom", orderDetailService.findBookingCheckInIsNow(id, new Date(), false));
+			
 			map.put("now", new Date());
 			map.put("title", "Management");
 
-			return "superuser.myhotel.management";
+			return checkHelper.checkRoleHotel(hotel, url);
 		} else {
 			return "error.404";
 		}
@@ -284,10 +306,40 @@ public class HotelManagementController {
 	@RequestMapping(value = "ajax/find/order", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public List<OrderDetail> findByidRoom(@RequestParam("id") int idRoom) {
-		System.out.println(orderDetailService.findByIdRoom(idRoom).size());
+		System.out.println( orderDetailService.findCustomerNow(idRoom,new Date(), true).size());
 
-		return orderDetailService.findByIdRoom(idRoom);
+		return orderDetailService.findCustomerNow(idRoom,new Date(), true);
+
+	}
+	@RequestMapping(value = "analytics", method = RequestMethod.GET)
+	public String analytics(ModelMap map , Authentication authentication) {
+		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
+		map.put("hotels", hotelService.findByAccountId(account.getId()));
+		System.out.println( hotelService.findByAccountId(account.getId()).size());
+		
+			return "superuser.myhotel.analytics";
+		}
+	@RequestMapping(value = "ajax/confirm", produces = { MediaType.ALL_VALUE })
+	@ResponseBody
+	public String confirm(@RequestParam("id") int idDetail) {
+		Orders orders = ordersService.findById(orderDetailService.findById(idDetail).getOrders().getId());
+		orders.setStatus(true);
+	
+		Orders ordersResult = ordersService.save(orders);
+		if (ordersResult != null) {
+			
+			return "OK";
+			
+		} else {
+		
+			return "FAILED" ;
+		}
+		
+		
 
 	}
 
-}
+	}
+	
+
+

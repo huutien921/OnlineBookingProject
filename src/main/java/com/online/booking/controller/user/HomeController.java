@@ -23,8 +23,7 @@ import com.online.booking.services.ServiceHotelService;
 public class HomeController {
 	@Autowired
 	private RoomService roomService;
-	@Autowired
-	private ServiceHotelService serviceHotelService;
+
 	@Autowired
 	private SaleService saleService;
 	@Autowired

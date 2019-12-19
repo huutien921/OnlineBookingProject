@@ -37,9 +37,7 @@ ${title }
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/dist/css/skins/_all-skins.min.css">
-<!-- Morris chart -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.css">
+
 <!-- jvectormap -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/admin/bower_components/jvectormap/jquery-jvectormap.css">
@@ -121,10 +119,10 @@ ${title }
 								<!-- Menu Footer-->
 								<li class="user-footer">
 									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">Profile</a>
+										<a href="${pageContext.request.contextPath }/login/profile" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										<a href="${pageContext.request.contextPath }/login/logout" class="btn btn-default btn-flat">Sign out</a>
 									</div>
 								</li>
 							</ul></li>
@@ -265,6 +263,7 @@ ${title }
 						</ul></li>
 					<!-- end employee -->
 					</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_SUPER_USER')">
 <!-- super user-->
 					<li class="treeview active"><a href="#"> <i class="fa fa-table"></i>
 							<span>Super User</span> <span class="pull-right-container">
@@ -278,28 +277,30 @@ ${title }
 							<li><a
 								href="${pageContext.request.contextPath }/user/superuser/create/hotel "><i
 									class="fa fa-circle-o"></i> New Hotel</a></li>
-
+<li><a
+								href="${pageContext.request.contextPath }/superuser/myhotel/analytics "><i
+									class="fa fa-circle-o"></i> Analytics</a></li>
 
 				
-							<li><a
+					<!-- 	<li><a
 								href="${pageContext.request.contextPath }/employee/promotion "><i
 									class="fa fa-circle-o"></i> Customers</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/employee/user "><i
-									class="fa fa-circle-o"></i>Analytics</a></li>
+									class="fa fa-circle-o"></i>Analytics</a></li> -->	
 
 						</ul></li>
 					<!-- end superuser -->
+</sec:authorize>
 
 
-
-					<li><a href="https://adminlte.io/docs"><i
+				<!-- <li><a href="https://adminlte.io/docs"><i
 							class="fa fa-book"></i> <span>Documentation</span></a></li>
 					<li class="header">LABELS</li>
 					<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
 					<li><a href="#"><i class="fa fa-circle-o text-yellow"></i>
 							<span>Warning</span></a></li>
-					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+					<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->	
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -313,12 +314,7 @@ ${title }
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.4.13
-			</div>
-			<strong>Copyright &copy; 2014-2019 <a
-				href="https://adminlte.io">AdminLTE</a>.
-			</strong> All rights reserved.
+	
 		</footer>
 
 		<!-- Control Sidebar -->
@@ -512,9 +508,7 @@ ${title }
 	<!-- Bootstrap 3.3.7 -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- Morris.js charts -->
-	<script
-		src="${pageContext.request.contextPath }/resources/admin/bower_components/raphael/raphael.min.js"></script>
+	
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/morris.js/morris.min.js"></script>
 	<!-- Sparkline -->
@@ -525,7 +519,7 @@ ${title }
 		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<!-- jQuery Knob Chart -->
+	<!-- jQuery Knob  -->
 	<script
 		src="${pageContext.request.contextPath }/resources/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 	<!-- daterangepicker -->
@@ -586,6 +580,8 @@ ${title }
 			$('#example1').DataTable()
 			$('#example3').DataTable()
 			$('#example5').DataTable()
+			$('#example6').DataTable()
+			$('#example4').DataTable()
 			$('#example2').DataTable({
 				'paging' : true,
 				'lengthChange' : false,

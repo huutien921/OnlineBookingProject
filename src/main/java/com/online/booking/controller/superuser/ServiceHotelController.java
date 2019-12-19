@@ -56,9 +56,12 @@ public class ServiceHotelController {
 		map.put("account", account);
 		if (id != null && idhotel != null) {
 			
+			
 			if (checkHelper.checkHotelofAccountSession(idhotel, account.getId())) {
+				
 				map.put("service", serviceService.findById(id));
 				map.put("hotel", hotelService.findById(idhotel));
+				
 			} else {
 				return "error.404";}
 			
@@ -70,9 +73,24 @@ public class ServiceHotelController {
 		
 		map.put("now", new Date());
 		map.put("about", aboutService.findById(1));
+		
+	if (idhotel != null ) {
+		
+		if ((hotelService.findById(idhotel).getAccountByIdAcEmployee() == null && (hotelService.findById(idhotel).isStatus() == false ))
+				
+				|| (hotelService.findById(idhotel).getAccountByIdAcEmployee() == null && (hotelService.findById(idhotel).isStatus() == true ))
+				
+				) {
+			return "error.lock";
+			
+		}else {
+		return checkHelper.checkRoleHotel(hotelService.findById(idhotel), "superuser.servicehotel.buy");
 	
-
+		}} else {
 		return "superuser.servicehotel.buy";
+	}
+
+		
 		
 	}
 

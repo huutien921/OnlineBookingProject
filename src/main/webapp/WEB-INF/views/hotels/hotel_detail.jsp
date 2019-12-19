@@ -207,9 +207,8 @@ $('#clickToRoom').click(function() {
 							<div class="col-6 col-md-4">
 								<!--  <p style="color: gray; text-decoration: line-through;">$5000/night</p>
 								<h4 style="color: orange;">$5000/night</h4>-->
-								<a href="" id="clickToRoom">click me</a>
-								<input type="button" value="Book now" id="clickToRoom"
-									style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;">
+								<a href="#ourRoom" class="btn" role="button" style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;">Book now</a>
+								
 							</div>
 						</div>
 						<hr>
@@ -325,13 +324,15 @@ $('#clickToRoom').click(function() {
 
 
 											<!-- Button trigger modal -->
+											<c:set var="doc" value="."></c:set>
+											<c:set var="modal" value="bd-example-modal-lg"></c:set>
 											<button type="button" class="btn btn-outline-info"
-												data-toggle="modal" data-target=".bd-example-modal-lg">
+												data-toggle="modal" data-target="${doc }${modal }${room.id}">
 												Detail of Room</button>
 
 
 
-											<div class="modal fade bd-example-modal-lg" tabindex="-1"
+											<div class="modal fade ${modal }${room.id}" tabindex="-1"
 												role="dialog" aria-labelledby="myLargeModalLabel"
 												aria-hidden="true">
 												<div class="modal-dialog modal-lg">
@@ -477,10 +478,28 @@ $('#clickToRoom').click(function() {
 											</h5>
 
 											<hr>
+											<c:set var="q" value="0"></c:set>
+											<c:forEach var="orderDetail" items="${room.orderDetails }">
+											<c:if test="${(orderDetail.checkInDate < checkin and orderDetail.checkOutDate >checkin    )
+											or ( orderDetail.checkInDate  < checkout and checkout < orderDetail.checkOutDate ) 
+											or  (( checkin < orderDetail.checkInDate  ) and ( checkout > orderDetail.checkOutDate ))
+											 }">
+											 <c:set var="q" value="${q + orderDetail.quantity }"></c:set>
+											 
+											 </c:if>
+											
+											
+											</c:forEach>
+											<c:if test="${room.amountOfRoom - q >= rooms }">
 											<a
 												style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;"
 												href="${pageContext.request.contextPath }/booking?roomid=${room.id }&checkin=${checkin }&checkout=${checkout }&room=${rooms}">Book
-												Now</a>
+												Now </a>
+												
+												</c:if>
+												<c:if test="${room.amountOfRoom - q < rooms }">
+										<p><font size="5" color="red">SOLD OUT</font></p>
+												</c:if>
 
 
 										</div>

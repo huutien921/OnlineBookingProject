@@ -9,128 +9,184 @@
 	<i class="fa fa-building" style="color: #2E64FE;"></i>My Order
 </h3>
 <hr>
+
 <div class="container-fluid">
 
 	<div class="row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
+			<c:if test="${ms == 'payok' }">
 
+				<div class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i>Payment success !
+					</h4>
+You have successfully paid. Thank you for using the service !
+				</div>
+			</c:if>
+					<c:if test="${ms == 'payfailed' }">
+
+				<div class="alert alert-warning alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i>Payment failed!
+					</h4>
+
+Payment failed . Thank you for using the service !
+				</div>
+			</c:if>
+			<c:if test="${ms == 'pay'}">
+				<div class="alert alert-warning alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Payment warning !
+					</h4>
+					Your reservation has not been paid yet. Please pay before your next
+					booking!
+				</div>
+
+			</c:if>
+			<c:if test="${ms == 'ok' }">
+
+				<div class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Order Success !
+					</h4>
+
+					Please check your email
+				</div>
+			</c:if>
+			<c:if test="${ms == 'failed'}">
+				<div class="alert alert-warning alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> error!
+					</h4>
+					error during booking
+				</div>
+
+			</c:if>
 			<div class="row">
-				<c:if test="${ms == 'ok' }">
-
-					<div class="alert alert-success alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert"
-							aria-hidden="true">&times;</button>
-						<h4>
-							<i class="icon fa fa-check"></i> Order Success !
-						</h4>
-						
-Please check your email
-					</div>
-				</c:if>
-				<c:if test="${ms == 'failed'}">
-					<div class="alert alert-warning alert-dismissible">
-						<button type="button" class="close" data-dismiss="alert"
-							aria-hidden="true">&times;</button>
-						<h4>
-							<i class="icon fa fa-warning"></i>  error!
-						</h4>
-						error during booking
-					</div>
-
-				</c:if>
-				<c:forEach var="orderdetai" items="${ordernew.orderDetails }">
-					<div class="col-sm-12" style="background-color: #E6E6E6;">
-						<div class="row">
-							<div class="col-sm-3">
-								<br> <img alt="room"
-									src="${pageContext.request.contextPath }/uploads/images/${orderdetai.room.hotel.image}"
-									style="width: 200px; height: 150px">
-								<hr>
-								<span style="font-weight: bold;">Hotel</span> <span>
-									${orderdetai.room.hotel.name }</span>
-
-							</div>
-							<div class="col-sm-3">
-								<br>
-								<h4>
-									<i class="fa fa-info" style="color: #2E64FE;"></i>Info
-								</h4>
-								<hr>
-								<p>
-									<span style="font-weight: bold;">Room</span> <span>${orderdetai.room.name }</span>
-								</p>
-								<span style="font-weight: bold;">Check in:</span> <span>${orderdetai.checkInDate}</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Check out:</span> <span>${orderdetai.checkOutDate}</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Amount of room:</span> <span>${orderdetai.quantity}</span>
-								</p>
-							</div>
-							<div class="col-sm-3">
-								<br>
-								<h4>
-									<i class="fa fa-home" style="color: #58ACFA;"></i>Room
-								</h4>
-								<hr>
-								<p>
-									<span style="font-weight: bold;">Room:</span> <span
-										class="badge badge-info">${orderdetai.room.roomCategory.name }</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Type:</span> <span
-										class="badge badge-secondary">${orderdetai.room.roomType.name }</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Bed:</span> <span
-										class="badge badge-light">${orderdetai.room.bedType.name }</span>
-								</p>
-							</div>
-							<div class="col-sm-3">
-								<br>
-								<h4>
-									<i class="fa fa-check" style="color: #74DF00;"></i>Status
-								</h4>
-								<hr>
-								<p>
-									<span style="font-weight: bold;">Status:</span>
-									<c:if test="${orderdetai.orders.payment != null  }">
-										<span class="badge badge-success">Paid</span>
-									</c:if>
-									<c:if test="${orderdetai.orders.payment == null }">
-										<span class="badge badge-danger">Pay at the hotel</span>
 
 
-									</c:if>
 
-								</p>
-								<p>
-									<c:set var="day"
-										value="${orderdetai.checkOutDate.getTime() - orderdetai.checkInDate.getTime() }"></c:set>
+				<c:forEach var="orderdetai" items="${orderdetails }">
 
-									<span style="font-weight: bold;">Price:</span> <span
-										style="color: #0080FF; font-weight: bold; font-size: 15px">
-										$ ${orderdetai.room.price * orderdetai.quantity * day/86400000 }
-									</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Sale off:</span> <span
-										style="color: #0080FF; font-weight: bold; font-size: 15px;">-
-										$ ${(orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100  }
-									</span>
-								</p>
-								<p>
-									<span style="font-weight: bold;">Total:</span> <span
-										style="color: #0431B4; font-weight: bold; font-size: 30px">$
-										${orderdetai.room.price * orderdetai.quantity * day/86400000 - ((orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100 )}</span>
-								</p>
+					<c:if test="${orderdetai.checkOutDate > now }">
 
-								<hr>
+
+						<div class="col-sm-12" style="background-color: #E6E6E6;">
+							<div class="row">
+								<div class="col-sm-3">
+									<br> <img alt="room"
+										src="${pageContext.request.contextPath }/uploads/images/${orderdetai.room.hotel.image}"
+										style="width: 200px; height: 150px">
+									<hr>
+									<span style="font-weight: bold;">Hotel</span> <span>
+										${orderdetai.room.hotel.name }</span>
+
+								</div>
+								<div class="col-sm-3">
+									<br>
+									<h4>
+										<i class="fa fa-info" style="color: #2E64FE;"></i>Info
+									</h4>
+									<hr>
+									<p>
+										<span style="font-weight: bold;">Room</span> <span>${orderdetai.room.name }</span>
+									</p>
+									<span style="font-weight: bold;">Check in:</span> <span>${orderdetai.checkInDate}</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Check out:</span> <span>${orderdetai.checkOutDate}</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Amount of room:</span> <span>${orderdetai.quantity}</span>
+									</p>
+								</div>
+								<div class="col-sm-3">
+									<br>
+									<h4>
+										<i class="fa fa-home" style="color: #58ACFA;"></i>Room
+									</h4>
+									<hr>
+									<p>
+										<span style="font-weight: bold;">Room:</span> <span
+											class="badge badge-info">${orderdetai.room.roomCategory.name }</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Type:</span> <span
+											class="badge badge-secondary">${orderdetai.room.roomType.name }</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Bed:</span> <span
+											class="badge badge-light">${orderdetai.room.bedType.name }</span>
+									</p>
+								</div>
+								<c:set var="day"
+									value="${orderdetai.checkOutDate.getTime() - orderdetai.checkInDate.getTime() }"></c:set>
+								<div class="col-sm-3">
+									<br>
+									<h4>
+										<i class="fa fa-check" style="color: #74DF00;"></i>Status
+									</h4>
+									<hr>
+									<p>
+										<span style="font-weight: bold;">Status:</span>
+										<c:if test="${orderdetai.orders.payment != 'payathotel'  }">
+											<span class="badge badge-success">Paid</span>
+										</c:if>
+
+										<c:if test="${orderdetai.orders.payment == 'payathotel' }">
+											<span class="badge badge-danger">Pay at the hotel</span>
+
+											<form method="post" id="my_form"
+												action="${pageContext.request.contextPath }/user/back/pay">
+												<input type="hidden" value="${orderdetai.id }" name="idorderdetail">
+												<input type="hidden" name="price"
+													value="${orderdetai.room.price * orderdetai.quantity * day/86400000 - ((orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100 )}">
+												
+												<img  src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png" alt="Check out with PayPal" onclick="document.getElementById('my_form').submit(); return false;"  />
+											</form>
+
+										</c:if>
+
+									</p>
+									<p>
+
+
+										<span style="font-weight: bold;">Price:</span> <span
+											style="color: #0080FF; font-weight: bold; font-size: 15px">
+											$ ${orderdetai.room.price * orderdetai.quantity * day/86400000 }
+										</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Sale off:</span> <span
+											style="color: #0080FF; font-weight: bold; font-size: 15px;">-
+											$ ${(orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100  }
+										</span>
+									</p>
+									<p>
+										<span style="font-weight: bold;">Total:</span> <span
+											style="color: #0431B4; font-weight: bold; font-size: 30px">$
+											${orderdetai.room.price * orderdetai.quantity * day/86400000 - ((orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100 )}</span>
+									</p>
+
+									<hr>
+								</div>
+
 							</div>
 						</div>
-					</div>
+						<hr>
+					</c:if>
+
 				</c:forEach>
 			</div>
 
@@ -166,21 +222,21 @@ Please check your email
 								</tr>
 							</thead>
 							<tbody id="myTable">
-								<c:forEach var="orderde" items="${orders }">
-									<c:forEach var="orderdetai" items="${orderde.orderDetails }">
-										<c:set var="day"
-											value="${orderdetai.checkOutDate.getTime() - orderdetai.checkInDate.getTime() }"></c:set>
-										<tr>
 
-											<td>${orderdetai.room.hotel.name }</td>
-											<td>${orderdetai.room.name }</td>
-											<td>$ ${orderdetai.room.price * orderdetai.quantity * day/86400000 - ((orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100 )}</td>
-											<td>${orderdetai.checkInDate }</td>
-											<td>${orderdetai.checkOutDate }</td>
-											<td><a href="#" style="color: #0080FF">Detail</a></td>
-										</tr>
-									</c:forEach>
+								<c:forEach var="orderdetai" items="${history }">
+									<c:set var="day"
+										value="${orderdetai.checkOutDate.getTime() - orderdetai.checkInDate.getTime() }"></c:set>
+									<tr>
+
+										<td>${orderdetai.room.hotel.name }</td>
+										<td>${orderdetai.room.name }</td>
+										<td>$ ${orderdetai.room.price * orderdetai.quantity * day/86400000 - ((orderdetai.room.price * orderdetai.quantity * day/86400000 ) * ( orderdetai.room.copponRoom.sale + orderdetai.room.hotel.copponHotel.sale)   /100 )}</td>
+										<td>${orderdetai.checkInDate }</td>
+										<td>${orderdetai.checkOutDate }</td>
+										<td><a href="#" style="color: #0080FF">Detail</a></td>
+									</tr>
 								</c:forEach>
+
 
 							</tbody>
 							<thead>

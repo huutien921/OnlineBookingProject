@@ -4,7 +4,7 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="tags" uri="tags"%>
 	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -226,6 +226,7 @@ img.hover-shadow {
 					</li>
 
 					<li class="nav-item"><a class="nav-link" href="#">$USD</a></li>
+					<sec:authorize access="!hasRole('ROLE_EMPLOYEE') and !hasRole('ROLE_ADMIN') and !hasRole('ROLE_SUPER_ADMIN')">
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/account/statusOrder"><i
 							class="fa fa-calendar"></i><!--  History-->My Order</a>
 
@@ -234,6 +235,7 @@ img.hover-shadow {
 							class="fa fa-calendar" style="color: #BDBDBD"></i><!--  History--><!----><!-- My Order</a>  -->
 
 					</li>
+					</sec:authorize>
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/login/profile"><i
 							class="fa fa-user" style="color: #819FF7"></i>Profile(<span style="font-weight: bold;"> ${pageContext.request.userPrincipal.name}</span>)</a></li>
@@ -270,10 +272,10 @@ img.hover-shadow {
 				class="fa fa-info" style="color: #04B4AE"></i>About</a></li>
 		<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/news"><i
 				class="fa fa-phone" style="color: #088A08"></i>Contact</a></li>
-				
+				<sec:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_SUPER_USER')">
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/superuser/create/hotel"><!-- <i
 				class="fa fa-phone" style="color: #088A08"></i> --> <i class="fas fa-user-friends" style="color: #00BFFF"></i>Become partner</a></li>
-
+</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_SUPER_USER')">
 				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/superuser/myhotel"><!-- <i
 				class="fa fa-phone" style="color: #088A08"></i> --> <i class="fas fa-chart-pie" style="color: #00BFFF"></i>Hotel Management</a></li>

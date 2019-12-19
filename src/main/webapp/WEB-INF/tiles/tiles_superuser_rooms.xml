@@ -7,6 +7,8 @@
 	<definition name="superuser.myroom.create" extends="admin_template">
 		<put-attribute name="content" value="/WEB-INF/views/superuser/rooms/create.jsp"></put-attribute>
 	</definition>
-
+	<definition name="superuser.myroom.edit" extends="admin_template">
+		<put-attribute name="content" value="/WEB-INF/views/superuser/rooms/edit.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

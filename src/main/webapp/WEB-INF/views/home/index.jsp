@@ -2,7 +2,44 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script
+	src="${pageContext.request.contextPath }/resources/user/js/jquery-3.4.1.min.js"
+	type="text/javascript">
+	
+</script>
+<script
+		src="${pageContext.request.contextPath }/resources/admin/bower_components/moment/min/moment.min.js"></script>
+	
+
+<script type="text/javascript">
+	jQuery(document)
+			.ready(
+					function() {
+						var d = moment(new Date()).format('YYYY-MM-DD');
+						$('#checkin').val(d);
+						
+						
+						$("#checkout").on("change", function(event) {
+							
+							var date2 = new Date($('#checkout').val());
+							var date1 = new Date($('#checkin').val());
+						
+							var dateH = (date2.getTime() - date1.getTime());
+
+							if(dateH <= 0){
+							
+							document.getElementById("checkout").style.color = "red";
+							
+								}
+								
+						
+							
+							
+							});
+						});
+	</script>
 <br>
+
 <div
 	style="background-color: #819FF7; background-image: linear-gradient(to right, #2E64FE, #81F7F3); padding: 40px;">
 	<div class="container">
@@ -49,11 +86,17 @@
 							<c:forEach var="item" items="${new1Blog}">
 								<!-- promo -->
 								<h5 style="color: white"><i style="color: #BF00FF;" class="fa fa-blog"></i> New Blog</h5>
-								<a
+							<!--  	<a
 									href="${pageContext.request.contextPath }/blog/detail/${item.id}"><img
 									alt="blog"
 									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
+									style="width: 250px; height: 200px"></a>-->
+									<a
+									href="${pageContext.request.contextPath }/blog/blog_detail/${item.id}"><img
+									alt="blog"
+									src="${pageContext.request.contextPath }/uploads/images/${item.src}"
 									style="width: 250px; height: 200px"></a>
+									
 								<h5 style="color: white;">${item.title }</h5>
 								<!-- promo -->
 							</c:forEach>
@@ -75,26 +118,32 @@
 			<div class="form-row align-items-center">
 				<div class="col-auto">
 					<label for="state">City name <i class="fa fa-map-marker"></i></label>
-					<input type="text" name="address" placeholder="City">
+					<input type="text" value="${address }" name="address" placeholder="City" required="required">
 				</div>
 
 
 				<div class="col-auto">
 					<label>Check in <i class="fas fa-check"></i></label> <input
-						type="date" name="checkin">
+						type="date" name="checkin"  value="${checkin }" required="required" id="checkin">
 				</div>
 				<div class="col-auto">
 					<label>Check out <i class="fas fa-remove"></i></label> <input
-						type="date" name="checkout">
+						type="date" name="checkout" value="${checkout }" required="required" id="checkout" >
 				</div>
 				<div class="col-auto">
 					<label>Guest <i class="fa fa-user"></i></label> <input
-						class="inputRoom" type="number" name="guests" placeholder="0">
+						class="inputRoom" type="number" name="guests" value="${guests }" placeholder="0" required="required" min="1">
 				</div>
 				<div class="col-auto">
 					<label>Room <i class="fa fa-home"></i></label> <input
-						class="inputRoom" type="number" name="room" placeholder="0">
+						class="inputRoom" type="number" name="room" value="${room }" placeholder="0" required="required" min="1" >
 				</div>
+				<c:if test="${ms == 'failed' }">
+				<div class="col-10">
+					<label  style="color: red;">Please fill out the fields !
+					</label>
+				</div>
+				</c:if>
 				<div class="col-10">
 					<label>How to booking <i class="fa fa-question"></i>
 					</label>

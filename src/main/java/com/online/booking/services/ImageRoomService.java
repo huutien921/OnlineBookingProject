@@ -53,4 +53,16 @@ public class ImageRoomService implements IImageRoomService {
 		return imageRoomRepository.save(imageRoom);
 	}
 
+	@Override
+	public ImageRoom findById(int id) {
+		// TODO Auto-generated method stub
+		return imageRoomRepository.findById(id).get();
+	}
+
+	@Override
+	public void delete(ImageRoom imageRoom) {
+		imageRoomRepository.delete(imageRoom);
+	
+	}
+
 }

@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<!--  <h3>employee</h3>-->
-
-
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
      <%@taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+     <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -72,7 +70,11 @@
 					
 						<td>${account.gender }</td>
 						
-						<td>${account.created } </td>
+						<td>
+						<fmt:formatDate pattern = "yyyy-MM-dd" 
+         value = "${account.created }" />
+						
+						 </td>
 							<c:if test="${account.status ==true}">
 							<td> Active</td>
 							
@@ -81,29 +83,32 @@
 							<td> UnActive</td>
 							
 							</c:if>
-						
+						<td>
 					 	<c:forEach var="roles" items="${account.roleAccounts}">
 						
 						<c:if test="${roles.role.id == 1}">
-						<td>Super Admin</td>
+						Super Admin
+						<br>
 						</c:if>
 						<c:if test="${roles.role.id == 2}">
-								<td>Admin</td>
+						Admin
+						<br>
 						
 						</c:if>
 						<c:if test="${roles.role.id == 3}">
-								<td>Employee</td>
-						
+						Employee
+						<br>
 						</c:if>
 						<c:if test="${roles.role.id == 4}">
-								<td>User</td>
+						User
 						
 						</c:if>
 						<c:if test="${roles.role.id == 5}">
-								<td>Super user</td>
-						
+						Super user
+						<br>
 						</c:if>
 						</c:forEach>
+						</td>
 						
 						<td align="center"><a href="${pageContext.request.contextPath }/admin/employee/accountdetail/${account.id }" class="btn btn-success">Detail</a>
 						
@@ -120,21 +125,22 @@
 				</tbody>
 							<tfoot>
 								<tr>
+						<tr>
 									<th>ID</th>
 						<th>User name</th>
 					
 						<th>Full name</th>
 						<th>Birthday</th>
-						<th>Email</th>
-						<th>Address</th>
+					
+						
 						<th>Gender</th>
-						<th>Avatar</th>
-						<th>Identity card</th>
-						<th>Score</th>
+						
 						<th>Created</th>
 						<th>Status</th>
 						<th>Role</th>
 						<th>Action</th>
+
+								</tr>
 								</tr>
 							</tfoot>
               </table>
