@@ -68,6 +68,7 @@ public class RoomManagementController {
 	public String create(ModelMap map, @PathVariable("id") int idHotel ,Authentication authentication) {
 		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkHotelofAccountSession(idHotel, account.getId())) {
+			String url = "superuser.myroom.create";
 			Room room = new Room();
 			map.put("room", room);
 			map.put("hotel", hotelService.findById(idHotel));
@@ -75,7 +76,7 @@ public class RoomManagementController {
 			map.put("categorys", roomCategoryService.findAll());
 			map.put("types", roomTypeService.findAll());
 			map.put("title", "Create");
-			return "superuser.myroom.create";
+			return checkHelper.checkRoleHotel(hotelService.findById(idHotel), url);
 		} else {
 			return "error.404";
 }}
@@ -160,13 +161,14 @@ public class RoomManagementController {
 	public String edit(ModelMap map, @PathVariable("id") int idRoom ,Authentication authentication) {
 		Account account = accountService.findByUsernameAndStatus(authentication.getName(), true);
 		if (checkHelper.checkRoomofAccountSession(idRoom, account.getId())) {
+			String url= "superuser.myroom.edit";
 		map.put("room", roomService.findById(idRoom));
 		map.put("hotel", roomService.findById(idRoom).getHotel());
 		map.put("beds", bedTypeService.findAll());
 		map.put("categorys", roomCategoryService.findAll());
 		map.put("types", roomTypeService.findAll());
 		map.put("title", "Edit");
-			return "superuser.myroom.edit";
+			return checkHelper.checkRoleHotel(roomService.findById(idRoom).getHotel(), url);
 		} else {
 			return "error.404";
 }}

@@ -314,12 +314,7 @@ ${title }
 		</div>
 		<!-- /.content-wrapper -->
 		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.4.13
-			</div>
-			<strong>Copyright &copy; 2014-2019 <a
-				href="https://adminlte.io">AdminLTE</a>.
-			</strong> All rights reserved.
+	
 		</footer>
 
 		<!-- Control Sidebar -->
@@ -585,6 +580,8 @@ ${title }
 			$('#example1').DataTable()
 			$('#example3').DataTable()
 			$('#example5').DataTable()
+			$('#example6').DataTable()
+			$('#example4').DataTable()
 			$('#example2').DataTable({
 				'paging' : true,
 				'lengthChange' : false,

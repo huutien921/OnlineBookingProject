@@ -16,7 +16,8 @@ import com.online.booking.entities.Hotel;
 import com.online.booking.entities.HotelEntity;
 import com.online.booking.entities.Room;
 import com.online.booking.repositories.HotelRepository;
-
+import com.online.booking.helper.CheckHelper;
+import com.online.booking.helper.CheckUrlHelper;
 @Service("hotelService")
 public class HotelService implements IHotelService {
 	@Autowired
@@ -25,12 +26,17 @@ public class HotelService implements IHotelService {
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private ServiceHotelService serviceHotelService;
+	@Autowired
+	private CheckUrlHelper checkUrlHelper;
+	@Autowired
+	private CheckHelper checkHelper;
 
 	@Override
 	public List<Hotel> searchByAddressAddPriority(String address, Date checkIn, Date checkOut, int guests,
 			int quanRoom) {
 
 		List<Hotel> hotelResult = new ArrayList<Hotel>();
+		List<Hotel> hotelResult2 = new ArrayList<Hotel>();
 		for (Hotel hotel : hotelRepository.searchByAddress(address)) {
 			for (Room room : hotel.getRooms()) {
 				// truy van dieu kien khach san du phong cho khach hang
@@ -48,9 +54,22 @@ public class HotelService implements IHotelService {
 				}
 			}
 		}
+		for (Hotel hotel : hotelResult) {
+			if (checkHelper.checkHotelSearch(hotel)) {
+				
+			
+			for (Room room : hotel.getRooms()) {
+				if (checkUrlHelper.checkUrlBookingDate(room.getId(), checkIn, checkOut, quanRoom)) {
+					hotelResult2.add(hotel);
+					break;
+				}
+			}}
+		}
+	
+		
 		// sap xep theo do uu tien dich vu
 
-		Collections.sort(hotelResult, new Comparator<Hotel>() {
+		Collections.sort(hotelResult2, new Comparator<Hotel>() {
 
 			@Override
 			public int compare(Hotel o1, Hotel o2) {
@@ -59,7 +78,7 @@ public class HotelService implements IHotelService {
 						.getPriorityMax(new Date(), o2.getId(), true) ? -1 : 1;
 			}
 		});
-		return hotelResult;
+		return hotelResult2;
 	}
 
 	// search with price

@@ -478,10 +478,28 @@ $('#clickToRoom').click(function() {
 											</h5>
 
 											<hr>
+											<c:set var="q" value="0"></c:set>
+											<c:forEach var="orderDetail" items="${room.orderDetails }">
+											<c:if test="${(orderDetail.checkInDate < checkin and orderDetail.checkOutDate >checkin    )
+											or ( orderDetail.checkInDate  < checkout and checkout < orderDetail.checkOutDate ) 
+											or  (( checkin < orderDetail.checkInDate  ) and ( checkout > orderDetail.checkOutDate ))
+											 }">
+											 <c:set var="q" value="${q + orderDetail.quantity }"></c:set>
+											 
+											 </c:if>
+											
+											
+											</c:forEach>
+											<c:if test="${room.amountOfRoom - q >= rooms }">
 											<a
 												style="background-color: #F0770C; color: white; padding: 12px; margin: 1px 0; border: none; width: 100%; border-radius: 3px; cursor: pointer; font-size: 17px;"
 												href="${pageContext.request.contextPath }/booking?roomid=${room.id }&checkin=${checkin }&checkout=${checkout }&room=${rooms}">Book
-												Now</a>
+												Now </a>
+												
+												</c:if>
+												<c:if test="${room.amountOfRoom - q < rooms }">
+										<p><font size="5" color="red">SOLD OUT</font></p>
+												</c:if>
 
 
 										</div>

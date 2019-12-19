@@ -51,7 +51,7 @@ public class BookingController {
 			@RequestParam("checkout") String checkout, @RequestParam("room") int rooms, ModelMap map
 ,Authentication authentication
 	) {
-		if (checkUrlHelper.checkUrlBooking(roomid, checkin, checkout, rooms)) {
+		if (checkUrlHelper.checkUrlBooking(roomid, checkin, checkout, rooms ,accountService.findByUsernameAndStatus(authentication.getName(), true))) {
 			
 	
 
@@ -100,7 +100,7 @@ public class BookingController {
 			Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
 			Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
 			if (paytype.equalsIgnoreCase("payathotel")) {
-				System.out.println("ok");
+			
 				Orders orders = new Orders();
 				orders.setName("payathotel");
 				orders.setPayment("payathotel");
@@ -109,7 +109,7 @@ public class BookingController {
 				if (saleService.findByCodeAndDate(code, new Date()) != null) {
 					orders.setSale(saleService.findByCodeAndDate(code, new Date()));
 				}
-				System.out.println("ok2");
+				
 				orders.setStatus(false);
 				Orders orderResult = ordersService.save(orders);
 				if (orderResult != null) {

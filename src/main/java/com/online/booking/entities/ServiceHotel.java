@@ -31,6 +31,8 @@ public class ServiceHotel implements java.io.Serializable {
 	private Date startDate;
 	private Date endDate;
 	private Date created;
+	private String payment;
+	private String idpayer;
 	private boolean status;
 	private Long tatol;
 	private Set<Payment> payments = new HashSet<Payment>(0);
@@ -39,15 +41,21 @@ public class ServiceHotel implements java.io.Serializable {
 	}
 
 	public ServiceHotel(int id, Hotel hotel, Service service, Date startDate, Date endDate, Date created,
-			boolean status) {
+			String payment, String idpayer, boolean status, Long tatol, Set<Payment> payments) {
+		super();
 		this.id = id;
 		this.hotel = hotel;
 		this.service = service;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.created = created;
+		this.payment = payment;
+		this.idpayer = idpayer;
 		this.status = status;
+		this.tatol = tatol;
+		this.payments = payments;
 	}
+
 	@Column(name = "tatol", precision = 10, scale = 0)
 	public Long getTatol() {
 		return tatol;
@@ -140,6 +148,23 @@ public class ServiceHotel implements java.io.Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+	
+	@Column(name = "payment", length = 250)
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+	@Column(name = "idpayer", length = 250)
+	public String getIdpayer() {
+		return idpayer;
+	}
+
+	public void setIdpayer(String idpayer) {
+		this.idpayer = idpayer;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "serviceHotel")

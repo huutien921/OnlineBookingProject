@@ -14,5 +14,10 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/superuser/error/500.jsp"></put-attribute>
 	</definition>
+	<definition name="error.lock"
+		extends="admin_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/superuser/error/lock.jsp"></put-attribute>
+	</definition>
 	
 </tiles-definitions>

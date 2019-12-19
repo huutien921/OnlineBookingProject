@@ -59,7 +59,17 @@
 
 						<li class="list-group-item"><b>Rooms available</b> <a
 							class="pull-right">${amountRoom -roomAvailable }</a></li>
-
+						<li class="list-group-item"><b>Service in use</b>   
+						   <c:forEach var="service" items="${hotel.serviceHotels }">
+                <c:if test="${service.startDate < now and  service.endDate > now and service.status == true}">
+             
+             
+               <span class="label label-danger"> ${service.service.name}</span>
+           
+             
+                </c:if>
+                
+                </c:forEach></li>
 					</ul>
 					<div class="row">
 						<div class="col-md-6">
@@ -202,7 +212,7 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#activity" data-toggle="tab">Rooms</a></li>
 					<li><a href="#timeline" data-toggle="tab">Discounts</a></li>
-					<li><a href="#settings" data-toggle="tab">Analytics</a></li>
+					<li><a href="#settings" data-toggle="tab">My Service</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="active tab-pane" id="activity">
@@ -483,7 +493,49 @@
 
 
 
-					<div class="tab-pane" id="settings">tua tu se lam</div>
+					<div class="tab-pane" id="settings">
+					<div class="row">
+					  <c:forEach var="service" items="${hotel.serviceHotels }">
+                <c:if test="${service.startDate < now and  service.endDate > now and service.status == true}">
+             
+                <div class="col-md-4">
+          <div class="box box-warning box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">${service.service.name}</h3>
+              <h4>Expiration date : ${service.endDate}</h4>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            Service Type : ${service.service.servicetype.name}
+            <br>
+            Priority : ${service.service.priority}
+            <br>
+            Description :
+            <br>
+            ${service.service.description}
+            </div>
+            <!-- /.box-body -->
+          </div>
+					</div>
+             
+             
+             
+             
+            
+           
+             
+                </c:if>
+                
+                </c:forEach>
+				
+          
+					</div>
 
 				</div>
 

@@ -2,12 +2,12 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-   <%@taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 
-   <section class="content">
+<section class="content">
 
 	<div class="row">
-	
+
 		<div class="col-md-12">
 			<div class="nav-tabs-custom">
 				<c:if test="${ms == 'ok' }">
@@ -36,9 +36,10 @@
 
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#activity" data-toggle="tab">Rooms</a></li>
-					<li><a href="#timeline" data-toggle="tab">All Order</a></li>
-					<li><a href="#settings" data-toggle="tab">Confirm</a></li>
-						<li><a href="#store" data-toggle="tab">Store Service</a></li>
+					<li><a href="#timeline" data-toggle="tab">Customers</a></li>
+					<li><a href="#settings" data-toggle="tab">Rooms booked</a></li>
+					<li><a href="#checkin" data-toggle="tab">Check in</a></li>
+					<li><a href="#store" data-toggle="tab">Store Service</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="active tab-pane" id="activity">
@@ -103,19 +104,20 @@
 							<div class="box-header with-border">
 
 
-								<h2 class="box-title">Images</h2>
+								<h2 class="box-title" style="color: blue;">List of guests
+									currently in the room</h2>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
-						
-					<table id="example5" class="table table-bordered table-hover">
+
+								<table id="example5" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-										<th>Customer</th>
+											<th>Customer</th>
 											<th>Email</th>
 											<th>Check In</th>
 											<th>Check out</th>
-											<th>Status</th>
+
 											<th>Note</th>
 											<th>Payment</th>
 
@@ -125,27 +127,23 @@
 
 
 										<c:forEach var="ord" items="${orderdetail}">
-										<tr>
-											<td>${ord.namestaying }</td>
-										<td>${ord.email }</td>
-											<td>${ord.checkInDate }</td>
-											<td>${ord.checkOutDate }</td>
-											<td>stt</td>
-										
-										
-										
-											<td>${ord.note }</td>
-											
-											<td>
-											<c:if test="${ord.orders.status == true }">
-											paid
-											</c:if>
-												<c:if test="${ord.orders.status == false }">
-											uppaid
-											</c:if>
-											
-											</td>
-</tr>
+											<tr>
+												<td>${ord.namestaying }</td>
+												<td>${ord.email }</td>
+												<td>${ord.checkInDate }</td>
+												<td>${ord.checkOutDate }</td>
+
+
+
+
+												<td>${ord.note }</td>
+
+												<td><c:if test="${ord.orders.payment == 'payathotel' }">
+											Pay at hotel
+											</c:if> <c:if test="${ord.orders.payment != 'payathotel' }">
+											Paid
+											</c:if></td>
+											</tr>
 
 
 										</c:forEach>
@@ -157,18 +155,18 @@
 
 									<tfoot>
 										<tr>
-										<th>Customer</th>
+											<th>Customer</th>
 											<th>Email</th>
 											<th>Check In</th>
 											<th>Check out</th>
-											<th>Status</th>
+
 											<th>Note</th>
 											<th>Payment</th>
 
 										</tr>
 									</tfoot>
 								</table>
-								
+
 							</div>
 
 						</div>
@@ -182,13 +180,13 @@
 								<table id="example2" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-										<th>Name Customer</th>
+											<th>Name Customer</th>
 											<th>Room name</th>
 											<th>Check In</th>
 											<th>Check out</th>
 											<th>Quantity</th>
-											
-											
+
+
 											<th>Note</th>
 											<th>Payment</th>
 
@@ -198,99 +196,23 @@
 
 
 										<c:forEach var="ord" items="${orderdetail}">
-										<tr>
-											<td>${ord.namestaying }</td>
-										<td>${ord.room.name }</td>
-											<td>${ord.checkInDate }</td>
-											<td>${ord.checkOutDate }</td>
-											<td>${ord.quantity }</td>
-										
-										
-											<td>${ord.note }</td>
-											
-											<td>
-											<c:if test="${ord.orders.status == true }">
-											paid
-											</c:if>
-												<c:if test="${ord.orders.status == false }">
-											uppaid
-											</c:if>
-											
-											</td>
-</tr>
+											<tr>
+												<td>${ord.namestaying }</td>
+												<td>${ord.room.name }</td>
+												<td>${ord.checkInDate }</td>
+												<td>${ord.checkOutDate }</td>
+												<td>${ord.quantity }</td>
 
 
-										</c:forEach>
+												<td>${ord.note }</td>
 
+											<td><c:if test="${ord.orders.payment == 'payathotel' }">
+											Pay at hotel
+											</c:if> <c:if test="${ord.orders.payment != 'payathotel' }">
+											Paid
+											</c:if></td>
+											</tr>
 
-
-
-									</tbody>
-
-									<tfoot>
-										<tr>
-												<th>Name Customer</th>
-											<th>Room name</th>
-											<th>Check In</th>
-											<th>Check out</th>
-											<th>Quantity</th>
-											
-											
-											<th>Note</th>
-											<th>Payment</th>
-
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-						</div>
-					</div>
-
-
-
-					<div class="tab-pane" id="settings">
-					
-									<table id="example2" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-										<th>Name Customer</th>
-											<th>Room name</th>
-											<th>Check In</th>
-											<th>Check out</th>
-											<th>Quantity</th>
-											
-											
-											<th>Note</th>
-											<th>Payment</th>
-
-										</tr>
-									</thead>
-									<tbody>
-
-
-										<c:forEach var="ord" items="${orderdetail}">
-										<c:if test="${ord.checkInDate <= now && ord.checkOutDate >= now }">
-										<tr>
-											<td>${ord.namestaying }</td>
-										<td>${ord.room.name }</td>
-											<td>${ord.checkInDate }</td>
-											<td>${ord.checkOutDate }</td>
-											<td>${ord.quantity }</td>
-										
-										
-											<td>${ord.note }</td>
-											
-											<td>
-											<c:if test="${ord.orders.status == true }">
-											paid
-											</c:if>
-												<c:if test="${ord.orders.status == false }">
-											uppaid
-											</c:if>
-											
-											</td>
-</tr>
-</c:if>
 
 										</c:forEach>
 
@@ -306,48 +228,182 @@
 											<th>Check In</th>
 											<th>Check out</th>
 											<th>Quantity</th>
-											
-											
+
+
 											<th>Note</th>
 											<th>Payment</th>
+
 										</tr>
 									</tfoot>
 								</table>
-					
+							</div>
+						</div>
 					</div>
-						<div class="tab-pane" id="store">
-			<div class="row">
-			<c:forEach var="service" items="${services }">
-			
-					<div class="col-sm-4">
-						<a href="/promotions/detail/8"><img alt="promo" src="/uploads/images/${service.iconSrc }" style="width: 250px; height: 200px"></a>
-						<h5 style="color: gray;">
-							Name: ${service.name }
-						</h5>
-							<h5 style="color: gray;">
-							Price:$ ${service.price } /month
-						</h5>
-							<h5 style="color: gray;">
-							Priority: ${service.priority }
-						</h5>
+
+
+
+					<div class="tab-pane" id="settings">
+
+						<table id="example4" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Customer</th>
+									<th>Email</th>
+									<th>Room</th>
+									<th>Payment</th>
+									<th>Check in</th>
+									<th>Check out</th>
+									<th>Quantity</th>
+									<th>Note</th>
+
+
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<c:forEach var="reserve" items="${reserves}">
+
+									<tr>
+										<td>${reserve.orders.account.fullname }</td>
+										<td>${reserve.email}</td>
+										<td>${reserve.room.name }</td>
+										<td>${reserve.orders.payment }</td>
+										<td>${reserve.checkInDate }</td>
+										<td>${reserve.checkOutDate }</td>
+										
+
+
+										<td>${reserve.note }</td>
+
+										<td><c:if test="${reserve.orders.payment == 'payathotel' }">
+											Pay at hotel
+											</c:if> <c:if test="${reserve.orders.payment != 'payathotel' }">
+											Paid
+											</c:if></td>
+									</tr>
+
+
+								</c:forEach>
+
+
+
+
+							</tbody>
+
+							<tfoot>
+							<tr>
+								<th>Customer</th>
+									<th>Email</th>
+									<th>Room</th>
+									<th>Payment</th>
+									<th>Check in</th>
+									<th>Check out</th>
+									<th>Quantity</th>
+									<th>Note</th>
+
+								</tr>
+							</tfoot>
+						</table>
+
+					</div>
+					<div class="tab-pane" id="store">
 						<div class="row">
-							<div class="col-sm-12">
-								<small style="color: gray;">
-								
-									${ service.description}
-								</small>
-							</div>
-							<div class="col">
-								<a href="/superuser/servicehotel/buyService/${service.id }/${hotel.id}" class="btn btn-outline-info">buy</a>
-							</div>
+							<c:forEach var="service" items="${services }">
+
+								<div class="col-sm-4">
+									<a href="/promotions/detail/8"><img alt="promo"
+										src="/uploads/images/${service.iconSrc }"
+										style="width: 250px; height: 200px"></a>
+									<h5 style="color: gray;">Name: ${service.name }</h5>
+									<h5 style="color: gray;">Price:$ ${service.price } /month
+									</h5>
+									<h5 style="color: gray;">Priority: ${service.priority }</h5>
+									<div class="row">
+										<div class="col-sm-12">
+											<small style="color: gray;"> ${ service.description}
+											</small>
+										</div>
+										<div class="col">
+											<a
+												href="/superuser/servicehotel/buyService/${service.id }/${hotel.id}"
+												class="btn btn-outline-info">buy</a>
+										</div>
+									</div>
+									<hr>
+								</div>
+							</c:forEach>
+
+
 						</div>
-						<hr>
 					</div>
-			</c:forEach>
-      		
+					<div class="tab-pane" id="checkin">
 					
-         </div>
-						</div>
+					<table id="example6" class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Customer</th>
+									<th>Email</th>
+									<th>Room</th>
+									<th>Payment</th>
+									<th>Check in</th>
+									<th>Check out</th>
+									<th>Quantity</th>
+									<th>Note</th>
+									<th>Action</th>
+
+
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<c:forEach var="checkins" items="${checkinRoom}">
+
+									<tr>
+										<td>${checkins.orders.account.fullname }</td>
+										<td>${checkins.email}</td>
+										<td>${checkins.room.name }</td>
+										<td>${checkins.orders.payment }</td>
+										<td>${checkins.checkInDate }</td>
+										<td>${checkins.checkOutDate }</td>
+										
+
+
+										<td>${checkins.note }</td>
+
+										<td><c:if test="${checkins.orders.payment == 'payathotel' }">
+											Pay at hotel
+											</c:if> <c:if test="${checkins.orders.payment != 'payathotel' }">
+											Paid
+											</c:if></td>
+											<td><span id="confirmBill${checkins.id }"><button  class="btn btn-block  btn-primary" onclick="confirm(${checkins.id})" >Checked in</button></span></td>
+									</tr>
+
+
+								</c:forEach>
+
+
+
+
+							</tbody>
+
+							<tfoot>
+							<tr>
+									<th>Customer</th>
+									<th>Email</th>
+									<th>Room</th>
+									<th>Payment</th>
+									<th>Check in</th>
+									<th>Check out</th>
+									<th>Quantity</th>
+									<th>Note</th>
+									<th>Action</th>
+
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 
 				</div>
 
@@ -364,16 +420,58 @@
 	type="text/javascript">
 	
 </script>
+<script type="text/javascript">
+function confirm(id){
+	
+	$
+	.ajax({
+	
+		type : 'GET',
+		
+
+		url : '${pageContext.request.contextPath }/superuser/myhotel/ajax/confirm',
+		data : {
+		id : id
+		},
+		dataType : 'text',
+		contentType : 'aplication/json',
+		success : function(
+				result) {
+			
+			if(result == "OK"){
+				alert("Successful confirmation") ;
+				var s = '<p class="text-muted text-center" style="color: #0033cc ;"><i class="fa fa-fw fa-check-square"></i></p>';
+					$('#confirmBill' + id).html(s);
+		
+				}else{
+					alert("Failed confirmation") ;
+					
+					}
+			
+			
+		
+			}
+		
+
+	});
+	
+	
+}
+</script>
 <script>
 	$(document)
 			.ready(
 					function() {
 						$("#example1 tbody tr")
-								.on("click",function(event) {
+								.on(
+										"click",
+										function(event) {
 
-											var id = $(this).find("td").eq(1).html();
-											
-											$.ajax({
+											var id = $(this).find("td").eq(1)
+													.html();
+
+											$
+													.ajax({
 
 														type : 'GET',
 
@@ -385,24 +483,36 @@
 														contentType : 'aplication/json',
 														success : function(
 																result) {
-															
-														var	s = ' ' ;
-														
-														for (var i = 0 ; i < result.length; i++) {
-															
-															s += '<tr><td>'+ result[i].namestaying +'</td>';
-															s += '<td>'+ result[i].email + '</td>';
-															s += '<td>'+ result[i].checkInDate +'</td>';
-															s += '<td>'+ result[i].checkOutDate +'</td>';
-															s += '<td>'+ result[i].status +'</td>';
-															s += '<td>'+ result[i].note+'</td>';
-															s +='<td>'+ result[i].orders.payment + '</td>';
-															s +='</tr>';
+
+															var s = ' ';
+
+															for (var i = 0; i < result.length; i++) {
+
+																s += '<tr><td>'
+																		+ result[i].namestaying
+																		+ '</td>';
+																s += '<td>'
+																		+ result[i].email
+																		+ '</td>';
+																s += '<td>'
+																		+ result[i].checkInDate
+																		+ '</td>';
+																s += '<td>'
+																		+ result[i].checkOutDate
+																		+ '</td>';
+
+																s += '<td>'
+																		+ result[i].note
+																		+ '</td>';
+																s += '<td>'
+																		+ result[i].orders.payment
+																		+ '</td>';
+																s += '</tr>';
 
 															}
-			
-														
-														$('#example5 tbody').html(s);
+
+															$('#example5 tbody')
+																	.html(s);
 
 														}
 
@@ -413,4 +523,3 @@
 					});
 </script>
 
-	

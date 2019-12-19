@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.online.booking.entities.Account;
 import com.online.booking.entities.Hotel;
 import com.online.booking.services.HotelService;
 import com.online.booking.services.OrderDetailService;
@@ -21,20 +22,25 @@ public class CheckUrlHelper {
 	private OrderDetailService orderDetailService;
 
 public boolean checkUrlBooking(int roomid, String checkin,
-	 String checkout,int rooms) {
+	 String checkout,int rooms , Account account) {
 	boolean result = true;
 	try {
 		
 		Date dateCheckIn = new SimpleDateFormat("yyyy-MM-dd").parse(checkin);
 	
 		Date dateCheckOut = new SimpleDateFormat("yyyy-MM-dd").parse(checkout);
-		long checkQuantity = orderDetailService.sumQuantityByIdRoomAndDate(roomid, dateCheckIn, dateCheckOut);	
+		long checkQuantity = orderDetailService.sumQuantityByIdRoomAndDate(roomid, dateCheckIn, dateCheckOut);
+		System.out.println("soluong" + checkQuantity);
 		int quanRoom = roomService.findById(roomid).getAmountOfRoom();
 		int quanRoomlicensed = (int) (quanRoom - checkQuantity) ;
 		if (quanRoomlicensed < rooms) {
 			result = false ;
 		
 		}
+		if (roomService.findById(roomid).getHotel().getAccountByAccountId().getId() == account.getId()) {
+			result = false;
+		}
+		
 		
 	} catch (Exception e) {
 		result = false;
@@ -42,5 +48,29 @@ public boolean checkUrlBooking(int roomid, String checkin,
 	
 	return result;
 }
+public boolean checkUrlBookingDate(int roomid, Date dateCheckIn,
+		 Date dateCheckOut,int rooms) {
+		boolean result = true;
+		try {
+			
+	
+			long checkQuantity = orderDetailService.sumQuantityByIdRoomAndDate(roomid, dateCheckIn, dateCheckOut);	
+			int quanRoom = roomService.findById(roomid).getAmountOfRoom();
+			int quanRoomlicensed = (int) (quanRoom - checkQuantity) ;
+			if (quanRoomlicensed < rooms) {
+				result = false ;
+			
+			}
+			
+		} catch (Exception e) {
+			result = false;
+		}
+		
+		return result;
+	}
+
+
+
+
 	
 }

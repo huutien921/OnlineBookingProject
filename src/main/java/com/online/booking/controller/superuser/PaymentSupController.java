@@ -152,6 +152,8 @@ public class PaymentSupController {
 
 						ServiceHotel serviceHotel = (ServiceHotel) httpSession.getAttribute("servicehotel");
 						if (serviceHotel.getHotel() != null) {
+						serviceHotel.setPayment(paymentId);
+						serviceHotel.setIdpayer(payerId);
 
 							ServiceHotel serviceHotelaResult = serviceHotelService.save(serviceHotel);
 							if (serviceHotelaResult != null) {

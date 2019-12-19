@@ -60,8 +60,12 @@
               <img class="profile-user-img img-responsive img-rounded" src="${pageContext.request.contextPath }/uploads/images/${hotel.image}" alt="hotel image">
 
               <h3 class="profile-username text-center">${hotel.name }</h3>
-				<c:if test="${hotel.accountByIdAcEmployee == null }">
+				<c:if test="${hotel.accountByIdAcEmployee == null and hotel.status == false }">
 				<p class="text-muted text-center" style="color: #e68a00 ;"><i class="fa fa-fw fa-hourglass"></i>Awaiting</p>
+				
+				</c:if>
+				<c:if test="${hotel.accountByIdAcEmployee == null and hotel.status == true }">
+				<p class="text-muted text-center" style="color: #e68a00 ;"><i class="fa fa-fw fa-hourglass"></i>Awaiting(update)</p>
 				
 				</c:if>
 				<c:if test="${hotel.accountByIdAcEmployee != null and hotel.status == true }">
