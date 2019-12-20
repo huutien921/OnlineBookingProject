@@ -107,7 +107,7 @@ public class ServiceTypeTag extends RequestContextAwareTag{
 					
 					
 				 
-					
+					writer.write("<td>");
 					
 						writer.write("	<a href=\""+pageContext.getServletContext().getContextPath()+"/admin/service/updateservicetype/"+servicetype.getId()+"\" class=\"btn btn-success\">Update</a>");
 						

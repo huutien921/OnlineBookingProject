@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 19, 2019 lúc 02:19 CH
--- Phiên bản máy phục vụ: 5.7.14
--- Phiên bản PHP: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 20, 2019 at 07:56 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,27 +19,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bookinghotel`
+-- Database: `bookinghotel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `about`
+-- Table structure for table `about`
 --
 
-CREATE TABLE `about` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `about`;
+CREATE TABLE IF NOT EXISTS `about` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(250) NOT NULL,
   `country` varchar(250) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `name` varchar(250) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `about`
+-- Dumping data for table `about`
 --
 
 INSERT INTO `about` (`id`, `address`, `country`, `email`, `phone`, `name`, `status`) VALUES
@@ -46,11 +50,12 @@ INSERT INTO `about` (`id`, `address`, `country`, `email`, `phone`, `name`, `stat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `account`
 --
 
-CREATE TABLE `account` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `fullname` varchar(250) DEFAULT NULL,
@@ -63,39 +68,41 @@ CREATE TABLE `account` (
   `identitycard` varchar(25) DEFAULT NULL,
   `score` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `created` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `email`, `address`, `type`, `gender`, `avatar`, `identitycard`, `score`, `status`, `created`) VALUES
 (1, 'admin', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'Admin Admin', '1998-01-01', 'admin@gmail.com', 'Ho Chi Minh', NULL, 'Male', 'admin.PNG', '123456987963', 0, 1, NULL),
 (2, 'superadmin', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Super Admin', '1998-01-01', 'superadmin@gmail.com', 'Ha Noi', NULL, 'Male', 'superadmin.PNG', '123456987963', 0, 1, NULL),
 (3, 'tien_user', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'Nguyen Tien', '1998-01-01', 'huutien921@gmail.com', 'ca mau', NULL, 'Male', '08122019144921destination-2.jpg', '381839139', 0, 1, NULL),
-(4, 'thuan_super', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'thuan.PNG', '381839139', 0, 1, NULL),
+(4, 'thuan_super', '$2a$10$uCamWdBo2me8pwRARwQhtO9uwYzj75vjp.Gm7q0vR/FijwgcedHHa', 'Nguyen Thuan', '1998-01-01', 'huutien920@gmail.com', 'Vinh tau', NULL, 'Male', 'avatar1.PNG', '381839139', 0, 1, NULL),
 (5, 'lam_employee', '$2a$10$i4Ci8SApa5tglJQ4jog9cuCeSri0MA3SRBDMkimxIQus.8Oo49yaC', 'Nguyen Thuan', '2020-07-12', 'huutien920@gmail.com', 'Vinh tau', '', 'Female', '10122019233714', '381839139', 0, 1, NULL),
-(6, 'Huutien', '$2a$10$Z8UL0O4y1eQnHYZDK7W.JeQwR6t/4qf0BNc21kqhqxUPrIN6m.gmS', 'Tien', '2021-04-12', 'huutien921@gmail.com', 'ca mau', '', 'Female', '10122019233631', '7414585205252', NULL, 1, '2019-12-08'),
-(7, 'lam', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'hoang lam', '2019-10-12', 'lam@gmail.com', 'hochiminh city', '', 'Female', '11122019011332', '', 123, 1, '2019-12-08'),
-(8, 'nguyenhoang', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'nguyenlam', '2000-12-11', 'nguyenlam@gmail.com', 'XTT, HM, HCM, VN', NULL, 'Male', 'default.png', '5464563463456', 100, 1, '2019-12-08'),
-(9, 'khongcoten', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'khong co ten', '1999-09-20', 'khongcoten@gmail.com', 'Da Lat, Lam Dong', NULL, 'Male', 'default.png', '12314784456', 4534, 1, '2019-12-07'),
-(10, 'skyboyno1', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'boy vip no 1', '1997-07-13', 'skyboyno1@gmail.com', 'Quan1, HCM', NULL, 'Male', 'default.png', '123123654', 3221, 1, '2019-12-07'),
-(11, 'sktfaker', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'skt faker', '1997-07-13', 'sktfaker@gmail.com', 'Seoul, Korea', NULL, 'Male', 'default.png', '1423543523', 345345, 1, '2019-12-20'),
+(6, 'Huutien', '$2a$10$Z8UL0O4y1eQnHYZDK7W.JeQwR6t/4qf0BNc21kqhqxUPrIN6m.gmS', 'Tien', '2021-04-12', 'huutien921@gmail.com', 'ca mau', '', 'Female', 'avatar1.PNG', '7414585205252', NULL, 1, '2019-02-08'),
+(7, 'lam', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'hoang lam', '2019-10-12', 'lam@gmail.com', 'hochiminh city', '', 'Female', 'avatar1.PNG', '', 123, 1, '2019-06-08'),
+(8, 'nguyenhoang', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'nguyenlam', '2000-12-11', 'nguyenlam@gmail.com', 'XTT, HM, HCM, VN', NULL, 'Male', 'default.png', '5464563463456', 100, 1, '2019-02-08'),
+(9, 'khongcoten', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'khong co ten', '1999-09-20', 'khongcoten@gmail.com', 'Da Lat, Lam Dong', NULL, 'Male', 'default.png', '12314784456', 4534, 1, '2019-01-07'),
+(10, 'skyboyno1', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'boy vip no 1', '1997-07-13', 'skyboyno1@gmail.com', 'Quan1, HCM', NULL, 'Male', 'default.png', '123123654', 3221, 1, '2019-07-07'),
+(11, 'sktfaker', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'skt faker', '1997-07-13', 'sktfaker@gmail.com', 'Seoul, Korea', NULL, 'Male', 'default.png', '1423543523', 345345, 1, '2019-02-20'),
 (12, 'sktlam', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'skt lam', '1997-07-13', 'skt lam@gmail.com', 'HM HCM', NULL, 'Male', 'default.png', '76746433', 234, 1, '2019-12-08'),
-(13, 'sontungmtp', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'son tung mtp', '1997-07-13', 'sontungmtp@gmail.com', 'hai phong', NULL, 'Male', 'default.png', '731355235', 234231, 1, '2019-12-01'),
+(13, 'sontungmtp', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'son tung mtp', '1997-07-13', 'sontungmtp@gmail.com', 'hai phong', NULL, 'Male', 'default.png', '731355235', 234231, 1, '2019-03-01'),
 (14, 'snopdogg', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'snop dogg', '1997-07-05', 'snopdogg@gmail.com', 'A me ri ca', NULL, 'Male', 'default.png', '5634623424', 345235, 1, '2019-12-01'),
 (15, 'padorupadoru', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'padoru padoru', '1997-07-05', 'padorupadoru@gmail.com', 'tokyo japan', NULL, 'Female', 'default.png', '236547567567', 23451, 1, '2019-12-02'),
 (16, 'Atoria', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'Atoria', '1997-07-05', 'Atoria@gmail.com', 'kyoto japan', NULL, 'Female', 'default.png', '54646342142457', 867, 1, '2019-12-15'),
-(17, 'noname', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'noname', '1997-07-05', 'noname@gmail.com', 'canada', NULL, 'Male', 'default.png', '67856896', 5675, 1, '2019-12-15'),
+(17, 'noname', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'noname', '1997-07-05', 'noname@gmail.com', 'canada', NULL, 'Male', 'default.png', '67856896', 5675, 1, '2019-01-15'),
 (18, 'padoru', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'padoru', '1997-07-05', 'padoru@gmail.com', 'japan', NULL, 'Female', 'default.png', '97869679678968', 653, 1, '2019-12-15'),
-(19, 'jack', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'jack', '1997-07-05', 'jack@gmail.com', 'HCM VN', NULL, 'Male', 'default.png', '644567654643', 45623, 1, '2019-12-05'),
-(20, 'megumin', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'megumin', '1997-07-05', 'megumin@gmail.com', 'konoshubarashi', NULL, 'Female', 'default.png', '967979', 678, 1, '2019-12-01'),
+(19, 'jack', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'jack', '1997-07-05', 'jack@gmail.com', 'HCM VN', NULL, 'Male', 'default.png', '644567654643', 45623, 1, '2019-02-05'),
+(20, 'megumin', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'megumin', '1997-07-05', 'megumin@gmail.com', 'konoshubarashi', NULL, 'Female', 'default.png', '967979', 678, 1, '2019-11-01'),
 (21, 'winner62zz', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'tre trau', '1997-07-05', 'winer62@gmail.com', 'HM HCM VN', NULL, 'Male', 'default.png', '967979324', 125, 1, '2019-12-11'),
-(22, 'thebestvung', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'trum truong', '1994-07-02', 'trumtruong@gmail.com', 'TayNinh, VN', NULL, 'Male', 'default.png', '96797932443', 12532, 1, '2019-12-13'),
+(22, 'thebestvung', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'trum truong', '1994-07-02', 'trumtruong@gmail.com', 'TayNinh, VN', NULL, 'Male', 'default.png', '96797932443', 12532, 1, '2019-01-14'),
 (23, 'cutibestjizz', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'best fizz', '1994-07-02', 'cutithai@gmail.com', 'TVM, VN', NULL, 'Male', 'default.png', '96797932443', 129, 1, '2019-12-13'),
-(24, 'tambestdarius', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'best darius', '1994-07-02', 'tamdarius@gmail.com', 'TVM, VN', NULL, 'Male', 'default.png', '96797932442', 532, 1, '2019-12-13'),
-(25, 'mid24', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'hide on bust', '1994-07-02', 'faker@gmail.com', 'korea', NULL, 'Male', 'default.png', '96797932442', 532231, 1, '2019-12-13'),
+(24, 'tambestdarius', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'best darius', '1994-07-02', 'tamdarius@gmail.com', 'TVM, VN', NULL, 'Male', 'default.png', '96797932442', 532, 1, '2019-02-05'),
+(25, 'mid24', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'hide on bust', '1994-07-02', 'faker@gmail.com', 'korea', NULL, 'Male', 'default.png', '96797932442', 532231, 1, '2019-04-13'),
 (26, 'donanchum', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'do nan chum', '1994-07-02', 'donanchum@gmail.com', 'A me ri ca', NULL, 'Male', 'default.png', '967979324422', 532231342, 1, '2019-12-24'),
 (27, 'CoThamKoVe', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'Co tham ko ve', '1994-07-02', 'cotham@gmail.com', 'ko ve nen ko biet dang o dau', NULL, 'Female', 'default.png', '111345352432', 123, 1, '2019-12-04'),
 (28, 'BacPhan', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'bac phan', '1994-07-02', 'bacphan@gmail.com', 'VN', NULL, 'Male', 'default.png', '96797932442', 234, 1, '2019-12-13'),
@@ -107,27 +114,30 @@ INSERT INTO `account` (`id`, `username`, `password`, `fullname`, `birthday`, `em
 (34, 'SheNevarKnow', '$2a$10$yC9y/KuNGtMvMrKT/qk0muvMvIgUJAPLsTugi8vf53cbngdju.z1i', 'SheNevarKnow', '1994-07-02', 'SheNevarKnow@gmail.com', 'VN', NULL, 'Female', 'default.png', '967453322', 232231, 1, '2019-12-13'),
 (35, 'emp', '$2a$10$t14SrXDL..XvZNC4KjIZr.sgaByMWDcLFakQ9M4yvnwYOnmcrGt6K', 'emp', '2020-08-12', 'empppppppppppppppppppppppppppppp@gmail.com', 'address', '', 'Male', '19122019154958destination-1.jpg', '32523514354234234', NULL, 1, '2019-12-10'),
 (36, 'emp2', '$2a$10$j6GsE03YWBFq/scdIaD6/.C794PCc9w2izBdzUuKdJltJeutRSrC6', '123', '2020-08-12', '123@gmail.com', '123', '123', 'Male', '10122019233511', '32523514354234234', NULL, 0, '2019-12-10'),
-(37, 'daoko', '$2a$10$5edLzKwv9P3ZlA60wdMDNOi0UHtBJsuK8x8o4AQa5f58BG2pbIwDq', 'daoko', NULL, 'daoko123@gmail.com', NULL, NULL, 'Female', 'default.png', NULL, NULL, 1, '2019-12-11'),
-(38, 'daoko2', '$2a$10$23ZdpCFBuU/5Geimb99b1.B1C5Kv7vqpTOrCDw8PG/epSVCVTGEVi', '123', NULL, '12321321313', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-12-11'),
-(40, 'test', '$2a$10$l3P9bOXEp4nqnlZcImPp3OPrGnmQKvD/9yqrW3atdJwWgmJX0KLJK', 'testtttt', NULL, 'test@gmail.com', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-12-12'),
+(37, 'daoko', '$2a$10$5edLzKwv9P3ZlA60wdMDNOi0UHtBJsuK8x8o4AQa5f58BG2pbIwDq', 'daoko', NULL, 'daoko123@gmail.com', NULL, NULL, 'Female', 'default.png', NULL, NULL, 1, '2019-05-11'),
+(38, 'daoko2', '$2a$10$23ZdpCFBuU/5Geimb99b1.B1C5Kv7vqpTOrCDw8PG/epSVCVTGEVi', '123', NULL, '12321321313', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-03-11'),
+(40, 'test', '$2a$10$l3P9bOXEp4nqnlZcImPp3OPrGnmQKvD/9yqrW3atdJwWgmJX0KLJK', 'testtttt', NULL, 'test@gmail.com', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-02-12'),
 (41, 'tt', '$2a$10$YIwYGdMLbLNnenguZ6QmjeYdRCzfTc1S3ghaH7QkEx8ejpG/wGirq', 'tt', NULL, 'tt', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-12-14'),
-(42, 'tien_user2', '$2a$10$SoIuKpTfsQfh13aMI6a4z.yq9jld4zMGJRTzzj5zRNEptUVS30gVG', '123', NULL, '33', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-12-15'),
-(43, 'ttt', '$2a$10$Z85GdJ70kO8crso5kKepEOJYQYMCNAqJ2cW0XhZ2all7hFvOKU5Yi', 'ttt', NULL, 'ttt', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-12-17');
+(42, 'tien_user2', '$2a$10$SoIuKpTfsQfh13aMI6a4z.yq9jld4zMGJRTzzj5zRNEptUVS30gVG', '123', NULL, '33', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-08-15'),
+(43, 'ttt', '$2a$10$Z85GdJ70kO8crso5kKepEOJYQYMCNAqJ2cW0XhZ2all7hFvOKU5Yi', 'ttt', NULL, 'ttt', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-01-17'),
+(44, 'Khachhang1', '$2a$10$QhbHM42gCIwwPmajLilmTO9J7oBekclqRutfnysJM2Yf6ZRPh.hMC', 'Nguyen Khach Hang', NULL, 'khach@gmail.com', NULL, NULL, 'Male', 'default.png', NULL, NULL, 1, '2019-01-20');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bed_type`
+-- Table structure for table `bed_type`
 --
 
-CREATE TABLE `bed_type` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bed_type`;
+CREATE TABLE IF NOT EXISTS `bed_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `bed_type`
+-- Dumping data for table `bed_type`
 --
 
 INSERT INTO `bed_type` (`id`, `name`, `status`) VALUES
@@ -139,21 +149,24 @@ INSERT INTO `bed_type` (`id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `blog`
+-- Table structure for table `blog`
 --
 
-CREATE TABLE `blog` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) DEFAULT NULL,
   `content` text,
   `account_id` int(11) NOT NULL,
   `src` varchar(250) DEFAULT NULL,
   `created` date DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `blog`
+-- Dumping data for table `blog`
 --
 
 INSERT INTO `blog` (`id`, `title`, `content`, `account_id`, `src`, `created`, `status`) VALUES
@@ -168,18 +181,21 @@ INSERT INTO `blog` (`id`, `title`, `content`, `account_id`, `src`, `created`, `s
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `coppon_hotel`
+-- Table structure for table `coppon_hotel`
 --
 
-CREATE TABLE `coppon_hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coppon_hotel`;
+CREATE TABLE IF NOT EXISTS `coppon_hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `sale` double DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hotel_id` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `coppon_hotel`
+-- Dumping data for table `coppon_hotel`
 --
 
 INSERT INTO `coppon_hotel` (`id`, `name`, `sale`, `status`) VALUES
@@ -191,100 +207,109 @@ INSERT INTO `coppon_hotel` (`id`, `name`, `sale`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `coppon_room`
+-- Table structure for table `coppon_room`
 --
 
-CREATE TABLE `coppon_room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `coppon_room`;
+CREATE TABLE IF NOT EXISTS `coppon_room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `sale` double DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `hotel_id` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `coppon_room`
+-- Dumping data for table `coppon_room`
 --
 
 INSERT INTO `coppon_room` (`id`, `name`, `sale`, `status`) VALUES
 (111, 'salevn', 10, 1),
 (123, '333', 33, 1),
 (126, '3', 3, 1),
-(128, 'SADFGH', 2, 1);
+(128, 'SADFGH', 2, 1),
+(129, 'Nha dat lanh', 20, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `email`
+-- Table structure for table `email`
 --
 
-CREATE TABLE `email` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `email`;
+CREATE TABLE IF NOT EXISTS `email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `emailsend` varchar(50) NOT NULL,
   `title` varchar(500) DEFAULT NULL,
   `content` text,
   `status` tinyint(1) NOT NULL,
-  `account_id` int(11) NOT NULL
+  `account_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `evaluate`
+-- Table structure for table `evaluate`
 --
 
-CREATE TABLE `evaluate` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `evaluate`;
+CREATE TABLE IF NOT EXISTS `evaluate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `room_id` int(11) DEFAULT NULL,
   `hotel_id` int(11) DEFAULT NULL,
   `number_of_stars` int(11) DEFAULT '3',
   `content` text,
   `created` date DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `room_id` (`room_id`),
+  KEY `hotel_id` (`hotel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `evaluate`
+-- Dumping data for table `evaluate`
 --
 
 INSERT INTO `evaluate` (`id`, `account_id`, `room_id`, `hotel_id`, `number_of_stars`, `content`, `created`, `status`) VALUES
-(1, 3, NULL, 1, 5, 'qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
-(2, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
-(3, 3, NULL, 1, 5, 'qua tot', '2019-11-09', 1),
-(4, 3, NULL, 1, 4, 'hoi tot', '2019-11-09', 1),
-(5, 3, NULL, 1, 2, 'nhu shit', '2019-11-09', 1),
-(6, 3, NULL, 1, 5, 'qua tot6 qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
-(7, 3, NULL, 1, 5, 'qua tot7', '2019-11-09', 1),
-(8, 3, NULL, 1, 4, 'qua tot luon nne ba con oi ba con ne su dung thu nha , nhan vien nhiet tinh chu dao than thieenj', '2019-11-09', 1),
-(21, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
-(22, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
-(23, 3, NULL, 2, 5, 'qua tot', '2019-11-09', 1),
-(24, 3, NULL, 2, 4, 'hoi tot', '2019-11-09', 1),
-(25, 3, NULL, 2, 2, 'nhu shit', '2019-11-09', 1),
-(26, 3, NULL, 2, 5, 'qua tot6', '2019-11-09', 1),
-(27, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
-(28, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
-(29, 3, NULL, 3, 5, 'qua tot', '2019-11-09', 1),
-(30, 3, NULL, 3, 4, 'hoi tot', '2019-11-09', 1),
-(31, 3, NULL, 4, 2, 'nhu shit', '2019-11-09', 1),
-(32, 3, NULL, 5, 5, 'qua tot6', '2019-11-09', 1),
-(33, 3, NULL, 5, 5, 'qua tot7', '2019-11-09', 1),
-(34, 3, NULL, 6, 4, 'hoi tot 8', '2019-11-09', 1),
-(35, 3, NULL, 7, 5, 'qua tot', '2019-11-09', 1),
-(36, 3, NULL, 8, 5, 'qua tot', '2019-11-09', 1),
-(37, 3, NULL, 9, 5, 'qua tot', '2019-11-09', 1),
-(38, 3, NULL, 10, 4, 'hoi tot', '2019-11-09', 1),
-(39, 3, NULL, 11, 2, 'nhu shit', '2019-11-09', 1),
-(40, 3, NULL, 12, 5, 'qua tot6', '2019-11-09', 1);
+(41, 3, NULL, 30, 3, 'Good', '2019-12-20', 1),
+(42, 3, NULL, 30, 3, 'Good', '2019-12-20', 1),
+(43, 9, NULL, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(44, 3, NULL, 30, 5, 'Good', '2019-12-20', 1),
+(45, 3, NULL, 30, 3, 'Good', '2019-12-20', 1),
+(46, 9, NULL, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(47, 15, 1, NULL, 3, 'Good hhhhhhh', '2019-12-20', 1),
+(48, 3, NULL, 30, 3, 'Good', '2019-12-20', 1),
+(49, 3, NULL, 30, 5, 'Good', '2019-12-20', 1),
+(50, 3, NULL, 30, 3, 'Good', '2019-12-20', 1),
+(51, 9, NULL, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(52, 9, NULL, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(53, 3, 1, NULL, 3, 'Good', '2019-12-20', 1),
+(54, 3, 1, NULL, 4, 'Good', '2019-12-20', 1),
+(55, 18, 1, NULL, 5, 'Good', '2019-12-20', 1),
+(56, 3, 1, NULL, 2, 'Good', '2019-12-20', 1),
+(57, 29, 1, NULL, 2, 'bad', '2019-12-20', 1),
+(58, 3, NULL, 30, 5, 'Good okkkk', '2019-12-20', 1),
+(59, 3, 2, NULL, 3, 'Goodfffff', '2019-12-20', 1),
+(60, 9, 23, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(61, 1, NULL, 30, 2, 'Okkkkkkk', '2019-12-19', 1),
+(62, 9, NULL, 30, 3, 'Okkkkkkk', '2019-12-19', 1),
+(63, 9, NULL, 1, 3, 'Okkkkkkk', '2019-12-19', 1),
+(64, 15, NULL, 1, 5, 'Good hhhhhhh', '2019-12-20', 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hotel`
+-- Table structure for table `hotel`
 --
 
-CREATE TABLE `hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `hotel`;
+CREATE TABLE IF NOT EXISTS `hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL,
   `description` text,
@@ -312,69 +337,62 @@ CREATE TABLE `hotel` (
   `id_ac_employee` int(11) DEFAULT NULL,
   `starrating_id` int(11) NOT NULL,
   `id_coppon_hotel` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `starrating_id` (`starrating_id`),
+  KEY `id_coppon_hotel` (`id_coppon_hotel`),
+  KEY `id_ac_employee` (`id_ac_employee`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `hotel`
+-- Dumping data for table `hotel`
 --
 
 INSERT INTO `hotel` (`id`, `name`, `image`, `description`, `address_full`, `ward`, `city`, `provincial`, `country`, `wifi`, `parking`, `spa`, `gym`, `car_rental`, `airport_transfer`, `free_breakfast`, `swimming_pool`, `elevator`, `receptionist`, `air_conditioner`, `free_cancellation`, `pay_at_hotel`, `assembly_facilites`, `driveway`, `account_id`, `id_ac_employee`, `starrating_id`, `id_coppon_hotel`, `status`) VALUES
-(1, 'Long Phung hoang', '28112019172057about.jpg', '<h1>toi ten</h1><p>Nguyen Huu<u> Tien</u><br></p><h1></h1>', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 5, 4, 1),
-(2, 'Vin Hotel', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao. Phuc vu tan tinh cho khach hang !\nDay du tien nghi, sach se,, lich su chu dao.dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 2, 2, 1),
-(3, 'Hanh Phuc', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 2, NULL, 0),
-(4, 'Da nang', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Phuong 10', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(5, 'Da nang 2', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(6, 'Da nang 3', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da nang', 'Phuong 10', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(7, 'Da nang 4', 'hotel-1.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 , Da nang', 'Phuong 12', 'Da Nang', 'Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(8, 'Sapa ', 'hotel-2.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Sapa', 'Phuong 10', 'sapa', 'Lao Cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(9, 'Sapa2', 'hotel-3.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '2502 Mau Ty, Phuong 12 ,Sapa', 'Phuong 12', 'Sapa', 'Lao cai', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, NULL, 1),
-(10, 'Hanh Phuc false', 'hotel-4.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '226 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 2, NULL, 1),
-(11, 'Chua Ba Danh', 'hotel-5.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, 2, 1),
-(12, 'Cho Dem', 'hotel-6.jpg', 'Phuc vu tan tinh cho khach hang !\r\nDay du tien nghi, sach se,, lich su chu dao.', '250 Mau Than2, Phuong 10 , Da Lat , Lam Dong', 'Phuong 10', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, NULL, 2, 3, 1),
-(16, 'Aroma', '0212201909025328112019110139thit.jpg', '<p>resort aroma lua dao khach 2tr</p>', 'Aroma Phan Thiet', 'Aroma', 'Phan Thiet', 'Mui Ne', 'Viet Nam', 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 3, 5, 3, NULL, 1),
+(1, 'Vuon Dau Hotel', '28112019172057about.jpg', '<h1>toi ten</h1><p>Nguyen Huu<u> Tien</u><br></p><h1></h1>', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 5, 4, 1),
 (17, 'Victoria', '02122019095837destination-2.jpg', '<p>Victoria</p>', 'Phan Thiet, Victoria', 'Victoria', 'Phan Thiet', 'Mui ne', 'Viet Nam', 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 10, NULL, 1, 3, 0),
-(18, 'Vin Pear', 'hotelDefault.jpg', '<p>tttt</p>', 'Hoi An', 'Hoi An', 'Hoi An', 'Hoi An', 'Viet Nam', 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 3, 5, 5, NULL, 1),
-(19, 'Vinpearl Land', 'hotelDefault.jpg', '<p>hhh</p>', 'Nha trang', 'Nha trang', 'Nha trang', 'Nha trang', 'Viet Nam', 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 6, NULL, 5, 4, 0),
-(20, 'VinPear Luxury Landmark81', 'hotelDefault.jpg', '<p>VinPear Luxury Landmark81</p>', 'VinPear Luxury Landmark81, Dien Bien Phu', 'Dien Bien Phu', 'Ho CHi Minh', 'Q1', 'Viet Nam', 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 3, NULL, 5, NULL, 0),
 (21, 'Bui Chuoi', '08122019213828chup-hinh-kien-truc-1-1.jpg', '', '5/7B ap Xuan Thoi Son', 'Xuan Thoi son', 'Ho Chi Minh', 'Hoc Mon', 'Viet Nam', 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 7, 5, 3, NULL, 1),
-(22, 'Beauty Garden', 'hotelDefault.jpg', '<p>Beauty Garden</p>', 'Beauty Garden, Da Alt', 'Da Lat', 'Da Lat', 'Da Lat', 'Viet Nam', 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 3, NULL, 4, NULL, 0),
-(23, 'f?df?dfs&#7845;df', 'hotelDefault.jpg', '<p>sdafd</p>', 'sdf?dfsfd', '?dfsdf', 'sadf?df?', 'df?df', '?df?df', 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 37, 5, 3, NULL, 1),
-(24, '21312', 'hotelDefault.jpg', '', '1232131', '23123', '1231', '3131', '313', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, NULL, 1, NULL, 0),
-(25, 'Tre Truc', '12122019135928destination-6.jpg', '<h1>It is Hotel good !</h1><p>full function basic</p>', 'Ho Chi Minh', 'Phuong 12', 'Ho chi minh', 'Ho chi minh', 'Viet nam', 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 40, 5, 5, NULL, 1),
 (26, 'Tre 2', '12122019140241image_1.jpg', '<p>sss</p>', 'Ha Noi', 'Pho giay', 'Pho giay', 'Pho giay', 'Pho giay', 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 40, NULL, 4, NULL, 0),
-(27, 'Aptech', '14122019182551image_1.jpg', '', 'Nguyen Kiem Ho chi minh', 'Ho chi minh', 'ho chi minh', '12345', 'dd', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 5, 2, NULL, 1),
-(28, 'tetst', '18122019185617destination-6.jpg', '<p>rr</p>', 'rr', 'rr', 'rr', 'rr', 'r', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 1, NULL, 1);
+(29, 'Da lat View', '20122019081013hotel-6.jpg', '<p>\r\n\r\nVery clean. The family was great, and the son was helpful and friendly.\r\n\r\n<br></p>', '222  Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, NULL, 3, NULL, 0),
+(30, 'Bien Xanh', '20122019082924hotel-3.jpg', '<p>\r\n\r\n</p><div><div><div><div><div><div><pre>As a coastal hotel in Da Nang, A La Carte always impresses visitors with its bold design of modern French architecture and sophisticated western-style interiors, taking white as the main color. Each bedroom here brings a separate living space, with views overlooking the beautiful blue sea. The highlight here is the overflow swimming pool on the hotel\'s rooftop.</pre></div></div></div></div></div></div><p></p>', ' Vo Nguyen Giap, Phuoc My, Son Tra and Da Nang', 'Phuoc My', ' Da Nang', ' Da Nang', 'Viet Nam', 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 3, 5, 2, NULL, 1),
+(31, 'Da Lat Hotel', '28112019172057about.jpg', 'Da Lat Hotel is a hotel hostel established in 2017 with 26 rooms of different sizes to suit the needs of customers. System of modern equipment, air-conditioner, television, tables and chairs made from wood, wifi and other services to take tourists to visit the tourist destinations. Designed and decorated in a royal style that is luxurious and noble. The equipment and rooms of the guest house - the hotel are very comfortable and modern to bring satisfaction and comfort to customers during their stay in the hotel room.\r\n', '250 Mau Than, Phuong 12 , Da Lat , Lam Dong', 'Phuong 12', 'Da Lat', 'Lam Dong', 'Viet Nam', 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 4, 5, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `imageblog`
+-- Table structure for table `imageblog`
 --
 
-CREATE TABLE `imageblog` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `imageblog`;
+CREATE TABLE IF NOT EXISTS `imageblog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `src` varchar(250) NOT NULL,
   `blog_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `blog_id` (`blog_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `image_room`
+-- Table structure for table `image_room`
 --
 
-CREATE TABLE `image_room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `image_room`;
+CREATE TABLE IF NOT EXISTS `image_room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `src` varchar(250) DEFAULT NULL,
   `alt` varchar(250) DEFAULT NULL,
   `room_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `room_id` (`room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `image_room`
+-- Dumping data for table `image_room`
 --
 
 INSERT INTO `image_room` (`id`, `src`, `alt`, `room_id`, `status`) VALUES
@@ -412,26 +430,66 @@ INSERT INTO `image_room` (`id`, `src`, `alt`, `room_id`, `status`) VALUES
 (51, '12122019212325hotel-4.jpg', 'tttt', 23, 0),
 (52, '12122019212325hotel-5.jpg', 'tttt', 23, 0),
 (53, '12122019212325hotel-6.jpg', 'tttt', 23, 0),
-(54, '12122019212353', 'Nguyen', 23, 0);
+(54, '12122019212353', 'Nguyen', 23, 0),
+(55, '20122019081311destination-5.jpg', 'Room vip', 29, 0),
+(56, '20122019081311destination-6.jpg', 'Room vip', 29, 0),
+(57, '20122019081311hotel-1.jpg', 'Room vip', 29, 0),
+(58, '20122019081311hotel-2.jpg', 'Room vip', 29, 0),
+(59, '20122019081311hotel-3.jpg', 'Room vip', 29, 0),
+(60, '20122019081311hotel-5.jpg', 'Room vip', 29, 0),
+(61, '20122019081311hotel-6.jpg', 'Room vip', 29, 0),
+(62, '20122019081311image_1.jpg', 'Room vip', 29, 0),
+(63, '20122019081311image_5.jpg', 'Room vip', 29, 0),
+(64, '20122019081428destination-5.jpg', 'Room Vip', 30, 0),
+(65, '20122019081428destination-6.jpg', 'Room Vip', 30, 0),
+(66, '20122019081428hotel-1.jpg', 'Room Vip', 30, 0),
+(67, '20122019081428hotel-2.jpg', 'Room Vip', 30, 0),
+(68, '20122019081428hotel-3.jpg', 'Room Vip', 30, 0),
+(69, '20122019083129room-1.jpg', 'Room Bao Ngu', 31, 0),
+(70, '20122019083129room-2.jpg', 'Room Bao Ngu', 31, 0),
+(71, '20122019083129room-3.jpg', 'Room Bao Ngu', 31, 0),
+(72, '20122019083129room-4.jpg', 'Room Bao Ngu', 31, 0),
+(73, '20122019083129room-6.jpg', 'Room Bao Ngu', 31, 0),
+(74, '20122019083129thudong.png', 'Room Bao Ngu', 31, 0),
+(75, '20122019083619room-1.jpg', 'Vip room', 32, 0),
+(76, '20122019083619room-2.jpg', 'Vip room', 32, 0),
+(77, '20122019083619room-3.jpg', 'Vip room', 32, 0),
+(78, '20122019083619room-4.jpg', 'Vip room', 32, 0),
+(79, '20122019091112room-1.jpg', 'Phong Base', 33, 0),
+(80, '20122019091112room-2.jpg', 'Phong Base', 33, 0),
+(81, '20122019091112room-3.jpg', 'Phong Base', 33, 0),
+(82, '20122019091112room-4.jpg', 'Phong Base', 33, 0),
+(83, '20122019091112room-6.jpg', 'Phong Base', 33, 0),
+(84, '20122019091112thudong.png', 'Phong Base', 33, 0),
+(85, '20122019091245room-1.jpg', 'Phong Vip', 34, 0),
+(86, '20122019091245room-2.jpg', 'Phong Vip', 34, 0),
+(87, '20122019091245room-3.jpg', 'Phong Vip', 34, 0),
+(88, '20122019091245room-4.jpg', 'Phong Vip', 34, 0),
+(89, '20122019091245room-6.jpg', 'Phong Vip', 34, 0),
+(90, '20122019091245thudong.png', 'Phong Vip', 34, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `payment` varchar(250) DEFAULT NULL,
   `created` date DEFAULT NULL,
   `account_id` int(11) NOT NULL,
   `sale_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `sale_id` (`sale_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `name`, `payment`, `created`, `account_id`, `sale_id`, `status`) VALUES
@@ -443,16 +501,19 @@ INSERT INTO `orders` (`id`, `name`, `payment`, `created`, `account_id`, `sale_id
 (37, 'payathotel', 'payathotel', '2019-12-16', 3, NULL, 0),
 (38, 'TS4GDET7V57TS', 'PAYID-LX3U3ZQ7TB95285KL411260A', '2019-12-16', 3, NULL, 0),
 (39, 'payathotel', 'payathotel', '2019-12-18', 3, NULL, 0),
-(40, 'payathotel', 'payathotel', '2019-12-19', 4, NULL, 0);
+(40, 'payathotel', 'payathotel', '2019-12-19', 4, NULL, 0),
+(41, 'payathotel', 'payathotel', '2019-12-20', 3, NULL, 0),
+(42, 'TS4GDET7V57TS', 'PAYID-LX6DALY52625905WR635562F', '2019-12-20', 3, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_detail`
+-- Table structure for table `order_detail`
 --
 
-CREATE TABLE `order_detail` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `order_detail`;
+CREATE TABLE IF NOT EXISTS `order_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `room_id` int(11) NOT NULL,
   `check_in_date` date NOT NULL,
   `check_out_date` date NOT NULL,
@@ -461,96 +522,108 @@ CREATE TABLE `order_detail` (
   `email` varchar(250) DEFAULT NULL,
   `note` text,
   `order_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `room_id` (`room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `order_detail`
+-- Dumping data for table `order_detail`
 --
 
 INSERT INTO `order_detail` (`id`, `room_id`, `check_in_date`, `check_out_date`, `quantity`, `namestaying`, `email`, `note`, `order_id`, `status`) VALUES
-(34, 10, '2019-12-17', '2019-12-22', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 32, 1),
-(35, 1, '2019-12-18', '2019-12-30', 5, 'Nguyen Tien', 'huutien921@gmail.com', '', 33, 1),
-(36, 1, '2019-12-21', '2019-12-29', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 34, 1),
-(37, 10, '2019-12-17', '2019-12-21', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 35, 1),
-(38, 10, '2019-12-17', '2019-12-21', 10, 'Nguyen Tien', 'huutien921@gmail.com', '', 36, 1),
-(39, 11, '2019-12-02', '2019-12-07', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 37, 1),
-(40, 11, '2019-12-25', '2019-12-29', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 38, 1),
-(41, 11, '2019-12-19', '2019-12-22', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 39, 1),
-(42, 1, '2019-12-20', '2019-12-22', 2, 'Nguyen Thuan', 'huutien920@gmail.com', '', 40, 1);
+(43, 1, '2019-12-21', '2019-12-26', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 41, 1),
+(44, 2, '2019-12-21', '2019-12-26', 2, 'Nguyen Tien', 'huutien921@gmail.com', '', 42, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `panel`
+-- Table structure for table `panel`
 --
 
-CREATE TABLE `panel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `panel`;
+CREATE TABLE IF NOT EXISTS `panel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `title` varchar(250) NOT NULL,
   `content` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `image_src` varchar(250) NOT NULL,
-  `id_super_admin` int(11) DEFAULT NULL
+  `id_super_admin` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_super_admin` (`id_super_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `payment`
+-- Table structure for table `payment`
 --
 
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE IF NOT EXISTS `payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_service_hotel` int(11) DEFAULT NULL,
   `id_order` int(11) DEFAULT NULL,
   `name` varchar(250) DEFAULT NULL,
   `paymentcode` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_service_hotel` (`id_service_hotel`),
+  KEY `id_order` (`id_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reason_report`
+-- Table structure for table `reason_report`
 --
 
-CREATE TABLE `reason_report` (
+DROP TABLE IF EXISTS `reason_report`;
+CREATE TABLE IF NOT EXISTS `reason_report` (
   `id` int(11) NOT NULL,
   `content` text NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `report`
+-- Table structure for table `report`
 --
 
-CREATE TABLE `report` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `report`;
+CREATE TABLE IF NOT EXISTS `report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `hotel_id` int(11) NOT NULL,
   `content` text,
   `created` date NOT NULL,
   `id_reason` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `room_id` (`hotel_id`),
+  KEY `id_reason` (`id_reason`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
+-- Table structure for table `role`
 --
 
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -563,18 +636,22 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role_account`
+-- Table structure for table `role_account`
 --
 
-CREATE TABLE `role_account` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `role_account`;
+CREATE TABLE IF NOT EXISTS `role_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `role_account`
+-- Dumping data for table `role_account`
 --
 
 INSERT INTO `role_account` (`id`, `account_id`, `role_id`, `status`) VALUES
@@ -602,16 +679,19 @@ INSERT INTO `role_account` (`id`, `account_id`, `role_id`, `status`) VALUES
 (27, 41, 4, 1),
 (28, 41, 5, 1),
 (29, 42, 4, 1),
-(30, 43, 4, 1);
+(30, 43, 4, 1),
+(31, 3, 5, 1),
+(32, 44, 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room`
+-- Table structure for table `room`
 --
 
-CREATE TABLE `room` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `src_icon` varchar(50) DEFAULT NULL,
   `price` double DEFAULT NULL,
@@ -623,46 +703,51 @@ CREATE TABLE `room` (
   `amount_of_room` int(11) DEFAULT NULL,
   `hotel_id` int(11) NOT NULL,
   `id_coppon_room` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `bedtype_id` (`bedtype_id`),
+  KEY `hotel_id` (`hotel_id`),
+  KEY `roomcategory_id` (`roomcategory_id`),
+  KEY `roomtype_id` (`roomtype_id`),
+  KEY `id_coppon_room` (`id_coppon_room`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `room`
+-- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id`, `name`, `src_icon`, `price`, `amount_of_bed`, `capacity`, `bedtype_id`, `roomtype_id`, `roomcategory_id`, `amount_of_room`, `hotel_id`, `id_coppon_room`, `status`) VALUES
 (1, 'Thu dong', 'room-1.jpg', 80, 1, 2, 1, 1, 2, 10, 1, 111, 1),
-(2, 'Mua Xuan', NULL, 100, 2, 4, 1, 2, 1, 2, 1, 126, 1),
-(3, 'Thu dong Vin', 'thudong.PNG', 90, 1, 2, 1, 1, 2, 10, 2, NULL, 1),
-(4, 'Mua Xuan Vin', 'muaxuan.jpg', 100, 2, 4, 1, 2, 1, 2, 2, NULL, 1),
-(5, 'Thu dong Da Nang', 'thudong.PNG', 65, 1, 2, 1, 1, 2, 10, 4, NULL, 1),
-(6, 'Mua Xuan Dang', 'muaxuan.jpg', 110, 2, 4, 1, 2, 1, 2, 4, NULL, 1),
-(7, 'Mua Xuan Hanh Phuc', 'muaxuan.jpg', 10, 2, 4, 1, 2, 1, 2, 3, NULL, 1),
-(8, 'Mua Xuan cho Dem', 'muaxuan.jpg', 20, 2, 4, 1, 2, 1, 2, 12, NULL, 1),
-(9, 'Thu dong ChoDem', 'thudong.PNG', 53, 1, 2, 1, 1, 2, 10, 12, NULL, 1),
-(10, 'Thu dong chua', 'room-1.jpg', 70, 1, 2, 1, 1, 2, 10, 11, NULL, 1),
-(11, 'Mua Xuan chua', 'muaxuan.jpg', 80, 2, 4, 1, 2, 1, 2, 11, NULL, 1),
-(23, 'Nguyen', '12122019212353destination-2.jpg', 10, 10, 10, 1, 1, 1, 10, 1, 128, 1),
-(24, 'tttt', NULL, 10, 10, 7, 1, 1, 1, 20, 1, 123, 1),
-(25, 'tttt', NULL, 10, 10, 7, 1, 1, 1, 20, 1, 123, 1),
+(2, 'Mua Xuan', 'room-2.jpg', 100, 2, 4, 1, 2, 1, 2, 1, 126, 1),
+(23, 'Mua Mua', '12122019212353destination-2.jpg', 10, 10, 10, 1, 1, 1, 10, 1, 128, 1),
+(24, 'Mua Ha', 'room-2.jpg', 10, 10, 7, 1, 1, 1, 20, 1, 123, 1),
+(25, 'Mua Thu', 'room-2.jpg', 10, 10, 7, 1, 1, 1, 20, 1, 123, 1),
 (26, 'rom 1', '09122019094009logobed.jpg', 10, 2, 2, 1, 1, 1, 5, 21, NULL, 1),
-(27, 'vxcvx', NULL, 12, 12, 13, 1, 2, 2, 1, 21, NULL, 0),
-(28, 'zxcvzxcv', '111220190046401.png', 12, 12, 12, 1, 1, 1, 21, 21, NULL, 0);
+(27, 'vxcvx', 'room-2.jpg', 12, 12, 13, 1, 2, 2, 1, 21, NULL, 0),
+(28, 'zxcvzxcv', '111220190046401.png', 12, 12, 12, 1, 1, 1, 21, 21, NULL, 0),
+(29, 'Room vip', '20122019081311hotel-2.jpg', 80, 10, 7, 3, 1, 1, 10, 29, 129, 1),
+(30, 'Room Vip', '20122019081428hotel-6.jpg', 100, 2, 4, 1, 1, 1, 20, 29, 129, 1),
+(31, 'Room Bao Ngu', '20122019083128room-1.jpg', 50, 1, 2, 1, 1, 2, 15, 30, NULL, 1),
+(32, 'Vip room', '20122019083619room-1.jpg', 60, 2, 4, 1, 1, 1, 15, 30, NULL, 1),
+(33, 'Phong Base', '20122019091112room-2.jpg', 79, 2, 4, 2, 1, 2, 15, 31, NULL, 1),
+(34, 'Phong Vip', '20122019091245room-3.jpg', 60, 2, 5, 3, 2, 1, 10, 31, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_category`
+-- Table structure for table `room_category`
 --
 
-CREATE TABLE `room_category` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room_category`;
+CREATE TABLE IF NOT EXISTS `room_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `room_category`
+-- Dumping data for table `room_category`
 --
 
 INSERT INTO `room_category` (`id`, `name`, `status`) VALUES
@@ -673,17 +758,19 @@ INSERT INTO `room_category` (`id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_type`
+-- Table structure for table `room_type`
 --
 
-CREATE TABLE `room_type` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `room_type`;
+CREATE TABLE IF NOT EXISTS `room_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `room_type`
+-- Dumping data for table `room_type`
 --
 
 INSERT INTO `room_type` (`id`, `name`, `status`) VALUES
@@ -694,11 +781,12 @@ INSERT INTO `room_type` (`id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sale`
+-- Table structure for table `sale`
 --
 
-CREATE TABLE `sale` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `sale`;
+CREATE TABLE IF NOT EXISTS `sale` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(250) NOT NULL,
   `description` text,
   `sales` double NOT NULL,
@@ -706,11 +794,14 @@ CREATE TABLE `sale` (
   `endday` date DEFAULT NULL,
   `src` varchar(250) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`),
+  KEY `account_id` (`account_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `sale`
+-- Dumping data for table `sale`
 --
 
 INSERT INTO `sale` (`id`, `code`, `description`, `sales`, `startday`, `endday`, `src`, `account_id`, `status`) VALUES
@@ -727,11 +818,12 @@ INSERT INTO `sale` (`id`, `code`, `description`, `sales`, `startday`, `endday`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `service`
+-- Table structure for table `service`
 --
 
-CREATE TABLE `service` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `service`;
+CREATE TABLE IF NOT EXISTS `service` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
   `price` decimal(10,0) DEFAULT NULL,
   `core` char(10) DEFAULT NULL,
@@ -740,33 +832,38 @@ CREATE TABLE `service` (
   `id_account` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `description` text,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type_id` (`type_id`),
+  KEY `id_account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `service`
+-- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`id`, `name`, `price`, `core`, `priority`, `icon_src`, `id_account`, `type_id`, `description`, `status`) VALUES
-(1, 'QC', '80000', 'QC01', 1, NULL, 2, 1, '<p><strong>Day tin Len dau muc 1</strong></p>\r\n', 0),
-(2, 'QC', '90000', 'QC02', 2, 'lv2.PNG', 1, 1, 'Day tin Len dau muc 2', 0),
-(3, 'QC', '100000', 'QC03', 3, 'lv2.PNG', 2, 1, '<p>Day tin Len dau muc 3</p>\r\n', 1),
-(4, 'QC', '110000', 'QC04', 4, 'lv2.PNG', 2, 1, '<p>Day tin Len dau muc 4</p>\r\n', 1),
-(5, 'Add Hotel', '120000', 'add', 0, NULL, 1, 2, 'Create Hotel', 1);
+(1, 'QC', '40', 'QC01', 1, NULL, 2, 1, '<p><strong>\r\npush news to section 1</strong></p>\r\n', 0),
+(2, 'QC', '50', 'QC02', 2, 'lv2.PNG', 1, 1, 'push news to section 2', 0),
+(3, 'QC', '100', 'QC03', 3, 'lv2.PNG', 2, 1, '<p>push news to section 3</p>\r\n', 1),
+(4, 'QC', '150', 'QC04', 4, 'lv2.PNG', 2, 1, '<p>push news to section 4</p>\r\n', 1),
+(5, 'Add Hotel', '200', 'add', 0, NULL, 1, 2, 'Create Hotel', 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `servicetype`
+-- Table structure for table `servicetype`
 --
 
-CREATE TABLE `servicetype` (
-  `id` int(11) NOT NULL,
-  `name` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `servicetype`;
+CREATE TABLE IF NOT EXISTS `servicetype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `servicetype`
+-- Dumping data for table `servicetype`
 --
 
 INSERT INTO `servicetype` (`id`, `name`) VALUES
@@ -776,11 +873,12 @@ INSERT INTO `servicetype` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `service_hotel`
+-- Table structure for table `service_hotel`
 --
 
-CREATE TABLE `service_hotel` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `service_hotel`;
+CREATE TABLE IF NOT EXISTS `service_hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_hotel` int(11) NOT NULL,
   `id_service` int(11) NOT NULL,
   `start_date` date NOT NULL,
@@ -789,49 +887,46 @@ CREATE TABLE `service_hotel` (
   `tatol` double DEFAULT NULL,
   `payment` varchar(250) DEFAULT NULL,
   `idpayer` varchar(250) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_hotel` (`id_hotel`),
+  KEY `id_service` (`id_service`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `service_hotel`
+-- Dumping data for table `service_hotel`
 --
 
 INSERT INTO `service_hotel` (`id`, `id_hotel`, `id_service`, `start_date`, `end_date`, `created`, `tatol`, `payment`, `idpayer`, `status`) VALUES
-(1, 1, 4, '2019-11-06', '2019-12-06', '2019-11-07', NULL, NULL, NULL, 1),
-(2, 4, 2, '2019-11-06', '2019-12-06', '2019-11-07', NULL, NULL, NULL, 1),
-(3, 2, 1, '2019-11-06', '2019-12-06', '2019-11-07', NULL, NULL, NULL, 1),
-(4, 4, 3, '2019-11-06', '2019-12-06', '2019-11-07', NULL, NULL, NULL, 1),
-(5, 2, 3, '2019-10-05', '2019-11-05', '2019-10-04', NULL, NULL, NULL, 1),
-(6, 11, 3, '2019-10-05', '2019-11-05', '2019-10-04', NULL, NULL, NULL, 1),
-(7, 11, 3, '2019-11-06', '2020-01-31', '2019-11-07', NULL, NULL, NULL, 1),
-(8, 12, 3, '2019-11-06', '2019-12-06', '2019-11-07', NULL, NULL, NULL, 1),
-(9, 16, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, NULL, NULL, 0),
-(11, 17, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, NULL, NULL, 1),
-(12, 18, 5, '2019-12-02', '2020-12-02', '2019-12-02', 1440000, NULL, NULL, 1),
-(13, 1, 1, '2019-12-07', '2020-12-07', '2019-12-07', 960000, NULL, NULL, 1),
-(14, 4, 1, '2019-12-07', '2020-12-07', '2019-12-07', 960000, NULL, NULL, 1),
-(15, 20, 5, '2019-12-07', '2020-12-07', '2019-12-07', 1440000, NULL, NULL, 1),
-(16, 23, 5, '2019-12-07', '2020-12-07', '2019-12-07', 1440000, NULL, NULL, 1),
-(17, 21, 5, '2019-12-07', '2020-12-07', '2019-12-07', 1440000, NULL, NULL, 1),
-(18, 26, 5, '2019-12-12', '2020-12-12', '2019-12-12', 1440000, NULL, NULL, 1),
-(19, 2, 1, '2019-12-18', '2020-12-18', '2019-12-18', 960000, NULL, NULL, 1),
-(20, 28, 5, '2019-12-18', '2020-12-18', '2019-12-18', 1440000, NULL, NULL, 1),
-(21, 28, 1, '2019-12-18', '2020-12-18', '2019-12-18', 960000, NULL, NULL, 1),
-(22, 16, 3, '2019-12-19', '2020-12-19', '2019-12-19', 1200000, 'PAYID-LX5SYGI9CU90840771129722', 'TS4GDET7V57TS', 1);
+(1, 1, 4, '2019-11-06', '2019-12-06', '2019-11-07', 200, NULL, NULL, 1),
+(11, 17, 5, '2019-12-02', '2020-12-02', '2019-12-02', 300, NULL, NULL, 1),
+(13, 1, 1, '2019-12-07', '2020-12-07', '2019-12-07', 100, NULL, NULL, 1),
+(17, 21, 5, '2019-10-07', '2020-12-07', '2019-10-07', 1443, NULL, NULL, 1),
+(18, 26, 5, '2019-07-14', '2020-12-12', '2019-07-12', 500, NULL, NULL, 1),
+(23, 29, 5, '2019-06-22', '2020-12-20', '2019-06-20', 1000, NULL, NULL, 1),
+(24, 31, 5, '2019-05-04', '2020-12-20', '2019-05-02', 600, NULL, NULL, 1),
+(25, 1, 1, '2019-01-07', '2020-02-02', '2019-01-05', 100, NULL, NULL, 1),
+(26, 31, 5, '2019-02-10', '2020-12-07', '2019-02-05', 600, NULL, NULL, 1),
+(27, 31, 5, '2019-03-20', '2020-05-20', '2019-03-05', 600, NULL, NULL, 1),
+(28, 31, 5, '2019-04-02', '2020-12-20', '2019-04-05', 600, NULL, NULL, 1),
+(29, 17, 5, '2019-08-02', '2020-12-02', '2019-08-02', 300, NULL, NULL, 1),
+(30, 17, 5, '2019-09-02', '2020-12-02', '2019-09-02', 300, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `star_rating`
+-- Table structure for table `star_rating`
 --
 
-CREATE TABLE `star_rating` (
-  `id` int(11) NOT NULL,
-  `amount` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `star_rating`;
+CREATE TABLE IF NOT EXISTS `star_rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Đang đổ dữ liệu cho bảng `star_rating`
+-- Dumping data for table `star_rating`
 --
 
 INSERT INTO `star_rating` (`id`, `amount`) VALUES
@@ -842,360 +937,23 @@ INSERT INTO `star_rating` (`id`, `amount`) VALUES
 (5, 5);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `about`
---
-ALTER TABLE `about`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `account`
---
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Chỉ mục cho bảng `bed_type`
---
-ALTER TABLE `bed_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `blog`
---
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Chỉ mục cho bảng `coppon_hotel`
---
-ALTER TABLE `coppon_hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`name`);
-
---
--- Chỉ mục cho bảng `coppon_room`
---
-ALTER TABLE `coppon_room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `hotel_id` (`name`);
-
---
--- Chỉ mục cho bảng `email`
---
-ALTER TABLE `email`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Chỉ mục cho bảng `evaluate`
---
-ALTER TABLE `evaluate`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`room_id`),
-  ADD KEY `hotel_id` (`hotel_id`);
-
---
--- Chỉ mục cho bảng `hotel`
---
-ALTER TABLE `hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `starrating_id` (`starrating_id`),
-  ADD KEY `id_coppon_hotel` (`id_coppon_hotel`),
-  ADD KEY `id_ac_employee` (`id_ac_employee`);
-
---
--- Chỉ mục cho bảng `imageblog`
---
-ALTER TABLE `imageblog`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `blog_id` (`blog_id`);
-
---
--- Chỉ mục cho bảng `image_room`
---
-ALTER TABLE `image_room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `sale_id` (`sale_id`);
-
---
--- Chỉ mục cho bảng `order_detail`
---
-ALTER TABLE `order_detail`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Chỉ mục cho bảng `panel`
---
-ALTER TABLE `panel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_super_admin` (`id_super_admin`);
-
---
--- Chỉ mục cho bảng `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_service_hotel` (`id_service_hotel`),
-  ADD KEY `id_order` (`id_order`);
-
---
--- Chỉ mục cho bảng `reason_report`
---
-ALTER TABLE `reason_report`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `report`
---
-ALTER TABLE `report`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `room_id` (`hotel_id`),
-  ADD KEY `id_reason` (`id_reason`);
-
---
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `role_account`
---
-ALTER TABLE `role_account`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `account_id` (`account_id`),
-  ADD KEY `role_id` (`role_id`);
-
---
--- Chỉ mục cho bảng `room`
---
-ALTER TABLE `room`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bedtype_id` (`bedtype_id`),
-  ADD KEY `hotel_id` (`hotel_id`),
-  ADD KEY `roomcategory_id` (`roomcategory_id`),
-  ADD KEY `roomtype_id` (`roomtype_id`),
-  ADD KEY `id_coppon_room` (`id_coppon_room`);
-
---
--- Chỉ mục cho bảng `room_category`
---
-ALTER TABLE `room_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `room_type`
---
-ALTER TABLE `room_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `sale`
---
-ALTER TABLE `sale`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`),
-  ADD KEY `account_id` (`account_id`);
-
---
--- Chỉ mục cho bảng `service`
---
-ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `type_id` (`type_id`),
-  ADD KEY `id_account` (`id_account`);
-
---
--- Chỉ mục cho bảng `servicetype`
---
-ALTER TABLE `servicetype`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `service_hotel`
---
-ALTER TABLE `service_hotel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_hotel` (`id_hotel`),
-  ADD KEY `id_service` (`id_service`);
-
---
--- Chỉ mục cho bảng `star_rating`
---
-ALTER TABLE `star_rating`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `about`
---
-ALTER TABLE `about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT cho bảng `account`
---
-ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT cho bảng `bed_type`
---
-ALTER TABLE `bed_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT cho bảng `blog`
---
-ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT cho bảng `coppon_hotel`
---
-ALTER TABLE `coppon_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT cho bảng `coppon_room`
---
-ALTER TABLE `coppon_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
---
--- AUTO_INCREMENT cho bảng `email`
---
-ALTER TABLE `email`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `evaluate`
---
-ALTER TABLE `evaluate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT cho bảng `hotel`
---
-ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT cho bảng `imageblog`
---
-ALTER TABLE `imageblog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `image_room`
---
-ALTER TABLE `image_room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
---
--- AUTO_INCREMENT cho bảng `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT cho bảng `order_detail`
---
-ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT cho bảng `panel`
---
-ALTER TABLE `panel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `payment`
---
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `report`
---
-ALTER TABLE `report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `role`
---
-ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT cho bảng `role_account`
---
-ALTER TABLE `role_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT cho bảng `room`
---
-ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT cho bảng `room_category`
---
-ALTER TABLE `room_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT cho bảng `room_type`
---
-ALTER TABLE `room_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT cho bảng `sale`
---
-ALTER TABLE `sale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT cho bảng `service`
---
-ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT cho bảng `servicetype`
---
-ALTER TABLE `servicetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT cho bảng `service_hotel`
---
-ALTER TABLE `service_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT cho bảng `star_rating`
---
-ALTER TABLE `star_rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `blog`
+-- Constraints for table `blog`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `email`
+-- Constraints for table `email`
 --
 ALTER TABLE `email`
   ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `evaluate`
+-- Constraints for table `evaluate`
 --
 ALTER TABLE `evaluate`
   ADD CONSTRAINT `evaluate_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
@@ -1203,7 +961,7 @@ ALTER TABLE `evaluate`
   ADD CONSTRAINT `evaluate_ibfk_3` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`);
 
 --
--- Các ràng buộc cho bảng `hotel`
+-- Constraints for table `hotel`
 --
 ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
@@ -1212,46 +970,46 @@ ALTER TABLE `hotel`
   ADD CONSTRAINT `hotel_ibfk_4` FOREIGN KEY (`id_ac_employee`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `imageblog`
+-- Constraints for table `imageblog`
 --
 ALTER TABLE `imageblog`
   ADD CONSTRAINT `imageblog_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`);
 
 --
--- Các ràng buộc cho bảng `image_room`
+-- Constraints for table `image_room`
 --
 ALTER TABLE `image_room`
   ADD CONSTRAINT `image_room_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
--- Các ràng buộc cho bảng `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`sale_id`) REFERENCES `sale` (`id`);
 
 --
--- Các ràng buộc cho bảng `order_detail`
+-- Constraints for table `order_detail`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
--- Các ràng buộc cho bảng `panel`
+-- Constraints for table `panel`
 --
 ALTER TABLE `panel`
   ADD CONSTRAINT `panel_ibfk_1` FOREIGN KEY (`id_super_admin`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `payment`
+-- Constraints for table `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`id_service_hotel`) REFERENCES `service_hotel` (`id`);
 
 --
--- Các ràng buộc cho bảng `report`
+-- Constraints for table `report`
 --
 ALTER TABLE `report`
   ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
@@ -1259,14 +1017,14 @@ ALTER TABLE `report`
   ADD CONSTRAINT `report_ibfk_3` FOREIGN KEY (`id_reason`) REFERENCES `reason_report` (`id`);
 
 --
--- Các ràng buộc cho bảng `role_account`
+-- Constraints for table `role_account`
 --
 ALTER TABLE `role_account`
   ADD CONSTRAINT `role_account_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `role_account_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
 
 --
--- Các ràng buộc cho bảng `room`
+-- Constraints for table `room`
 --
 ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`bedtype_id`) REFERENCES `bed_type` (`id`),
@@ -1276,24 +1034,25 @@ ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_5` FOREIGN KEY (`id_coppon_room`) REFERENCES `coppon_room` (`id`);
 
 --
--- Các ràng buộc cho bảng `sale`
+-- Constraints for table `sale`
 --
 ALTER TABLE `sale`
   ADD CONSTRAINT `sale_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `service`
+-- Constraints for table `service`
 --
 ALTER TABLE `service`
   ADD CONSTRAINT `service_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `servicetype` (`id`),
   ADD CONSTRAINT `service_ibfk_3` FOREIGN KEY (`id_account`) REFERENCES `account` (`id`);
 
 --
--- Các ràng buộc cho bảng `service_hotel`
+-- Constraints for table `service_hotel`
 --
 ALTER TABLE `service_hotel`
   ADD CONSTRAINT `service_hotel_ibfk_1` FOREIGN KEY (`id_hotel`) REFERENCES `hotel` (`id`),
   ADD CONSTRAINT `service_hotel_ibfk_2` FOREIGN KEY (`id_service`) REFERENCES `service` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

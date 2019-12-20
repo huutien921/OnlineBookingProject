@@ -45,4 +45,9 @@ public class ServiceService implements IServiceService {
 		// TODO Auto-generated method stub
 		return serviceRepository.statisticalService();
 	}
+	@Override
+	public List<ServiceGroup> countService() {
+		// TODO Auto-generated method stub
+		return serviceRepository.countService();
+	}
 }

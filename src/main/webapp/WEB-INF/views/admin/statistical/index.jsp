@@ -9,7 +9,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1" />
-<title>PIE</title>
+<title>CHART</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -20,6 +20,58 @@
 
 
 <style>
+.highcharts-figure1, .highcharts-data-table table {
+    min-width: 320px; 
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+.ld-label {
+	width:200px;
+	display: inline-block;
+}
+
+.ld-url-input {
+	width: 500px; 
+}
+
+.ld-time-input {
+	width: 40px;
+}
+
+
+
+
+
+
 .highcharts-figure, .highcharts-data-table table {
     min-width: 310px; 
     max-width: 800px;
@@ -65,14 +117,20 @@
 	<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
  -->
-
+ <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/data.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-
-
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
+
+
+
 
 	
 <script src="${pageContext.request.contextPath }/resources/admin/js/highcharts.js"></script>
@@ -83,20 +141,26 @@
 <!--  <div id="container" style="height: 400px; min-width: 310px"></div>-->
 
 
+
+  <figure class="highcharts-figure">
+ <div id="container" ></div>
  
- 
- <div id="container" style="height: 400px"></div>
- 
- 
+ </figure>
  
  <figure class="highcharts-figure">
     <div id="containers"></div>
     
 </figure>
  
+<figure class="highcharts-figure1">
+    <div id="containerline"></div>
  
+</figure>
  
 <script >
+
+
+
 
 $.ajax({
 	/* for pie chart */
@@ -118,7 +182,7 @@ $.ajax({
 /* for line chart */
 
 function drawLineChart(category, series){
-	Highcharts.chart('container', {
+	/*Highcharts.chart('container', {
 	    chart: {
 	        type: 'line',
 	        width: 500
@@ -131,7 +195,11 @@ function drawLineChart(category, series){
 	    xAxis: {
 	        categories: category
 	    },
-	    
+	    yAxis: {
+	        title: {
+	            text: 'Quantity'
+	        }
+	    },
 	    tooltip: {
 	        formatter: function() {
 	          return '<strong>'+this.x+': </strong>'+ this.y;
@@ -142,7 +210,39 @@ function drawLineChart(category, series){
 		    name:'Quantity',
 	        data: series
 	    }]
+	});*/
+
+	Highcharts.chart('container', {
+	    chart: {
+	        type: 'line'
+	    },
+	    title: {
+	        text: 'Number Of Users'
+	    },
+	   
+	    xAxis: {
+	        categories: category
+	    },
+	    yAxis: {
+	        title: {
+	            text: 'Quantity'
+	        }
+	    },
+	    plotOptions: {
+	        line: {
+	            dataLabels: {
+	                enabled: true
+	            },
+	            enableMouseTracking: false
+	        }
+	    },
+	    series: [{
+	        name: 'User',
+	        data: series
+	    }]
 	});
+
+	
 }
 /* for multiple line chart */
 
@@ -165,7 +265,7 @@ $.ajax({
 	//url: "piechart",
 	//type : 'GET',
 	/* for line chart */
-	url: "${pageContext.request.contextPath }/admin/statistical/ajax/piechart",
+	url: "${pageContext.request.contextPath }/admin/statistical/ajax/barchart",
 	/* for multiple line chart */
 //	url: "multiplelinechart",
 	success: function(result){
@@ -184,7 +284,7 @@ function drawLineChart1(category, series){
         zoomType: 'xy'
     },
     title: {
-        text: 'Statistical Service'
+        text: 'Revenue Statistics'
     },
    
     xAxis: [{
@@ -199,14 +299,14 @@ function drawLineChart1(category, series){
             }
         },
         title: {
-            text: 'Service',
+            text: 'Price',
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
         }
     }, { // Secondary yAxis
         title: {
-            text: 'Service',
+            text: 'Price',
             style: {
                 color: Highcharts.getOptions().colors[0]
             }
@@ -245,6 +345,87 @@ function drawLineChart1(category, series){
     }]
 });
 }
+
+
+//Line chart
+
+
+$.ajax({
+	/* for pie chart */
+	//url: "piechart",
+	//type : 'GET',
+	/* for line chart */
+	url: "${pageContext.request.contextPath }/admin/statistical/ajax/piechart",
+	/* for multiple line chart */
+//	url: "multiplelinechart",
+	success: function(result){
+		/* line chart single starts here */
+		var category = JSON.parse(result).categories;
+		var series = JSON.parse(result).series;
+		drawLineChart2(category, series);
+	
+		
+}
+});
+
+
+
+function drawLineChart2(category, series){
+Highcharts.chart('containerline', {
+
+    chart: {
+        type: 'lollipop'
+    },
+
+    accessibility: {
+        point: {
+            descriptionFormatter: function (point) {
+                var ix = point.index + 1,
+                    x = point.name,
+                    y = point.y;
+                return ix + '. ' + x + ', ' + y + '.';
+            }
+        }
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    subtitle: {
+        text: '2019'
+    },
+
+    title: {
+        text: 'Amount Service'
+    },
+
+    tooltip: {
+        shared: true
+    },
+
+    xAxis: {
+        type: 'category'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Quantity'
+        }
+    },
+
+    series: [{
+        name: 'Quantity',
+        data: series,category,color:'#cc33ff'
+    }]
+
+});
+}
+
+
+
+
+
 </script>
 
 

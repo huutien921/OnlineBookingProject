@@ -95,10 +95,14 @@ public class Statistical_AdminController {
 		jsonObject.add("categories", jsonArrayCategory);
 		jsonObject.add("series", jsonArraySeries);
 		return jsonObject.toString();
+		
+		
+		
+		
 	}
 	
 	
-	@RequestMapping(value="ajax/piechart")
+	@RequestMapping(value="ajax/barchart")
 	@ResponseBody
 	public String statisticalService(){
 		List<ServiceGroup> dataList = serviceService.statisticalService();
@@ -115,6 +119,21 @@ public class Statistical_AdminController {
 	}
 	
 	
+	@RequestMapping(value="ajax/piechart")
+	@ResponseBody
+	public String amountService(){
+		List<ServiceGroup> dataList = serviceService.countService();
+		JsonArray jsonArrayCategory = new JsonArray();
+		JsonArray jsonArraySeries = new JsonArray();
+		JsonObject jsonObject = new JsonObject();
+		dataList.forEach(data->{
+			jsonArrayCategory.add(data.getMonth());
+			jsonArraySeries.add(data.getAmount());
+		});
+		jsonObject.add("categories", jsonArrayCategory);
+		jsonObject.add("series", jsonArraySeries);
+		return jsonObject.toString();
+	}
 	
 	
 	/*@GetMapping("/displayBarGraph")

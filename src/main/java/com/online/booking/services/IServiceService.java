@@ -12,5 +12,5 @@ public interface IServiceService {
 	public Service save(Service service);
 	public List<Service> findByTypeService( int id);
 	public List<ServiceGroup> statisticalService();
-	
+	public List<ServiceGroup> countService();
 }
